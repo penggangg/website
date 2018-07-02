@@ -1,0 +1,11 @@
+//字体大小，颜色
+@mixin sc($size, $color){
+	font-size: $size;
+	color: $color;
+}
+
+// 高 行高 (居中)
+@mixin line-hei($height, $line-height){
+  height: $height;
+  line-height: $line-height;
+}
