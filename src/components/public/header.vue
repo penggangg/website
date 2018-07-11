@@ -21,14 +21,6 @@
           <div class="col-md-2 text-right">服务热线： 400-888-8888</div>
         </div>
         <div class="visible-sm-block visible-xs-block">
-          <ul>
-            <li>首页</li>
-            <li>首页</li>
-            <li>首页</li>
-            <li>首页</li>
-            <li>首页</li>
-            <li>首页</li>
-          </ul>
         </div>
       </div>
   </div>
