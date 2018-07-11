@@ -1,6 +1,6 @@
 <template>
   <div>
-    移动端首页
+    移动端首页1
   </div>
 </template>
 
