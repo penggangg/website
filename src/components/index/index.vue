@@ -31,6 +31,7 @@ export default {
     Pcindex
   },
   created () {
+    console.log(this.cityCode)
   }
 }
 </script>

@@ -14,6 +14,7 @@ console.log($)
 Vue.config.productionTip = false
 Vue.component('headers', headers)
 Vue.prototype.$http = axios
+Vue.prototype.code = 11000
 // 添加一个请求拦截器
 axios.interceptors.request.use(function (config) {
   // Do something before request is sent

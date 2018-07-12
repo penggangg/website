@@ -23,9 +23,8 @@ const company = r => require.ensure([], () => r(require('@/components/company/in
 // 房产委托
 const delegate = r => require.ensure([], () => r(require('@/components/delegate/index')), 'delegate')
 Vue.use(Router)
-
-export default new Router({
-  linkActiveClass: 'active',
+const router = new Router({
+  // linkActiveClass: 'active',
   // linkExactActiveClass: 'active',
   routes: [
     {
@@ -95,3 +94,9 @@ export default new Router({
     }
   ]
 })
+router.beforeEach((to, from, next) => {
+  let { code } = to.query
+  Vue.prototype.code = code
+  next()
+})
+export default router
