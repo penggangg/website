@@ -96,7 +96,8 @@ const router = new Router({
 })
 router.beforeEach((to, from, next) => {
   let { code } = to.query
-  Vue.prototype.code = code
+  Vue.prototype.code = code || 11000
+  console.log(Vue.prototype.code)
   next()
 })
 export default router
