@@ -66,7 +66,6 @@ export default {
   }
 }
 </script>
-
 <style lang="scss" scoped>
 @import '../../assets/css/mixin';
 .header-pc{
