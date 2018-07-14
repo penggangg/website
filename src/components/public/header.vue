@@ -1,9 +1,9 @@
 <template>
   <div>
       <div class="container-fluid">
-        <div class="row hidden-xs hidden-sm header-pc">
-          <div class="col-md-2 text-right" style="font-size:48px;font-weight:bold;color:#fff;">LOGO</div>
-          <div class="col-md-1 citySwicth ">
+        <div class="row hidden-xs hidden-sm header-pc" :class="{ headerHome: $route.path === '/' }">
+          <div class="col-md-2 text-right logo">LOGO</div>
+          <div class="col-md-1 citySwicth">
             <img src="../../assets/images/icon-location.svg" alt="" srcset="">
             <router-link  :to="{ path: '/', query: { code: 310000 }}" :class="{ active: $route.query.code === 310000 }" tag="span">上海</router-link>
             <span>|</span>
@@ -60,7 +60,8 @@ export default {
           path: 'company',
           name: '公司介绍'
         }
-      ]
+      ],
+      isHome: true
     }
   },
   created () {
@@ -73,11 +74,20 @@ export default {
 .header-pc{
   display: flex;
   align-items: center;
-  position: absolute;
-  top: 0;
-  left: 0;
   width: calc( 100% + 15px);
   @include line-hei(50px, 50px);
+  background: #303035;
+  &.headerHome {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: none;
+  }
+  .logo {
+    font-size:48px;
+    font-weight:bold;
+    color:#fff;
+  }
   // 城市切换
   .citySwicth{
     display: flex;
