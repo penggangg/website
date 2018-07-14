@@ -1,49 +1,41 @@
-/**
-  右侧导航弹窗
-*/
+
 <template>
   <div class="citydropdown">
-    <p>
-      <span>{{checkCity}}</span>
+    <p @click="showSwitchcity = !showSwitchcity">
+      <span class="downcity">{{cityArrList[checkCity].cityaddress}}</span>
       <span class="downIcon"></span>
     </p>
-    <div class="citydropconten" :style="{top: citydownTop}">
-      <p class="city-items" v-for="(item,index) in cityArrList" :key="index" :class="{checkCityActive: checkCity===item.id}">{{item.city}}</p>
+    <div class="citydropconten" v-show="showSwitchcity">
+      <p class="city-items" v-for="(item,index) in cityArrList" :key="index" :class="{checkCityActive: index === checkCity}" @click="switchcity(item, index)">{{item.cityaddress}}</p>
     </div>
   </div>
 </template>
 
 <script>
+
 export default {
-  name: 'Appindex',
+  name: 'citydrop',
   props: {
     // 选中
-    cityArrList: {
-      type: Array,
-      default: [
-        {city: '北京', id: '0'},
-        {city: '上海', id: '1'}
-      ]
-    },
-    citydownTop: {
-      type: 'string',
-      default: 0
-    },
     checkCity: {
-      type: String,
-      default: '0'
+      type: Number,
+      default: 0
     }
   },
   data () {
     return {
-      checkCity: '北京'
+      cityArrList: [
+        {cityaddress: '北京', id: '0'},
+        {cityaddress: '上海', id: '1'}
+      ],
+      showSwitchcity: false
     }
   },
-  mounted: function () {
-    this.$nextTick(() => {
-    })
-  },
   methods: {
+    switchcity (item, index) {
+      this.showSwitchcity = false
+      this.$emit('switchcity', {item: item, index: index})
+    }
   },
   watch: {
   },
@@ -56,33 +48,47 @@ export default {
 <style lang="scss" scoped>
 .citydropdown {
   position: relative;
-  width: .8rem;
+  &>p{
+    display: flex;
+    width: .6rem;
+    padding: .07rem .1rem;
+    border-radius: .15rem;
+    background: rgba(0, 0, 0, .5);
+    align-items: center;
+  }
   span {
     display: inline-block;
   }
+  .downcity {
+    font-size: .12rem;
+    color: #fff;
+  }
   .downIcon {
-    width: .2rem;
-    height: .2rem;
-    background: url(../../../assets/images/logo.png) no-repeat center;
+    margin-left: .05rem;
+    width: .1rem;
+    height: .06rem;
+    background: url(../../../assets/appimages/xiala.svg) no-repeat center;
+    background-size: 100%;
   }
   .citydropconten {
-    position: absolute;
-    margin-top: calc(100% + 5px);
+    position: relative;
+    z-index: 999;
+    margin-top: 5px;
     width: .8rem;
-    border: 1px solid #ddd;
+    border: 1px solid #333;
     border-radius: .08rem;
     .city-items {
       height: .4rem;
-      border: 1px solid #ddd;
+      border-bottom: 1px solid #333;
+      line-height: .4rem;
       text-align: center;
     }
-    .city-items:nth-last-type(1) {
+    .city-items:nth-last-of-type(1) {
       border-bottom: none;
     }
   }
-  .check-city-active {
+  .checkCityActive {
     color: #25adfb;
   }
 }
-
 </style>

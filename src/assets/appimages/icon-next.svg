@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="20px" viewBox="0 0 12 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>icon-next</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="首页" transform="translate(-709.000000, -869.000000)" fill-rule="nonzero" fill="#B7B7B7">
+            <g id="新房推荐" transform="translate(0.000000, 862.000000)">
+                <g id="icon-next" transform="translate(709.000000, 7.000000)">
+                    <path d="M9.6659632,9.79554485 C9.88427429,9.99545271 9.8817182,10.2808843 9.65683306,10.479711 L1.20815762,17.9494027 C0.965892186,18.1635958 0.941342842,18.5356769 1.15332505,18.780469 C1.36530735,19.0252611 1.73354784,19.0500665 1.97581325,18.8358734 L10.4244887,11.3661817 C11.1739033,10.703605 11.1838239,9.59579678 10.4487909,8.92272587 L1.98339929,1.17095246 C1.74486475,0.952525994 1.37625238,0.970843561 1.16008044,1.21186585 C0.943908552,1.45288817 0.962037049,1.82534497 1.20057156,2.04377149 L9.6659632,9.79554485 Z" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

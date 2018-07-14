@@ -5,17 +5,17 @@
   <div class="navigation-pops">
     <slot></slot>
     <div v-if = "theCustom">
-        <button type="button" name="button" @click="shownavigationpopsshow">点击出现导航菜单11</button>
+        <img class="menu-button" src="../../../assets/appimages/menu.svg" @click="shownavigationpopsshow">
     </div>
     <div class="fixed-pops"  v-show="shownavigationpops">
       <div class="fixed-pops-conten" :class="[showProps ? 'outclass' : 'inclass' ]">
         <div class="fixed-pops-left">
            <ul>
-             <li :class="{pithOne: pithOne === index}" v-for="(item,index) in tablist" :key="index">{{item.text}}</li>
+             <li class="checkfont" :class="{pithOne: value === item.id}" v-for="(item,index) in tablist" :key="index" @click="switchtab(item)">{{item.text}}</li>
            </ul>
         </div>
         <div class="fixed-pops-right">
-          <p @click="closePops">关闭</p>
+           <img src="../../../assets/appimages/icon-next.svg" @click="closePops">
         </div>
       </div>
     </div>
@@ -25,10 +25,10 @@
 <script>
 
 export default {
-  name: 'Appindex',
+  name: 'navigation',
   props: {
     // 选中
-    pithOne: {
+    value: {
       type: String,
       default: '0'
     },
@@ -74,6 +74,24 @@ export default {
           this.$emit('closePops')
         }
       }, 500)
+    },
+    switchtab (item) {
+      this.$emit('input', item.id)
+      // 调取后台接口地址
+      let objrouter = {
+        '0': 'Index', // 首页
+        '1': 'newHouseList', // 新房
+        '2': 'shopList', // 商铺
+        '3': 'officeBuildList', // 写字楼
+        '4': 'business', // 商务合作
+        '5': 'marketAnalysisList', // 市场分析
+        '6': 'delegate', // 房屋委托
+        '7': 'dynamic', // 企业动态
+        '8': 'company' // 公司介绍
+      }
+      let goUrlname = objrouter[item.id]
+      debugger
+      this.$router.push({name: goUrlname, params: {}})
     }
   },
   watch: {
@@ -117,23 +135,29 @@ export default {
             li {
               height: .5rem;
               line-height: .5rem;
+              font-size: .14rem;
               text-align: center;
             }
           }
         }
         .fixed-pops-right {
-           width: .8rem;
+           width: .52rem;
            min-width: 50px;
            background: #fff;
            padding: .1rem 0 0 .1rem;
-           p {
-             width: .6rem;
-             height: .6rem;
-             background: yellow;
+           display: flex;
+           justify-content: center;
+           img {
+             width: .14rem;
+             height: .23rem;
            }
         }
      }
    }
+}
+.menu-button {
+  width: .24rem;
+  height: .24rem;
 }
 .pithOne {
   color: #2ea1d7 !important;
