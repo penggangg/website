@@ -2,18 +2,21 @@
   inputsearch
 */
 <template>
-  <div class="input-search-compent">
+  <div class="input-search-compent" :style="{bottom:styleObjet.positionbottom}">
     <div class="input-search">
-        <div>
-            <span>新房</span>
-            <img src="../../../assets/appimages/icon-search.svg" >
+        <div @click="dorpdown=!dorpdown" v-if = "styleObjet.dorpdownDome" class="input-searchdiv1">
+            <span :searchid = "searchobj.id">{{searchobj.text}}</span>
+            <span :class="[dorpdown ? 'downshanjiao' : 'upshanjiao']"></span>
         </div>
-        <div>
-            <input type="text" placeholder="dsad">
+        <div class="input-searchdiv2">
+            <input type="text" :placeholder="styleObjet.placeholder">
         </div>
-        <div>
+        <div class="input-searchdiv3" :style="{background:styleObjet.bgse}">
             <img src="../../../assets/appimages/icon-search.svg">
         </div>
+    </div>
+    <div class="alertposition" v-show="!dorpdown" >
+        <p v-for="(item,index) in arrlist" :key="index" @click="swithchSearch(index)">{{item.text}}</p>
     </div>
   </div>
 </template>
@@ -23,9 +26,23 @@
 export default {
   name: 'inputSearch',
   props: {
+    styleObjet: {
+      type: Object,
+      required: true
+    }
   },
   data () {
     return {
+      dorpdown: true,
+      searchobj: {
+        text: '新房',
+        id: '0'
+      },
+      arrlist: [
+        {text: '新房', id: '0'},
+        {text: '商铺', id: '1'},
+        {text: '写字楼', id: '2'}
+      ]
     }
   },
   mounted: function () {
@@ -33,6 +50,10 @@ export default {
     })
   },
   methods: {
+    swithchSearch (index) {
+      this.dorpdown = true
+      this.searchobj = this.arrlist[index]
+    }
   },
   watch: {
   },
@@ -44,41 +65,79 @@ export default {
 
 <style lang="scss" scoped>
 .input-search-compent {
+    position: absolute;
+    left: 0;
     width: 100%;
-    padding: 0 5%;
+    font-size: .12rem;
+    color:#888;
+    .alertposition {
+        position: absolute;
+        top: .38rem;
+        left: 5%;
+        z-index: 99;
+        width: .7rem;
+        background: #fff;
+        box-shadow: 1px 1px 10px #888;
+        p{
+            height: .3rem;
+            line-height: .3rem;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+            &:nth-last-of-type(1) {
+                border-bottom: none;
+            }
+        }
+    }
+    .alertposition::after {
+        content: '';
+        border-bottom: .04rem solid #fff;
+        border-top: .04rem solid transparent;
+        border-left: .04rem solid transparent;
+        border-right: .04rem solid transparent;
+        position: absolute;
+        top: -.08rem;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 }
 .input-search {
     display: flex;
     overflow: hidden;
-    width: 100%;
+    width: 90%;
+    margin: 0 auto;
     height: .32rem;
+    border-radius: .04rem;
     background: #fff;
-    &>div:nth-of-type(1) {
+    &>.input-searchdiv1 {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: .53rem;
+        width: .7rem;
         height: .32rem;
         border-right: 1px solid #F5F5F6;
-        &>span {
+        &>span:nth-of-type(1) {
             margin-right: .05rem;
         }
     }
-    &>div:nth-of-type(2) {
+    &>.input-searchdiv2 {
         flex:1;
         input {
             width:100%;
+            text-indent: 10px;
             height: .32rem;
             border: none;
         }
     }
-    &>div:nth-of-type(3) {
+    &>.input-searchdiv3 {
         width: .45rem;
         height: .32rem;
         display: flex;
         justify-content: center;
         align-items: center;
-        background: #3886F8;
+        img {
+            width: .16rem;
+            height: .16rem;
+        }
     }
 }
 </style>

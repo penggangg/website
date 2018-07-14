@@ -9,3 +9,10 @@
   height: $height;
   line-height: $line-height;
 }
+
+// 字体最小化缩放0.5
+@mixin font-size-min($fontSize, $width){
+  font-size: $fontSize;
+  width: $width*2;
+  transform: translateX(-25%) scale(.5);
+}

@@ -100,3 +100,17 @@ html,body{
  75%  { opacity: .5 }
  100% { opacity: 1 }
 }
+.downshanjiao {
+  border-top: .05rem solid #888;
+  border-left: .05rem solid transparent;
+  border-right: .05rem solid transparent;
+  border-bottom: .05rem solid transparent;
+  margin-top: .05rem;
+}
+.upshanjiao {
+  border-top: .05rem solid transparent;
+  border-left: .05rem solid transparent;
+  border-right: .05rem solid transparent;
+  border-bottom: .05rem solid #888;
+  margin-top: -.05rem;
+}

@@ -50,8 +50,7 @@ export default {
   position: relative;
   &>p{
     display: flex;
-    width: .6rem;
-    padding: .07rem .1rem;
+    padding: .06rem .1rem;
     border-radius: .15rem;
     background: rgba(0, 0, 0, .5);
     align-items: center;
@@ -71,15 +70,17 @@ export default {
     background-size: 100%;
   }
   .citydropconten {
-    position: relative;
+    position: absolute;
+    top: .3rem;
     z-index: 999;
     margin-top: 5px;
     width: .8rem;
-    border: 1px solid #333;
+    background: #fff;
     border-radius: .08rem;
     .city-items {
       height: .4rem;
-      border-bottom: 1px solid #333;
+      font-size: .12rem;
+      border-bottom: 1px solid #ddd;
       line-height: .4rem;
       text-align: center;
     }

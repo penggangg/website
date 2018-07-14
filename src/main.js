@@ -7,9 +7,12 @@ import $ from 'jquery'
 import router from './router'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+import 'swiper/dist/css/swiper.css'
 import '@/assets/css/normalize.scss'
 import '@/assets/css/common.scss'
 import headers from '@/components/public/header'
+Vue.use(VueAwesomeSwiper)
 console.log($)
 Vue.config.productionTip = false
 Vue.component('headers', headers)
