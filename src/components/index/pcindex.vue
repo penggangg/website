@@ -158,6 +158,7 @@
   </div>
 </template>
 <style lang="scss" scoped>
+@import '../../assets/css/mixin';
 .choose-me {
   width: 1200px;
   margin: 50px auto;
@@ -290,14 +291,14 @@
 .search_form {
     width: 772px;
     border-radius: 4px;
-}
-.search_form .genre {
-    height: 55px;
-    line-height: 55px;
-}
-.search_form .genre ul {
-    position: relative;
-    float: left;
+    .genre {
+      @include line-hei(55px, 55px);
+      ul {
+          position: relative;
+          float: left;
+      }
+    }
+
 }
 .search_form .genre ul>span.trans {
     position: absolute;
@@ -363,29 +364,19 @@
   color: #330033;
   cursor: pointer;
 }
-
 .searchCont>p {
     padding-left: 30px;
     padding-top: 15px;
     color: #f5edd6;
-    /*background: linear-gradient(top, rgba(0,0,0,0.4), transparent);
-    background: -webkit-linear-gradient(top, rgba(0,0,0,0.4), transparent);
-    background: -moz-linear-gradient(top, rgba(0,0,0,0.4), transparent);
-    background: -o-linear-gradient(bottom, rgba(0,0,0,0.4), transparent);
-filter:progid:DXImageTransform.Microsoft.Gradient(startColorStr='#000',endColorStr='#3b3b3a',gradientType='0');
-*/
     background: rgba(0, 0, 0, 0.1);
     width: 710px;
 }
-
 .searchCont>p a {
     color: #f5edd6;
     margin-left: 15px;
     font-size: 14px;
 }
-
 </style>
-
 <script>
 export default {
   name: 'Pcindex',
