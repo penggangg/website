@@ -90,7 +90,6 @@ export default {
         '8': 'company' // 公司介绍
       }
       let goUrlname = objrouter[item.id]
-      debugger
       this.$router.push({name: goUrlname, params: {}})
     }
   },

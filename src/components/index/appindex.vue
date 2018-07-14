@@ -1,5 +1,5 @@
 <template>
-  <div class="appindex">
+  <div class="appindex" :style="{overflow:shownavigationpops ? 'hidden' : 'auto',height:shownavigationpops ? '100vh' : '100%'}">
     <div class="header-img">
       <div class="header-nav">
         <div>
