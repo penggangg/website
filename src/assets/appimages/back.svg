@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="46px" viewBox="0 0 28 46" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>back</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="新房详情" transform="translate(-29.000000, -101.000000)" fill-rule="nonzero" fill="#FFFFFF">
+            <g id="back" transform="translate(43.000000, 124.000000) scale(-1, 1) translate(-43.000000, -124.000000) translate(29.000000, 101.000000)">
+                <path d="M23.6762297,22.4991925 C24.2228667,22.9888572 24.2164664,23.6880081 23.6533685,24.1750245 L2.49842873,42.4716746 C1.89181166,42.9963305 1.83034168,43.907725 2.36113151,44.5073315 C2.89192154,45.106938 3.81397204,45.1676976 4.42058904,44.643042 L25.5755289,26.3463919 C27.4520147,24.7234422 27.4768552,22.0099192 25.6363799,20.3612645 L4.43958399,1.37366874 C3.84230886,0.838643629 2.91932718,0.883511628 2.37804655,1.47388413 C1.83676606,2.06425669 1.88215865,2.97657169 2.47943371,3.51159694 L23.6762297,22.4991925 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

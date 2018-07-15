@@ -12,7 +12,7 @@
             <input type="text" :placeholder="styleObjet.placeholder">
         </div>
         <div class="input-searchdiv3" :style="{background:styleObjet.bgse}">
-            <img src="../../../assets/appimages/icon-search.svg">
+            <img :src="searchinputbg">
         </div>
     </div>
     <div class="alertposition" v-show="!dorpdown" >
@@ -29,6 +29,10 @@ export default {
     styleObjet: {
       type: Object,
       required: true
+    },
+    searchinputbg: {
+      type: String,
+      default: require('../../../assets/appimages/icon-search.svg')
     }
   },
   data () {

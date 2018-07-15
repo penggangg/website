@@ -3,7 +3,7 @@
   <div class="citydropdown">
     <p @click="showSwitchcity = !showSwitchcity">
       <span class="downcity">{{cityArrList[checkCity].cityaddress}}</span>
-      <span class="downIcon"></span>
+      <span class="downIcon" :style="{backgroundImage: bgurl}"></span>
     </p>
     <div class="citydropconten" v-show="showSwitchcity">
       <p class="city-items" v-for="(item,index) in cityArrList" :key="index" :class="{checkCityActive: index === checkCity}" @click="switchcity(item, index)">{{item.cityaddress}}</p>
@@ -20,6 +20,10 @@ export default {
     checkCity: {
       type: Number,
       default: 0
+    },
+    bgurl: {
+      type: String,
+      default: 'url(' + require('../../../assets/appimages/xiala.svg') + ')'
     }
   },
   data () {
@@ -66,7 +70,8 @@ export default {
     margin-left: .05rem;
     width: .1rem;
     height: .06rem;
-    background: url(../../../assets/appimages/xiala.svg) no-repeat center;
+    background-repeat: no-repeat;
+    background-position: center;
     background-size: 100%;
   }
   .citydropconten {
