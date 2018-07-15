@@ -20,15 +20,15 @@
     <div class="newHouselist-list">
       <div class="newHousefliter">
         <div @click="locationdorpdown=!locationdorpdown">
-           <span>位置</span>
+           <span class="new_house_loaction">位置</span>
            <span :class="[locationdorpdown ? 'downshanjiao' : 'upshanjiao']"></span>
         </div>
         <div @click="pricedorpdown=!pricedorpdown">
-           <span>单价</span>
+           <span class="new_house_price">单价</span>
            <span :class="[pricedorpdown ? 'downshanjiao' : 'upshanjiao']"></span>
         </div>
         <div @click="builddorpdown=!builddorpdown">
-           <span>建筑类型</span>
+           <span class="new_house_build">建筑类型</span>
            <span :class="[builddorpdown ? 'downshanjiao' : 'upshanjiao']"></span>
         </div>
       </div>
@@ -36,6 +36,10 @@
 
     <div class="newHouse-detail-lit">
       <apphuoseList></apphuoseList>
+    </div>
+
+    <div class="huosefooter">
+      <housefooter></housefooter>
     </div>
   </div>
 </template>
@@ -45,6 +49,7 @@ import citydropdown from '@/components/public/appPublic/citydropdown'
 import navigationpops from '@/components/public/appPublic/navigationPops'
 import inputSearch from '@/components/public/appPublic/inputSearch'
 import apphuoseList from './common/appList'
+import housefooter from '@/components/public/appPublic/footer'
 
 export default {
   name: 'newHouseList',
@@ -80,7 +85,8 @@ export default {
     citydropdown,
     navigationpops,
     inputSearch,
-    apphuoseList
+    apphuoseList,
+    housefooter
   },
   created () {
   }
@@ -128,6 +134,15 @@ export default {
         &>span:nth-of-type(1) {
           margin-right: .05rem;
         }
+      }
+      .new_house_loaction {
+        font-size: .12rem;
+      }
+      .new_house_price {
+        font-size: .12rem;
+      }
+      .new_house_build {
+        font-size: .12rem;
       }
     }
   }

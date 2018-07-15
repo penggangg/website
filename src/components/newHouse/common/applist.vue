@@ -6,7 +6,7 @@
       <span>北京新楼盘</span>
     </div>
     <div class="apphuoseList-items">
-      <div class='apphuoseList-items-container'>
+      <div class='apphuoseList-items-container' v-for="(item, index) in arrhuoselist" :key="index">
         <div class="apphuoseList-items-left">
           <img src="../../../assets/appimages/house1.png" alt="" srcset="">
         </div>
@@ -20,16 +20,12 @@
             <span>住宅</span>
             <span>建筑面积</span>
             <span>100-200m*m</span>
-            <span>建筑类型多少卡电话</span>
-            <span>住宅</span>
-            <span>建筑面积</span>
-            <span>100-200m*m</span>
           </p>
           <p>
-            <span>在售</span>
-            <span>特价</span>
-            <span>即将开盘</span>
-            <span>临湖</span>
+            <span class="onsale">在售</span>
+            <span class="special">特价</span>
+            <span class="opening">即将开盘</span>
+            <span class="normal">临湖</span>
           </p>
           <p>
             15000-28000元/m*m
@@ -46,6 +42,7 @@ export default {
   name: 'apphuoseList',
   data () {
     return {
+      arrhuoselist: [1, 2]
     }
   },
   mounted: function () {
@@ -66,7 +63,7 @@ export default {
   padding: 0 .15rem;
   background: #fff;
   .apphuoseList-header {
-    height: .44rem;
+    height: .34rem;
     line-height: .44rem;
     font-size: .12rem;
     span:nth-of-type(2) {
@@ -76,7 +73,11 @@ export default {
   .apphuoseList-items-container {
     display: flex;
     padding-bottom: .15rem;
-    border-bottom: 1px solid #B7B7B7
+    padding-top: .15rem;
+    border-bottom: 1px solid #B7B7B7;
+    &:nth-last-of-type(1){
+      border-bottom: none;
+    }
   }
   .apphuoseList-items-left {
     width: .96rem;
@@ -88,30 +89,68 @@ export default {
   }
   .apphuoseList-items-right {
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: .96rem;
     margin-left: .15rem;
     flex: 1;
     font-size: .12rem;
     p:nth-of-type(1) {
       font-size: .14rem;
       font-weight: bold;
+      color: #333;
     }
-    p:nth-of-type(3) {
-      width: 200%;
-      transform:translateX(-25%) scale(0.5);
+    p:nth-of-type(2) {
       display: flex;
       flex-wrap: wrap;
+      color: #8888;
       span {
-        display: block;
-        font-size: .18rem;
-        padding: .06rem;
-        margin-right: .06rem;
-        background: #ccc;
-        margin-bottom: .08rem;
+        font-size: .09rem;
+        color: #888;
       }
-      span:nth-last-of-type(1){
-        margin-right: 0;
+      span:nth-of-type(1) {
+        margin-right: .05rem;
+      }
+      span:nth-of-type(2) {
+        margin-left: .05rem;
       }
     }
+    p:nth-of-type(3) {
+      span {
+        font-size: .09rem;
+        color: #888;
+      }
+      span:nth-of-type(2){
+        color: #5D9CF9 !important;
+      }
+    }
+    p:nth-of-type(4) {
+      span {
+        font-size: .09rem;
+        color: #888;
+        padding:.02rem;
+      }
+    }
+    p:nth-of-type(5) {
+      color: #FB6550;
+    }
+  }
+  .onsale{
+    background: #E6F0FE;
+    color: #5D9CF9 !important;
+  }
+  .special {
+    background: #FEECE9;
+    color: #FB6550 !important;
+  }
+  .opening {
+    background: #E2F5ED;
+    color: #44C08B !important;
+  }
+  .normal {
+    background: #F2F5F7;
+    color: #849AAD !important;
   }
 }
 </style>
