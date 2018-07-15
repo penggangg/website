@@ -1,9 +1,9 @@
 
 <template>
   <div class="citydropdown">
-    <p @click="showSwitchcity = !showSwitchcity">
+    <p @click="showSwitchcity = !showSwitchcity" :style="{background: citylocationbg}">
       <span class="downcity">{{cityArrList[checkCity].cityaddress}}</span>
-      <span class="downIcon"></span>
+      <span class="downIcon" :style="{backgroundImage: bgurl}"></span>
     </p>
     <div class="citydropconten" v-show="showSwitchcity">
       <p class="city-items" v-for="(item,index) in cityArrList" :key="index" :class="{checkCityActive: index === checkCity}" @click="switchcity(item, index)">{{item.cityaddress}}</p>
@@ -20,6 +20,13 @@ export default {
     checkCity: {
       type: Number,
       default: 0
+    },
+    bgurl: {
+      type: String,
+      default: 'url(' + require('../../../assets/appimages/xiala.svg') + ')'
+    },
+    citylocationbg: {
+      type: String
     }
   },
   data () {
@@ -52,7 +59,6 @@ export default {
     display: flex;
     padding: .06rem .1rem;
     border-radius: .15rem;
-    background: rgba(0, 0, 0, .5);
     align-items: center;
   }
   span {
@@ -66,7 +72,8 @@ export default {
     margin-left: .05rem;
     width: .1rem;
     height: .06rem;
-    background: url(../../../assets/appimages/xiala.svg) no-repeat center;
+    background-repeat: no-repeat;
+    background-position: center;
     background-size: 100%;
   }
   .citydropconten {
@@ -76,6 +83,7 @@ export default {
     margin-top: 5px;
     width: .8rem;
     background: #fff;
+    box-shadow: 2px 2px 2px 1px #ddd;
     border-radius: .08rem;
     .city-items {
       height: .4rem;

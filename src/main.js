@@ -13,6 +13,9 @@ import '@/assets/css/normalize.scss'
 import '@/assets/css/common.scss'
 import headers from '@/components/public/header'
 import footers from '@/components/public/footer'
+import DOmstyle from '@/assets/js/directive'
+
+Vue.use(DOmstyle)
 Vue.use(VueAwesomeSwiper)
 console.log($)
 Vue.config.productionTip = false

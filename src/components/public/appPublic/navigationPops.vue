@@ -5,7 +5,7 @@
   <div class="navigation-pops">
     <slot></slot>
     <div v-if = "theCustom">
-        <img class="menu-button" src="../../../assets/appimages/menu.svg" @click="shownavigationpopsshow">
+        <img class="menu-button" :src="menuSrc" @click="shownavigationpopsshow">
     </div>
     <div class="fixed-pops"  v-show="shownavigationpops">
       <div class="fixed-pops-conten" :class="[showProps ? 'outclass' : 'inclass' ]">
@@ -41,6 +41,10 @@ export default {
     theCustom: {
       type: Boolean,
       default: true
+    },
+    menuSrc: {
+      type: String,
+      default: require('../../../assets/appimages/menu.svg')
     }
   },
   data () {
@@ -76,7 +80,7 @@ export default {
       }, 500)
     },
     switchtab (item) {
-      this.$emit('input', item.id)
+      // this.$emit('input', item.id)
       // 调取后台接口地址
       let objrouter = {
         '0': 'Index', // 首页

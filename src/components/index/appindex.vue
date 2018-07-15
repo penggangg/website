@@ -3,7 +3,7 @@
     <div class="header-img">
       <div class="header-nav">
         <div>
-          <citydropdown  @switchcity="switchcity" :checkCity="pithcity"></citydropdown>
+          <citydropdown  @switchcity="switchcity" :checkCity="pithcity" :citylocationbg="citylocationbg"></citydropdown>
         </div>
         <navigationpops
         @closePops="shownavigationpops=false"
@@ -74,6 +74,7 @@ export default {
         bgse: '#3886F8',
         dorpdownDome: true
       },
+      citylocationbg: 'rgba(0, 0, 0, .5)', // 给city切换传背景色
       swiperdatalist: [
         {value: '上海绿地中心', price: '1500万起', imgurl: '../../../../static/images/u153.png'},
         {value: '上海绿地中心', price: '1500万起', imgurl: '../../../../static/images/banner.png'},
