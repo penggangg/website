@@ -12,10 +12,12 @@ import 'swiper/dist/css/swiper.css'
 import '@/assets/css/normalize.scss'
 import '@/assets/css/common.scss'
 import headers from '@/components/public/header'
+import footers from '@/components/public/footer'
 Vue.use(VueAwesomeSwiper)
 console.log($)
 Vue.config.productionTip = false
 Vue.component('headers', headers)
+Vue.component('footers', footers)
 Vue.prototype.$http = axios
 Vue.prototype.code = 11000
 // 添加一个请求拦截器
