@@ -80,7 +80,7 @@ export default {
       }, 500)
     },
     switchtab (item) {
-      this.$emit('input', item.id)
+      // this.$emit('input', item.id)
       // 调取后台接口地址
       let objrouter = {
         '0': 'Index', // 首页
