@@ -2,7 +2,7 @@
   <div class="search">
     <div class="serch-cot">
       <input type="text" placeholder="请输入城区/商圈/胡同">
-      <img src="../../../assets/pcimages/smallSearch.svg" alt="" srcset="">
+      <img src="../../../assets/images/smallSearch.svg" alt="" srcset="">
     </div>
   </div>
 </template>
