@@ -6,7 +6,7 @@
       <span>北京新楼盘</span>
     </div>
     <div class="apphuoseList-items">
-      <div class='apphuoseList-items-container' v-for="(item, index) in arrhuoselist" :key="index">
+      <div class='apphuoseList-items-container' v-for="(item, index) in arrhuoselist" :key="index" @click="gohuosedetail(item)">
         <div class="apphuoseList-items-left">
           <img src="../../../assets/appimages/house1.png" alt="" srcset="">
         </div>
@@ -42,7 +42,7 @@ export default {
   name: 'apphuoseList',
   data () {
     return {
-      arrhuoselist: [1, 2]
+      arrhuoselist: [{id: 1}, {id: 2}]
     }
   },
   mounted: function () {
@@ -50,6 +50,10 @@ export default {
     })
   },
   methods: {
+    gohuosedetail (item) {
+      let id = item.id
+      this.$router.push({path: '/newHouseDetail/' + id, query: { code: this.code }})
+    }
   },
   components: {
   },
@@ -135,22 +139,6 @@ export default {
     p:nth-of-type(5) {
       color: #FB6550;
     }
-  }
-  .onsale{
-    background: #E6F0FE;
-    color: #5D9CF9 !important;
-  }
-  .special {
-    background: #FEECE9;
-    color: #FB6550 !important;
-  }
-  .opening {
-    background: #E2F5ED;
-    color: #44C08B !important;
-  }
-  .normal {
-    background: #F2F5F7;
-    color: #849AAD !important;
   }
 }
 </style>

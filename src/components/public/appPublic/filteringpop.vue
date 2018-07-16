@@ -84,7 +84,9 @@ export default {
     button {
       height: .4rem;
       width: 90%;
-      background: green;
+      border-radius: .02rem;
+      background: #5D9CF9;
+      font-size: .18rem;
       line-height: .4rem;
       text-align: center;
       color: #fff;

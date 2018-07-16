@@ -2,8 +2,8 @@
   <div class="newHouselist">
     <div class="newHouselist-header">
       <div class="newHouselist-header-left">
-        <img src="../../assets/appimages/icon-lback.svg" >
-        <citydropdown :checkCity="pithcity" :bgurl="cityxialabg" v-domstyle="{color: '#333', width: '.11rem', height: '.06rem'}" @switchcity="switchcity"></citydropdown>
+        <img src="../../assets/appimages/icon-lback.svg" @click="$root.goback">
+        <citydropdown :bgurl="cityxialabg" v-domstyle="{color: '#333', width: '.11rem', height: '.06rem'}" ></citydropdown>
       </div>
       <div class="newHouselist-header-right">
         <navigationpops @closePops="shownavigationpops=false"
@@ -57,7 +57,6 @@ export default {
   data () {
     return {
       pithOne: '1',
-      pithcity: 0,
       shownavigationpops: false, // 控制右侧弹窗的显示隐藏
       cityxialabg: 'url(' + require('../../assets/appimages/llocation.svg') + ')', // 城市的到三角样式颜色
       navigationbg: require('../../assets/appimages/icon-lmenu.svg'), // 右侧的弹窗按钮样式
@@ -108,9 +107,6 @@ export default {
     })
   },
   methods: {
-    switchcity (itemObject) {
-      this.pithcity = itemObject.index
-    },
     location () {
       if (this.types === '0') {
         this.filteringpopShow = !this.filteringpopShow

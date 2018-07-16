@@ -3,7 +3,7 @@
     <div class="header-img">
       <div class="header-nav">
         <div>
-          <citydropdown  @switchcity="switchcity" :checkCity="pithcity" :citylocationbg="citylocationbg"></citydropdown>
+          <citydropdown  @switchcity="switchcity"  :citylocationbg="citylocationbg"></citydropdown>
         </div>
         <navigationpops
         @closePops="shownavigationpops=false"
@@ -65,7 +65,6 @@ export default {
   data () {
     return {
       pithOne: '0',
-      pithcity: 0,
       indexObje: {},
       shownavigationpops: false,
       styleObjet: { // inputsearch组件的一些配置
@@ -88,9 +87,6 @@ export default {
     })
   },
   methods: {
-    switchcity (itemObject) {
-      this.pithcity = itemObject.index
-    }
   },
   components: {
     navigationpops,

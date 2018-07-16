@@ -2,11 +2,11 @@
 <template>
   <div class="citydropdown">
     <p @click="showSwitchcity = !showSwitchcity" :style="{background: citylocationbg}">
-      <span class="downcity">{{cityArrList[checkCity].cityaddress}}</span>
+      <span class="downcity">{{code==="310000"?"上海":"北京"}}</span>
       <span class="downIcon" :style="{backgroundImage: bgurl}"></span>
     </p>
     <div class="citydropconten" v-show="showSwitchcity">
-      <p class="city-items" v-for="(item,index) in cityArrList" :key="index" :class="{checkCityActive: index === checkCity}" @click="switchcity(item, index)">{{item.cityaddress}}</p>
+      <p class="city-items" v-for="(item,index) in cityArrList" :key="index" :class="{checkCityActive: item.id === code}" @click="switchcity(item, index)">{{item.cityaddress}}</p>
     </div>
   </div>
 </template>
@@ -16,11 +16,6 @@
 export default {
   name: 'citydrop',
   props: {
-    // 选中
-    checkCity: {
-      type: Number,
-      default: 0
-    },
     bgurl: {
       type: String,
       default: 'url(' + require('../../../assets/appimages/xiala.svg') + ')'
@@ -32,16 +27,18 @@ export default {
   data () {
     return {
       cityArrList: [
-        {cityaddress: '北京', id: '0'},
-        {cityaddress: '上海', id: '1'}
+        {cityaddress: '北京', id: '110000'},
+        {cityaddress: '上海', id: '310000'}
       ],
       showSwitchcity: false
     }
   },
   methods: {
     switchcity (item, index) {
+      debugger
       this.showSwitchcity = false
-      this.$emit('switchcity', {item: item, index: index})
+      this.code = item.id
+      this.$router.push({name: 'Index', query: { code: this.code }})
     }
   },
   watch: {

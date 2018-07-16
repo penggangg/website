@@ -45,5 +45,10 @@ new Vue({
   el: '#app',
   router,
   components: { App },
-  template: '<App/>'
+  template: '<App/>',
+  methods: {
+    goback () {
+      router.go(-1)
+    }
+  }
 })
