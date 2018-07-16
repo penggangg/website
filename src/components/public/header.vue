@@ -10,7 +10,7 @@
             <router-link  :to="{ path: '/', query: { code: 110000 }}"  :class="{ active: $route.query.code === 110000 || !$route.query.code }"   tag="span">北京</router-link>
           </div>
           <ul class="row col-md-7 nav" >
-            <router-link v-for="(item, index) in arrPath" :key="index" :class="{ active: $route.path === `/${item.path}` ||  $route.path === item.path}" :to="{ path: item.path, query: { code }}" tag="li" >{{item.name}}</router-link>
+            <router-link v-for="(item, index) in arrPath" :key="index" :class="{ active: $route.meta.activeClass === item.activeClass}" :to="{ path: `/${item.path}`, query: { code }}" tag="li" >{{item.name}}</router-link>
           </ul>
           <div class="col-md-2 text-right tel">服务热线： 400-888-8888</div>
         </div>
@@ -25,40 +25,49 @@ export default {
     return {
       arrPath: [
         {
-          path: '/',
-          name: '首页'
+          path: '',
+          name: '首页',
+          activeClass: 'home'
         },
         {
           path: 'newHouse',
-          name: '新房'
+          name: '新房',
+          activeClass: 'newHouse'
         },
         {
           path: 'shop',
-          name: '商铺'
+          name: '商铺',
+          activeClass: 'shop'
         },
         {
           path: 'officeBuild',
-          name: '写字楼'
+          name: '写字楼',
+          activeClass: 'officeBuild'
         },
         {
           path: 'business',
-          name: '商务合作'
+          name: '商务合作',
+          activeClass: 'business'
         },
         {
-          path: '/marketAnalysis',
-          name: '市场分析'
+          path: 'marketAnalysis',
+          name: '市场分析',
+          activeClass: 'marketAnalysis'
         },
         {
           path: 'delegate',
-          name: '房产委托'
+          name: '房产委托',
+          activeClass: 'delegate'
         },
         {
           path: 'dynamic',
-          name: '企业动态'
+          name: '企业动态',
+          activeClass: 'dynamic'
         },
         {
           path: 'company',
-          name: '公司介绍'
+          name: '公司介绍',
+          activeClass: 'company'
         }
       ],
       isHome: true

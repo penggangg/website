@@ -13,7 +13,7 @@
 import appList from './appList'
 import pcList from './pcList'
 export default {
-  name: 'newHouseList',
+  name: 'shopList',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'

@@ -30,67 +30,80 @@ const router = new Router({
     {
       path: '/',
       name: 'Index',
-      component: Index
+      component: Index,
+      meta: {activeClass: 'home'}
     },
     {
       path: '/newHouse',
       name: 'newHouseList',
-      component: newHouseList
+      component: newHouseList,
+      meta: {activeClass: 'newHouse'}
     },
     {
       path: '/newHouseDetail/:id',
       name: 'newHouseDetail',
-      component: newHouseDetail
+      component: newHouseDetail,
+      meta: {activeClass: 'newHouse'}
     },
     {
       path: '/shop',
       name: 'shopList',
-      component: shopList
+      component: shopList,
+      meta: {activeClass: 'shop'}
     },
     {
       path: '/shopDetail/:id',
       name: 'shopDetail',
-      component: shopDetail
+      component: shopDetail,
+      meta: {activeClass: 'shop'}
     },
     {
       path: '/officeBuild',
       name: 'officeBuildList',
-      component: officeBuildList
+      component: officeBuildList,
+      meta: {activeClass: 'officeBuild'}
     },
     {
       path: '/officeBuildDetail/:id',
       name: 'officeBuildDetail',
-      component: officeBuildDetail
+      component: officeBuildDetail,
+      meta: {activeClass: 'officeBuild'}
     },
     {
       path: '/marketAnalysis',
       name: 'marketAnalysisList',
-      component: marketAnalysisList
+      component: marketAnalysisList,
+      meta: {activeClass: 'marketAnalysis'}
     },
     {
       path: '/marketAnalysisDetail/:id',
       name: 'marketAnalysisDetail',
-      component: marketAnalysisDetail
+      component: marketAnalysisDetail,
+      meta: {activeClass: 'marketAnalysis'}
     },
     {
       path: '/business',
       name: 'business',
-      component: business
+      component: business,
+      meta: {activeClass: 'business'}
     },
     {
       path: '/dynamic',
       name: 'dynamic',
-      component: dynamic
+      component: dynamic,
+      meta: {activeClass: 'dynamic'}
     },
     {
       path: '/company',
       name: 'company',
-      component: company
+      component: company,
+      meta: {activeClass: 'company'}
     },
     {
       path: '/delegate',
       name: 'delegate',
-      component: delegate
+      component: delegate,
+      meta: {activeClass: 'delegate'}
     }
   ]
 })

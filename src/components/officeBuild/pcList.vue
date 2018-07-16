@@ -43,8 +43,8 @@
         <span class="building-type"><span>建筑面积</span> <i>100~200㎡</i></span>
         <span class="building-area"><span>使用面积</span> <i>100~200㎡</i></span>
       </template>
-      <template  slot="house-price">
-        <div class="house-price">
+      <template  slot="labels">
+        <div class="labels price">
             150000~28000万元
         </div>
       </template>
