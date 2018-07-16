@@ -3,48 +3,33 @@
     <div class="total-num">
       为你找到 <span>100个</span> 北京新楼盘
     </div>
-    <div class="list">
+    <div class="list" v-for="(item, index) in 5" :key="index">
       <div class="item">
         <img src="../../../assets/images/pic1.png" alt="" >
         <div class="house-detail">
-          <h4><a href="" title="鲁能格拉斯小镇">鲁能格拉斯小镇</a></h4>
+          <h4>
+            <!-- <a href="" title="鲁能格拉斯小镇">鲁能格拉斯小镇</a>  -->
+            <router-link :to="{ path:'/officeBuildDetail/123', query: { code }}" target="_blank">鲁能格拉斯小镇</router-link>
+          </h4>
           <div class="loacation"><span>昌平</span>|<span>王府井大道南侧100m</span></div>
-          <div >
-            <span class="house-type"> <span>户型</span><i>3居</i>|<i>4居</i></span>
-            <span class="building-type"><span>建筑类型</span> <i>酒店式公寓</i></span>
-            <span class="building-area"><span>建筑面积</span> <i>100~200㎡</i></span>
+          <div>
+            <!-- <span class="house-type"> <span>户型</span><i>3居</i>|<i>4居</i></span> -->
+            <slot name="house-type">
+              <span class="house-type"> <span>户型</span><i>3居</i>|<i>4居</i></span>
+              <span class="building-type"><span>建筑类型</span> <i>酒店式公寓</i></span>
+              <span class="building-area"><span>建筑面积</span> <i>100~200㎡</i></span>
+            </slot>
           </div>
-          <div class="labels">
-            <span>在售</span>
-            <span>特价房</span>
-            <span>样板间可售</span>
-            <span>公园地产</span>
-          </div>
+          <slot name="labels">
+            <div class="labels">
+              <span>在售</span>
+              <span>特价房</span>
+              <span>样板间可售</span>
+              <span>公园地产</span>
+            </div>
+          </slot>
         </div>
-        <div class="house-price">
-          150000~28000元/㎡
-        </div>
-      </div>
-      <div class="item">
-        <img src="../../../assets/images/pic1.png" alt="" >
-        <div class="house-detail">
-          <h4><a href="" title="鲁能格拉斯小镇">鲁能格拉斯小镇</a></h4>
-          <div class="loacation"><span>昌平</span>|<span>王府井大道南侧100m</span></div>
-          <div >
-            <span class="house-type"> <span>户型</span><i>3居</i>|<i>4居</i></span>
-            <span class="building-type"><span>建筑类型</span> <i>酒店式公寓</i></span>
-            <span class="building-area"><span>建筑面积</span> <i>100~200㎡</i></span>
-          </div>
-          <div class="labels">
-            <span>在售</span>
-            <span>特价房</span>
-            <span>样板间可售</span>
-            <span>公园地产</span>
-          </div>
-        </div>
-        <div class="house-price">
-          150000~28000元/㎡
-        </div>
+        <slot name="house-price"></slot>
       </div>
     </div>
   </div>
@@ -99,7 +84,12 @@
           }
         }
         .labels {
-          margin-top: 36px;
+          margin-top: 42px;
+          &.price {
+            color: #FB6550;
+            font-size: 22px;
+            font-weight: bold;
+          }
           span {
             font-size: 12px;
             padding: 7px 10px;
@@ -114,6 +104,7 @@
           white-space: nowrap;
           text-overflow: ellipsis;
           vertical-align: bottom;
+          margin-right: 30px;
           span {
             // margin-right: 10px;
           }
@@ -125,7 +116,7 @@
         .building-type {
           display: inline-block;
           width: 160px;
-          margin: 0 30px;
+          margin-right: 30px;
           span {
             margin-right: 6px;
           }

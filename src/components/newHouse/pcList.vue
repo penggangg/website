@@ -38,7 +38,13 @@
         </dl>
       </div>
     </div>
-    <list-result></list-result>
+    <list-result>
+      <template  slot="house-price">
+        <div class="house-price">
+            150000~28000元/㎡
+        </div>
+      </template>
+    </list-result>
     <footers></footers>
   </div>
 </template>

@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <headers></headers>
-    <router-view/>
+    <transition name="slide-fade">
+      <router-view/>
+    </transition>
   </div>
 </template>
 
@@ -17,6 +19,18 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100%;
-  background: #F5F5F6;
+}
+.slide-fade{
+  opacity: 1;
+}
+.slide-fade-enter-active {
+  transition: all 1s ease;
+}
+.slide-fade-leave-active {
+  transition: all .1s cubic-bezier(2.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+{
+  opacity: 0;
 }
 </style>
