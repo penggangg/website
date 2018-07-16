@@ -36,7 +36,36 @@
           <div class="next"></div>
         </div>
       </div>
-      <div class="house-detail"></div>
+      <div class="house-detail">
+        <h3>东三环朝阳区百子湾恒大豪华写字楼可注册公司</h3>
+        <div class="prcie">
+          <span>售价</span>
+          <span>1000万元</span>
+        </div>
+        <ul>
+          <li>
+            <span>建筑面积</span>
+            <span>2000㎡</span>
+          </li>
+          <li>
+            <span>使用面积</span>
+            <span>2000㎡</span>
+          </li>
+          <li>
+            <span>区域</span>
+            <span>2000㎡</span>
+          </li>
+          <li>
+            <span>地址</span>
+            <span>西花市大街 附近</span>
+            <span>查看详细地址</span>
+            <span>查看地图</span>
+          </li>
+        </ul>
+        <div class="hot-line">
+          咨询热线：400-888-9950
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -82,8 +111,11 @@ export default {
   width: 1200px;
   margin: 0 auto;
   .bread-crumbs {
+    padding: 30px 0;
     a {
       margin-right: 10px;
+      font-size: 12px;
+      color: #888C8E;
       &:not(:first-child) {
         margin-left: 10px;
       }
@@ -92,7 +124,9 @@ export default {
   .house-content {
     .house-img {
       width: 708px;
+      float: left;
       .gallery-thumbs-cot {
+        display: flex;
         .prev,.next {
           height: 82px;
           width: 24px;
@@ -100,7 +134,7 @@ export default {
         }
         .gallery-thumbs {
           height: 82px;
-          width: 660px;
+          width: 640px;
           img {
             width: 120px;
             height: 82px;
@@ -110,6 +144,10 @@ export default {
           }
         }
       }
+    }
+    .house-detail {
+      float: right;
+      width: 442px;
     }
   }
 }

@@ -38,15 +38,19 @@
         </dl>
       </div>
     </div>
-    <list-result>
-      <template  slot="house-type">
-        <span class="building-type"><span>建筑面积</span> <i>100~200㎡</i></span>
-        <span class="building-area"><span>使用面积</span> <i>100~200㎡</i></span>
-      </template>
-      <template  slot="house-price">
-        <div class="house-price">
-            150000~28000万元
-        </div>
+    <list-result :dataList = dataList>
+      <template  slot="item" slot-scope="item">
+        <list-item :item = item>
+          <template  slot="house-type">
+            <span class="building-type"><span>建筑面积</span> <i>100~200㎡</i></span>
+            <span class="building-area"><span>使用面积</span> <i>100~200㎡</i></span>
+          </template>
+          <template slot="house-price" slot-scope="price">
+            <div class="house-price">
+              {{price.price}}
+            </div>
+          </template>
+        </list-item>
       </template>
     </list-result>
     <footers></footers>
@@ -97,10 +101,30 @@
 <script>
 import searchForm from '../public/pcPublic/searchForm'
 import listResult from '../public/pcPublic/listResult'
+import listItem from '../public/pcPublic/listItem'
 export default {
+  data () {
+    return {
+      dataList: [
+        {
+          price: '28000万元',
+          name: '鲁能格拉斯小镇11'
+        },
+        {
+          price: '28000万元',
+          name: '鲁能格拉斯小镇12'
+        },
+        {
+          price: '28000万元',
+          name: '鲁能格拉斯小镇13'
+        }
+      ]
+    }
+  },
   components: {
     searchForm,
-    listResult
+    listResult,
+    listItem
   }
 }
 </script>

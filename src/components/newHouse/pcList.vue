@@ -38,11 +38,15 @@
         </dl>
       </div>
     </div>
-    <list-result>
-      <template  slot="house-price">
-        <div class="house-price">
-            150000~28000元/㎡
-        </div>
+    <list-result :dataList = dataList>
+      <template  slot="item" slot-scope="item">
+        <list-item :item = item>
+          <template slot="house-price" slot-scope="price">
+            <div class="house-price">
+              {{price.price}}
+            </div>
+          </template>
+        </list-item>
       </template>
     </list-result>
     <footers></footers>
@@ -93,10 +97,30 @@
 <script>
 import searchForm from '../public/pcPublic/searchForm'
 import listResult from '../public/pcPublic/listResult'
+import listItem from '../public/pcPublic/listItem'
 export default {
+  data () {
+    return {
+      dataList: [
+        {
+          price: '150000~28000万元',
+          name: '鲁能格拉斯小镇1'
+        },
+        {
+          price: '150000~28000万元',
+          name: '鲁能格拉斯小镇2'
+        },
+        {
+          price: '150000~28000万元',
+          name: '鲁能格拉斯小镇3'
+        }
+      ]
+    }
+  },
   components: {
     searchForm,
-    listResult
+    listResult,
+    listItem
   }
 }
 </script>
