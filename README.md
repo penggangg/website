@@ -36,11 +36,10 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 ### 使用方法
 * **参数**
-    * :checkCity  为下拉框选中的值
     * :bgurl  为下拉框的到三角图片地址
     * v-domstyle color为显示的城市的字体颜色, width,height为到三角的尺寸
     * switchcity 为切换城市后的广播出来的监听事件
-      <citydropdown :checkCity="pithcity" :bgurl="cityxialabg" v-domstyle="{color: '#333', width: '.11rem', height: '.06rem'}" @switchcity="switchcity"></citydropdown>
+      <citydropdown  :bgurl="cityxialabg" v-domstyle="{color: '#333', width: '.11rem', height: '.06rem'}" @switchcity="switchcity"></citydropdown>
 
 
 ### input的搜索框

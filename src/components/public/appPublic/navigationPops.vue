@@ -94,7 +94,7 @@ export default {
         '8': 'company' // 公司介绍
       }
       let goUrlname = objrouter[item.id]
-      this.$router.push({name: goUrlname, params: {}})
+      this.$router.push({name: goUrlname, query: { code: this.code }})
     }
   },
   watch: {

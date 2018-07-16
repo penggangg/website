@@ -114,3 +114,27 @@ html,body{
   border-bottom: .05rem solid #888;
   margin-top: -.05rem;
 }
+.onsale{
+  padding: .01rem;
+  border-radius: 5%;
+  background: #E6F0FE;
+  color: #5D9CF9 !important;
+}
+.special {
+  padding: .01rem;
+  border-radius: 5%;
+  background: #FEECE9;
+  color: #FB6550 !important;
+}
+.opening {
+  padding: .01rem;
+  border-radius: 5%;
+  background: #E2F5ED;
+  color: #44C08B !important;
+}
+.normal {
+  padding: .01rem;
+  border-radius: 5%;
+  background: #F2F5F7;
+  color: #849AAD !important;
+}
