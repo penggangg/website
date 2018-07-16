@@ -19,16 +19,16 @@
 
     <div class="newHouselist-list">
       <div class="newHousefliter">
-        <div @click="locationdorpdown=!locationdorpdown">
-           <span class="new_house_loaction">位置</span>
+        <div @click="location">
+           <span class="new_house_loaction">{{flitertext1.text}}</span>
            <span :class="[locationdorpdown ? 'downshanjiao' : 'upshanjiao']"></span>
         </div>
-        <div @click="pricedorpdown=!pricedorpdown">
-           <span class="new_house_price">单价</span>
+        <div @click="price">
+           <span class="new_house_price">{{flitertext2.text}}</span>
            <span :class="[pricedorpdown ? 'downshanjiao' : 'upshanjiao']"></span>
         </div>
-        <div @click="builddorpdown=!builddorpdown">
-           <span class="new_house_build">建筑类型</span>
+        <div @click="builds">
+           <span class="new_house_build">{{flitertext3.text}}</span>
            <span :class="[builddorpdown ? 'downshanjiao' : 'upshanjiao']"></span>
         </div>
       </div>
@@ -41,6 +41,7 @@
     <div class="huosefooter">
       <housefooter></housefooter>
     </div>
+    <filteringpop :arrlist="arrlist" :types="types" v-model="flitertext" v-show="filteringpopShow" @surefilter="surefilter"></filteringpop>
   </div>
 </template>
 
@@ -50,7 +51,7 @@ import navigationpops from '@/components/public/appPublic/navigationPops'
 import inputSearch from '@/components/public/appPublic/inputSearch'
 import apphuoseList from './common/appList'
 import housefooter from '@/components/public/appPublic/footer'
-
+import filteringpop from '@/components/public/appPublic/filteringpop'
 export default {
   name: 'newHouseList',
   data () {
@@ -69,8 +70,38 @@ export default {
       searchinputbg: require('../../assets/appimages/icon-lsearch.svg'), // 搜索框的放大镜的颜色
       locationdorpdown: true, // 位置的到三角
       pricedorpdown: true, // 价格的到三角
-      builddorpdown: true // 建筑类型的到三角
+      builddorpdown: true, // 建筑类型的到三角
+
+      filteringpopShow: false, // 控制选择位置、价格、建筑类型的弹窗显示隐藏
+      arrlist: [], // 位置、价格、建筑类型弹窗里面的数据
+      types: '', // 0,1,2分别代表位置、价格、建筑类型
+      flitertext: {}, // 中转站选中的对象
+      flitertext1: {text: '不限', id: '0'}, // 位置选中的对象
+      flitertext2: {text: '不限', id: '0'}, // 价格选中的对象
+      flitertext3: {text: '不限', id: '0'}, // 建筑类型选中的对象
+      arrlist1: [ // 位置的数据
+        {text: '不限', id: '0'},
+        {text: '朝阳', id: '1'},
+        {text: '东城', id: '2'},
+        {text: '昌平', id: '3'},
+        {text: '丰台', id: '4'}
+      ],
+      arrlist2: [ // 价格的数据
+        {text: '不限', id: '0'},
+        {text: '100元', id: '1'},
+        {text: '200元', id: '2'},
+        {text: '300元', id: '3'}
+      ],
+      arrlist3: [ // 价格类型选中对象
+        {text: '不限', id: '0'},
+        {text: '日本风', id: '1'},
+        {text: '中国风', id: '2'},
+        {text: '欧美风', id: '3'}
+      ]
     }
+  },
+  created () {
+    // 获取网址参数来判断是北京还是上海
   },
   mounted: function () {
     this.$nextTick(function () {
@@ -79,6 +110,63 @@ export default {
   methods: {
     switchcity (itemObject) {
       this.pithcity = itemObject.index
+    },
+    location () {
+      if (this.types === '0') {
+        this.filteringpopShow = !this.filteringpopShow
+        this.locationdorpdown = !this.locationdorpdown
+        this.types = ''
+      } else {
+        this.types = '0'
+        this.locationdorpdown = false
+        this.pricedorpdown = true
+        this.builddorpdown = true
+        this.filteringpopShow = true
+        this.flitertext = this.flitertext1
+        this.arrlist = this.arrlist1
+      }
+    },
+    price () {
+      if (this.types === '1') {
+        this.filteringpopShow = !this.filteringpopShow
+        this.pricedorpdown = !this.pricedorpdown
+        this.types = ''
+      } else {
+        this.types = '1'
+        this.locationdorpdown = true
+        this.pricedorpdown = false
+        this.builddorpdown = true
+        this.filteringpopShow = true
+        this.flitertext = this.flitertext2
+        this.arrlist = this.arrlist2
+      }
+    },
+    builds () {
+      if (this.types === '2') {
+        this.filteringpopShow = !this.filteringpopShow
+        this.builddorpdown = !this.builddorpdown
+        this.types = ''
+      } else {
+        this.types = '2'
+        this.locationdorpdown = true
+        this.pricedorpdown = true
+        this.builddorpdown = false
+        this.filteringpopShow = true
+        this.flitertext = this.flitertext3
+        this.arrlist = this.arrlist3
+      }
+    },
+    surefilter (types) {
+      this.filteringpopShow = false
+      let objs = {
+        '0': 'flitertext1',
+        '1': 'flitertext2',
+        '2': 'flitertext3'
+      }
+      this[objs[types]] = this.flitertext
+      console.log(this.flitertext1)
+      console.log(this.flitertext2)
+      console.log(this.flitertext3)
     }
   },
   components: {
@@ -86,9 +174,8 @@ export default {
     navigationpops,
     inputSearch,
     apphuoseList,
+    filteringpop,
     housefooter
-  },
-  created () {
   }
 }
 </script>
