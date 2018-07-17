@@ -154,12 +154,44 @@
         </div>
      </div>
      <div class="cut-off"></div>
+
+     <div class="doormodel">
+       <p class="doormodel-nav">户型信息</p>
+       <div class="doormodel-tab">
+         <p v-for="(item,index) in doormodelArry" :Key="index" @click="doormodelType=index">
+           {{item.text}}
+           <span class="select-bottom" v-show="doormodelType == index"></span>
+         </p>
+       </div>
+       <div class="doormodel-contain">
+         <swiper :options="swiperOptionDoor" v-if="doormodellist.length>0">
+            <swiper-slide v-for="(item,index) in doormodellist" :key="index">
+                <div class="swiper-contain-div">
+                    <div class="img-conten">
+                        <img :src="item.imgurl" >
+                    </div>
+                    <div>
+                      <p>{{item.value}}</p>
+                      <p>{{item.area}}</p>
+                      <p>{{item.price}}</p>
+                    </div>
+                </div>
+            </swiper-slide>
+          </swiper>
+       </div>
+     </div>
+    <div class="cut-off"></div>
+    <mapCircum></mapCircum>
+    <div class="cut-off"></div>
+    <huosefooter></huosefooter>
   </div>
 </template>
 
 <script>
 import citydropdown from '@/components/public/appPublic/citydropdown'
 import navigationpops from '@/components/public/appPublic/navigationPops'
+import mapCircum from '@/components/public/appPublic/mapCircum'
+import huosefooter from '@/components/public/appPublic/footer'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 export default {
   name: 'apphuosedetail',
@@ -174,11 +206,29 @@ export default {
         spaceBetween: 10,
         centeredSlides: true
       },
+      swiperOptionDoor: { // 户口类型
+        loop: true,
+        slidesPerView: 3,
+        spaceBetween: 10,
+        centeredSlides: true
+      },
       swiperdatalist: [
         {value: '上海绿地中心1', price: '1500万起', imgurl: '../../../static/images/u153.png'},
         {value: '上海绿地中心2', price: '1500万起', imgurl: '../../../static/images/banner.png'},
         {value: '上海绿地中心3', price: '1500万起', imgurl: '../../../static/images/u153.png'},
         {value: '上海绿地中心4', price: '1500万起', imgurl: '../../../static/images/banner.png'}
+      ],
+      doormodelArry: [
+        {text: '全部户型(12)'},
+        {text: '4居(5)'},
+        {text: '5局以上(7)'}
+      ],
+      doormodelType: 0,
+      doormodellist: [
+        {value: '地下三层/地下一层', area: '300m*m', price: '1000万-15000万', imgurl: '../../../static/images/doormodel.png'},
+        {value: '地下三层/地下一层', area: '300m*m', price: '1500万起', imgurl: '../../../static/images/doormodel.png'},
+        {value: '地下三层/地下一层', area: '300m*m', price: '1500万起', imgurl: '../../../static/images/doormodel.png'},
+        {value: '地下三层/地下一层', area: '300m*m', price: '1500万起', imgurl: '../../../static/images/doormodel.png'}
       ]
     }
   },
@@ -192,7 +242,9 @@ export default {
     citydropdown,
     navigationpops,
     swiper,
-    swiperSlide
+    swiperSlide,
+    mapCircum,
+    huosefooter
   },
   created () {
   }
@@ -264,6 +316,7 @@ export default {
         align-items: center;
         p:nth-of-type(1) {
           font-size: .12rem;
+          font-weight: bold;
           color: #333;
         }
         p:nth-of-type(2) {
@@ -318,6 +371,9 @@ export default {
       }
     }
     .colorfont-size {
+      display: inline-block;
+      width: .54rem;
+      text-align: left;
       color: #888;
       margin-right: .15rem;
     }
@@ -330,6 +386,52 @@ export default {
     .cut-off {
       height: .1rem;
       background: #F5F5F6;
+    }
+    .doormodel {
+      .doormodel-nav {
+        padding: 0 .15rem;
+        height: .4rem;
+        line-height: .4rem;
+        font-weight: bold;
+      }
+      .doormodel-tab {
+        padding-left: .15rem;
+        height: .3rem;
+        border-bottom: 1px solid #B7B7B7;
+        p {
+          position: relative;
+          margin-right: .25rem;
+          font-size: .1rem;
+          height: .3rem;
+          float: left;
+          span {
+            position: absolute;
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: #5D9CF9;
+            bottom: -1px;
+          }
+        }
+        p:nth-last-of-type(1) {
+          margin-right: none;
+        }
+      }
+      .doormodel-contain {
+        padding: .15rem 0 .15rem .15rem;
+        div:nth-of-type(2) {
+          p {
+            font-size: .12rem;
+            height: .2rem;
+            line-height: .2rem;
+          }
+          p:nth-last-of-type(1) {
+            color: #FE644A;
+            height: .2rem;
+            line-height: .2rem;
+          }
+        }
+      }
     }
 }
 </style>
