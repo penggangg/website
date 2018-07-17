@@ -11,7 +11,7 @@
 <script>
 import houseContent from '../public/pcPublic/detailCot'
 export default {
-  name: 'officeBuild',
+  name: 'shopDetail',
   components: {
     houseContent
   }

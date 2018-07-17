@@ -3,7 +3,7 @@
  */
 let vuedirective = {}
 function domStyle (el, binding) {
-  debugger
+  // debugger
   let domspan1 = el.getElementsByClassName('downcity')[0]
   let domspan2 = el.getElementsByClassName('downIcon')[0]
   domspan1.style.color = binding.value.color
