@@ -13,6 +13,7 @@ import '@/assets/css/normalize.scss'
 import '@/assets/css/common.scss'
 import headers from '@/components/public/header'
 import footers from '@/components/public/footer'
+import {constData} from '@/assets/js/constData'
 import DOmstyle from '@/assets/js/directive'
 
 Vue.use(DOmstyle)
@@ -21,8 +22,9 @@ console.log($)
 Vue.config.productionTip = false
 Vue.component('headers', headers)
 Vue.component('footers', footers)
+Vue.prototype.$constDatas = constData
 Vue.prototype.$http = axios
-Vue.prototype.code = 11000
+Vue.prototype.code = '110000'
 // 添加一个请求拦截器
 axios.interceptors.request.use(function (config) {
   // Do something before request is sent

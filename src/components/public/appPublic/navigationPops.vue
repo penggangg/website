@@ -11,7 +11,7 @@
       <div class="fixed-pops-conten" :class="[showProps ? 'outclass' : 'inclass' ]">
         <div class="fixed-pops-left">
            <ul>
-             <li class="checkfont" :class="{pithOne: value === item.id}" v-for="(item,index) in tablist" :key="index" @click="switchtab(item)">{{item.text}}</li>
+             <li class="checkfont" :class="{pithOne: value === item.id}" v-for="(item,index) in $constDatas.navigationTab" :key="index" @click="switchtab(item)">{{item.text}}</li>
            </ul>
         </div>
         <div class="fixed-pops-right">
@@ -49,18 +49,7 @@ export default {
   },
   data () {
     return {
-      showProps: false,
-      tablist: [
-        {text: '首页', id: '0'},
-        {text: '新房', id: '1'},
-        {text: '商铺', id: '2'},
-        {text: '写字楼', id: '3'},
-        {text: '商务合作', id: '4'},
-        {text: '市场分析', id: '5'},
-        {text: '房产委托', id: '6'},
-        {text: '企业动态', id: '7'},
-        {text: '公司介绍', id: '8'}
-      ]
+      showProps: false
     }
   },
   mounted: function () {

@@ -109,7 +109,7 @@ const router = new Router({
 })
 router.beforeEach((to, from, next) => {
   let { code } = to.query
-  Vue.prototype.code = code || 11000
+  Vue.prototype.code = code || '110000'
   console.log(Vue.prototype.code)
   next()
 })

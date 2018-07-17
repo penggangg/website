@@ -3,7 +3,7 @@
     <div class="header-img">
       <div class="header-nav">
         <div>
-          <citydropdown  @switchcity="switchcity"  :citylocationbg="citylocationbg"></citydropdown>
+          <citydropdown :citylocationbg="citylocationbg"></citydropdown>
         </div>
         <navigationpops
         @closePops="shownavigationpops=false"

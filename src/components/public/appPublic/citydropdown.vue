@@ -6,7 +6,7 @@
       <span class="downIcon" :style="{backgroundImage: bgurl}"></span>
     </p>
     <div class="citydropconten" v-show="showSwitchcity">
-      <p class="city-items" v-for="(item,index) in cityArrList" :key="index" :class="{checkCityActive: item.id === code}" @click="switchcity(item, index)">{{item.cityaddress}}</p>
+      <p class="city-items" v-for="(item,index) in $constDatas.cityLocation" :key="index" :class="{checkCityActive: item.code === code}" @click="switchcity(item, index)">{{item.text}}</p>
     </div>
   </div>
 </template>
@@ -26,10 +26,6 @@ export default {
   },
   data () {
     return {
-      cityArrList: [
-        {cityaddress: '北京', id: '110000'},
-        {cityaddress: '上海', id: '310000'}
-      ],
       showSwitchcity: false
     }
   },
@@ -37,7 +33,7 @@ export default {
     switchcity (item, index) {
       debugger
       this.showSwitchcity = false
-      this.code = item.id
+      this.code = item.code
       this.$router.push({name: 'Index', query: { code: this.code }})
     }
   },

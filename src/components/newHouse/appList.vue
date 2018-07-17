@@ -77,26 +77,7 @@ export default {
       flitertext: {}, // 中转站选中的对象
       flitertext1: {text: '不限', id: '0'}, // 位置选中的对象
       flitertext2: {text: '不限', id: '0'}, // 价格选中的对象
-      flitertext3: {text: '不限', id: '0'}, // 建筑类型选中的对象
-      arrlist1: [ // 位置的数据
-        {text: '不限', id: '0'},
-        {text: '朝阳', id: '1'},
-        {text: '东城', id: '2'},
-        {text: '昌平', id: '3'},
-        {text: '丰台', id: '4'}
-      ],
-      arrlist2: [ // 价格的数据
-        {text: '不限', id: '0'},
-        {text: '100元', id: '1'},
-        {text: '200元', id: '2'},
-        {text: '300元', id: '3'}
-      ],
-      arrlist3: [ // 价格类型选中对象
-        {text: '不限', id: '0'},
-        {text: '日本风', id: '1'},
-        {text: '中国风', id: '2'},
-        {text: '欧美风', id: '3'}
-      ]
+      flitertext3: {text: '不限', id: '0'} // 建筑类型选中的对象
     }
   },
   created () {
@@ -119,7 +100,7 @@ export default {
         this.builddorpdown = true
         this.filteringpopShow = true
         this.flitertext = this.flitertext1
-        this.arrlist = this.arrlist1
+        this.arrlist = this.code === '110000' ? this.$constDatas.Beijilocationfliter : this.$constDatas.shanghailocationfliter
       }
     },
     price () {
@@ -134,7 +115,7 @@ export default {
         this.builddorpdown = true
         this.filteringpopShow = true
         this.flitertext = this.flitertext2
-        this.arrlist = this.arrlist2
+        this.arrlist = this.$constDatas.huosePrice
       }
     },
     builds () {
@@ -149,7 +130,7 @@ export default {
         this.builddorpdown = false
         this.filteringpopShow = true
         this.flitertext = this.flitertext3
-        this.arrlist = this.arrlist3
+        this.arrlist = this.$constDatas.buildType
       }
     },
     surefilter (types) {
