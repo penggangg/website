@@ -89,12 +89,11 @@ export default {
   },
   methods: {
     location () {
-      if (this.types === '0') {
+      this.types = '0'
+      if (!this.locationdorpdown) {
         this.filteringpopShow = !this.filteringpopShow
         this.locationdorpdown = !this.locationdorpdown
-        this.types = ''
       } else {
-        this.types = '0'
         this.locationdorpdown = false
         this.pricedorpdown = true
         this.builddorpdown = true
@@ -104,12 +103,11 @@ export default {
       }
     },
     price () {
-      if (this.types === '1') {
+      this.types = '1'
+      if (!this.pricedorpdown) {
         this.filteringpopShow = !this.filteringpopShow
         this.pricedorpdown = !this.pricedorpdown
-        this.types = ''
       } else {
-        this.types = '1'
         this.locationdorpdown = true
         this.pricedorpdown = false
         this.builddorpdown = true
@@ -119,12 +117,11 @@ export default {
       }
     },
     builds () {
-      if (this.types === '2') {
+      this.types = '2'
+      if (!this.builddorpdown) {
         this.filteringpopShow = !this.filteringpopShow
         this.builddorpdown = !this.builddorpdown
-        this.types = ''
       } else {
-        this.types = '2'
         this.locationdorpdown = true
         this.pricedorpdown = true
         this.builddorpdown = false
@@ -141,9 +138,13 @@ export default {
         '2': 'flitertext3'
       }
       this[objs[types]] = this.flitertext
+      this.locationdorpdown = true
+      this.pricedorpdown = true
+      this.builddorpdown = true
       console.log(this.flitertext1)
       console.log(this.flitertext2)
       console.log(this.flitertext3)
+      console.log(this.types)
     }
   },
   components: {

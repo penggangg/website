@@ -4,7 +4,12 @@
       <li class="filterpop-items" :class="{activeClass: value.id === item.id}" v-for="(item,index) in arrlist" :key="index" @click="switchfiter(item)">{{item.text}}</li>
     </ul>
     <div class="sure_buttom">
-      <button @click="surefilter">确定</button>
+      <button @click="surefilter" v-if="types != '1'">确定</button>
+      <p class="price-section" v-if ="types == '1'">
+        <span><input type="number" v-model="bottomPrice"></span> -
+        <span><input type="number" v-model="topPrice"></span> 万
+        <span @click="surefilter">确定</span>
+      </p>
     </div>
   </div>
 </template>
@@ -30,6 +35,8 @@ export default {
   },
   data () {
     return {
+      bottomPrice: '',
+      topPrice: ''
     }
   },
   mounted: function () {
@@ -41,6 +48,10 @@ export default {
       this.$emit('input', item)
     },
     surefilter () {
+      debugger
+      if (this.types === '1' && (this.bottomPrice || this.topPrice)) {
+        this.$emit('input', {text: `${this.bottomPrice}-${this.topPrice}万`, id: '-1'})
+      }
       this.$emit('surefilter', this.types)
     }
   },
@@ -90,6 +101,34 @@ export default {
       line-height: .4rem;
       text-align: center;
       color: #fff;
+    }
+  }
+  .price-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    height: .4rem;
+    span {
+      display: inline-block;
+      width: .84rem;
+      height: .27rem;
+      input {
+        border: none;
+        width: 100%;
+        height: 100%;
+        background: #F5F5F6;
+      }
+    }
+    span:nth-of-type(3) {
+      border-radius: .04rem;
+      width: 1.12rem;
+      height: .36rem;
+      background: #5D9CF9;
+      color: #fff;
+      font-size: .18rem;
+      text-align: center;
+      line-height: .36rem;
     }
   }
   .activeClass {

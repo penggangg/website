@@ -40,7 +40,10 @@ export default {
     return {
       swiperOption: {
         loop: true,
-        observeParents: true
+        observeParents: true,
+        slidesPerView: 1.2,
+        spaceBetween: 10,
+        centeredSlides: true
       }
     }
   },
@@ -87,9 +90,7 @@ export default {
         }
     }
     .swiper-conten {
-        .swiper-contain-div{
-            padding: 0 .15rem;
-        }
+
         padding-top: .15rem;
         .img-conten {
             img {

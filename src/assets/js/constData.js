@@ -61,5 +61,18 @@ export const constData = {
     {text: '不限', id: '0'},
     {text: '住宅', id: '1'},
     {text: '酒店式公寓', id: '2'}
+  ],
+  corollary: [ // 配套设备
+    {text: '不限', id: '0'},
+    {text: '上水', id: '1'},
+    {text: '下水', id: '2'},
+    {text: '380伏', id: '3'},
+    {text: '可明火', id: '4'},
+    {text: '天然气', id: '5'},
+    {text: '排污管', id: '6'},
+    {text: '烟管道', id: '7'},
+    {text: '停车位', id: '8'},
+    {text: '外摆区', id: '9'},
+    {text: '煤气罐', id: '10'}
   ]
 }
