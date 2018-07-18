@@ -15,7 +15,11 @@ import headers from '@/components/public/header'
 import footers from '@/components/public/footer'
 import {constData} from '@/assets/js/constData'
 import DOmstyle from '@/assets/js/directive'
-
+import BaiduMap from 'vue-baidu-map'
+Vue.use(BaiduMap, {
+  // ak 是在百度地图开发者平台申请的密钥 详见 http://lbsyun.baidu.com/apiconsole/key */
+  ak: 'pWG06DZF1MUghAoWoGeU45yirzxNGqpf'
+})
 Vue.use(DOmstyle)
 Vue.use(VueAwesomeSwiper)
 console.log($)
