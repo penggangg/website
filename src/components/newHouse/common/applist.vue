@@ -42,7 +42,7 @@ export default {
   name: 'apphuoseList',
   data () {
     return {
-      arrhuoselist: [{id: 1}, {id: 2}]
+      arrhuoselist: [{id: 1}, {id: 2}, {id: 1}, {id: 2}, {id: 1}, {id: 2}]
     }
   },
   mounted: function () {
