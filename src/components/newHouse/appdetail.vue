@@ -134,7 +134,7 @@
        <div>
          <p>楼盘相册</p>
          <p>
-           <span>查看全部</span>
+           <span @click="pictureWindow=true">查看全部</span>
            <img src="../../assets/appimages/icon-next.svg" >
          </p>
        </div>
@@ -184,12 +184,14 @@
     <mapCircum></mapCircum>
     <div class="cut-off"></div>
     <huosefooter></huosefooter>
+    <pictureWindow v-show="pictureWindow" :doormodellist="doormodellist" @closeImg="pictureWindow=false"></pictureWindow>
   </div>
 </template>
 
 <script>
 import citydropdown from '@/components/public/appPublic/citydropdown'
 import navigationpops from '@/components/public/appPublic/navigationPops'
+import pictureWindow from '@/components/public/appPublic/pictureWindows'
 import mapCircum from '@/components/public/appPublic/mapCircum'
 import huosefooter from '@/components/public/appPublic/footer'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
@@ -200,6 +202,7 @@ export default {
       pithOne: '1',
       citylocationbg: 'rgba(0, 0, 0, .5)', // 给city切换传背景色
       shownavigationpops: false, // 控制右侧弹窗的显示隐藏
+      pictureWindow: false, // 控制图片的弹窗
       swiperOption: {
         loop: true,
         slidesPerView: 2.1,
@@ -244,7 +247,8 @@ export default {
     swiper,
     swiperSlide,
     mapCircum,
-    huosefooter
+    huosefooter,
+    pictureWindow
   },
   created () {
   }
@@ -372,7 +376,7 @@ export default {
     }
     .colorfont-size {
       display: inline-block;
-      width: .54rem;
+      width: .56rem;
       text-align: left;
       color: #888;
       margin-right: .15rem;

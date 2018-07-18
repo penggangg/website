@@ -2,7 +2,7 @@
 <template>
   <div class="pictureWindows">
    <div class="pictureWindows-header">
-       <img src="../../../assets/appimages/back.svg" alt="" srcset="">
+       <img src="../../../assets/appimages/back.svg" @click="closeImg">
    </div>
    <div class="pictureWindows-contain">
       <swiper :options="swiperOption" v-if="doormodellist.length>0">
@@ -26,6 +26,9 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper'
 export default {
   name: 'pictureWindows',
   props: {
+    doormodellist: {
+      type: Array
+    }
   },
   data () {
     let _this = this
@@ -38,16 +41,13 @@ export default {
             _this.swiperindex = this.activeIndex + 1 // 切换结束时，告诉我现在是第几个slide
           }
         }
-      },
-      doormodellist: [
-        {imgurl: '../../../static/images/doormodel.png'},
-        {imgurl: '../../../static/images/doormodel.png'},
-        {imgurl: '../../../static/images/doormodel.png'},
-        {imgurl: '../../../static/images/doormodel.png'}
-      ]
+      }
     }
   },
   methods: {
+    closeImg () {
+      this.$emit('closeImg')
+    }
   },
   components: {
     swiper,
