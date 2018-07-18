@@ -1,9 +1,5 @@
 <template>
   <div>
-    <div>
-      <span @click="search('餐馆')">餐馆</span>
-      <span @click="search('学校')">学校</span>
-    </div>
     <div class="bmview" ref="bmview">
       <baidu-map class="bm-view" :center="center" :zoom="zoom" @ready='handler' :scroll-wheel-zoom="true" >
         <!-- <bm-overlay
@@ -33,14 +29,13 @@ export default {
       nearby: {
         center: {lng: 116.181954, lat: 39.951313},
         radius: 2000
-      },
-      keyword: '餐馆'
+      }
     }
   },
   created () {
     this.$nextTick(function () {
-      this.$refs.bmview.style.width = this.$width
-      this.$refs.bmview.style.height = this.$height
+      this.$refs.bmview.style.width = this.width
+      this.$refs.bmview.style.height = this.height
     })
   },
   methods: {
@@ -61,11 +56,14 @@ export default {
     }
   },
   props: {
-    $width: {
+    width: {
       default: '500px'
     },
-    $height: {
+    height: {
       default: '500px'
+    },
+    keyword: {
+      type: String
     }
   }
 }

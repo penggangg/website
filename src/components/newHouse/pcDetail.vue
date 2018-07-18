@@ -84,11 +84,46 @@
             <span>恒大集团</span>
           </li>
         </ul>
+        <div class="hot-line">
+          咨询热线：400-888-9950
+        </div>
       </div>
     </div>
     <div class="item-content  house-pic">
       <h3>楼盘相册</h3>
-      <div></div>
+      <div class="gallery-thumbs-cot">
+        <div class="prev btn">
+          <img src="../../assets/images/icon-left-white.svg" alt="" srcset="">
+        </div>
+        <swiper :options="swiperOptionThumbs" class="gallery-thumbs" ref="swiperThumbs">
+          <swiper-slide v-for="(slide, index) in swiperSlides" :key="index">
+            <img :src="slide" alt="" srcset="">
+          </swiper-slide>
+          <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
+          <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
+          <!-- <div class="swiper-pagination" slot="pagination"></div> -->
+        </swiper>
+        <div class="next btn">
+          <img src="../../assets/images/icon-right-white.svg" alt="" srcset="">
+        </div>
+      </div>
+    </div>
+    <div class="item-content house-type">
+      <h3>户型信息</h3>
+      <div class="house-filter">
+        <span class="active">全部户型（12）</span>
+        <span>4居（7）</span>
+        <span>5居及以上（5）</span>
+      </div>
+    </div>
+    <div class="item-content map-detail">
+      <h3>周边配套</h3>
+      <div class="map-filter">
+        <span  v-for="(item, index) in searchFilter" :key=index :class="{active: keyword === item}" @click="keyword = item">{{item}}</span>
+        <!-- <span :class="{active: keyword === '地铁'}" @click="keyword ='地铁'">地铁</span>
+        <span :class="{active: keyword === '教育设施'}" @click="keyword ='教育设施'">教育设施</span> -->
+      </div>
+      <map-list :width="options.width" :height= "options.height" :keyword="keyword"></map-list>
     </div>
   </div>
 </template>
@@ -131,4 +166,144 @@
     }
   }
 }
+.item-content {
+  width: 1200px;
+  margin: 0 auto;
+  margin-top: 50px;
+  h3 {
+    margin-bottom: 50px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+}
+.house-detail {
+  .details {
+    position: relative;
+    padding-top: 25px;
+    border-top: 1px solid #B7B7B7;
+    ul {
+      display: inline-block;
+      width: 48%;
+      li {
+        margin-top: 10px;
+        span {
+          font-size: 14px;
+          &:first-child {
+            display: inline-block;
+            margin-right: 30px;
+            width: 56px;
+            color: #888;
+          }
+        }
+      }
+    }
+    .hot-line {
+      position: absolute;
+      right: 0;
+      top: 30px;
+      color: #FB6550;
+      font-size: 22px;
+      font-weight: bold;
+    }
+  }
+}
+.house-pic {
+  .gallery-thumbs-cot {
+    position: relative;
+    display: flex;
+    .btn {
+      position: absolute;
+      top: 0;
+      text-align: center;
+      height: 208px;
+      line-height: 208px;
+      width: 50px;
+      background: #303035;
+    }
+    .prev {
+      left: 0;
+      z-index: 2;
+    }
+    .next {
+      right: 0;
+      z-index: 1;
+    }
+    .gallery-thumbs {
+      height: 208px;
+      width: 1200px;
+      // background: red;
+      img {
+        width: 270px;
+        height: 208px;
+      }
+      .swiper-button-white {
+        display: none;
+      }
+    }
+  }
+}
+.house-type {
+  h3 {
+    margin-bottom: 30px;
+  }
+  .house-filter {
+    span {
+      font-size: 14px;
+      &.active {
+        color: #5D9CF9;
+      }
+    }
+  }
+}
+.map-detail {
+  h3 {
+    margin-bottom: 30px;
+  }
+  .map-filter {
+    margin-bottom: 35px;
+    span {
+      font-size: 14px;
+      padding: 5px 10px;
+      margin-right: 20px;
+      cursor: pointer;
+      &.active {
+        color: #fff;
+        background: #5D9CF9;
+      }
+    }
+  }
+}
 </style>
+<script>
+import mapList from '@/components/public/map'
+export default {
+  data () {
+    return {
+      options: {
+        width: '1200px',
+        height: '472px'
+      },
+      keyword: '公交',
+      searchFilter: [
+        '公交', '地铁', '教育设施', '医院', '银行', '休闲娱乐', '购物', '餐饮', '运动健身'
+      ],
+      swiperOptionThumbs: {
+        spaceBetween: 30,
+        slidesPerView: 4,
+        slidesPerGroup: 4,
+        loop: false,
+        loopFillGroupWithBlank: true,
+        slideToClickedSlide: true,
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev'
+        }
+      },
+      swiperSlides: ['../../../static/pic1_test.png', '../../../static/pic1_test.png', '../../../static/pic1_test.png', '../../../static/pic1_test.png', '../../../static/pic1_test.png', '../../../static/pic1_test.png', '../../../static/pic1_test.png']
+    }
+  },
+  components: {
+    mapList
+  }
+}
+</script>
