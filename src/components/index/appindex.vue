@@ -50,6 +50,7 @@
     </div>
 
     <footercommon></footercommon>
+    <pictureWindows></pictureWindows>
   </div>
 </template>
 
@@ -59,6 +60,7 @@ import citydropdown from '@/components/public/appPublic/citydropdown'
 import inputSearch from '@/components/public/appPublic/inputSearch'
 import recommendedList from './common/recommendedList'
 import footercommon from '@/components/public/appPublic/footer'
+import pictureWindows from '@/components/public/appPublic/pictureWindows'
 
 export default {
   name: 'Appindex',
@@ -93,7 +95,8 @@ export default {
     citydropdown,
     inputSearch,
     recommendedList,
-    footercommon
+    footercommon,
+    pictureWindows
   },
   created () {
   }
