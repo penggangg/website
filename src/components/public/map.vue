@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="bmview" ref="bmview">
-      <baidu-map class="bm-view" :center="center" :zoom="zoom" @ready='handler' :scroll-wheel-zoom="true" >
+      <baidu-map class="bm-view" :center="center" :zoom="zoom" @ready='handler' :scroll-wheel-zoom="false" >
         <!-- <bm-overlay
           pane="labelPane"
           :class="{sample: true, active}"
@@ -15,6 +15,22 @@
         </bm-marker>
         <bm-local-search  :keyword="keyword" :nearby="nearby" :auto-viewport="true" :panel="false" :selectFirstResult="true" @searchcomplete='searchcomplete' ></bm-local-search>
       </baidu-map>
+      <div class="panels">
+        <div class="title">
+          {{keyword}}
+        </div>
+        <div class="aroundList">
+          <ul class="itemBox">
+            <li v-for="(item, index) in arrList" :key="index" @click="mark(index)">
+              <div>{{String.fromCharCode(64 + parseInt(index+1))}}</div>
+              <div>
+                <span>{{item.title}}</span>
+                <span>{{item.address}}</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -29,7 +45,8 @@ export default {
       nearby: {
         center: {lng: 116.181954, lat: 39.951313},
         radius: 2000
-      }
+      },
+      arrList: []
     }
   },
   created () {
@@ -49,10 +66,13 @@ export default {
       el.style.top = pixel.y - el.offsetHeight / 2 + 'px'
     },
     searchcomplete (res) {
-      console.log(res)
+      this.arrList = res.Br
     },
     search (keyword) {
       this.keyword = keyword
+    },
+    mark (index) {
+      this.$('.BMap_Marker.BMap_noprint').eq(index + 1).click()
     }
   },
   props: {
@@ -68,7 +88,10 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style scoped lang="scss">
+.bmview {
+  position: relative;
+}
 .bm-view {
   width: 100%;
   height: 100%;
@@ -86,5 +109,52 @@ export default {
 .sample.active {
   background: rgba(0,0,0,0.75);
   color: #fff;
+}
+.panels {
+  position: absolute;
+  right: 130px;
+  top: 77px;
+  z-index: 100000;
+  width: 310px;
+  background: #fff;
+  .title {
+    height: 38px;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    line-height: 38px;
+    background: #5D9CF9;
+  }
+  .aroundList {
+    height: 280px;
+    overflow-y: scroll;
+    .itemBox {
+      li {
+        display: flex;
+        border-bottom: 1px solid #B7B7B7;
+        padding: 20px 35px 20px 20px;
+        cursor: pointer;
+        div {
+          &:first-child {
+            margin-right: 36px;
+          }
+          &:last-child {
+            span {
+              display: block;
+              &:first-child {
+                font-size: 14px;
+                font-weight: bold;
+                margin-bottom: 10px;
+              }
+              &:last-child {
+                font-size: 12px;
+                color: #888;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
 </style>

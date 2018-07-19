@@ -27,6 +27,7 @@ Vue.config.productionTip = false
 Vue.component('headers', headers)
 Vue.component('footers', footers)
 Vue.prototype.$constDatas = constData
+Vue.prototype.$ = $
 Vue.prototype.$http = axios
 Vue.prototype.code = '110000'
 // 添加一个请求拦截器

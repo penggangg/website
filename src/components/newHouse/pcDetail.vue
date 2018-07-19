@@ -115,6 +115,24 @@
         <span>4居（7）</span>
         <span>5居及以上（5）</span>
       </div>
+      <div class="type-list">
+        <swiper :options="swiperOptionThumbsType" class="gallery-thumbs-type" ref="swiperThumbs">
+          <swiper-slide v-for="(slide, index) in swiperSlides" :key="index">
+            <img :src="slide" alt="" srcset="">
+            <ul class="type-detail">
+              <li class="area">
+                <span>地上3层/地下1层</span>
+                <span>300㎡</span>
+              </li>
+              <li class="price">
+                <span>1000万-2000万</span>
+              </li>
+            </ul>
+          </swiper-slide>
+          <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
+          <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
+        </swiper>
+      </div>
     </div>
     <div class="item-content map-detail">
       <h3>周边配套</h3>
@@ -123,8 +141,11 @@
         <!-- <span :class="{active: keyword === '地铁'}" @click="keyword ='地铁'">地铁</span>
         <span :class="{active: keyword === '教育设施'}" @click="keyword ='教育设施'">教育设施</span> -->
       </div>
-      <map-list :width="options.width" :height= "options.height" :keyword="keyword"></map-list>
+      <map-list :width="options.width" :height= "options.height" :keyword="keyword">
+
+      </map-list>
     </div>
+    <footers></footers>
   </div>
 </template>
 <style lang="scss" scoped>
@@ -247,15 +268,58 @@
     margin-bottom: 30px;
   }
   .house-filter {
+    padding-bottom: 28px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #B7B7B7;
     span {
+      cursor: pointer;
       font-size: 14px;
       &.active {
         color: #5D9CF9;
       }
     }
   }
+  .type-list {
+    height: 352px;
+    .gallery-thumbs-type {
+      img {
+        width: 224px;
+        height: 267px;
+      }
+      .type-detail {
+        padding: 14px 10px;
+        height: 84px;
+        li {
+          font-size: 0;
+          &.area {
+            margin-bottom: 16px;
+            span {
+              font-size: 14px;
+              &:first-child {
+                vertical-align: bottom;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                max-width: 60%;
+              }
+              &:last-child {
+                float: right;
+              }
+            }
+          }
+          &.price {
+            span {
+              font-size: 16px;
+              color: #FE644A;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 .map-detail {
+  margin-bottom: 50px;
   h3 {
     margin-bottom: 30px;
   }
@@ -291,6 +355,18 @@ export default {
         spaceBetween: 30,
         slidesPerView: 4,
         slidesPerGroup: 4,
+        loop: false,
+        loopFillGroupWithBlank: true,
+        slideToClickedSlide: true,
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev'
+        }
+      },
+      swiperOptionThumbsType: {
+        spaceBetween: 20,
+        slidesPerView: 5,
+        slidesPerGroup: 5,
         loop: false,
         loopFillGroupWithBlank: true,
         slideToClickedSlide: true,
