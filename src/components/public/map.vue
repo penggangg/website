@@ -15,7 +15,7 @@
         </bm-marker>
         <bm-local-search  :keyword="keyword" :nearby="nearby" :auto-viewport="true" :panel="false" :selectFirstResult="true" @searchcomplete='searchcomplete' ></bm-local-search>
       </baidu-map>
-      <div class="panels">
+      <div v-if = showPanel class="panels">
         <div class="title">
           {{keyword}}
         </div>
@@ -84,6 +84,10 @@ export default {
     },
     keyword: {
       type: String
+    },
+    showPanel: {
+      type: Boolean,
+      default: true
     }
   }
 }
