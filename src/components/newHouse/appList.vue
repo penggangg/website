@@ -20,15 +20,15 @@
     <div class="newHouselist-list">
       <div class="newHousefliter">
         <div @click="location">
-           <span class="new_house_loaction">{{flitertext1.text}}</span>
+           <span class="new_house_loaction">{{flitertext1.text == '不限' ? '位置': flitertext1.text}}</span>
            <span :class="[locationdorpdown ? 'downshanjiao' : 'upshanjiao']"></span>
         </div>
         <div @click="price">
-           <span class="new_house_price">{{flitertext2.text}}</span>
+           <span class="new_house_price">{{flitertext2.text == '不限' ? '单价': flitertext2.text}}</span>
            <span :class="[pricedorpdown ? 'downshanjiao' : 'upshanjiao']"></span>
         </div>
         <div @click="builds">
-           <span class="new_house_build">{{flitertext3.text}}</span>
+           <span class="new_house_build">{{flitertext3.text == '不限' ? '建筑类型': flitertext3.text}}</span>
            <span :class="[builddorpdown ? 'downshanjiao' : 'upshanjiao']"></span>
         </div>
       </div>
@@ -36,11 +36,11 @@
 
     <div class="newHouse-detail-lit">
       <apphuoseList></apphuoseList>
+      <div class="huosefooter">
+        <housefooter></housefooter>
+      </div>
     </div>
 
-    <div class="huosefooter">
-      <housefooter></housefooter>
-    </div>
     <filteringpop :arrlist="arrlist" :types="types" v-model="flitertext" v-show="filteringpopShow" @surefilter="surefilter"></filteringpop>
   </div>
 </template>
@@ -210,6 +210,10 @@ export default {
         font-size: .12rem;
       }
     }
+  }
+  .newHouse-detail-lit {
+    height: calc(100% - 1.51rem);
+    overflow-y: auto;
   }
 }
 </style>

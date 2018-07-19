@@ -122,7 +122,7 @@
              <span>恒大立宫</span>
            </p>
            <p>
-             <span class="look-detail-location">查看详细地址</span>
+             <span class="look-detail-location" @click="bigMapshow=true">查看详细地址</span>
            </p>
          </div>
        </div>
@@ -185,6 +185,7 @@
     <div class="cut-off"></div>
     <huosefooter></huosefooter>
     <pictureWindow v-show="pictureWindow" :doormodellist="doormodellist" @closeImg="pictureWindow=false"></pictureWindow>
+    <bigmap @closeBigmap="bigMapshow=false" v-if="bigMapshow"></bigmap>
   </div>
 </template>
 
@@ -193,6 +194,7 @@ import citydropdown from '@/components/public/appPublic/citydropdown'
 import navigationpops from '@/components/public/appPublic/navigationPops'
 import pictureWindow from '@/components/public/appPublic/pictureWindows'
 import mapCircum from '@/components/public/appPublic/mapCircum'
+import bigmap from '@/components/public/appPublic/bigmap'
 import huosefooter from '@/components/public/appPublic/footer'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 export default {
@@ -203,6 +205,7 @@ export default {
       citylocationbg: 'rgba(0, 0, 0, .5)', // 给city切换传背景色
       shownavigationpops: false, // 控制右侧弹窗的显示隐藏
       pictureWindow: false, // 控制图片的弹窗
+      bigMapshow: false,
       swiperOption: {
         loop: true,
         slidesPerView: 2.1,
@@ -248,7 +251,8 @@ export default {
     swiperSlide,
     mapCircum,
     huosefooter,
-    pictureWindow
+    pictureWindow,
+    bigmap
   },
   created () {
   }

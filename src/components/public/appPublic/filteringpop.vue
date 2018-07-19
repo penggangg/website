@@ -1,15 +1,17 @@
 <template>
   <div class="filterpop">
-    <ul class="filterpop-items-contain">
-      <li class="filterpop-items" :class="{activeClass: value.id === item.id}" v-for="(item,index) in arrlist" :key="index" @click="switchfiter(item)">{{item.text}}</li>
-    </ul>
-    <div class="sure_buttom">
-      <button @click="surefilter" v-if="types != '1'">确定</button>
-      <p class="price-section" v-if ="types == '1'">
-        <span><input type="number" v-model="bottomPrice"></span> -
-        <span><input type="number" v-model="topPrice"></span> 万
-        <span @click="surefilter">确定</span>
-      </p>
+    <div class="filterpop-height">
+      <ul class="filterpop-items-contain">
+        <li class="filterpop-items" :class="{activeClass: value.id === item.id}" v-for="(item,index) in arrlist" :key="index" @click="switchfiter(item)">{{item.text}}</li>
+      </ul>
+      <div class="sure_buttom">
+        <button @click="surefilter" v-if="types != '1'">确定</button>
+        <p class="price-section" v-if ="types == '1'">
+          <span><input type="number" v-model="bottomPrice"></span> -
+          <span><input type="number" v-model="topPrice"></span> 万
+          <span @click="surefilter">确定</span>
+        </p>
+      </div>
     </div>
   </div>
 </template>
@@ -70,7 +72,15 @@ export default {
   left: 0;
   right: 0;
   z-index: 999;
-  background: #fff;
+  background: rgba(0, 0, 0, .6);
+  .filterpop-height {
+    position: absolute;
+    top: 0;
+    bottom: .2rem;;
+    left: 0;
+    right: 0;
+    background: #fff;
+  }
   .filterpop-items-contain {
     position: absolute;
     top: 0;

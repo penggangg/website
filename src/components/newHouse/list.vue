@@ -37,8 +37,8 @@ export default {
 </script>
 
 <style>
-.container-fluid {
-  padding: 0;
-  margin: 0;
+#appList {
+  height: 100%;
 }
+
 </style>
