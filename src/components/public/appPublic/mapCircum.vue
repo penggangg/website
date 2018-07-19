@@ -2,9 +2,12 @@
 <template>
    <div class="map-circum">
       <p class="map-circum-nav">周边配套</p>
-      <div class="switchSearch">
-        <p>餐厅</p>
-        <p>超市</p>
+       <div class="switchSearch">
+        <p @click="keyword='教育', activeindex=1;" :class="[activeindex == 1 ? 'activeClass':'']">教育</p>
+        <p @click="keyword='医疗', activeindex=2;" :class="[activeindex == 2 ? 'activeClass':'']">医疗</p>
+        <p @click="keyword='餐厅', activeindex=3;" :class="[activeindex == 3 ? 'activeClass':'']">餐厅</p>
+        <p @click="keyword='购物', activeindex=4;" :class="[activeindex == 4 ? 'activeClass':'']">购物</p>
+        <p @click="keyword='交通', activeindex=5;" :class="[activeindex == 5 ? 'activeClass':'']">交通</p>
       </div>
       <div class="map-contain" ref="bmview">
          <baidu-map class="bm-view" :center="center" :zoom="zoom" @ready='handler' :scroll-wheel-zoom="true" >
@@ -38,7 +41,8 @@ export default {
         center: {lng: 116.181954, lat: 39.951313},
         radius: 2000
       },
-      keyword: '餐馆'
+      keyword: '',
+      activeindex: -1
     }
   },
   mounted: function () {
@@ -74,13 +78,16 @@ export default {
       overflow-x: auto;
       display: flex;
       align-items: center;
+      justify-content: space-between;
       height: .4rem;
       p {
-        padding:.02rem;
-        background: #ccc;
+        flex: 1;
+        border-right: 1px solid #ddd;
         margin-right:.05rem;
+        text-align: center;
       }
       p:nth-last-of-type(1) {
+        border-right: none;
         margin-right: none;
       }
     }
