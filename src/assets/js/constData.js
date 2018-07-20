@@ -63,7 +63,6 @@ export const constData = {
     {text: '酒店式公寓', id: '2'}
   ],
   corollary: [ // 配套设备
-    {text: '不限', id: '0'},
     {text: '上水', id: '1'},
     {text: '下水', id: '2'},
     {text: '380伏', id: '3'},

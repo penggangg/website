@@ -14,6 +14,7 @@ import '@/assets/css/common.scss'
 import headers from '@/components/public/header'
 import footers from '@/components/public/footer'
 import {constData} from '@/assets/js/constData'
+import {units} from '@/assets/js/units'
 import DOmstyle from '@/assets/js/directive'
 import BaiduMap from 'vue-baidu-map'
 Vue.use(BaiduMap, {
@@ -27,6 +28,7 @@ Vue.config.productionTip = false
 Vue.component('headers', headers)
 Vue.component('footers', footers)
 Vue.prototype.$constDatas = constData
+Vue.prototype.$units = units
 Vue.prototype.$ = $
 Vue.prototype.$http = axios
 Vue.prototype.code = '110000'

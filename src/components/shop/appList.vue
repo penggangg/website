@@ -33,7 +33,7 @@
            <span :class="[pricedorpdown ? 'downshanjiao' : 'upshanjiao']"></span>
         </div>
         <div @click="builds">
-           <span class="new_house_build">{{flitertext3.text == '不限' ? '配套设施': flitertext3.text}}</span>
+           <span class="new_house_build">{{!flitertext4.text ? '配套设施': flitertext4.text}}</span>
            <span :class="[builddorpdown ? 'downshanjiao' : 'upshanjiao']"></span>
         </div>
       </div>
@@ -46,7 +46,7 @@
       </div>
     </div>
 
-    <filteringpop :arrlist="arrlist" :types="types" v-model="flitertext" v-show="filteringpopShow" @surefilter="surefilter"></filteringpop>
+    <filteringpop :arrlist="arrlist" :types="types" :filtertop="'1.91rem'" v-model="flitertext" v-show="filteringpopShow" @surefilter="surefilter"></filteringpop>
   </div>
 </template>
 
@@ -83,7 +83,7 @@ export default {
       flitertext: {}, // 中转站选中的对象
       flitertext1: {text: '不限', id: '0'}, // 位置选中的对象
       flitertext2: {text: '不限', id: '0'}, // 价格选中的对象
-      flitertext3: {text: '不限', id: '0'} // 建筑类型选中的对象
+      flitertext4: {text: '', id: ''} // 建筑类型选中的对象
     }
   },
   created () {
@@ -123,7 +123,7 @@ export default {
       }
     },
     builds () {
-      this.types = '2'
+      this.types = '3'
       if (!this.builddorpdown) {
         this.filteringpopShow = !this.filteringpopShow
         this.builddorpdown = !this.builddorpdown
@@ -132,8 +132,8 @@ export default {
         this.pricedorpdown = true
         this.builddorpdown = false
         this.filteringpopShow = true
-        this.flitertext = this.flitertext3
-        this.arrlist = this.$constDatas.buildType
+        this.flitertext = this.flitertext4
+        this.arrlist = this.$constDatas.corollary
       }
     },
     surefilter (types) {
@@ -141,7 +141,7 @@ export default {
       let objs = {
         '0': 'flitertext1',
         '1': 'flitertext2',
-        '2': 'flitertext3'
+        '3': 'flitertext4'
       }
       this[objs[types]] = this.flitertext
       this.locationdorpdown = true
@@ -149,7 +149,7 @@ export default {
       this.builddorpdown = true
       console.log(this.flitertext1)
       console.log(this.flitertext2)
-      console.log(this.flitertext3)
+      console.log(this.flitertext4)
       console.log(this.types)
     }
   },
@@ -160,6 +160,18 @@ export default {
     apphuoseList,
     filteringpop,
     housefooter
+  },
+  watch: {
+    flitertext1: function (newvalue, oldvalue) {
+      this.$units.scrollTop('.newHouse-detail-lit')
+    },
+    flitertext2: function (newvalue, oldvalue) {
+      debugger
+      this.$units.scrollTop('.newHouse-detail-lit')
+    },
+    flitertext4: function (newvalue, oldvalue) {
+      this.$units.scrollTop('.newHouse-detail-lit')
+    }
   }
 }
 </script>
@@ -228,11 +240,13 @@ export default {
       }
       .new_house_build {
         font-size: .12rem;
+        max-height: 100%;
+        overflow-y: auto;
       }
     }
   }
   .newHouse-detail-lit {
-    height: calc(100% - 1.51rem);
+    height: calc(100% - 1.91rem);
     overflow-y: auto;
   }
 }

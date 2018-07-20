@@ -1,8 +1,14 @@
 <template>
-  <div class="filterpop">
+  <div class="filterpop" :style="{top: filtertop}">
     <div class="filterpop-height">
-      <ul class="filterpop-items-contain">
+      <ul class="filterpop-items-contain" v-if="types !='3'">
         <li class="filterpop-items" :class="{activeClass: value.id === item.id}" v-for="(item,index) in arrlist" :key="index" @click="switchfiter(item)">{{item.text}}</li>
+      </ul>
+      <ul class="filterpop-items-contain" v-if="types == 3">
+        <li class="filterpop-items flex-li"  v-for="(item,index) in arrlist" :key="index" @click="switchflitercheck(item)">
+          <span>{{item.text}}</span>
+          <span :class="{activeClasscheck: value.id.split(',').indexOf(item.id) !== -1}"></span>
+          </li>
       </ul>
       <div class="sure_buttom">
         <button @click="surefilter" v-if="types != '1'">确定</button>
@@ -33,12 +39,18 @@ export default {
     },
     value: {
       type: Object
+    },
+    filtertop: {
+      type: String,
+      default: '1.51rem'
     }
   },
   data () {
     return {
       bottomPrice: '',
-      topPrice: ''
+      topPrice: '',
+      checktextarr: [], // 配套设施选中的文字
+      checkidarr: [] // 配套设施选中的Id
     }
   },
   mounted: function () {
@@ -49,11 +61,33 @@ export default {
     switchfiter (item) {
       this.$emit('input', item)
     },
+    switchflitercheck (item) {
+      this.checkidarr = this.value.id.split(',')
+      this.checktextarr = this.value.text.split(',')
+      let index = this.checkidarr.indexOf(item.id)
+      let gochecktextarr = ''
+      let gocheckidarr = ''
+      if (index === -1) {
+        this.checkidarr.push(item.id)
+        this.checktextarr.push(item.text)
+      } else {
+        this.checkidarr.splice(index, 1)
+        this.checktextarr.splice(index, 1)
+      }
+      debugger
+      gochecktextarr = this.checktextarr.join(',').replace(/^[,]*/, '')
+      gocheckidarr = this.checkidarr.join(',').replace(/^[,]*/, '')
+      this.$emit('input', {text: gochecktextarr, id: gocheckidarr})
+    },
     surefilter () {
       debugger
       if (this.types === '1' && (this.bottomPrice || this.topPrice)) {
         this.$emit('input', {text: `${this.bottomPrice}-${this.topPrice}万`, id: '-1'})
+        this.bottomPrice = ''
+        this.topPrice = ''
       }
+      this.checkidarr = []
+      this.checktextarr = []
       this.$emit('surefilter', this.types)
     }
   },
@@ -67,7 +101,6 @@ export default {
 <style lang="scss" scoped>
 .filterpop {
   position: fixed;
-  top: 1.51rem;
   bottom: 0;
   left: 0;
   right: 0;
@@ -141,8 +174,24 @@ export default {
       line-height: .36rem;
     }
   }
+  .flex-li {
+    display: flex;
+    align-items: center;
+    padding: 0 .15rem;
+    justify-content: space-between;
+    span:nth-of-type(2) {
+      display: inline-block;
+      width: .12rem;
+      height:.12rem;
+      border: 1px solid #B7B7B7;
+    }
+  }
   .activeClass {
     color: blue !important;
+  }
+  .activeClasscheck {
+    background: #5D9CF9 !important;
+    border: none !important;
   }
 }
 </style>
