@@ -22,7 +22,7 @@
         <div class="aroundList">
           <ul class="itemBox">
             <li v-for="(item, index) in arrList" :key="index" @click="mark(index)">
-              <div>{{String.fromCharCode(64 + parseInt(index+1))}}</div>
+              <div class="fromCharCode">{{String.fromCharCode(64 + parseInt(index+1))}}</div>
               <div>
                 <span>{{item.title}}</span>
                 <span>{{item.address}}</span>
@@ -139,10 +139,18 @@ export default {
         padding: 20px 35px 20px 20px;
         cursor: pointer;
         div {
-          &:first-child {
+          &.fromCharCode {
+            width: 26px;
+            height: 28px;
+            text-align: center;
+            line-height: 23px;
             margin-right: 36px;
+            color: #fff;
+            font-weight: bold;
+            background: url('../../assets/images/icon-location-red.svg') no-repeat;
           }
           &:last-child {
+            width: 206px;
             span {
               display: block;
               &:first-child {
