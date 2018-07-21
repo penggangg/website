@@ -5,23 +5,24 @@
       <span>1000个</span>
       <span>北京新楼盘</span>
     </div>
-    <div class="apphuoseList-items">
-      <div class='apphuoseList-items-container' v-for="(item, index) in arrhuoselist" :key="index" @click="gohuosedetail(item)">
+    <!-- 新房 -->
+    <div class="apphuoseList-items" v-if="pagetype=='newhuose'">
+      <div class='apphuoseList-items-container' v-for="(item, index) in arrhuoselist" :key="index" @click="gohuosedetail(item)" >
         <div class="apphuoseList-items-left">
           <img src="../../../assets/appimages/house1.png" alt="" srcset="">
         </div>
         <div class="apphuoseList-items-right">
-          <p>长安太和</p>
+          <p class="fontsizeoverflow">长安太和</p>
           <p>
             <span>东城</span> | <span>立春元倒三角</span>
           </p>
-          <p>
+          <p class="fontsizeoverflow">
             <span>建筑类型</span>
             <span>住宅</span>
             <span>建筑面积</span>
             <span>100-200m*m</span>
           </p>
-          <p>
+          <p class="fontsizeoverflow">
             <span class="onsale">在售</span>
             <span class="special">特价</span>
             <span class="opening">即将开盘</span>
@@ -32,7 +33,59 @@
           </p>
         </div>
       </div>
-  </div>
+    </div>
+    <!-- 商铺 -->
+    <div class="apphuoseList-items" v-if="pagetype=='shop'">
+      <div class='apphuoseList-items-container' v-for="(item, index) in arrhuoselist" :key="index" @click="gohuosedetail(item)" >
+        <div class="apphuoseList-items-left">
+          <img src="../../../assets/appimages/house1.png" alt="" srcset="">
+        </div>
+        <div class="apphuoseList-items-right">
+          <p class="fontsizeoverflow">长安太和</p>
+          <p>
+            <span>东城</span> | <span>立春元倒三角</span>
+          </p>
+          <p class="fontsizeoverflow">
+            <span>建筑面积</span>
+            <span style="color: #888 !important">100-200m</span>
+            <span>使用面积</span>
+            <span>100-200m</span>
+          </p>
+          <p class="fontsizeoverflow">
+            <span class="normal">在售</span>
+            <span class="normal">特价</span>
+            <span class="normal">即将开盘</span>
+            <span class="normal">临湖</span>
+          </p>
+          <p>
+           150000万元
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- 写字楼 -->
+    <div class="apphuoseList-items" v-if="pagetype=='office'">
+      <div class='apphuoseList-items-container' v-for="(item, index) in arrhuoselist" :key="index" @click="gohuosedetail(item)" >
+        <div class="apphuoseList-items-left">
+          <img src="../../../assets/appimages/house1.png" alt="" srcset="">
+        </div>
+        <div class="apphuoseList-items-right">
+          <p class="fontsizeoverflow">长安太和</p>
+          <p class="fontsizeoverflow">
+            <span>东城</span> | <span>立春元倒三角</span>
+          </p>
+          <p class="fontsizeoverflow">
+            <span>建筑面积</span>
+            <span style="color: #888 !important">100-200m</span>
+            <span>使用面积</span>
+            <span>100-200m</span>
+          </p>
+          <p style="color: #FB6550;font-size: .12rem;">
+           150000万元
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -40,6 +93,12 @@
 
 export default {
   name: 'apphuoseList',
+  props: {
+    pagetype: {
+      type: String,
+      default: 'newhuose'
+    }
+  },
   data () {
     return {
       arrhuoselist: [{id: 1}, {id: 2}, {id: 1}, {id: 2}, {id: 1}, {id: 2}]
@@ -52,7 +111,13 @@ export default {
   methods: {
     gohuosedetail (item) {
       let id = item.id
-      this.$router.push({path: '/newHouseDetail/' + id, query: { code: this.code }})
+      if (this.pagetype === 'newhuose') {
+        this.$router.push({path: '/newHouseDetail/' + id, query: { code: this.code }})
+      } else if (this.pagetype === 'shop') {
+        this.$router.push({path: '/shopDetail/' + id, query: { code: this.code }})
+      } else if (this.pagetype === 'office') {
+        this.$router.push({path: '/officeBuildDetail/' + id, query: { code: this.code }})
+      }
     }
   },
   components: {
@@ -98,7 +163,7 @@ export default {
     justify-content: space-between;
     height: .96rem;
     margin-left: .15rem;
-    flex: 1;
+    width: calc(100% - 1.11rem);
     font-size: .12rem;
     p:nth-of-type(1) {
       font-size: .14rem;

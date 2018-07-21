@@ -1,5 +1,5 @@
 <template>
-  <div class="apphuosedetail">
+  <div class="apphuosedetail" :style="{overflow:shownavigationpops ? 'hidden' : 'auto'}">
      <div class="apphuosedetail-header">
         <div class="apphuosedetail-header-nav">
             <div class="newHouselist-header-left">
@@ -261,6 +261,7 @@ export default {
 
 <style lang="scss" scoped>
 .apphuosedetail {
+    height: 100%;
     .apphuosedetail-header {
         position: relative;
         width: 100%;
@@ -323,7 +324,7 @@ export default {
         justify-content: space-between;
         align-items: center;
         p:nth-of-type(1) {
-          font-size: .12rem;
+          font-size: .14rem;
           font-weight: bold;
           color: #333;
         }
@@ -358,6 +359,10 @@ export default {
         justify-content: space-between;
         align-items: center;
         height: .47rem;
+        p:nth-of-type(1) {
+          font-size: .14rem;
+          font-weight: bold;
+        }
         p:nth-of-type(2){
           span {
             color: #888;

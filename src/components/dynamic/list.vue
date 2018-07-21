@@ -13,7 +13,7 @@
 import appList from './appList'
 import pcList from './pcList'
 export default {
-  name: 'marketAnalysisList',
+  name: 'dynamic',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'

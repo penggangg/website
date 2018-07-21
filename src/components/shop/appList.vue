@@ -40,7 +40,7 @@
     </div>
 
     <div class="newHouse-detail-lit">
-      <apphuoseList></apphuoseList>
+      <apphuoseList :pagetype="'shop'"></apphuoseList>
       <div class="huosefooter">
         <housefooter></housefooter>
       </div>
@@ -201,6 +201,8 @@ export default {
     position: relative;
     .switch-type {
         display: flex;
+        border-top: 1px solid #ddd;
+        box-sizing: border-box;
         p {
             height: .4rem;
             line-height: .4rem;

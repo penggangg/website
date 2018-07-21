@@ -1,5 +1,5 @@
 <template>
-  <div class="newHouselist">
+  <div class="newHouselist" :style="{overflow:shownavigationpops ? 'hidden' : 'auto'}">
     <div class="newHouselist-header">
       <div class="newHouselist-header-left">
         <img src="../../assets/appimages/icon-lback.svg" @click="$root.goback">
