@@ -2,14 +2,14 @@
   右侧导航弹窗
 */
 <template>
-  <div class="navigation-pops">
+  <div class="navigation-pops" >
     <slot></slot>
     <div v-if = "theCustom">
         <img class="menu-button" :src="menuSrc" @click="shownavigationpopsshow">
     </div>
-    <div class="fixed-pops"  v-show="shownavigationpops">
-      <div class="fixed-pops-conten" :class="[showProps ? 'outclass' : 'inclass' ]">
-        <div class="fixed-pops-left">
+    <div class="fixed-pops"  v-show="shownavigationpops"  @click="closePops">
+      <div class="fixed-pops-conten" :class="[showProps ? 'outclass' : 'inclass' ]" @click.stop>
+        <div class="fixed-pops-left" >
            <ul>
              <li class="checkfont" :class="{pithOne: value === item.id}" v-for="(item,index) in $constDatas.navigationTab" :key="index" @click="switchtab(item)">{{item.text}}</li>
            </ul>
@@ -59,6 +59,7 @@ export default {
   methods: {
     shownavigationpopsshow () {
       this.$emit('shownavigationpopsshow')
+      console.log(this)
     },
     closePops () {
       this.showProps = false

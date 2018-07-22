@@ -17,7 +17,7 @@ const marketAnalysisDetail = r => require.ensure([], () => r(require('@/componen
 // 商务合作
 const business = r => require.ensure([], () => r(require('@/components/business/index')), 'business')
 // 企业动态
-const dynamic = r => require.ensure([], () => r(require('@/components/dynamic/index')), 'dynamic')
+const dynamic = r => require.ensure([], () => r(require('@/components/dynamic/list')), 'dynamic')
 // 公司介绍
 const company = r => require.ensure([], () => r(require('@/components/company/index')), 'company')
 // 房产委托

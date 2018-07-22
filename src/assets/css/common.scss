@@ -146,3 +146,11 @@ html,body{
 .activeClass {
   color: #5D9CF9 !important;
 }
+.fontsizeoverflow {
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+#appList {
+  height: 100%;
+}

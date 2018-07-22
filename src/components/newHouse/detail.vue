@@ -37,4 +37,7 @@ export default {
 </script>
 
 <style>
+#appListdetail {
+  height: 100%;
+}
 </style>
