@@ -31,7 +31,6 @@ export default {
     pcList
   },
   created () {
-    console.log(this.cityCode)
   }
 }
 </script>

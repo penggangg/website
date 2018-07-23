@@ -1,5 +1,5 @@
 <template>
-  <div class="apphuosedetail">
+  <div class="apphuosedetail" :style="{overflow:shownavigationpops ? 'hidden' : 'auto'}">
      <div class="apphuosedetail-header">
         <div class="apphuosedetail-header-nav">
             <div class="newHouselist-header-left">
@@ -151,6 +151,7 @@ export default {
 
 <style lang="scss" scoped>
 .apphuosedetail {
+  height: 100%;
     .apphuosedetail-header {
         position: relative;
         width: 100%;
