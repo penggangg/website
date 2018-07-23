@@ -134,17 +134,8 @@
         </swiper>
       </div>
     </div>
-    <div class="item-content map-detail">
-      <h3>周边配套</h3>
-      <div class="map-filter">
-        <span  v-for="(item, index) in searchFilter" :key=index :class="{active: keyword === item}" @click="keyword = item">{{item}}</span>
-        <!-- <span :class="{active: keyword === '地铁'}" @click="keyword ='地铁'">地铁</span>
-        <span :class="{active: keyword === '教育设施'}" @click="keyword ='教育设施'">教育设施</span> -->
-      </div>
-      <map-list :width="options.width" :height= "options.height" :keyword="keyword">
-
-      </map-list>
-    </div>
+    <map-list :width="options.width" :height= "options.height" :searchFilter="searchFilter" :keyword="keyword">
+    </map-list>
     <footers></footers>
   </div>
 </template>
@@ -314,25 +305,6 @@
             }
           }
         }
-      }
-    }
-  }
-}
-.map-detail {
-  margin-bottom: 50px;
-  h3 {
-    margin-bottom: 30px;
-  }
-  .map-filter {
-    margin-bottom: 35px;
-    span {
-      font-size: 14px;
-      padding: 5px 10px;
-      margin-right: 20px;
-      cursor: pointer;
-      &.active {
-        color: #fff;
-        background: #5D9CF9;
       }
     }
   }

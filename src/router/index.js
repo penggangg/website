@@ -37,7 +37,7 @@ const router = new Router({
       path: '/newHouse',
       name: 'newHouseList',
       component: newHouseList,
-      meta: {activeClass: 'newHouse'}
+      meta: {activeClass: 'newHouse', title: '新楼盘'}
     },
     {
       path: '/newHouseDetail/:id',
@@ -49,7 +49,7 @@ const router = new Router({
       path: '/shop',
       name: 'shopList',
       component: shopList,
-      meta: {activeClass: 'shop'}
+      meta: {activeClass: 'shop', title: '商铺'}
     },
     {
       path: '/shopDetail/:id',
@@ -61,7 +61,7 @@ const router = new Router({
       path: '/officeBuild',
       name: 'officeBuildList',
       component: officeBuildList,
-      meta: {activeClass: 'officeBuild'}
+      meta: {activeClass: 'officeBuild', title: '写字楼'}
     },
     {
       path: '/officeBuildDetail/:id',

@@ -1,5 +1,9 @@
 <template>
-  <div>
+  <div class="map-detail">
+      <h3>周边配套</h3>
+      <div class="map-filter">
+        <span  v-for="(item, index) in searchFilter" :key=index :class="{active: keyword === item}" @click="keyword = item">{{item}}</span>
+      </div>
     <div class="bmview" ref="bmview">
       <baidu-map class="bm-view" :center="center" :zoom="zoom" @ready='handler' :scroll-wheel-zoom="false" >
         <!-- <bm-overlay
@@ -22,7 +26,7 @@
         <div class="aroundList">
           <ul class="itemBox">
             <li v-for="(item, index) in arrList" :key="index" @click="mark(index)">
-              <div>{{String.fromCharCode(64 + parseInt(index+1))}}</div>
+              <div class="fromCharCode">{{String.fromCharCode(64 + parseInt(index+1))}}</div>
               <div>
                 <span>{{item.title}}</span>
                 <span>{{item.address}}</span>
@@ -88,6 +92,9 @@ export default {
     showPanel: {
       type: Boolean,
       default: true
+    },
+    searchFilter: {
+      type: Array
     }
   }
 }
@@ -114,6 +121,28 @@ export default {
   background: rgba(0,0,0,0.75);
   color: #fff;
 }
+.map-detail {
+  width: 1200px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+  margin-top: 50px;
+  h3 {
+    margin-bottom: 30px;
+  }
+  .map-filter {
+    margin-bottom: 35px;
+    span {
+      font-size: 14px;
+      padding: 5px 10px;
+      margin-right: 20px;
+      cursor: pointer;
+      &.active {
+        color: #fff;
+        background: #5D9CF9;
+      }
+    }
+  }
+}
 .panels {
   position: absolute;
   right: 130px;
@@ -139,10 +168,18 @@ export default {
         padding: 20px 35px 20px 20px;
         cursor: pointer;
         div {
-          &:first-child {
+          &.fromCharCode {
+            width: 26px;
+            height: 28px;
+            text-align: center;
+            line-height: 23px;
             margin-right: 36px;
+            color: #fff;
+            font-weight: bold;
+            background: url('../../assets/images/icon-location-red.svg') no-repeat;
           }
           &:last-child {
+            width: 206px;
             span {
               display: block;
               &:first-child {
