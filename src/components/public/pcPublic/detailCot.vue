@@ -1,69 +1,70 @@
 <template>
-  <div class="house-content">
-      <div class="house-img">
-        <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop">
+<div class="house-content">
+    <div class="house-img">
+      <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop">
+        <swiper-slide v-for="(slide, index) in swiperSlides" :key="index">
+          <img :src="slide" alt="" srcset="">
+        </swiper-slide>
+        <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
+        <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
+        <!-- <div class="swiper-pagination" slot="pagination"></div> -->
+      </swiper>
+      <div class="gallery-thumbs-cot">
+        <div class="prev"></div>
+        <swiper :options="swiperOptionThumbs" class="gallery-thumbs" ref="swiperThumbs">
           <swiper-slide v-for="(slide, index) in swiperSlides" :key="index">
             <img :src="slide" alt="" srcset="">
+          </swiper-slide>
+          <swiper-slide >
+          </swiper-slide>
+          <swiper-slide>
+          </swiper-slide>
+          <swiper-slide>
+          </swiper-slide>
+          <swiper-slide>
           </swiper-slide>
           <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
           <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
           <!-- <div class="swiper-pagination" slot="pagination"></div> -->
         </swiper>
-        <div class="gallery-thumbs-cot">
-          <div class="prev"></div>
-          <swiper :options="swiperOptionThumbs" class="gallery-thumbs" ref="swiperThumbs">
-            <swiper-slide v-for="(slide, index) in swiperSlides" :key="index">
-              <img :src="slide" alt="" srcset="">
-            </swiper-slide>
-            <swiper-slide >
-            </swiper-slide>
-            <swiper-slide>
-            </swiper-slide>
-            <swiper-slide>
-            </swiper-slide>
-            <swiper-slide>
-            </swiper-slide>
-            <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
-            <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
-            <!-- <div class="swiper-pagination" slot="pagination"></div> -->
-          </swiper>
-          <div class="next"></div>
-        </div>
-      </div>
-      <div class="house-detail">
-        <div class="title">东三环朝阳区百子湾恒大豪华写字楼可注册公司</div>
-        <div class="prcie">
-          <span>售价</span>
-          <span>1000</span>万元
-        </div>
-        <ul class="details">
-          <li>
-            <span>建筑面积</span>
-            <span>2000㎡</span>
-          </li>
-          <li>
-            <span>使用面积</span>
-            <span>2000㎡</span>
-          </li>
-          <li>
-            <span>区域</span>
-            <span>2000㎡</span>
-          </li>
-          <li>
-            <span>地址</span>
-            <span class="address">西花市大街 附近</span>
-            <span class="search">查看详细地址</span>
-            <span class="map"> <img src="../../../assets/images/icon-location-blue .svg" > 查看地图</span>
-          </li>
-        </ul>
-        <div class="hot-line">
-          咨询热线：400-888-9950
-        </div>
+        <div class="next"></div>
       </div>
     </div>
+    <div class="house-detail">
+      <div class="title">东三环朝阳区百子湾恒大豪华写字楼可注册公司</div>
+      <div class="prcie">
+        <span>售价</span>
+        <span>1000</span>万元
+      </div>
+      <ul class="details">
+        <li>
+          <span>建筑面积</span>
+          <span>2000㎡</span>
+        </li>
+        <li>
+          <span>使用面积</span>
+          <span>2000㎡</span>
+        </li>
+        <li>
+          <span>区域</span>
+          <span>2000㎡</span>
+        </li>
+        <li>
+          <span>地址</span>
+          <span class="address">西花市大街 附近</span>
+          <span class="search">查看详细地址</span>
+          <span class="map"> <img src="../../../assets/images/icon-location-blue .svg" > 查看地图</span>
+        </li>
+      </ul>
+      <div class="hot-line">
+        咨询热线：400-888-9950
+      </div>
+    </div>
+</div>
 </template>
 <style lang="scss" scoped>
 .house-content {
+    height: 482px;
     .house-img {
       width: 708px;
       float: left;

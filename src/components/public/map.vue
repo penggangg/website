@@ -1,5 +1,9 @@
 <template>
-  <div>
+  <div class="map-detail">
+      <h3>周边配套</h3>
+      <div class="map-filter">
+        <span  v-for="(item, index) in searchFilter" :key=index :class="{active: keyword === item}" @click="keyword = item">{{item}}</span>
+      </div>
     <div class="bmview" ref="bmview">
       <baidu-map class="bm-view" :center="center" :zoom="zoom" @ready='handler' :scroll-wheel-zoom="false" >
         <!-- <bm-overlay
@@ -88,6 +92,9 @@ export default {
     showPanel: {
       type: Boolean,
       default: true
+    },
+    searchFilter: {
+      type: Array
     }
   }
 }
@@ -113,6 +120,28 @@ export default {
 .sample.active {
   background: rgba(0,0,0,0.75);
   color: #fff;
+}
+.map-detail {
+  width: 1200px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+  margin-top: 50px;
+  h3 {
+    margin-bottom: 30px;
+  }
+  .map-filter {
+    margin-bottom: 35px;
+    span {
+      font-size: 14px;
+      padding: 5px 10px;
+      margin-right: 20px;
+      cursor: pointer;
+      &.active {
+        color: #fff;
+        background: #5D9CF9;
+      }
+    }
+  }
 }
 .panels {
   position: absolute;
