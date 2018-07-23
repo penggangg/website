@@ -4,7 +4,7 @@
       为你找到 <span>100个</span> 北京{{$route.meta.title}}
     </div>
     <div class="list">
-      <slot name="item" v-for="item in dataList"  :item="item">{{item}}
+      <slot name="item" v-for="item in dataList"  :item="item" :listType="listType">{{item}}
       </slot>
     </div>
   </div>
@@ -12,7 +12,8 @@
 <script>
 export default {
   props: {
-    dataList: Array
+    dataList: Array,
+    listType: String
   }
 }
 </script>

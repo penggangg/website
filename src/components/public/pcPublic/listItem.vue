@@ -41,11 +41,12 @@ export default {
     }
   },
   props: {
-    item: Object
+    item: Object,
+    listType: String
   },
   computed: {
     detailPath () {
-      return this.detailPaths[this.$route.path.replace('/', '')]
+      return this.detailPaths[this.$route.path.replace('/', '')] + this.listType
     }
   }
 }

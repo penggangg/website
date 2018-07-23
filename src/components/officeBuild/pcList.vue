@@ -1,5 +1,11 @@
 <template>
   <div>
+    <div class="list-type-cot">
+      <div class="list-type">
+        <span @click="changeType('')" :class="{active: !listType}" >出售</span>
+        <span @click="changeType('rent')" :class="{active: listType== 'rent'}">出租</span>
+      </div>
+    </div>
     <search-form></search-form>
     <div class="filter">
       <div class="all-condition">
@@ -38,9 +44,9 @@
         </dl>
       </div>
     </div>
-    <list-result :dataList = dataList>
+    <list-result :dataList = dataList >
       <template  slot="item" slot-scope="item">
-        <list-item :item = item>
+        <list-item :item = item :listType=listType>
           <template slot="labels" slot-scope="price">
             <div class="price labels">
               {{price.price}}
@@ -53,6 +59,25 @@
   </div>
 </template>
 <style lang="scss" scoped>
+.list-type-cot {
+  background: #F5F5F6;
+  padding-top: 50px;
+  .list-type {
+    width: 1200px;
+    margin: 0 auto;
+    span {
+      margin-right: 20px;
+      font-size:18px;
+      color: #333;
+      font-weight: bold;
+      cursor: pointer;
+      &.active {
+        color: #5D9CF9;
+      }
+    }
+  }
+}
+
 .filter {
   padding: 30px 0;
   .all-condition {
@@ -114,7 +139,14 @@ export default {
           price: '150000~28000万元',
           name: '鲁能格拉斯小镇37'
         }
-      ]
+      ],
+      listType: ''
+    }
+  },
+  methods: {
+    changeType (type) {
+      this.listType = type
+      this.dataList[0].name = '鲁能格拉斯小镇2222229999'
     }
   },
   components: {
