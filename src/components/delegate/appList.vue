@@ -298,9 +298,6 @@ export default {
   }
   .switch-type {
       border-bottom:1px solid #B7B7B7;
-      p {
-          font-weight: bold;
-      }
   }
 }
 </style>
