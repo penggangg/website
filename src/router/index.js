@@ -58,6 +58,12 @@ const router = new Router({
       meta: {activeClass: 'shop'}
     },
     {
+      path: '/shopDetailrent/:id',
+      name: 'shopDetail',
+      component: shopDetail,
+      meta: {activeClass: 'shop'}
+    },
+    {
       path: '/officeBuild',
       name: 'officeBuildList',
       component: officeBuildList,
@@ -65,6 +71,12 @@ const router = new Router({
     },
     {
       path: '/officeBuildDetail/:id',
+      name: 'officeBuildDetail',
+      component: officeBuildDetail,
+      meta: {activeClass: 'officeBuild'}
+    },
+    {
+      path: '/officeBuildDetailrent/:id',
       name: 'officeBuildDetail',
       component: officeBuildDetail,
       meta: {activeClass: 'officeBuild'}

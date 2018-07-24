@@ -40,7 +40,7 @@
     </div>
     <list-result :dataList = dataList>
       <template  slot="item" slot-scope="item">
-        <list-item :item = item>
+        <list-item :item = item :listType=listType>
           <template slot="house-price" slot-scope="price">
             <div class="house-price">
               {{price.price}}
@@ -114,7 +114,8 @@ export default {
           price: '150000~28000万元',
           name: '鲁能格拉斯小镇3'
         }
-      ]
+      ],
+      listType: ''
     }
   },
   components: {
