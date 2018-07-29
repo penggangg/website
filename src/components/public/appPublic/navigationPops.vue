@@ -120,7 +120,7 @@ export default {
         bottom: 0;
         width: 65%;
         background: #ddd;
-        transition: right .5s linear;
+        transition: right .3s linear;
         .fixed-pops-left {
           flex: 1;
           overflow-y: auto;

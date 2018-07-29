@@ -1,5 +1,5 @@
 <template>
-  <div class="filterpop" :style="{top: filtertop}">
+  <div class="filterpop" :style="{top: filtertop,height:newheight}">
     <div class="filterpop-height">
       <ul class="filterpop-items-contain" v-if="types !='3'">
         <li class="filterpop-items" :class="{activeClass: value.id === item.id}" v-for="(item,index) in arrlist" :key="index" @click="switchfiter(item)">{{item.text}}</li>
@@ -57,6 +57,12 @@ export default {
     this.$nextTick(function () {
     })
   },
+  computed: {
+    newheight () {
+      console.log('calc(100% - ' + this.filtertop + ')')
+      return 'calc(100% - ' + this.filtertop + ')'
+    }
+  },
   methods: {
     switchfiter (item) {
       this.$emit('input', item)
@@ -100,6 +106,7 @@ export default {
 
 <style lang="scss" scoped>
 .filterpop {
+  overflow: hidden;
   position: fixed;
   bottom: 0;
   left: 0;

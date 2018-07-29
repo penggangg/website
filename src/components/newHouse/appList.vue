@@ -40,8 +40,9 @@
         <housefooter></housefooter>
       </div>
     </div>
-
-    <filteringpop :arrlist="arrlist" :types="types" v-model="flitertext" v-show="filteringpopShow" @surefilter="surefilter"></filteringpop>
+     <transition name="fade">
+      <filteringpop :arrlist="arrlist" :types="types" v-model="flitertext" v-show="filteringpopShow" @surefilter="surefilter"></filteringpop>
+    </transition>
   </div>
 </template>
 
@@ -147,6 +148,17 @@ export default {
       console.log(this.types)
     }
   },
+  watch: {
+    flitertext1: function (newvalue, oldvalue) {
+      this.$units.scrollTop('.newHouse-detail-lit')
+    },
+    flitertext2: function (newvalue, oldvalue) {
+      this.$units.scrollTop('.newHouse-detail-lit')
+    },
+    flitertext3: function (newvalue, oldvalue) {
+      this.$units.scrollTop('.newHouse-detail-lit')
+    }
+  },
   components: {
     citydropdown,
     navigationpops,
@@ -214,6 +226,14 @@ export default {
   .newHouse-detail-lit {
     height: calc(100% - 1.51rem);
     overflow-y: auto;
+  }
+  .fade-enter-active, .fade-leave{
+    transition: all .3s ease;
+    height: calc(100% - 1.51rem) !important;
+  }
+  .fade-enter, .fade-leave-active{
+    transition: all .3s ease;
+    height: 0rem !important;
   }
 }
 </style>

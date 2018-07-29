@@ -5,9 +5,11 @@
       <span class="downcity">{{code==="310000"?"上海":"北京"}}</span>
       <span class="downIcon" :style="{backgroundImage: bgurl}"></span>
     </p>
-    <div class="citydropconten" v-show="showSwitchcity">
-      <p class="city-items" v-for="(item,index) in $constDatas.cityLocation" :key="index" :class="{checkCityActive: item.code === code}" @click="switchcity(item, index)">{{item.text}}</p>
-    </div>
+     <transition name="fade">
+      <div class="citydropconten" v-show="showSwitchcity">
+        <p class="city-items" v-for="(item,index) in $constDatas.cityLocation" :key="index" :class="{checkCityActive: item.code === code}" @click="switchcity(item, index)">{{item.text}}</p>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -70,11 +72,13 @@ export default {
     background-size: 100%;
   }
   .citydropconten {
+    overflow: hidden;
     position: absolute;
     top: .3rem;
     z-index: 999;
     margin-top: 5px;
     width: .8rem;
+    height: .8rem;
     background: #fff;
     box-shadow: 2px 2px 2px 1px #ddd;
     border-radius: .08rem;
@@ -91,6 +95,14 @@ export default {
   }
   .checkCityActive {
     color: #25adfb;
+  }
+  .fade-enter-active, .fade-leave{
+    transition: all .3s ease;
+    height: .8rem;
+  }
+  .fade-enter, .fade-leave-active{
+    transition: all .3s ease;
+    height: 0rem;
   }
 }
 </style>

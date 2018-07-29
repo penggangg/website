@@ -13,7 +13,7 @@
 import appDetail from './appDetail'
 import pcDetail from './pcDetail'
 export default {
-  name: 'officeBuildDetail',
+  name: 'shopDetail',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'

@@ -94,7 +94,7 @@ import mapCircum from '@/components/public/appPublic/mapCircum'
 import bigmap from '@/components/public/appPublic/bigmap'
 import huosefooter from '@/components/public/appPublic/footer'
 export default {
-  name: 'apphuosedetail',
+  name: 'officeBuildDetail',
   data () {
     return {
       pithOne: '3',

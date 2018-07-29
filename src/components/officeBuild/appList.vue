@@ -41,8 +41,9 @@
         <housefooter></housefooter>
       </div>
     </div>
-
-    <filteringpop :arrlist="arrlist" :types="types" :filtertop="'1.91rem'" v-model="flitertext" v-show="filteringpopShow" @surefilter="surefilter"></filteringpop>
+     <transition name="fade">
+      <filteringpop :arrlist="arrlist" :types="types" :filtertop="'1.91rem'" v-model="flitertext" v-show="filteringpopShow" @surefilter="surefilter"></filteringpop>
+    </transition>
   </div>
 </template>
 
@@ -226,6 +227,14 @@ export default {
   .newHouse-detail-lit {
     height: calc(100% - 1.91rem);
     overflow-y: auto;
+  }
+  .fade-enter-active, .fade-leave{
+    transition: all .3s ease;
+    height: calc(100% - 1.91rem) !important;
+  }
+  .fade-enter, .fade-leave-active{
+    transition: all .3s ease;
+    height: 0rem !important;
   }
 }
 </style>
