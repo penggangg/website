@@ -30,8 +30,8 @@ Vue.component('footers', footers)
 Vue.prototype.$constDatas = constData
 Vue.prototype.$units = units
 Vue.prototype.$ = $
-Vue.prototype.$http = axios
 Vue.prototype.code = '110000'
+// axios.defaults.baseURL = 'http://172.18.3.124:8081'
 // 添加一个请求拦截器
 axios.interceptors.request.use(function (config) {
   // Do something before request is sent

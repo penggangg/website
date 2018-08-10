@@ -20,6 +20,7 @@
   </div>
 </template>
 <script>
+import {getList} from '@/assets/js/api'
 export default {
   data () {
     return {
@@ -75,6 +76,9 @@ export default {
   },
   created () {
     console.log(this.$router)
+    getList().then(res => {
+      console.log(res)
+    })
   }
 }
 </script>
