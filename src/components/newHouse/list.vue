@@ -12,6 +12,7 @@
 <script>
 import appList from './appList'
 import pcList from './pcList'
+import { houseList } from '@/assets/js/api'
 export default {
   name: 'newHouseList',
   data () {
@@ -31,7 +32,18 @@ export default {
     pcList
   },
   created () {
-    console.log(this.cityCode)
+    houseList({
+      city_id: this.code,
+      district_id: '',
+      type_id: '',
+      min: '',
+      max: '',
+      offset: '',
+      limit: '',
+      query: ''
+    }).then(res => {
+      console.log(res)
+    })
   }
 }
 </script>

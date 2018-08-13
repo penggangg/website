@@ -5,26 +5,17 @@
         <div class="search_form" style="position: relative;">
           <div class="genre clearfix">
             <ul class="clearfix">
-              <li :class="{lei:isActive==1}" @click="switch_channel('新房')">新房</li>
-              <li :class="{lei:isActive==1}" @click="switch_channel('商铺')">商铺</li>
-              <li v-bind:class="{lei:isActive==2}" @click="switch_channel('写字楼')">写字楼</li>
+              <li :class="{lei:isActive===1}" @click="switch_channel(1)">新房</li>
+              <li :class="{lei:isActive===2}" @click="switch_channel(2)">商铺</li>
+              <li v-bind:class="{lei:isActive===3}" @click="switch_channel(3)">写字楼</li>
               <span class="trans" ref="trans"></span>
             </ul>
           </div>
           <div class="searchTerm">
-            <input v-on:focus="on_focus=true"  class="search_text" type="text" placeholder="请输入城区/商圈/胡同" ref="val_history" />
-            <span class="search_btn" @click="add_history">
+            <input class="search_text" type="text" placeholder="请输入城区/商圈/胡同" v-model="keyWords"/>
+            <span class="search_btn" @click="search">
               <img src="../../assets/images/icon-search.svg" alt="">
             </span>
-          </div>
-          <div class="history_cot" v-show="on_focus&&history">
-            <span class="pg_history"><i>搜索历史</i><i class="clear_history" style="float: right;color: #009688;cursor: pointer;">清除历史</i></span>
-            <ul class="one" v-show="channel_type==1">
-              <a v-for="(item,index) in one_history" class='history_str_pv1' :key="index" target='_blank'  href='' ><li class='pg_href'>{{item.name}}</li></a>
-            </ul>
-            <ul class="second" v-show="channel_type==2">
-              <a v-for="(item,index) in second_history" class='history_str_pv' target='_blank'  :key="index" href=''  ><li class='pg_href'>{{item.name}}</li></a>
-            </ul>
           </div>
         </div>
       </div>
@@ -60,32 +51,11 @@
           <!-- <router-link to="/">更多新房</router-link> -->
         </div>
         <div class="content">
-          <div class="item">
-            <img src="../../assets/images/pic1.svg" alt="" srcset="">
+          <div class="item" v-for="(item,index) in houseRecs" :key="index" @click="gotoDetail('newHouseDetail',item.id)">
+            <img :src="item.pic" alt="" srcset="">
             <div>
-              <span>上海绿地中心</span>
-              <span>1500万元起</span>
-            </div>
-          </div>
-          <div class="item">
-            <img src="../../assets/images/pic1.svg" alt="" srcset="">
-            <div>
-              <span>上海绿地中心</span>
-              <span>1500万元起</span>
-            </div>
-          </div>
-          <div class="item">
-            <img src="../../assets/images/pic1.svg" alt="" srcset="">
-            <div>
-              <span>上海绿地中心</span>
-              <span>1500万元起</span>
-            </div>
-          </div>
-          <div class="item">
-            <img  src="../../assets/images/pic1.svg" alt="" srcset="">
-            <div>
-              <span>上海绿地中心</span>
-              <span>1500万元起</span>
+              <span>{{item.title}}</span>
+              <span>{{item.price}}万元起</span>
             </div>
           </div>
         </div>
@@ -99,25 +69,11 @@
           <!-- <router-link to="/">更多新房</router-link> -->
         </div>
         <div class="content content-three">
-          <div class="item">
-            <img class="content-three" src="../../assets/images/pic1.svg" alt="" srcset="">
+          <div class="item" v-for="(item,index) in storeRecs" :key="index" @click="gotoDetail('shopDetail',item.id)">
+            <img class="content-three" :src="item.pic" alt="" srcset="">
             <div>
-              <span>上海绿地中心</span>
-              <span>1500万元起</span>
-            </div>
-          </div>
-          <div class="item">
-            <img class="content-three" src="../../assets/images/pic1.svg" alt="" srcset="">
-            <div>
-              <span>上海绿地中心</span>
-              <span>1500万元起</span>
-            </div>
-          </div>
-          <div class="item">
-            <img class="content-three" src="../../assets/images/pic1.svg" alt="" srcset="">
-            <div>
-              <span>上海绿地中心</span>
-              <span>1500万元起</span>
+              <span>{{item.title}}</span>
+              <span>{{item.price}}元/㎡</span>
             </div>
           </div>
         </div>
@@ -131,25 +87,11 @@
           <!-- <router-link to="/">更多新房</router-link> -->
         </div>
         <div class="content content-three">
-          <div class="item">
-            <img class="content-three" src="../../assets/images/pic1.svg" alt="" srcset="">
+          <div class="item" v-for="(item,index) in officesRecs" :key="index" @click="gotoDetail('officeBuildDetail',item.id)">
+            <img class="content-three" :src="item.pic" alt="" srcset="">
             <div>
-              <span>上海绿地中心</span>
-              <span>1500万元起</span>
-            </div>
-          </div>
-          <div class="item">
-            <img class="content-three" src="../../assets/images/pic1.svg" alt="" srcset="">
-            <div>
-              <span>上海绿地中心</span>
-              <span>1500万元起</span>
-            </div>
-          </div>
-          <div class="item">
-            <img class="content-three" src="../../assets/images/pic1.svg" alt="" srcset="">
-            <div>
-              <span>上海绿地中心</span>
-              <span>1500万元起</span>
+              <span>{{item.title}}</span>
+              <span>{{item.price}}元/㎡</span>
             </div>
           </div>
         </div>
@@ -233,6 +175,7 @@
       justify-content: space-between;
       .item {
         box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
         img {
           width: 250px;
           height: 192px;
@@ -382,12 +325,57 @@ export default {
   name: 'Pcindex',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      isActive: 1,
+      keyWords: ''
+    }
+  },
+  props: {
+    houseRecs: Array,
+    storeRecs: Array,
+    officesRecs: Array
+  },
+  methods: {
+    switch_channel (num) {
+      this.isActive = num
+      switch (num) {
+        case 1:
+          this.$refs.trans.style.left = '8px'
+          break
+        case 2:
+          this.$refs.trans.style.left = '58px'
+          break
+        case 3:
+          this.$refs.trans.style.left = '114px'
+          break
+        default:
+          break
+      }
+    },
+    search () {
+      let routeData = ''
+      if (!this.keyWords) {
+        return false
+      }
+      switch (this.isActive) {
+        case 1:
+          routeData = this.$router.resolve({ path: '/newHouse', query: { query: this.keyWords } })
+          break
+        case 2:
+          routeData = this.$router.resolve({ path: '/shop', query: { query: this.keyWords } })
+          break
+        case 3:
+          routeData = this.$router.resolve({ path: '/officeBuild', query: { query: this.keyWords } })
+          break
+        default:
+          break
+      }
+      window.open(routeData.href, '_blank')
+    },
+    gotoDetail (url, id) {
+      // this.$router.push({ path: `/${url}/${id}` })
+      let routeData = this.$router.resolve({ path: `/${url}/${id}` })
+      window.open(routeData.href, '_blank')
     }
   }
 }
 </script>
-
-<style>
-
-</style>

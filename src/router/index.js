@@ -59,7 +59,7 @@ const router = new Router({
     },
     {
       path: '/shopDetailrent/:id',
-      name: 'shopDetail',
+      name: 'shopDetailrent',
       component: shopDetail,
       meta: {activeClass: 'shop'}
     },
@@ -77,7 +77,7 @@ const router = new Router({
     },
     {
       path: '/officeBuildDetailrent/:id',
-      name: 'officeBuildDetail',
+      name: 'officeBuildDetailrent',
       component: officeBuildDetail,
       meta: {activeClass: 'officeBuild'}
     },
@@ -121,7 +121,7 @@ const router = new Router({
 })
 router.beforeEach((to, from, next) => {
   let { code } = to.query
-  Vue.prototype.code = code || '110000'
+  Vue.prototype.code = code || '2'
   console.log(Vue.prototype.code)
   next()
 })
