@@ -1,30 +1,27 @@
 <template>
    <div class="item">
-      <img src="../../../assets/images/pic1.png" alt="" >
+      <img :src="item.item.pic" alt="" >
       <div class="house-detail">
         <h4>
           <!-- <a href="" title="鲁能格拉斯小镇">鲁能格拉斯小镇</a>  -->
-          <router-link :to="{ path:`/${detailPath}/123`, query: { code }}" target="_blank">{{item.item.name}}</router-link>
+          <router-link :to="{ path:`/${detailPath}/${item.item.id}`, query: { code }}" target="_blank">{{item.item.title}}</router-link>
         </h4>
-        <div class="loacation"><span>昌平</span>|<span>王府井大道南侧100m{{detailPath}}</span></div>
+        <div class="loacation"><span>{{item.item.district}}</span>|<span>{{item.item.address}}{{detailPath}}</span></div>
         <div>
           <!-- <span class="house-type"> <span>户型</span><i>3居</i>|<i>4居</i></span> -->
           <slot name="house-type">
             <span class="house-type"> <span>户型</span><i>3居</i>|<i>4居</i></span>
-            <span class="building-type"><span>建筑类型</span> <i>酒店式公寓</i></span>
-            <span class="building-area"><span>建筑面积</span> <i>100~200㎡</i></span>
+            <span class="building-type"><span>建筑类型</span> <i>{{item.item.type}}</i></span>
+            <span class="building-area"><span>建筑面积</span> <i>{{item.item.min_area}}~{{item.item.max_area}}㎡</i></span>
           </slot>
         </div>
         <slot name="labels" :price = "item.item.price">
           <div class="labels">
-            <span>在售</span>
-            <span>特价房</span>
-            <span>样板间可售</span>
-            <span>公园地产</span>
+            <span v-for="(item,index) in item.item.labels" :key="index" :style="{color:item.color}">{{item.text}}</span>
           </div>
         </slot>
       </div>
-      <slot name="house-price" :price = "item.item.price">
+      <slot name="house-price" :price = "(item.item.min_price+'-'+item.item.max_price)|capitalize ">
 
       </slot>
     </div>
@@ -38,6 +35,12 @@ export default {
         shop: 'shopDetail',
         officeBuild: 'officeBuildDetail'
       }
+    }
+  },
+  filters: {
+    capitalize: function (price) {
+      price = price.split('-')
+      return {minPrice: price[0], maxPrice: price[1]}
     }
   },
   props: {
@@ -60,6 +63,8 @@ export default {
   border-bottom: 1px solid #b7b7b7;
   img {
     float: left;
+    width: 232px;
+    height: 174px;
   }
   .house-detail {
     float: left;
@@ -102,7 +107,8 @@ export default {
     }
     .house-type {
       display: inline-block;
-      width: 218px;
+      // width: 218px;
+      width: 190px;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;

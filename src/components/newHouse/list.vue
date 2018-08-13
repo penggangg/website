@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div id="pcList" class="row hidden-xs hidden-sm header-pc">
-      <pc-list></pc-list>
+      <pc-list :listResult=listResult></pc-list>
     </div>
     <div id="appList" class="visible-sm-block visible-xs-block">
       <app-list></app-list>
@@ -17,7 +17,7 @@ export default {
   name: 'newHouseList',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      listResult: []
     }
   },
   mounted: function () {
@@ -31,8 +31,8 @@ export default {
     appList,
     pcList
   },
-  created () {
-    houseList({
+  async created () {
+    let { result } = await houseList({
       city_id: this.code,
       district_id: '',
       type_id: '',
@@ -41,9 +41,8 @@ export default {
       offset: '',
       limit: '',
       query: ''
-    }).then(res => {
-      console.log(res)
     })
+    this.listResult = result
   }
 }
 </script>

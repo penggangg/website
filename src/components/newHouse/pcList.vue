@@ -38,12 +38,12 @@
         </dl>
       </div>
     </div>
-    <list-result :dataList = dataList>
+    <list-result :dataList = listResult>
       <template  slot="item" slot-scope="item">
         <list-item :item = item :listType=listType>
           <template slot="house-price" slot-scope="price">
             <div class="house-price">
-              {{price.price}}
+              {{price.price.minPrice}}~{{price.price.maxPrice}}元/㎡(均价)
             </div>
           </template>
         </list-item>
@@ -101,22 +101,11 @@ import listItem from '../public/pcPublic/listItem'
 export default {
   data () {
     return {
-      dataList: [
-        {
-          price: '150000~28000万元',
-          name: '鲁能格拉斯小镇1'
-        },
-        {
-          price: '150000~28000万元',
-          name: '鲁能格拉斯小镇2'
-        },
-        {
-          price: '150000~28000万元',
-          name: '鲁能格拉斯小镇3'
-        }
-      ],
       listType: ''
     }
+  },
+  props: {
+    listResult: Array
   },
   components: {
     searchForm,
