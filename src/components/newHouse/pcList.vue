@@ -42,8 +42,9 @@
       <template  slot="item" slot-scope="item">
         <list-item :item = item :listType=listType>
           <template slot="house-price" slot-scope="price">
-            <div class="house-price">
-              {{price.price.minPrice}}~{{price.price.maxPrice}}元/㎡(均价)
+            <div class="house-price" style="position:relative">
+              {{price.price.minPrice}}元/㎡(均价)
+              <div class="total" style="font-size:16px;color:#333;position:absolute;right:0;">总价{{price.price.price}}万/套起</div>
             </div>
           </template>
         </list-item>

@@ -2,8 +2,8 @@
   <div>
     <div class="list-type-cot">
       <div class="list-type">
-        <span @click="changeType('')" :class="{active: !listType}" >出售</span>
-        <span @click="changeType('rent')" :class="{active: listType== 'rent'}">出租</span>
+        <span @click="changeType(2)" :class="{active: listType===2}" >出售</span>
+        <span @click="changeType(1)" :class="{active: listType===1}">出租</span>
       </div>
     </div>
     <search-form></search-form>
@@ -143,12 +143,14 @@ export default {
           name: '鲁能格拉斯小镇13'
         }
       ],
-      listType: ''
+      listType: 2
     }
   },
   methods: {
     changeType (type) {
       this.listType = type
+      console.log(type)
+      this.$emit('changeType', type)
       this.dataList[0].name = '鲁能格拉斯小镇2222229999'
     }
   },

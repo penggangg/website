@@ -10,7 +10,12 @@
         <div>
           <!-- <span class="house-type"> <span>户型</span><i>3居</i>|<i>4居</i></span> -->
           <slot name="house-type">
-            <span class="house-type"> <span>户型</span><i>3居</i>|<i>4居</i></span>
+            <span class="house-type">
+              <span>户型</span>
+              <i v-for="(item,index) in item.item.bedroom" :key="index">
+                {{item}}居
+              </i>
+            </span>
             <span class="building-type"><span>建筑类型</span> <i>{{item.item.type}}</i></span>
             <span class="building-area"><span>建筑面积</span> <i>{{item.item.min_area}}~{{item.item.max_area}}㎡</i></span>
           </slot>
@@ -21,7 +26,7 @@
           </div>
         </slot>
       </div>
-      <slot name="house-price" :price = "(item.item.min_price+'-'+item.item.max_price)|capitalize ">
+      <slot name="house-price" :price = "(item.item.min_price+'-'+item.item.price)|capitalize ">
 
       </slot>
     </div>
@@ -40,12 +45,12 @@ export default {
   filters: {
     capitalize: function (price) {
       price = price.split('-')
-      return {minPrice: price[0], maxPrice: price[1]}
+      return {minPrice: price[0], price: price[1]}
     }
   },
   props: {
     item: Object,
-    listType: String
+    listType: Number
   },
   computed: {
     detailPath () {
@@ -101,6 +106,7 @@ export default {
       span {
         font-size: 12px;
         padding: 7px 10px;
+        margin-right: 10px;
         border-radius: 5px;
         background: #f2f5f7;
       }
@@ -118,8 +124,27 @@ export default {
         // margin-right: 10px;
       }
       i {
+        position: relative;
         color: #5a9afc;
         padding: 0 10px;
+        &:after {
+          content: '';
+          display: inline-block;
+          position: absolute;
+          top: 50%;
+          right: 5%;
+          transform: translateY(-50%);
+          width: 1px;
+          height: 70%;
+          background: #5a9afc;
+        }
+        &:last-child {
+          &:after {
+            content: '';
+            display: none;
+          }
+
+        }
       }
     }
     .building-type {
