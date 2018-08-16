@@ -4,12 +4,10 @@
       <div class="tags-cot">
         <div class="total-pic">
           <img src="../../assets/images/icon-pic.svg" alt="" >
-          <span>楼盘相册（25张）</span>
+          <span>楼盘相册（{{houseDetails.pic && houseDetails.pic.length}}张）</span>
         </div>
         <div class="tag">
-          <span>在售</span>
-          <span>特价房</span>
-          <span>样板间可售</span>
+          <span v-for="(item,index) in houseDetails.labels" :key="index" :style="{color:item.color}">{{item.text}}</span>
         </div>
       </div>
     </div>
@@ -19,69 +17,69 @@
         <ul>
           <li>
             <span>楼盘名称</span>
-            <span>恒大丽宫</span>
+            <span>{{houseDetails.title}}</span>
           </li>
           <li>
             <span>建筑类型</span>
-            <span>住宅</span>
+            <span>{{houseDetails.type}}</span>
           </li>
           <li>
             <span>建筑面积</span>
-            <span>2000㎡</span>
+            <span>{{houseDetails.min_area}}-{{houseDetails.max_area}}㎡</span>
           </li>
           <li>
             <span>容积率</span>
-            <span>2.50</span>
+            <span>{{houseDetails.volume_rate}}</span>
           </li>
           <li>
             <span>物业费</span>
-            <span>6.77元/m²/月</span>
+            <span>{{houseDetails.property_fee}}元/m²/月</span>
           </li>
           <li>
             <span>供水方式</span>
-            <span>民电</span>
+            <span>{{houseDetails.power}}</span>
           </li>
           <li>
             <span>开发商</span>
-            <span>恒大集团</span>
+            <span>{{houseDetails.developer}}</span>
           </li>
           <li>
             <span>物业公司</span>
-            <span>恒大集团</span>
+            <span>{{houseDetails.property}}</span>
           </li>
         </ul>
         <ul>
           <li>
-            <span>楼盘名称</span>
-            <span>恒大丽宫</span>
+            <span>销售状态</span>
+            <span>{{houseDetails.status}}</span>
           </li>
           <li>
-            <span>建筑类型</span>
-            <span>住宅</span>
+            <span>产权年限</span>
+            <span>{{houseDetails.own_years}}</span>
           </li>
           <li>
-            <span>建筑面积</span>
-            <span>2000㎡</span>
+            <span>占地面积</span>
+            <span>{{houseDetails.floor_area}}㎡</span>
           </li>
           <li>
-            <span>容积率</span>
-            <span>2.50</span>
+            <span>绿化率</span>
+            <span>{{houseDetails.green_rate}}</span>
           </li>
           <li>
-            <span>物业费</span>
-            <span>6.77元/m²/月</span>
+            <span>供暖方式</span>
+            <span>{{houseDetails.heating}}</span>
           </li>
           <li>
-            <span>供水方式</span>
-            <span>民电</span>
+            <span>供电方式</span>
+            <span>{{houseDetails.power}}</span>
           </li>
           <li>
-            <span>开发商</span>
-            <span>恒大集团</span>
+            <span>地区</span>
+            <span>{{houseDetails.district}}</span>
           </li>
           <li>
-            <span>物业公司</span>
-            <span>恒大集团</span>
+            <span>地址</span>
+            <span>{{houseDetails.address}}</span>
           </li>
         </ul>
         <div class="hot-line">
@@ -96,7 +94,7 @@
           <img src="../../assets/images/icon-left-white.svg" alt="" srcset="">
         </div>
         <swiper :options="swiperOptionThumbs" class="gallery-thumbs" ref="swiperThumbs">
-          <swiper-slide v-for="(slide, index) in swiperSlides" :key="index">
+          <swiper-slide v-for="(slide, index) in houseDetails.pic" :key="index">
             <img :src="slide" alt="" srcset="">
           </swiper-slide>
           <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
@@ -111,21 +109,29 @@
     <div class="item-content house-type">
       <h3>户型信息</h3>
       <div class="house-filter">
-        <span class="active">全部户型（12）</span>
-        <span>4居（7）</span>
-        <span>5居及以上（5）</span>
+        <span class="active">全部户型（{{houseDetails.layout && houseDetails.layout.length}}）</span>
+        <span v-if="houseTypes.oneType.length">1居（{{houseTypes.houseTypes.oneType.length}}）</span>
+        <span v-if="houseTypes.twoType.length">1居（{{houseTypes.twoType.length}}）</span>
+        <span v-if="houseTypes.threeType.length">1居（{{houseTypes.threeType.length}}）</span>
+        <span v-if="houseTypes.fourType.length">1居（{{houseTypes.fourType.length}}）</span>
+        <span v-if="houseTypes.fiveType.length">5居及以上（{{houseTypes.fiveType.length}}）</span>
       </div>
       <div class="type-list">
         <swiper :options="swiperOptionThumbsType" class="gallery-thumbs-type" ref="swiperThumbs">
-          <swiper-slide v-for="(slide, index) in swiperSlides" :key="index">
-            <img :src="slide" alt="" srcset="">
+          <swiper-slide v-for="(slide, index) in houseDetails.layout" :key="index">
+            <img :src="slide.pic" alt="" srcset="">
             <ul class="type-detail">
               <li class="area">
-                <span>地上3层/地下1层</span>
-                <span>300㎡</span>
+                <span>
+                  <template v-if="slide.bedroom">{{slide.bedroom}}室</template>
+                  <template v-if="slide.hall">{{slide.hall}}厅</template>
+                  <template v-if="slide.toilet">{{slide.toilet}}卫</template>
+                </span>
+                <span>{{slide.layout_area}}㎡</span>
               </li>
               <li class="price">
-                <span>1000万-2000万</span>
+                <span>户型均价：</span>
+                <span>{{slide.sale_price}}万{{houseDetails.longitude}}</span>
               </li>
             </ul>
           </swiper-slide>
@@ -134,7 +140,13 @@
         </swiper>
       </div>
     </div>
-    <map-list :width="options.width" :height= "options.height" :searchFilter="searchFilter" :keyword="keyword">
+    <map-list
+      :width="options.width"
+      :height= "options.height"
+      :searchFilter="searchFilter"
+      :keyword="keyword"
+      :lng="houseDetails.longitude"
+      :lat="houseDetails.latitude">
     </map-list>
     <footers></footers>
   </div>
@@ -300,8 +312,13 @@
           }
           &.price {
             span {
-              font-size: 16px;
-              color: #FE644A;
+              font-size: 14px;
+              color: #000;
+              margin-right: 3px;
+              &:last-child {
+                font-size: 14px;
+                color: #FE644A;
+              }
             }
           }
         }
@@ -319,6 +336,7 @@ export default {
         width: '1200px',
         height: '472px'
       },
+      houseTypeDetails: [],
       keyword: '公交',
       searchFilter: [
         '公交', '地铁', '教育设施', '医院', '银行', '休闲娱乐', '购物', '餐饮', '运动健身'
@@ -349,6 +367,15 @@ export default {
       },
       swiperSlides: ['../../../static/pic1_test.png', '../../../static/pic1_test.png', '../../../static/pic1_test.png', '../../../static/pic1_test.png', '../../../static/pic1_test.png', '../../../static/pic1_test.png', '../../../static/pic1_test.png']
     }
+  },
+  props: {
+    houseDetails: Object,
+    houseTypes: Object
+  },
+  methods: {
+
+  },
+  created () {
   },
   components: {
     mapList

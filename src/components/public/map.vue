@@ -43,11 +43,11 @@
 export default {
   data () {
     return {
-      center: {lng: 116.181954, lat: 39.951313},
+      center: {lng: '', lat: ''},
       zoom: 10,
       active: false,
       nearby: {
-        center: {lng: 116.181954, lat: 39.951313},
+        center: {lng: '', lat: ''},
         radius: 2000
       },
       arrList: []
@@ -61,7 +61,11 @@ export default {
   },
   methods: {
     handler ({BMap, map}) {
-      // console.log(this.$refs)
+      this.center = {
+        lng: this.lng,
+        lat: this.lat
+      }
+      this.nearby = Object.assign(this.nearby, this.center)
     },
     draw ({el, BMap, map}) {
       const pixel = map.pointToOverlayPixel(new BMap.Point(116.181954, 39.951313))
@@ -95,6 +99,12 @@ export default {
     },
     searchFilter: {
       type: Array
+    },
+    lng: {
+      required: true
+    },
+    lat: {
+      required: true
     }
   }
 }

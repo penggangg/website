@@ -12,6 +12,8 @@ export const houseConditions = params => fetch('/api/index.php?r=config/house&ci
 export const houseRec = params => fetch('/api/index.php?r=houses/rec', { ...params })
 // 新房列表接口
 export const houseList = params => fetch('/api/index.php?r=houses/index', { ...params })
+// 新房详情接口
+export const houseDetails = params => fetch('/api/index.php?r=houses/detail&city_id=2&id=1', { ...params })
 // 商铺筛选条件（rent_type 1 出租， 2 出售）
 export const storeConditions = params => fetch('/api/index.php?r=config/store&city_id=3&rent_type=1', { ...params })
 // 商铺推荐接口
