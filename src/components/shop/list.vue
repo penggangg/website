@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div id="pcList" class="row hidden-xs hidden-sm header-pc">
-      <pc-list @changeType="changeType"></pc-list>
+      <pc-list @changeType="changeType" :listResult="listResult"></pc-list>
     </div>
     <div id="appList" class="visible-sm-block visible-xs-block">
       <app-list></app-list>
@@ -17,7 +17,8 @@ export default {
   name: 'shopList',
   data () {
     return {
-      listType: 2
+      listType: 2,
+      listResult: []
     }
   },
   mounted: function () {

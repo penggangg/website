@@ -26,7 +26,7 @@
           </div>
         </slot>
       </div>
-      <slot name="house-price" :price = "(item.item.min_price+'-'+item.item.price)|capitalize ">
+      <slot name="house-price" :priceShop="item.item.price" :price = "(item.item.min_price+'-'+item.item.price)|capitalize">
 
       </slot>
     </div>

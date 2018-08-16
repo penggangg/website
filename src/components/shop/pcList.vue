@@ -44,16 +44,16 @@
         </dl>
       </div>
     </div>
-    <list-result :dataList = dataList>
+    <list-result :dataList = listResult>
       <template  slot="item" slot-scope="item">
         <list-item :item = item :listType=listType>
           <template  slot="house-type">
             <span class="building-type"><span>建筑面积</span> <i>100~200㎡</i></span>
             <span class="building-area"><span>使用面积</span> <i>100~200㎡</i></span>
           </template>
-          <template slot="house-price" slot-scope="price">
+          <template slot="house-price" slot-scope="priceShop">
             <div class="house-price">
-              {{price.price}}
+              {{priceShop.priceShop}}万元
             </div>
           </template>
         </list-item>
@@ -129,29 +129,17 @@ import listItem from '../public/pcPublic/listItem'
 export default {
   data () {
     return {
-      dataList: [
-        {
-          price: '28000万元',
-          name: '鲁能格拉斯小镇11'
-        },
-        {
-          price: '28000万元',
-          name: '鲁能格拉斯小镇12'
-        },
-        {
-          price: '28000万元',
-          name: '鲁能格拉斯小镇13'
-        }
-      ],
       listType: 2
     }
+  },
+  props: {
+    listResult: Array
   },
   methods: {
     changeType (type) {
       this.listType = type
       console.log(type)
       this.$emit('changeType', type)
-      this.dataList[0].name = '鲁能格拉斯小镇2222229999'
     }
   },
   components: {
