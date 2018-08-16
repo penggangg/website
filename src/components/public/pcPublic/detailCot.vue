@@ -2,7 +2,7 @@
 <div class="house-content">
     <div class="house-img">
       <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop">
-        <swiper-slide v-for="(slide, index) in swiperSlides" :key="index">
+        <swiper-slide v-for="(slide, index) in storeDetails.pic" :key="index">
           <img :src="slide" alt="" srcset="">
         </swiper-slide>
         <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
@@ -12,7 +12,7 @@
       <div class="gallery-thumbs-cot">
         <div class="prev"></div>
         <swiper :options="swiperOptionThumbs" class="gallery-thumbs" ref="swiperThumbs">
-          <swiper-slide v-for="(slide, index) in swiperSlides" :key="index">
+          <swiper-slide v-for="(slide, index) in storeDetails.pic" :key="index">
             <img :src="slide" alt="" srcset="">
           </swiper-slide>
           <swiper-slide >
@@ -31,27 +31,31 @@
       </div>
     </div>
     <div class="house-detail">
-      <div class="title">东三环朝阳区百子湾恒大豪华写字楼可注册公司</div>
-      <div class="prcie">
+      <div class="title">{{storeDetails.title}}</div>
+      <div class="prcie" v-if="storeDetails.rent_id ===2">
         <span>售价</span>
-        <span>1000</span>万元
+        <span>{{storeDetails.price}}</span>万元
+      </div>
+      <div class="prcie"  v-if="storeDetails.rent_id ===1">
+        <span>租金</span>
+        <span>{{storeDetails.price}}万</span>元/月
       </div>
       <ul class="details">
         <li>
           <span>建筑面积</span>
-          <span>2000㎡</span>
+          <span>{{storeDetails.build_area}}㎡</span>
         </li>
         <li>
           <span>使用面积</span>
-          <span>2000㎡</span>
+          <span>{{storeDetails.apply_area}}㎡</span>
         </li>
         <li>
           <span>区域</span>
-          <span>2000㎡</span>
+          <span>{{storeDetails.district}}㎡</span>
         </li>
         <li>
           <span>地址</span>
-          <span class="address">西花市大街 附近</span>
+          <span class="address">{{storeDetails.address}}</span>
           <span class="search">查看详细地址</span>
           <span class="map"> <img src="../../../assets/images/icon-location-blue .svg" > 查看地图</span>
         </li>
@@ -68,6 +72,12 @@
     .house-img {
       width: 708px;
       float: left;
+      .gallery-top {
+        img {
+          width: 708px;
+          height: 400px;
+        }
+      }
       .gallery-thumbs-cot {
         display: flex;
         .prev,.next {
@@ -195,6 +205,11 @@ export default {
         }
       },
       swiperSlides: ['../../../static/pic1_test.png', '../../../static/pic1_test.png', '../../../static/pic1_test.png', '../../../static/pic1_test.png', '../../../static/pic1_test.png', '../../../static/pic1_test.png', '../../../static/pic1_test.png']
+    }
+  },
+  props: {
+    storeDetails: {
+      type: Object
     }
   },
   mounted () {

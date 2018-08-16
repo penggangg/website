@@ -40,7 +40,7 @@
     </div>
     <list-result :dataList = listResult>
       <template  slot="item" slot-scope="item">
-        <list-item :item = item :listType=listType>
+        <list-item :item = item>
           <template slot="house-price" slot-scope="price">
             <div class="house-price" style="position:relative">
               {{price.price.minPrice}}元/㎡(均价)

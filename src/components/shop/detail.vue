@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div id="pcDetail" class="row hidden-xs hidden-sm header-pc">
-      <pc-detail></pc-detail>
+      <pc-detail :storeDetails="storeDetails"></pc-detail>
     </div>
     <div id="appDetail" class="visible-sm-block visible-xs-block">
       <app-detail></app-detail>
@@ -12,11 +12,12 @@
 <script>
 import appDetail from './appDetail'
 import pcDetail from './pcDetail'
+import { storeDetails } from '@/assets/js/api'
 export default {
   name: 'shopDetail',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      storeDetails: {}
     }
   },
   mounted: function () {
@@ -30,8 +31,12 @@ export default {
     appDetail,
     pcDetail
   },
-  created () {
-    console.log(this.cityCode)
+  async created () {
+    let { result } = await storeDetails({
+      city_id: this.code,
+      id: this.$route.params.id
+    })
+    this.storeDetails = result
   }
 }
 </script>

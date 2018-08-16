@@ -20,7 +20,8 @@ export const storeConditions = params => fetch('/api/index.php?r=config/store&ci
 export const storeList = params => fetch('/api/index.php?r=stores/index', { ...params })
 // 商铺推荐接口
 export const storeRec = params => fetch('/api/index.php?r=stores/rec', { ...params })
-// 商铺推荐接口
+// 商铺详情接口
+export const storeDetails = params => fetch('/api/index.php?r=stores/detail', { ...params })
 // 写字楼筛选条件 offices
 export const officeConditions = params => fetch('/api/index.php?r=config/office&city_id=3&rent_type=1', { ...params })
 // 写字楼推荐

@@ -3,11 +3,25 @@
   <div class="content">
     <div class="bread-crumbs">
       <router-link :to="{ path: '/', query: { code }}">合屋首页</router-link>>
-      <router-link :to="{ path: `/${path}`, query: { code }}">{{$route.name}}</router-link>>
-      <a href="">恒大写字楼</a>
+      <router-link :to="{ path: `/${path}`, query: { code }}">{{breadCrumbs}}</router-link>>
+      <a href="">{{storeDetails.title}}写字楼</a>
     </div>
-    <house-content></house-content>
-    <map-list :width="options.width" :height= "options.height" :searchFilter="searchFilter" :keyword="keyword">
+    <house-content :storeDetails="storeDetails"></house-content>
+    <div class="surrounding">
+      <h3>Surrounding</h3>
+      <div class="surrounding-cot">
+        <div class="item">
+          <img src="" alt="" srcset="">
+          <span></span>
+        </div>
+      </div>
+    </div>
+    <map-list :width="options.width"
+      :height= "options.height"
+      :searchFilter="searchFilter"
+      :keyword="keyword"
+      :lng="storeDetails.longitude"
+      :lat="storeDetails.latitude">
     </map-list>
   </div>
   <footers></footers>
@@ -31,7 +45,16 @@ export default {
       pathDetail: {
         newHouseDetail: 'newHouse',
         shopDetail: 'shop'
+      },
+      breadCrumb: {
+        shopDetail: '商铺列表',
+        officeBuildDetail: '写字楼列表'
       }
+    }
+  },
+  props: {
+    storeDetails: {
+      type: Object
     }
   },
   components: {
@@ -40,8 +63,10 @@ export default {
   },
   computed: {
     path () {
-      console.log(this.$route)
       return this.pathDetail[this.$route.name]
+    },
+    breadCrumbs () {
+      return this.breadCrumb[this.$route.name]
     }
   }
 }

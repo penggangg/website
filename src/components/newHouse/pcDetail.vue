@@ -131,7 +131,7 @@
               </li>
               <li class="price">
                 <span>户型均价：</span>
-                <span>{{slide.sale_price}}万{{houseDetails.longitude}}</span>
+                <span>{{slide.sale_price}}万</span>
               </li>
             </ul>
           </swiper-slide>

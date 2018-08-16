@@ -4,9 +4,9 @@
       <div class="house-detail">
         <h4>
           <!-- <a href="" title="鲁能格拉斯小镇">鲁能格拉斯小镇</a>  -->
-          <router-link :to="{ path:`/${detailPaths}/${item.item.id}`, query: { code }}" target="_blank">{{item.item.title}}</router-link>
+          <router-link :to="{ path:`/${detailPath}/${item.item.id}`, query: { code }}" target="_blank">{{item.item.title}}</router-link>
         </h4>
-        <div class="loacation"><span>{{item.item.district}}</span>|<span>{{item.item.address}}{{detailPaths}}</span></div>
+        <div class="loacation"><span>{{item.item.district}}</span>|<span>{{item.item.address}}{{detailPath}}</span></div>
         <div>
           <!-- <span class="house-type"> <span>户型</span><i>3居</i>|<i>4居</i></span> -->
           <slot name="house-type">
@@ -54,7 +54,8 @@ export default {
   },
   computed: {
     detailPath () {
-      return this.detailPaths[this.$route.path.replace('/', '')] + this.listType
+      // return this.detailPaths[this.$route.path.replace('/', '')] + this.listType
+      return this.detailPaths[this.$route.path.replace('/', '')]
     }
   }
 }
