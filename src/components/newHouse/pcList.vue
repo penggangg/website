@@ -1,26 +1,20 @@
 <template>
   <div>
-    <search-form></search-form>
+    <search-form @gotoUrl="gotoUrl"></search-form>
     <div class="filter">
       <div class="all-condition">
         <dl>
           <dt>位置</dt>
           <dd>
-            <span>不限</span>
-            <span>朝阳</span>
-            <span>昌平</span>
-            <span>顺义</span>
-            <span>东城</span>
+            <span :class="{active: $route.query.districtId == ''}" @click="gotoUrl({'districtId': ''})">不限</span>
+            <span :class="{active: $route.query.districtId == item.value}" @click="gotoUrl({'districtId': item.value})" v-for="(item,index) in condition.district" :key="index">{{item.key}}</span>
           </dd>
         </dl>
         <dl>
           <dt>单价</dt>
           <dd>
-            <span>不限</span>
-            <span>1000万以下</span>
-            <span>1000-1500万</span>
-            <span>1000-1500万</span>
-            <span>1000-1500万</span>
+            <span :class="{active: $route.query.price == ''}"  @click="gotoUrl({'price': ''})">不限</span>
+            <span :class="{active: $route.query.price == item.value}"  @click="gotoUrl({'price': item.value})" v-for="(item,index) in condition.price" :key="index">{{item.key}}</span>
             <span>
               <input type="text"> -
               <input type="text">
@@ -31,9 +25,8 @@
         <dl>
           <dt>建筑类型</dt>
           <dd>
-            <span>不限</span>
-            <span>住宅</span>
-            <span>酒店式公寓</span>
+            <span :class="{active: $route.query.typeId == ''}"  @click="gotoUrl({'typeId': ''})">不限</span>
+            <span :class="{active: $route.query.typeId == item.value}" @click="gotoUrl({'typeId': item.value})" v-for="(item,index) in condition.type" :key="index">{{item.key}}</span>
           </dd>
         </dl>
       </div>
@@ -77,6 +70,9 @@
           margin-right: 30px;
           color: #333;
           cursor: pointer;
+          &.active {
+            font-weight: bold;
+          }
           input {
             width: 36px;
             height: 18px;
@@ -102,16 +98,32 @@ import listItem from '../public/pcPublic/listItem'
 export default {
   data () {
     return {
-      listType: ''
+      listType: '',
+      objType: ''
     }
   },
   props: {
-    listResult: Array
+    listResult: Array,
+    condition: Object
   },
   components: {
     searchForm,
     listResult,
     listItem
+  },
+  methods: {
+    gotoUrl (obj) {
+      let objTypes = {}
+      if (Object.keys(obj)[0] === 'query') {
+        objTypes = Object.assign({}, obj)
+      } else {
+        objTypes = Object.assign(this.objType, obj)
+      }
+      this.$router.push({path: 'newHouse', query: objTypes})
+    }
+  },
+  created () {
+    this.objType = {...this.$route.query}
   }
 }
 </script>

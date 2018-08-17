@@ -9,7 +9,7 @@
         <div class="loacation"><span>{{item.item.district}}</span>|<span>{{item.item.address}}{{detailPath}}</span></div>
         <div>
           <!-- <span class="house-type"> <span>户型</span><i>3居</i>|<i>4居</i></span> -->
-          <slot name="house-type">
+          <slot name="house-type" v-if="$route.name=='newHouseList'">
             <span class="house-type">
               <span>户型</span>
               <i v-for="(item,index) in item.item.bedroom" :key="index">
@@ -19,10 +19,19 @@
             <span class="building-type"><span>建筑类型</span> <i>{{item.item.type}}</i></span>
             <span class="building-area"><span>建筑面积</span> <i>{{item.item.min_area}}~{{item.item.max_area}}㎡</i></span>
           </slot>
+          <slot name="house-type" v-if="$route.name!=='newHouseList'">
+            <span class="building-type"><span>建筑面积</span> <i>{{item.item.build_area}}㎡</i></span>
+            <span class="building-area"><span>使用面积</span> <i>{{item.item.apply_area}}㎡</i></span>
+          </slot>
         </div>
-        <slot name="labels" :price = "item.item.price">
+        <slot name="labels" :price = "item.item.price"  v-if="$route.name=='newHouseList'">
           <div class="labels">
             <span v-for="(item,index) in item.item.labels" :key="index" :style="{color:item.color}">{{item.text}}</span>
+          </div>
+        </slot>
+        <slot name="labels" :price = "item.item.price" v-if="$route.name=='shopList'">
+          <div class="labels">
+            <span v-for="(item,index) in item.item.facilities" :key="index" :style="{color:item.color}">{{item.name}}</span>
           </div>
         </slot>
       </div>
@@ -49,8 +58,7 @@ export default {
     }
   },
   props: {
-    item: Object,
-    listType: Number
+    item: Object
   },
   computed: {
     detailPath () {

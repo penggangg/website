@@ -29,7 +29,6 @@ export default {
   methods: {
     changeType (type) {
       this.listType = type
-      console.log(type)
       this.getList()
     },
     async getList () {

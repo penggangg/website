@@ -1,8 +1,8 @@
 <template>
   <div class="search">
     <div class="serch-cot">
-      <input type="text" placeholder="请输入城区/商圈/胡同">
-      <img src="../../../assets/images/smallSearch.svg" alt="" srcset="">
+      <input type="text" v-model.trim="query" placeholder="请输入城区/商圈/胡同">
+      <img src="../../../assets/images/smallSearch.svg" @click="gotoUrl" alt="" srcset="">
     </div>
   </div>
 </template>
@@ -33,3 +33,17 @@
   }
 }
 </style>
+<script>
+export default {
+  data () {
+    return {
+      query: ''
+    }
+  },
+  methods: {
+    gotoUrl () {
+      this.$emit('gotoUrl', {'query': this.query})
+    }
+  }
+}
+</script>

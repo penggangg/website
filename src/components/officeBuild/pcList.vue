@@ -2,8 +2,8 @@
   <div>
     <div class="list-type-cot">
       <div class="list-type">
-        <span @click="changeType('')" :class="{active: !listType}" >出售</span>
-        <span @click="changeType('rent')" :class="{active: listType== 'rent'}">出租</span>
+        <span @click="changeType(2)" :class="{active: listType===2}" >出售</span>
+        <span @click="changeType(1)" :class="{active: listType===1}">出租</span>
       </div>
     </div>
     <search-form></search-form>
@@ -44,12 +44,12 @@
         </dl>
       </div>
     </div>
-    <list-result :dataList = dataList >
+    <list-result :dataList = listResult >
       <template  slot="item" slot-scope="item">
         <list-item :item = item :listType=listType>
           <template slot="labels" slot-scope="price">
             <div class="price labels">
-              {{price.price}}
+              {{price.price}}万元
             </div>
           </template>
         </list-item>
@@ -142,6 +142,9 @@ export default {
       ],
       listType: ''
     }
+  },
+  props: {
+    listResult: Array
   },
   methods: {
     changeType (type) {

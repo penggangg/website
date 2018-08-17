@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div id="pcList" class="row hidden-xs hidden-sm header-pc">
-      <pc-list :listResult=listResult></pc-list>
+      <pc-list :listResult=listResult :condition="conditionObj" @getHouseList="getHouseList"></pc-list>
     </div>
     <div id="appList" class="visible-sm-block visible-xs-block">
       <app-list></app-list>
@@ -12,12 +12,24 @@
 <script>
 import appList from './appList'
 import pcList from './pcList'
-import { houseList } from '@/assets/js/api'
+import { houseList, houseConditions } from '@/assets/js/api'
 export default {
   name: 'newHouseList',
   data () {
     return {
-      listResult: []
+      listResult: [],
+      conditionObj: {},
+      objType: {},
+      condition: {
+        city_id: '',
+        district_id: '',
+        type_id: '',
+        min: '',
+        max: '',
+        offset: 1,
+        limit: 10,
+        query: ''
+      }
     }
   },
   mounted: function () {
@@ -26,23 +38,44 @@ export default {
     })
   },
   methods: {
+    async getCondition () {
+      let { result } = await houseConditions({city_id: this.code})
+      console.log(result)
+      this.conditionObj = result
+    },
+    async getHouseList () {
+      this.condition.city_id = this.code
+      let { result } = await houseList({...this.condition})
+      this.listResult = result
+    },
+    checkUrl (obj) {
+      this.objType = {...obj}
+      let {districtId, price, typeId, query} = this.objType
+      if (price) {
+        this.condition.min = price.split('-')[0]
+        this.condition.max = price.split('-')[1]
+        console.log(this.condition)
+      }
+      this.condition.district_id = districtId
+      this.condition.type_id = typeId
+      this.condition.query = query
+    }
   },
   components: {
     appList,
     pcList
   },
-  async created () {
-    let { result } = await houseList({
-      city_id: this.code,
-      district_id: '',
-      type_id: '',
-      min: '',
-      max: '',
-      offset: '',
-      limit: '',
-      query: ''
-    })
-    this.listResult = result
+  created () {
+    this.getCondition()
+    this.checkUrl(this.$route.query)
+    this.getHouseList()
+  },
+  beforeRouteUpdate (to, from, next) {
+    console.log(to)
+    let obj = to.query
+    this.checkUrl(obj)
+    this.getHouseList()
+    next()
   }
 }
 </script>

@@ -48,8 +48,8 @@
       <template  slot="item" slot-scope="item">
         <list-item :item = item :listType=listType>
           <template  slot="house-type">
-            <span class="building-type"><span>建筑面积</span> <i>100~200㎡</i></span>
-            <span class="building-area"><span>使用面积</span> <i>100~200㎡</i></span>
+            <span class="building-type"><span>建筑面积</span> <i>{{item.item.build_area}}㎡</i></span>
+            <span class="building-area"><span>使用面积</span> <i>{{item.item.apply_area}}㎡</i></span>
           </template>
           <template slot="house-price" slot-scope="priceShop">
             <div class="house-price">
