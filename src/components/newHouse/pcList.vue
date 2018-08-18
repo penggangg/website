@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="wrapper">
     <search-form @gotoUrl="gotoUrl"></search-form>
     <div class="filter">
       <div class="all-condition">

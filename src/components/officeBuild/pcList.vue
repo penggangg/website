@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="wrapper">
     <div class="list-type-cot">
       <div class="list-type">
-        <span @click="changeType(2)" :class="{active: listType===2}" >出售</span>
-        <span @click="changeType(1)" :class="{active: listType===1}">出租</span>
+        <span @click="changeCondition({rent_id: 2})" :class="{active: rent_id===2}" >出售</span>
+        <span @click="changeCondition({rent_id: 1})" :class="{active: rent_id===1}">出租</span>
       </div>
     </div>
     <search-form></search-form>
@@ -12,41 +12,43 @@
         <dl>
           <dt>位置</dt>
           <dd>
-            <span>不限</span>
-            <span>朝阳</span>
-            <span>昌平</span>
-            <span>顺义</span>
-            <span>东城</span>
+            <span
+              :class="{active: district_id == ''}"
+              @click="changeCondition({district_id: ''})"
+            >不限</span>
+            <span
+              :class="{active: district_id == item.value }"
+              v-for="(item, index) in condition.district"
+              :key="index"
+              @click="changeCondition({district_id: item.value})"
+            >{{item.key}}</span>
           </dd>
         </dl>
         <dl>
           <dt>单价</dt>
           <dd>
-            <span>不限</span>
-            <span>1000万以下</span>
-            <span>1000-1500万</span>
-            <span>1000-1500万</span>
-            <span>1000-1500万</span>
+            <span
+              :class="{active: price == ''}"
+              @click="changeCondition({price: ''})"
+            >不限</span>
+            <span
+              :class="{active: price == item.value}"
+              v-for="(item, index) in condition.price"
+              :key="index"
+              @click="changeCondition({price: item.value})"
+            >{{item.key}}</span>
             <span>
-              <input type="text"> -
-              <input type="text">
-              <input type="button" value="确定">
+              <input type="text" v-model="price_min"> -
+              <input type="text" v-model="price_max">
+              <input type="button" value="确定" @click="changeCondition({price: (price_min||0) +'-'+ price_max})">
             </span>
-          </dd>
-        </dl>
-        <dl>
-          <dt>建筑类型</dt>
-          <dd>
-            <span>不限</span>
-            <span>住宅</span>
-            <span>酒店式公寓</span>
           </dd>
         </dl>
       </div>
     </div>
     <list-result :dataList = listResult >
       <template  slot="item" slot-scope="item">
-        <list-item :item = item :listType=listType>
+        <list-item :item = item>
           <template slot="labels" slot-scope="price">
             <div class="price labels">
               {{price.price}}万元
@@ -82,9 +84,8 @@
   padding: 30px 0;
   .all-condition {
     width: 1200px;
-    height: 137px;
     margin: 0 auto;
-    padding: 30px 20px 0;
+    padding: 30px 20px;
     background: #F5F5F6;
     dl {
       margin-bottom: 10px;
@@ -101,6 +102,9 @@
           margin-right: 30px;
           color: #333;
           cursor: pointer;
+          &.active {
+            font-weight: bold;
+          }
           input {
             width: 36px;
             height: 18px;
@@ -126,30 +130,46 @@ import listItem from '../public/pcPublic/listItem'
 export default {
   data () {
     return {
-      dataList: [
-        {
-          price: '150000~28000万元',
-          name: '鲁能格拉斯小镇17'
-        },
-        {
-          price: '150000~28000万元',
-          name: '鲁能格拉斯小镇27'
-        },
-        {
-          price: '150000~28000万元',
-          name: '鲁能格拉斯小镇37'
-        }
-      ],
-      listType: ''
+      rent_id: 2,
+      district_id: '',
+      price: '',
+      price_min: '',
+      price_max: ''
     }
   },
   props: {
-    listResult: Array
+    listResult: Array,
+    condition: Object
   },
   methods: {
-    changeType (type) {
-      this.listType = type
-      this.dataList[0].name = '鲁能格拉斯小镇2222229999'
+    changeCondition (value) {
+      let { keys, values } = Object
+      let key = keys(value)[0]
+      let val = values(value)[0]
+      this[key] = val
+      console.log(this)
+      if (key === 'price') {
+        let min = val.split('-')[0]
+        let max = val.split('-')[1]
+        this.$emit('change-condition', {min: min, max: max})
+      } else if (key === 'rent_id') {
+        this.district_id = ''
+        this.price = ''
+        this.$emit('change-condition', value)
+      } else {
+        this.$emit('change-condition', value)
+      }
+    }
+  },
+  watch: {
+    price (newValue) {
+      let index = this.condition.price.findIndex((item) => {
+        return item.value === newValue
+      })
+      if (index > -1) {
+        this.price_min = ''
+        this.price_max = ''
+      }
     }
   },
   components: {

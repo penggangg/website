@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div id="pcList" class="row hidden-xs hidden-sm header-pc">
-      <pc-list @changeType="changeType" :listResult="listResult"></pc-list>
+      <pc-list :listResult="listResult" :condition="conditionObj"></pc-list>
     </div>
     <div id="appList" class="visible-sm-block visible-xs-block">
       <app-list></app-list>
@@ -12,13 +12,24 @@
 <script>
 import appList from './appList'
 import pcList from './pcList'
-import { storeList } from '@/assets/js/api'
+import { storeList, storeConditions } from '@/assets/js/api'
 export default {
   name: 'shopList',
   data () {
     return {
-      listType: 2,
-      listResult: []
+      listResult: [],
+      conditionObj: {},
+      condition: {
+        city_id: '',
+        district_id: '',
+        rent_id: 2,
+        min: '',
+        max: '',
+        offset: 1,
+        limit: 10,
+        query: '',
+        facilities: ''
+      }
     }
   },
   mounted: function () {
@@ -27,22 +38,13 @@ export default {
     })
   },
   methods: {
-    changeType (type) {
-      this.listType = type
-      this.getList()
+    async getCondition () {
+      let { result } = await storeConditions({city_id: this.code})
+      this.conditionObj = result
     },
     async getList () {
-      let { result } = await storeList({
-        city_id: this.code,
-        district_id: '',
-        rent_id: this.listType,
-        min: '',
-        max: '',
-        offset: '',
-        limit: '',
-        query: '',
-        facilities: ''
-      })
+      this.condition.city_id = this.code
+      let { result } = await storeList({...this.condition})
       this.listResult = result
     }
   },
@@ -51,13 +53,26 @@ export default {
     pcList
   },
   created () {
+    this.getCondition()
     this.getList()
   }
 }
 </script>
 
-<style>
+<style lang="scss">
 #appList {
   height: 100%;
+}
+#pcList {
+  height: 100%;
+  &.row {
+    margin-right: -0;
+    margin-left: 0;
+  }
+  .wrapper {
+    position: relative;
+    padding-bottom: 244px;
+    height: 100%;
+  }
 }
 </style>

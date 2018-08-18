@@ -15,7 +15,7 @@ export const houseList = params => fetch('/api/index.php?r=houses/index', { ...p
 // 新房详情接口
 export const houseDetails = params => fetch('/api/index.php?r=houses/detail&city_id=2&id=1', { ...params })
 // 商铺筛选条件（rent_type 1 出租， 2 出售）
-export const storeConditions = params => fetch('/api/index.php?r=config/store&city_id=3&rent_type=1', { ...params })
+export const storeConditions = params => fetch('/api/index.php?r=config/store', { ...params })
 // 商铺列表接口
 export const storeList = params => fetch('/api/index.php?r=stores/index', { ...params })
 // 商铺推荐接口
@@ -23,7 +23,7 @@ export const storeRec = params => fetch('/api/index.php?r=stores/rec', { ...para
 // 商铺详情接口
 export const storeDetails = params => fetch('/api/index.php?r=stores/detail', { ...params })
 // 写字楼筛选条件 offices
-export const officeConditions = params => fetch('/api/index.php?r=config/office&city_id=3&rent_type=1', { ...params })
+export const officeConditions = params => fetch('/api/index.php?r=config/office', { ...params })
 // 写字楼推荐
 export const officesRec = params => fetch('/api/index.php?r=offices/rec', { ...params })
 // 写字楼列表

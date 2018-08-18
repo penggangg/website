@@ -20,15 +20,15 @@
     <div class="newHouselist-list">
       <div class="newHousefliter">
         <div @click="location">
-           <span class="new_house_loaction">{{flitertext1.text == '不限' ? '位置': flitertext1.text}}</span>
+           <span class="new_house_loaction">{{flitertext1.key == '' ? '位置': flitertext1.key}}</span>
            <span :class="[locationdorpdown ? 'downshanjiao' : 'upshanjiao']"></span>
         </div>
         <div @click="price">
-           <span class="new_house_price">{{flitertext2.text == '不限' ? '单价': flitertext2.text}}</span>
+           <span class="new_house_price">{{flitertext2.key == '' ? '单价': flitertext2.key}}</span>
            <span :class="[pricedorpdown ? 'downshanjiao' : 'upshanjiao']"></span>
         </div>
         <div @click="builds">
-           <span class="new_house_build">{{flitertext3.text == '不限' ? '建筑类型': flitertext3.text}}</span>
+           <span class="new_house_build">{{flitertext3.key == '' ? '建筑类型': flitertext3.key}}</span>
            <span :class="[builddorpdown ? 'downshanjiao' : 'upshanjiao']"></span>
         </div>
       </div>
@@ -76,13 +76,19 @@ export default {
       arrlist: [], // 位置、价格、建筑类型弹窗里面的数据
       types: '', // 0,1,2分别代表位置、价格、建筑类型
       flitertext: {}, // 中转站选中的对象
-      flitertext1: {text: '不限', id: '0'}, // 位置选中的对象
-      flitertext2: {text: '不限', id: '0'}, // 价格选中的对象
-      flitertext3: {text: '不限', id: '0'} // 建筑类型选中的对象
+      flitertext1: {key: '不限', value: '0'}, // 位置选中的对象
+      flitertext2: {key: '不限', value: '0'}, // 价格选中的对象
+      flitertext3: {key: '不限', value: '0'} // 建筑类型选中的对象
+    }
+  },
+  props: {
+    condition: {
+      type: Object
     }
   },
   created () {
     // 获取网址参数来判断是北京还是上海
+    // this.arrlist = this.conditionObj
   },
   mounted: function () {
     this.$nextTick(function () {
@@ -100,7 +106,8 @@ export default {
         this.builddorpdown = true
         this.filteringpopShow = true
         this.flitertext = this.flitertext1
-        this.arrlist = this.code === '110000' ? this.$constDatas.Beijilocationfliter : this.$constDatas.shanghailocationfliter
+        // this.arrlist = this.code === '2' ? this.$constDatas.Beijilocationfliter : this.$constDatas.shanghailocationfliter
+        this.arrlist = this.condition.district
       }
     },
     price () {
@@ -114,7 +121,8 @@ export default {
         this.builddorpdown = true
         this.filteringpopShow = true
         this.flitertext = this.flitertext2
-        this.arrlist = this.$constDatas.huosePrice
+        // this.arrlist = this.$constDatas.huosePrice
+        this.arrlist = this.condition.price
       }
     },
     builds () {
@@ -128,7 +136,8 @@ export default {
         this.builddorpdown = false
         this.filteringpopShow = true
         this.flitertext = this.flitertext3
-        this.arrlist = this.$constDatas.buildType
+        // this.arrlist = this.$constDatas.buildType
+        this.arrlist = this.condition.type
       }
     },
     surefilter (types) {

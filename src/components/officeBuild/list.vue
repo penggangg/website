@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div id="pcList" class="row hidden-xs hidden-sm header-pc">
-      <pc-list @changeType="changeType" :listResult="listResult"></pc-list>
+      <pc-list @change-condition="changeCondition" :listResult="listResult" :condition="conditionObj"></pc-list>
     </div>
     <div id="appList" class="visible-sm-block visible-xs-block">
       <app-list></app-list>
@@ -12,13 +12,23 @@
 <script>
 import appList from './appList'
 import pcList from './pcList'
-import { officesList } from '@/assets/js/api'
+import { officesList, officeConditions } from '@/assets/js/api'
 export default {
   name: 'officeBuildList',
   data () {
     return {
       listResult: [],
-      listType: '2'
+      conditionObj: {},
+      condition: {
+        city_id: '',
+        district_id: '',
+        rent_id: 2,
+        min: '',
+        max: '',
+        offset: 1,
+        limit: 10,
+        query: ''
+      }
     }
   },
   mounted: function () {
@@ -27,21 +37,30 @@ export default {
     })
   },
   methods: {
-    changeType (type) {
-      this.listType = type
+    changeCondition (obj) {
+      if (Object.keys(obj)[0] === 'rent_id') {
+        this.condition = {
+          city_id: this.code,
+          district_id: '',
+          rent_id: Object.values(obj)[0],
+          min: '',
+          max: '',
+          offset: 1,
+          limit: 10,
+          query: ''
+        }
+        this.getCondition()
+      }
+      this.condition = Object.assign(this.condition, obj)
       this.getList()
     },
+    async getCondition () {
+      let { result } = await officeConditions({city_id: this.code, rent_type: this.condition.rent_id})
+      this.conditionObj = result
+    },
     async getList () {
-      let { result } = await officesList({
-        city_id: this.code,
-        district_id: '',
-        rent_id: this.listType,
-        min: '',
-        max: '',
-        offset: '',
-        limit: '',
-        query: ''
-      })
+      this.condition.city_id = this.code
+      let { result } = await officesList({...this.condition})
       this.listResult = result
     }
   },
@@ -53,14 +72,23 @@ export default {
 
   },
   created () {
+    this.getCondition()
     this.getList()
   }
 }
 </script>
 
-<style>
-.container-fluid {
-  padding: 0;
-  margin: 0;
+<style lang="scss">
+#pcList {
+  height: 100%;
+  &.row {
+    margin-right: -0;
+    margin-left: 0;
+  }
+  .wrapper {
+    position: relative;
+    padding-bottom: 244px;
+    height: 100%;
+  }
 }
 </style>

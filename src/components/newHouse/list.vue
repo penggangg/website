@@ -4,7 +4,7 @@
       <pc-list :listResult=listResult :condition="conditionObj" @getHouseList="getHouseList"></pc-list>
     </div>
     <div id="appList" class="visible-sm-block visible-xs-block">
-      <app-list></app-list>
+      <app-list :condition="conditionObj"></app-list>
     </div>
   </div>
 </template>
@@ -80,9 +80,20 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 #appList {
   height: 100%;
 }
-
+#pcList {
+  height: 100%;
+  &.row {
+    margin-right: 0;
+    margin-left: 0;
+  }
+  .wrapper {
+    position: relative;
+    padding-bottom: 244px;
+    height: 100%;
+  }
+}
 </style>

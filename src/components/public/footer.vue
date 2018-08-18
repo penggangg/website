@@ -20,6 +20,8 @@
 </template>
 <style lang="scss" scoped>
 footer {
+  position: absolute;
+  width: 100%;
   height: 244px;
   background: #222;
   .content {

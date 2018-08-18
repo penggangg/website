@@ -2,12 +2,13 @@
   <div class="filterpop" :style="{top: filtertop,height:newheight}">
     <div class="filterpop-height">
       <ul class="filterpop-items-contain" v-if="types !='3'">
-        <li class="filterpop-items" :class="{activeClass: value.id === item.id}" v-for="(item,index) in arrlist" :key="index" @click="switchfiter(item)">{{item.text}}</li>
+        <li class="filterpop-items" :class="{activeClass: value.value === ''}" @click="switchfiter({key:'',value:''})">不限</li>
+        <li class="filterpop-items" :class="{activeClass: value.value === item.value}" v-for="(item,index) in arrlist" :key="index" @click="switchfiter(item)">{{item.key}}</li>
       </ul>
       <ul class="filterpop-items-contain" v-if="types == 3">
         <li class="filterpop-items flex-li"  v-for="(item,index) in arrlist" :key="index" @click="switchflitercheck(item)">
           <span>{{item.text}}</span>
-          <span :class="{activeClasscheck: value.id.split(',').indexOf(item.id) !== -1}"></span>
+          <span :class="{activeClasscheck: value.value.split(',').indexOf(item.value) !== -1}"></span>
           </li>
       </ul>
       <div class="sure_buttom">
