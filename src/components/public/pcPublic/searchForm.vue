@@ -2,7 +2,7 @@
   <div class="search">
     <div class="serch-cot">
       <input type="text" v-model.trim="query" placeholder="请输入城区/商圈/胡同">
-      <img src="../../../assets/images/smallSearch.svg" @click="gotoUrl" alt="" srcset="">
+      <img src="../../../assets/images/smallSearch.svg" @click="changeCondition" alt="" srcset="">
     </div>
   </div>
 </template>
@@ -43,6 +43,9 @@ export default {
   methods: {
     gotoUrl () {
       this.$emit('gotoUrl', {'query': this.query})
+    },
+    changeCondition () {
+      this.$emit('changeCondition', {query: this.query})
     }
   }
 }

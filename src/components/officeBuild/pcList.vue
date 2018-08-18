@@ -6,7 +6,7 @@
         <span @click="changeCondition({rent_id: 1})" :class="{active: rent_id===1}">出租</span>
       </div>
     </div>
-    <search-form></search-form>
+    <search-form @changeCondition="changeCondition"></search-form>
     <div class="filter">
       <div class="all-condition">
         <dl>

@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div id="pcListdetail" class="row hidden-xs hidden-sm header-pc">
       <!-- pc端 -->
-      <pc-detail :houseDetails="houseDetails" :houseTypes="houseTypes"></pc-detail>
+      <pc-detail :houseDetails="houseDetails" :houseTypes="houseTypes" :mapShow="mapShow"></pc-detail>
     </div>
     <div id="appListdetail" class="visible-sm-block visible-xs-block">
       <appdetail></appdetail>
@@ -26,13 +26,15 @@ export default {
         fourType: [],
         fiveType: []
       },
+      id: '',
       type: [
         'oneType',
         'twoType',
         'threeType',
         'fourType',
         'fiveType'
-      ]
+      ],
+      mapShow: false
     }
   },
   mounted: function () {
@@ -41,8 +43,12 @@ export default {
   },
   methods: {
     async getDetails () {
-      let {result} = await houseDetails()
+      let {result} = await houseDetails({
+        city_id: this.code,
+        id: this.id
+      })
       this.houseDetails = result
+      this.mapShow = true
       this.houseType(this.houseDetails.layout)
     },
     houseType (houseTypeDetails) {
@@ -58,6 +64,7 @@ export default {
     pcDetail
   },
   created () {
+    this.id = this.$route.params.id
     this.getDetails()
   }
 }

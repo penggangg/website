@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div id="pcList" class="row hidden-xs hidden-sm header-pc">
-      <pc-list :listResult="listResult" :condition="conditionObj"></pc-list>
+      <pc-list :listResult="listResult"  @change-condition="changeCondition" :condition="conditionObj"></pc-list>
     </div>
     <div id="appList" class="visible-sm-block visible-xs-block">
       <app-list></app-list>
@@ -28,7 +28,7 @@ export default {
         offset: 1,
         limit: 10,
         query: '',
-        facilities: ''
+        facilities: [7, 8, 9, 0, 10]
       }
     }
   },
@@ -38,6 +38,24 @@ export default {
     })
   },
   methods: {
+    changeCondition (obj) {
+      if (Object.keys(obj)[0] === 'rent_id') {
+        this.condition = {
+          city_id: this.code,
+          district_id: '',
+          rent_id: Object.values(obj)[0],
+          min: '',
+          max: '',
+          offset: 1,
+          limit: 10,
+          query: '',
+          facilities: []
+        }
+        this.getCondition()
+      }
+      this.condition = Object.assign(this.condition, obj)
+      this.getList()
+    },
     async getCondition () {
       let { result } = await storeConditions({city_id: this.code})
       this.conditionObj = result

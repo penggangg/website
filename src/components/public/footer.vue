@@ -3,10 +3,10 @@
     <div class="content">
       <div class="nav-cot">
         <div class="nav">
-          <span>新房</span>
-          <span>商铺</span>
-          <span>写字楼</span>
-          <span>公司介绍</span>
+          <router-link to="/newHouse" tag="span">新房</router-link>
+          <router-link to="/shop" tag="span">商铺</router-link>
+          <router-link to="/officeBuild" tag="span">写字楼</router-link>
+          <router-link to="/company" tag="span">公司介绍</router-link>
           <span>联系我们</span>
           <span>友情链接</span>
         </div>

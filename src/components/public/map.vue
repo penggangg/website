@@ -2,7 +2,7 @@
   <div class="map-detail">
       <h3>周边配套</h3>
       <div class="map-filter">
-        <span  v-for="(item, index) in searchFilter" :key=index :class="{active: keyword === item}" @click="keyword = item">{{item}}</span>
+        <span  v-for="(item, index) in searchFilter" :key=index :class="{active: keywords === item}" @click="keywords = item">{{item}}</span>
       </div>
     <div class="bmview" ref="bmview">
       <baidu-map class="bm-view" :center="center" :zoom="zoom" @ready='handler' :scroll-wheel-zoom="false" >
@@ -17,11 +17,11 @@
         <bm-marker :position="center" :dragging="true" animation="BMAP_ANIMATION_BOUNCE">
           <!-- <bm-label content="我爱北京天安门" :labelStyle="{color: 'red', fontSize : '24px'}" :offset="{width: -35, height: 30}"/> -->
         </bm-marker>
-        <bm-local-search  :keyword="keyword" :nearby="nearby" :auto-viewport="true" :panel="false" :selectFirstResult="true" @searchcomplete='searchcomplete' ></bm-local-search>
+        <bm-local-search  :keyword="keywords" :nearby="nearby" :auto-viewport="true" :panel="false" :selectFirstResult="true" @searchcomplete='searchcomplete' ></bm-local-search>
       </baidu-map>
       <div v-if = showPanel class="panels">
         <div class="title">
-          {{keyword}}
+          {{keywords}}
         </div>
         <div class="aroundList">
           <ul class="itemBox">
@@ -50,10 +50,12 @@ export default {
         center: {lng: '', lat: ''},
         radius: 2000
       },
-      arrList: []
+      arrList: [],
+      keywords: ''
     }
   },
   created () {
+    this.keywords = this.keyword
     this.$nextTick(function () {
       this.$refs.bmview.style.width = this.width
       this.$refs.bmview.style.height = this.height
@@ -77,7 +79,7 @@ export default {
       this.arrList = res.Br
     },
     search (keyword) {
-      this.keyword = keyword
+      this.keywords = keyword
     },
     mark (index) {
       this.$('.BMap_Marker.BMap_noprint').eq(index + 1).click()

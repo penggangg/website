@@ -1,12 +1,11 @@
 <template>
    <div class="item">
-      <img :src="item.item.pic" alt="" >
+      <router-link :to="{ path:`/${detailPath}/${item.item.id}`, query: { code }}" target="_blank"> <img :src="item.item.pic" alt="" ></router-link>
       <div class="house-detail">
         <h4>
-          <!-- <a href="" title="鲁能格拉斯小镇">鲁能格拉斯小镇</a>  -->
           <router-link :to="{ path:`/${detailPath}/${item.item.id}`, query: { code }}" target="_blank">{{item.item.title}}</router-link>
         </h4>
-        <div class="loacation"><span>{{item.item.district}}</span>|<span>{{item.item.address}}{{detailPath}}</span></div>
+        <div class="loacation"><span>{{item.item.district}}</span>|<span>{{item.item.address}}</span></div>
         <div>
           <!-- <span class="house-type"> <span>户型</span><i>3居</i>|<i>4居</i></span> -->
           <slot name="house-type" v-if="$route.name=='newHouseList'">
@@ -33,6 +32,8 @@
           <div class="labels">
             <span v-for="(item,index) in item.item.facilities" :key="index" :style="{color:item.color}">{{item.name}}</span>
           </div>
+        </slot>
+        <slot name="labels" :price = "item.item.price" v-if="$route.name=='officeBuildList'">
         </slot>
       </div>
       <slot name="house-price" :priceShop="item.item.price" :price = "(item.item.min_price+'-'+item.item.price)|capitalize">

@@ -31,31 +31,31 @@ const router = new Router({
       path: '/',
       name: 'Index',
       component: Index,
-      meta: {activeClass: 'home'}
+      meta: {activeClass: 'home', titleName: '合屋'}
     },
     {
       path: '/newHouse',
       name: 'newHouseList',
       component: newHouseList,
-      meta: {activeClass: 'newHouse', title: '新楼盘'}
+      meta: {activeClass: 'newHouse', title: '新楼盘', titleName: '新房列表'}
     },
     {
       path: '/newHouseDetail/:id',
       name: 'newHouseDetail',
       component: newHouseDetail,
-      meta: {activeClass: 'newHouse'}
+      meta: {activeClass: 'newHouse', titleName: '新房详情'}
     },
     {
       path: '/shop',
       name: 'shopList',
       component: shopList,
-      meta: {activeClass: 'shop', title: '商铺'}
+      meta: {activeClass: 'shop', title: '商铺', titleName: '商铺列表'}
     },
     {
       path: '/shopDetail/:id',
       name: 'shopDetail',
       component: shopDetail,
-      meta: {activeClass: 'shop'}
+      meta: {activeClass: 'shop', titleName: '商铺详情'}
     },
     {
       path: '/shopDetailrent/:id',
@@ -67,13 +67,13 @@ const router = new Router({
       path: '/officeBuild',
       name: 'officeBuildList',
       component: officeBuildList,
-      meta: {activeClass: 'officeBuild', title: '写字楼'}
+      meta: {activeClass: 'officeBuild', title: '写字楼', titleName: '写字楼列表'}
     },
     {
       path: '/officeBuildDetail/:id',
       name: 'officeBuildDetail',
       component: officeBuildDetail,
-      meta: {activeClass: 'officeBuild'}
+      meta: {activeClass: 'officeBuild', titleName: '写字楼详情'}
     },
     {
       path: '/officeBuildDetailrent/:id',
@@ -85,43 +85,44 @@ const router = new Router({
       path: '/marketAnalysis',
       name: 'marketAnalysisList',
       component: marketAnalysisList,
-      meta: {activeClass: 'marketAnalysis'}
+      meta: {activeClass: 'marketAnalysis', titleName: '市场分析列表'}
     },
     {
       path: '/marketAnalysisDetail/:id',
       name: 'marketAnalysisDetail',
       component: marketAnalysisDetail,
-      meta: {activeClass: 'marketAnalysis'}
+      meta: {activeClass: 'marketAnalysis', titleName: '市场分析详情'}
     },
     {
       path: '/business',
       name: 'business',
       component: business,
-      meta: {activeClass: 'business'}
+      meta: {activeClass: 'business', titleName: '商务合作'}
     },
     {
       path: '/dynamic',
       name: 'dynamic',
       component: dynamic,
-      meta: {activeClass: 'dynamic'}
+      meta: {activeClass: 'dynamic', titleName: '企业动态'}
     },
     {
       path: '/company',
       name: 'company',
       component: company,
-      meta: {activeClass: 'company'}
+      meta: {activeClass: 'company', titleName: '公司介绍'}
     },
     {
       path: '/delegate',
       name: 'delegate',
       component: delegate,
-      meta: {activeClass: 'delegate'}
+      meta: {activeClass: 'delegate', titleName: '房产委托'}
     }
   ]
 })
 router.beforeEach((to, from, next) => {
   let { code } = to.query
   Vue.prototype.code = code || '2'
+  document.title = to.meta.titleName
   console.log(Vue.prototype.code)
   next()
 })

@@ -17,7 +17,9 @@ export default {
   name: 'shopDetail',
   data () {
     return {
-      storeDetails: {}
+      storeDetails: {},
+      mapShow: false,
+      id: ''
     }
   },
   mounted: function () {
@@ -32,11 +34,13 @@ export default {
     pcDetail
   },
   async created () {
+    this.id = this.$route.params.id
     let { result } = await storeDetails({
       city_id: this.code,
-      id: this.$route.params.id
+      id: this.id
     })
     this.storeDetails = result
+    this.mapShow = true
   }
 }
 </script>

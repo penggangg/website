@@ -2,7 +2,7 @@
 <div class="house-content">
     <div class="house-img">
       <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop">
-        <swiper-slide v-for="(slide, index) in storeDetails.pic" :key="index">
+        <swiper-slide v-for="(slide, index) in details.pic" :key="index">
           <img :src="slide" alt="" srcset="">
         </swiper-slide>
         <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
@@ -12,7 +12,7 @@
       <div class="gallery-thumbs-cot">
         <div class="prev"></div>
         <swiper :options="swiperOptionThumbs" class="gallery-thumbs" ref="swiperThumbs">
-          <swiper-slide v-for="(slide, index) in storeDetails.pic" :key="index">
+          <swiper-slide v-for="(slide, index) in details.pic" :key="index">
             <img :src="slide" alt="" srcset="">
           </swiper-slide>
           <swiper-slide >
@@ -31,31 +31,31 @@
       </div>
     </div>
     <div class="house-detail">
-      <div class="title">{{storeDetails.title}}</div>
-      <div class="prcie" v-if="storeDetails.rent_id ===2">
+      <div class="title">{{details.title}}</div>
+      <div class="prcie" v-if="details.rent_id ===2">
         <span>售价</span>
-        <span>{{storeDetails.price}}</span>万元
+        <span>{{details.price}}</span>万元
       </div>
-      <div class="prcie"  v-if="storeDetails.rent_id ===1">
+      <div class="prcie"  v-if="details.rent_id ===1">
         <span>租金</span>
-        <span>{{storeDetails.price}}万</span>元/月
+        <span>{{details.price}}万</span>元/月
       </div>
       <ul class="details">
         <li>
           <span>建筑面积</span>
-          <span>{{storeDetails.build_area}}㎡</span>
+          <span>{{details.build_area}}㎡</span>
         </li>
         <li>
           <span>使用面积</span>
-          <span>{{storeDetails.apply_area}}㎡</span>
+          <span>{{details.apply_area}}㎡</span>
         </li>
         <li>
           <span>区域</span>
-          <span>{{storeDetails.district}}㎡</span>
+          <span>{{details.district}}㎡</span>
         </li>
         <li>
           <span>地址</span>
-          <span class="address">{{storeDetails.address}}</span>
+          <span class="address">{{details.address}}</span>
           <span class="search">查看详细地址</span>
           <span class="map"> <img src="../../../assets/images/icon-location-blue .svg" > 查看地图</span>
         </li>
@@ -103,6 +103,7 @@
       width: 442px;
       .title {
         // border-bottom: 1px solid #B7B7B7;
+        height: 60px;
         font-size: 24px;
         font-weight: 700;
         line-height: 30px;
@@ -208,7 +209,7 @@ export default {
     }
   },
   props: {
-    storeDetails: {
+    details: {
       type: Object
     }
   },

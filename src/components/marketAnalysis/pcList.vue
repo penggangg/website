@@ -4,15 +4,14 @@
       </div>
       <div class="marketAnalysis-list">
         <h3>推荐</h3>
-        <div class="item" v-for="(item,index) in 5" :key="index">
-          <img src="../../assets/images/pic-house.png" alt="">
+        <div class="item" v-for="(item,index) in article_list" :key="index">
+          <img :src="item.pic" alt="">
           <div class="right-cot">
-            <span class="title">我们用500万买下四环以里的房子！</span>
-            <span class="details">20世纪70年代的日本，用12%的经济增长率创造了日本经济增长的光辉历20世纪70年代的日本，用12%的经济增长率创造了日本经济增长的光辉历</span>
-            <span class="author">作者：知乎匿名作者</span>
+            <span class="title">{{item.title}}</span>
+            <span class="details">{{item.desc}}</span>
+            <span class="author">{{item.author}}</span>
             <div class="tags">
-              <span>看房心得</span>
-              <span>北漂买房</span>
+              <span v-for="(item, index) in item.labels" :key="index" >{{item.text}}</span>
             </div>
           </div>
         </div>
@@ -20,6 +19,26 @@
       <footers></footers>
     </div>
 </template>
+<script>
+import { articlesList } from '@/assets/js/api'
+export default {
+  data () {
+    return {
+      article_list: []
+    }
+  },
+  async created () {
+    let { result } = await articlesList({
+      city_id: this.code,
+      cid: 1,
+      size: 3,
+      last_id: 0
+    })
+    this.article_list = result.article_list
+  }
+}
+</script>
+
 <style lang="scss" scoped>
 .banner {
   min-width: 1220px;

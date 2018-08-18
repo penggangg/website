@@ -17,7 +17,7 @@
               @click="changeCondition({district_id: ''})"
             >不限</span>
             <span
-              :class="{active: district_id == item.district_id }"
+              :class="{active: district_id == item.value }"
               v-for="(item, index) in condition.district"
               :key="index"
               @click="changeCondition({district_id: item.value})"
@@ -115,6 +115,9 @@
           margin-right: 30px;
           color: #333;
           cursor: pointer;
+          &.active {
+            font-weight: bold;
+          }
           input {
             width: 36px;
             height: 18px;
@@ -153,6 +156,38 @@ export default {
     condition: Object
   },
   methods: {
+    changeCondition (value) {
+      let { keys, values } = Object
+      let key = keys(value)[0]
+      let val = values(value)[0]
+      this[key] = val
+      console.log(this)
+      if (key === 'price') {
+        let min = val.split('-')[0]
+        let max = val.split('-')[1]
+        this.$emit('change-condition', {min: min, max: max})
+      } else if (key === 'rent_id') {
+        this.district_id = ''
+        this.price = ''
+        this.$emit('change-condition', value)
+      } else {
+        this.$emit('change-condition', value)
+      }
+    }
+  },
+  watch: {
+    price (newValue) {
+      let index = this.condition.price.findIndex((item) => {
+        return item.value === newValue
+      })
+      if (index > -1) {
+        this.price_min = ''
+        this.price_max = ''
+      }
+    },
+    facilitiesarr (newValue) {
+      this.$emit('change-condition', {facilities: [...newValue]})
+    }
   },
   components: {
     searchForm,

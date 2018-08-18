@@ -6,17 +6,19 @@
       <router-link :to="{ path: `/${path}`, query: { code }}">{{breadCrumbs}}</router-link>>
       <a href="">{{storeDetails.title}}写字楼</a>
     </div>
-    <house-content :storeDetails="storeDetails"></house-content>
+    <house-content :details="storeDetails"></house-content>
     <div class="surrounding">
-      <h3>Surrounding</h3>
+      <h3>配套设施</h3>
       <div class="surrounding-cot">
-        <div class="item">
-          <img src="" alt="" srcset="">
-          <span></span>
+        <div class="item" v-for="(item, index) in storeDetails.facilities" :key="index">
+          <img :src="item.icon" alt="">
+          <span>{{item.name}}</span>
         </div>
       </div>
     </div>
-    <map-list :width="options.width"
+    <map-list
+      v-if="mapShow"
+      :width="options.width"
       :height= "options.height"
       :searchFilter="searchFilter"
       :keyword="keyword"
@@ -55,7 +57,8 @@ export default {
   props: {
     storeDetails: {
       type: Object
-    }
+    },
+    mapShow: Boolean
   },
   components: {
     houseContent,
@@ -84,6 +87,32 @@ export default {
       color: #888C8E;
       &:not(:first-child) {
         margin-left: 10px;
+      }
+    }
+  }
+  .surrounding {
+    padding: 50px 0;
+    h3 {
+      margin-bottom: 50px;
+      font-size:22px;
+      color: #222;
+    }
+    .surrounding-cot {
+      display: flex;
+      .item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-right: 76px;
+        img {
+          // border: 1px dashed red
+        }
+        span {
+          margin-top: 10px;
+          font-size: 14px;
+          color: #5D9CF9;
+        }
       }
     }
   }

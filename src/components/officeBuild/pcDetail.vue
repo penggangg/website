@@ -6,8 +6,15 @@
       <router-link :to="{ path: `/${path}`, query: { code }}">{{$route.name}}</router-link>>
       <a href="">恒大写字楼</a>
     </div>
-    <house-content></house-content>
-    <map-list :width="options.width" :height= "options.height" :searchFilter="searchFilter" :keyword="keyword">
+    <house-content :details="officesDetails"></house-content>
+    <map-list
+      v-if="mapShow"
+      :width="options.width"
+      :height= "options.height"
+      :searchFilter="searchFilter"
+      :keyword="keyword"
+      :lng="officesDetails.longitude"
+      :lat="officesDetails.latitude">>
     </map-list>
   </div>
   <footers></footers>
@@ -38,9 +45,12 @@ export default {
     houseContent,
     mapList
   },
+  props: {
+    officesDetails: Object,
+    mapShow: Boolean
+  },
   computed: {
     path () {
-      console.log(this.$route)
       return this.pathDetail[this.$route.name]
     }
   }

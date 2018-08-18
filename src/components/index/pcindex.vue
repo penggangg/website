@@ -47,7 +47,7 @@
       <div class="house-cot">
         <div class="title">
           <span>- 新房推荐 -</span>
-          <a href="">更多新房</a>
+          <router-link to="/newHouse" target="_blank">更多新房</router-link>
           <!-- <router-link to="/">更多新房</router-link> -->
         </div>
         <div class="content">
@@ -65,7 +65,7 @@
       <div class="house-cot">
         <div class="title">
           <span>- 商铺推荐 -</span>
-          <a href="">更多商铺</a>
+          <router-link to="/shop" target="_blank">更多商铺</router-link>
           <!-- <router-link to="/">更多新房</router-link> -->
         </div>
         <div class="content content-three">
@@ -84,7 +84,7 @@
         <div class="title">
           <span>- 写字楼推荐 -</span>
           <a href="">更多写字楼</a>
-          <!-- <router-link to="/">更多新房</router-link> -->
+          <router-link to="/officeBuild" target="_blank">更多写字楼</router-link>
         </div>
         <div class="content content-three">
           <div class="item" v-for="(item,index) in officesRecs" :key="index" @click="gotoDetail('officeBuildDetail',item.id)">

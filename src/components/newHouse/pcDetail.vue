@@ -141,6 +141,7 @@
       </div>
     </div>
     <map-list
+      v-if="mapShow"
       :width="options.width"
       :height= "options.height"
       :searchFilter="searchFilter"
@@ -336,7 +337,6 @@ export default {
         width: '1200px',
         height: '472px'
       },
-      houseTypeDetails: [],
       keyword: '公交',
       searchFilter: [
         '公交', '地铁', '教育设施', '医院', '银行', '休闲娱乐', '购物', '餐饮', '运动健身'
@@ -364,13 +364,13 @@ export default {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'
         }
-      },
-      swiperSlides: ['../../../static/pic1_test.png', '../../../static/pic1_test.png', '../../../static/pic1_test.png', '../../../static/pic1_test.png', '../../../static/pic1_test.png', '../../../static/pic1_test.png', '../../../static/pic1_test.png']
+      }
     }
   },
   props: {
     houseDetails: Object,
-    houseTypes: Object
+    houseTypes: Object,
+    mapShow: Boolean
   },
   methods: {
 

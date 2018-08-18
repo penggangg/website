@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div id="pcDetail" class="row hidden-xs hidden-sm header-pc">
-      <pc-detail></pc-detail>
+      <pc-detail :mapShow="mapShow" :officesDetails="officesDetails"></pc-detail>
     </div>
     <div id="appDetail" class="visible-sm-block visible-xs-block">
       <app-detail></app-detail>
@@ -12,11 +12,14 @@
 <script>
 import appDetail from './appDetail'
 import pcDetail from './pcDetail'
+import { officesDetails } from '@/assets/js/api'
 export default {
   name: 'officeBuildDetail',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      mapShow: false,
+      officesDetails: {},
+      id: ''
     }
   },
   mounted: function () {
@@ -25,13 +28,22 @@ export default {
     })
   },
   methods: {
+    async getDetails () {
+      let {result} = await officesDetails({
+        city_id: this.code,
+        id: this.id
+      })
+      this.officesDetails = result
+      this.mapShow = true
+    }
   },
   components: {
     appDetail,
     pcDetail
   },
   created () {
-    console.log(this.cityCode)
+    this.id = this.$route.params.id
+    this.getDetails()
   }
 }
 </script>

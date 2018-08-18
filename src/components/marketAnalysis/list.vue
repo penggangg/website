@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div id="pcList" class="row hidden-xs hidden-sm header-pc">
-      <pc-list></pc-list>
+      <pc-list :article_list="article_list"></pc-list>
     </div>
     <div id="appList" class="visible-sm-block visible-xs-block">
       <app-list></app-list>
@@ -12,26 +12,26 @@
 <script>
 import appList from './appList'
 import pcList from './pcList'
+import { articlesList } from '@/assets/js/api'
 export default {
   name: 'marketAnalysisList',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      article_list: []
     }
   },
-  mounted: function () {
-    this.$nextTick(function () {
-
+  async created () {
+    let { result } = await articlesList({
+      city_id: this.code,
+      cid: 1,
+      size: 3,
+      last_id: 0
     })
-  },
-  methods: {
+    this.article_list = result.article_list
   },
   components: {
     appList,
     pcList
-  },
-  created () {
-    console.log(this.cityCode)
   }
 }
 </script>

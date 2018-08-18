@@ -13,7 +13,7 @@ export const houseRec = params => fetch('/api/index.php?r=houses/rec', { ...para
 // 新房列表接口
 export const houseList = params => fetch('/api/index.php?r=houses/index', { ...params })
 // 新房详情接口
-export const houseDetails = params => fetch('/api/index.php?r=houses/detail&city_id=2&id=1', { ...params })
+export const houseDetails = params => fetch('/api/index.php?r=houses/detail', { ...params })
 // 商铺筛选条件（rent_type 1 出租， 2 出售）
 export const storeConditions = params => fetch('/api/index.php?r=config/store', { ...params })
 // 商铺列表接口
@@ -28,9 +28,11 @@ export const officeConditions = params => fetch('/api/index.php?r=config/office'
 export const officesRec = params => fetch('/api/index.php?r=offices/rec', { ...params })
 // 写字楼列表
 export const officesList = params => fetch('/api/index.php?r=offices/index', { ...params })
+// 写字楼详情接口
+export const officesDetails = params => fetch('/api/index.php?r=offices/detail', { ...params })
 // 文章推荐 cid 1 市场分析 2 企业动态
 export const articles = params => fetch('/api/index.php?r=articles/rec&city_id=2&cid=1&size=3', { ...params })
 // 文章列表 cid 1 市场分析 2 企业动态
-export const articlesList = params => fetch('/apiindex.php?r=articles/index&city_id=2&cid=1&size=3&last_id=0', { ...params })
+export const articlesList = params => fetch('/api/index.php?r=articles/index', { ...params })
 // 文章详情
 export const articlesDetails = params => fetch('/api/index.php?r=articles/detail&id=3', { ...params })
