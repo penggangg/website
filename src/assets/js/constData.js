@@ -1,8 +1,8 @@
 
 export const constData = {
   cityLocation: [ // 城市切换
-    {text: '北京', code: '110000'},
-    {text: '上海', code: '310000'}
+    {text: '北京', code: '2'},
+    {text: '上海', code: '3'}
   ],
   navigationTab: [ // tab切换
     {text: '首页', id: '0'},

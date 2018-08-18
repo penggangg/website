@@ -7,29 +7,28 @@
     </div>
     <!-- 新房 -->
     <div class="apphuoseList-items" v-if="pagetype=='newhuose'">
-      <div class='apphuoseList-items-container' v-for="(item, index) in arrhuoselist" :key="index" @click="gohuosedetail(item)" >
+      <div class='apphuoseList-items-container' v-for="(item, index) in listResult" :key="index" @click="gohuosedetail(item)" >
         <div class="apphuoseList-items-left">
-          <img src="../../../assets/appimages/house1.png" alt="" srcset="">
+          <img :src="item.pic" alt="" srcset="">
         </div>
         <div class="apphuoseList-items-right">
-          <p class="fontsizeoverflow">长安太和</p>
+          <p class="fontsizeoverflow">{{item.title}}</p>
           <p>
-            <span>东城</span> | <span>立春元倒三角</span>
+            <span>{{item.district}}</span> | <span class="fontsizeoverflow" style="max-width:1.6rem">{{item.address}}</span>
           </p>
           <p class="fontsizeoverflow">
             <span>建筑类型</span>
-            <span>住宅</span>
+            <span>{{item.type}}</span>
             <span>建筑面积</span>
-            <span>100-200m*m</span>
+            <span>{{item.min_area}}~{{item.max_area}}㎡</span>
           </p>
           <p class="fontsizeoverflow">
-            <span class="onsale">在售</span>
-            <span class="special">特价</span>
-            <span class="opening">即将开盘</span>
-            <span class="normal">临湖</span>
+            <span class="onsale" :style="{color: item.color}"
+            v-for="(its,index) in item.labels" :key="index"
+            v-if="index<3">{{its.text}}</span>
           </p>
           <p>
-            15000-28000元/m*m
+            {{item.min_price}}-{{item.max_area}}元/㎡
           </p>
         </div>
       </div>
@@ -97,7 +96,8 @@ export default {
     pagetype: {
       type: String,
       default: 'newhuose'
-    }
+    },
+    listResult: Array
   },
   data () {
     return {
@@ -204,6 +204,12 @@ export default {
     p:nth-of-type(5) {
       color: #FB6550;
     }
+  }
+  .onsale {
+    margin-right:2px;
+  }
+  .onsale:last-child {
+    margin-right:0 !important
   }
 }
 </style>

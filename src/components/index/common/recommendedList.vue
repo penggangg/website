@@ -3,7 +3,7 @@
     <div class="recommended-list-nav">
         <p class="recommended-list-title">新房推荐</p>
         <div class="more-huose">
-          <span>更多新房</span>
+          <span style="color:#3886F8" @click="goRouter">{{movetitle}}</span>
           <img src="../../../assets/appimages/icon-next.svg" >
         </div>
     </div>
@@ -12,10 +12,10 @@
         <swiper-slide v-for="(item,index) in swiperdatalist" :key="index">
             <div class="swiper-contain-div">
                 <div class="img-conten">
-                    <img :src="item.imgurl" >
+                    <img :src="item.pic" >
                 </div>
                 <div class="text-mess">
-                    <span>{{item.value}}</span>
+                    <span>{{item.title}}</span>
                     <span>{{item.price}}</span>
                 </div>
             </div>
@@ -34,7 +34,8 @@ export default {
     swiperdatalist: {
       type: Array,
       required: true
-    }
+    },
+    movetitle: String
   },
   data () {
     return {
@@ -52,6 +53,15 @@ export default {
     })
   },
   methods: {
+    goRouter () {
+      if (this.movetitle === '更多新房') {
+        this.$router.push({name: 'newHouseList', query: { code: this.code }})
+      } else if (this.movetitle === '更多商铺') {
+        this.$router.push({name: 'shopList', query: { code: this.code }})
+      } else if (this.movetitle === '更多写字楼') {
+        this.$router.push({name: 'officeBuildList', query: { code: this.code }})
+      }
+    }
   },
   components: {
     swiper,

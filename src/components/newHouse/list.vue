@@ -4,7 +4,7 @@
       <pc-list :listResult=listResult :condition="conditionObj" @getHouseList="getHouseList"></pc-list>
     </div>
     <div id="appList" class="visible-sm-block visible-xs-block">
-      <app-list :condition="conditionObj"></app-list>
+      <app-list :condition="conditionObj" :listResult=listResult @fliterValue="fliterValue"></app-list>
     </div>
   </div>
 </template>

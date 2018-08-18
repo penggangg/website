@@ -40,13 +40,13 @@
     </div>
 
     <div>
-      <recommendedList :swiperdatalist="swiperdatalist"></recommendedList>
+      <recommendedList :swiperdatalist="houseRecs" movetitle="更多新房"></recommendedList>
     </div>
     <div>
-      <recommendedList :swiperdatalist="swiperdatalist"></recommendedList>
+      <recommendedList :swiperdatalist="storeRecs" movetitle="更多商铺"></recommendedList>
     </div>
     <div>
-      <recommendedList :swiperdatalist="swiperdatalist"></recommendedList>
+      <recommendedList :swiperdatalist="officesRecs" movetitle="更多写字楼"></recommendedList>
     </div>
 
     <footercommon></footercommon>
@@ -62,6 +62,11 @@ import footercommon from '@/components/public/appPublic/footer'
 
 export default {
   name: 'Appindex',
+  props: {
+    houseRecs: Array,
+    storeRecs: Array,
+    officesRecs: Array
+  },
   data () {
     return {
       pithOne: '0',

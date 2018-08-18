@@ -8,7 +8,11 @@
       ></Pcindex>
     </div>
     <div id="appIndex" class="visible-sm-block visible-xs-block">
-      <Appindex></Appindex>
+      <Appindex
+        :houseRecs= houseRecs
+        :storeRecs= storeRecs
+        :officesRecs= officesRecs
+      ></Appindex>
     </div>
   </div>
 </template>

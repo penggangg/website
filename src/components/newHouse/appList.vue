@@ -35,7 +35,7 @@
     </div>
 
     <div class="newHouse-detail-lit">
-      <apphuoseList></apphuoseList>
+      <apphuoseList :listResult="listResult"></apphuoseList>
       <div class="huosefooter">
         <housefooter></housefooter>
       </div>
@@ -84,7 +84,8 @@ export default {
   props: {
     condition: {
       type: Object
-    }
+    },
+    listResult: Array
   },
   created () {
     // 获取网址参数来判断是北京还是上海
@@ -160,12 +161,15 @@ export default {
   watch: {
     flitertext1: function (newvalue, oldvalue) {
       this.$units.scrollTop('.newHouse-detail-lit')
+      this.$emit('fliterValue', this.flitertext1.value, this.flitertext2.value, this.flitertext3.value)
     },
     flitertext2: function (newvalue, oldvalue) {
       this.$units.scrollTop('.newHouse-detail-lit')
+      this.$emit('fliterValue', this.flitertext1.value, this.flitertext2.value, this.flitertext3.value)
     },
     flitertext3: function (newvalue, oldvalue) {
       this.$units.scrollTop('.newHouse-detail-lit')
+      this.$emit('fliterValue', this.flitertext1.value, this.flitertext2.value, this.flitertext3.value)
     }
   },
   components: {

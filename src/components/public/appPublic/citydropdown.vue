@@ -2,7 +2,7 @@
 <template>
   <div class="citydropdown">
     <p @click="showSwitchcity = !showSwitchcity" :style="{background: citylocationbg}">
-      <span class="downcity">{{code==="310000"?"上海":"北京"}}</span>
+      <span class="downcity">{{code==="3"?"上海":"北京"}}</span>
       <span class="downIcon" :style="{backgroundImage: bgurl}"></span>
     </p>
      <transition name="fade">
