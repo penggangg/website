@@ -38,4 +38,11 @@ export default {
 {
   opacity: 0;
 }
+#pcList {
+  height: 100%;
+}
+#pcList.row {
+  margin-right: 0;
+  margin-left: 0;
+}
 </style>

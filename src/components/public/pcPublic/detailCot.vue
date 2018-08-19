@@ -56,7 +56,7 @@
         <li>
           <span>地址</span>
           <span class="address">{{details.address}}</span>
-          <span class="search">查看详细地址</span>
+          <span class="search" @click="askShow = true">查看详细地址</span>
           <span class="map"> <img src="../../../assets/images/icon-location-blue .svg" > 查看地图</span>
         </li>
       </ul>
@@ -64,6 +64,7 @@
         咨询热线：400-888-9950
       </div>
     </div>
+    <ask-mask v-model="askShow"></ask-mask>
 </div>
 </template>
 <style lang="scss" scoped>
@@ -184,6 +185,7 @@
   }
 </style>
 <script>
+import askMask from './askMask'
 export default {
   data () {
     return {
@@ -205,13 +207,16 @@ export default {
           prevEl: '.swiper-button-prev'
         }
       },
-      swiperSlides: ['../../../static/pic1_test.png', '../../../static/pic1_test.png', '../../../static/pic1_test.png', '../../../static/pic1_test.png', '../../../static/pic1_test.png', '../../../static/pic1_test.png', '../../../static/pic1_test.png']
+      askShow: false
     }
   },
   props: {
     details: {
       type: Object
     }
+  },
+  components: {
+    askMask
   },
   mounted () {
     this.$nextTick(() => {

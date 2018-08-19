@@ -95,6 +95,7 @@
 import searchForm from '../public/pcPublic/searchForm'
 import listResult from '../public/pcPublic/listResult'
 import listItem from '../public/pcPublic/listItem'
+
 export default {
   data () {
     return {

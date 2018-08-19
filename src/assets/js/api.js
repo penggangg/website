@@ -1,7 +1,7 @@
 import { fetch } from './http'
 
 // 客源咨询
-export const getList = params => fetch('/api/index.php?r=customers/ask&city_id=3&type=3&tel=13488856234', { ...params })
+export const ask = params => fetch('/api/index.php?r=customers/ask&city_id=3&type=3&tel=13488856234', { ...params })
 // 客源委托
 export const depute = params => fetch('/api/index.php?r=customers/depute&city_id=3&rent_type=1&tel=13488856234&uname=测试&d测试&desc=测试', { ...params })
 // 城市接口
