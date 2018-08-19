@@ -80,6 +80,7 @@
           <li>
             <span>地址</span>
             <span>{{houseDetails.address}}</span>
+            <span class="openAskMask"  @click="askShow = true">查看详细地址</span>
           </li>
         </ul>
         <div class="hot-line">
@@ -149,6 +150,7 @@
       :lng="houseDetails.longitude"
       :lat="houseDetails.latitude">
     </map-list>
+    <ask-mask v-model="askShow"></ask-mask>
     <footers></footers>
   </div>
 </template>
@@ -218,6 +220,14 @@
             margin-right: 30px;
             width: 56px;
             color: #888;
+          }
+          &.openAskMask {
+            margin-left:10px;
+            padding: 2px 4px;
+            color: #5D9CF9;
+            border:1px solid #5D9CF9;
+            border-radius: 4px;
+            cursor: pointer;
           }
         }
       }
@@ -330,6 +340,7 @@
 </style>
 <script>
 import mapList from '@/components/public/map'
+import askMask from '@/components/public/pcPublic/askMask'
 export default {
   data () {
     return {
@@ -364,7 +375,8 @@ export default {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'
         }
-      }
+      },
+      askShow: false
     }
   },
   props: {
@@ -378,7 +390,8 @@ export default {
   created () {
   },
   components: {
-    mapList
+    mapList,
+    askMask
   }
 }
 </script>

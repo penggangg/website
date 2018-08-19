@@ -10,7 +10,9 @@
         <!-- <div class="swiper-pagination" slot="pagination"></div> -->
       </swiper>
       <div class="gallery-thumbs-cot">
-        <div class="prev"></div>
+        <div class="prev" @click="prev">
+          <img src="../../../assets/images/icon-left.svg" alt="" srcset="">
+        </div>
         <swiper :options="swiperOptionThumbs" class="gallery-thumbs" ref="swiperThumbs">
           <swiper-slide v-for="(slide, index) in details.pic" :key="index">
             <img :src="slide" alt="" srcset="">
@@ -27,7 +29,9 @@
           <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
           <!-- <div class="swiper-pagination" slot="pagination"></div> -->
         </swiper>
-        <div class="next"></div>
+        <div class="next" @click="next">
+          <img src="../../../assets/images/icon-right.svg" alt="" srcset="">
+        </div>
       </div>
     </div>
     <div class="house-detail">
@@ -56,7 +60,7 @@
         <li>
           <span>地址</span>
           <span class="address">{{details.address}}</span>
-          <span class="search">查看详细地址</span>
+          <span class="search" @click="askShow = true">查看详细地址</span>
           <span class="map"> <img src="../../../assets/images/icon-location-blue .svg" > 查看地图</span>
         </li>
       </ul>
@@ -64,6 +68,7 @@
         咨询热线：400-888-9950
       </div>
     </div>
+    <ask-mask v-model="askShow"></ask-mask>
 </div>
 </template>
 <style lang="scss" scoped>
@@ -84,6 +89,12 @@
           height: 82px;
           width: 24px;
           background: #303035;
+          color: #666;
+          font-size: 20px;
+          font-weight: bold;
+          text-align: center;
+          line-height: 82px;
+          cursor: pointer;
         }
         .gallery-thumbs {
           height: 82px;
@@ -184,6 +195,7 @@
   }
 </style>
 <script>
+import askMask from './askMask'
 export default {
   data () {
     return {
@@ -205,13 +217,24 @@ export default {
           prevEl: '.swiper-button-prev'
         }
       },
-      swiperSlides: ['../../../static/pic1_test.png', '../../../static/pic1_test.png', '../../../static/pic1_test.png', '../../../static/pic1_test.png', '../../../static/pic1_test.png', '../../../static/pic1_test.png', '../../../static/pic1_test.png']
+      askShow: false
     }
   },
   props: {
     details: {
       type: Object
     }
+  },
+  methods: {
+    prev () {
+      this.$('.gallery-thumbs-cot .swiper-button-prev').click()
+    },
+    next () {
+      this.$('.gallery-thumbs-cot .swiper-button-next').click()
+    }
+  },
+  components: {
+    askMask
   },
   mounted () {
     this.$nextTick(() => {

@@ -3,8 +3,8 @@
   <div class="content">
     <div class="bread-crumbs">
       <router-link :to="{ path: '/', query: { code }}">合屋首页</router-link>>
-      <router-link :to="{ path: `/${path}`, query: { code }}">{{$route.name}}</router-link>>
-      <a href="">恒大写字楼</a>
+      <router-link :to="{ path: `/${path}`, query: { code }}">{{breadCrumbs}}</router-link>>
+      <a href="">{{officesDetails.title}}写字楼</a>
     </div>
     <house-content :details="officesDetails"></house-content>
     <map-list
@@ -38,6 +38,10 @@ export default {
       pathDetail: {
         newHouseDetail: 'newHouse',
         shopDetail: 'shop'
+      },
+      breadCrumb: {
+        shopDetail: '商铺列表',
+        officeBuildDetail: '写字楼列表'
       }
     }
   },
@@ -52,6 +56,9 @@ export default {
   computed: {
     path () {
       return this.pathDetail[this.$route.name]
+    },
+    breadCrumbs () {
+      return this.breadCrumb[this.$route.name]
     }
   }
 }
