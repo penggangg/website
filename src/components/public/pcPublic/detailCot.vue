@@ -10,7 +10,9 @@
         <!-- <div class="swiper-pagination" slot="pagination"></div> -->
       </swiper>
       <div class="gallery-thumbs-cot">
-        <div class="prev"></div>
+        <div class="prev" @click="prev">
+          <img src="../../../assets/images/icon-left.svg" alt="" srcset="">
+        </div>
         <swiper :options="swiperOptionThumbs" class="gallery-thumbs" ref="swiperThumbs">
           <swiper-slide v-for="(slide, index) in details.pic" :key="index">
             <img :src="slide" alt="" srcset="">
@@ -27,7 +29,9 @@
           <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
           <!-- <div class="swiper-pagination" slot="pagination"></div> -->
         </swiper>
-        <div class="next"></div>
+        <div class="next" @click="next">
+          <img src="../../../assets/images/icon-right.svg" alt="" srcset="">
+        </div>
       </div>
     </div>
     <div class="house-detail">
@@ -85,6 +89,12 @@
           height: 82px;
           width: 24px;
           background: #303035;
+          color: #666;
+          font-size: 20px;
+          font-weight: bold;
+          text-align: center;
+          line-height: 82px;
+          cursor: pointer;
         }
         .gallery-thumbs {
           height: 82px;
@@ -213,6 +223,14 @@ export default {
   props: {
     details: {
       type: Object
+    }
+  },
+  methods: {
+    prev () {
+      this.$('.gallery-thumbs-cot .swiper-button-prev').click()
+    },
+    next () {
+      this.$('.gallery-thumbs-cot .swiper-button-next').click()
     }
   },
   components: {

@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div id="pcDetail" class="row hidden-xs hidden-sm header-pc">
-      <pc-detail :storeDetails="storeDetails"></pc-detail>
+      <pc-detail :storeDetails="storeDetails" :mapShow="mapShow"></pc-detail>
     </div>
     <div id="appDetail" class="visible-sm-block visible-xs-block">
       <app-detail></app-detail>
