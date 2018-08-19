@@ -40,11 +40,10 @@ export default {
   data () {
     return {
       swiperOption: {
-        loop: true,
         observeParents: true,
-        slidesPerView: 1.2,
+        slidesPerView: 1.5,
         spaceBetween: 10,
-        centeredSlides: true
+        centeredSlides: false
       }
     }
   },

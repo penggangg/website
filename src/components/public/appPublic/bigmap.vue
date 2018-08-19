@@ -39,6 +39,10 @@
 
 export default {
   name: 'mapCircum',
+  props: {
+    lng: Number,
+    lat: Number
+  },
   data () {
     return {
       center: {lng: 116.181954, lat: 39.951313},
@@ -68,6 +72,14 @@ export default {
     }
   },
   watch: {
+    lng () {
+      this.center.lng = this.lng
+      this.center.lat = this.lat
+      this.nearby.center.lng = this.lng
+      this.nearby.center.lat = this.lat
+      console.log(this.center)
+      console.log(this.nearby)
+    }
   },
   created () {
   }

@@ -4,7 +4,7 @@
       <pc-list :listResult=listResult :condition="conditionObj" @getHouseList="getHouseList"></pc-list>
     </div>
     <div id="appList" class="visible-sm-block visible-xs-block">
-      <app-list :condition="conditionObj" :listResult=listResult @fliterValue="fliterValue"></app-list>
+      <app-list :condition="conditionObj" :listResult=listResult @fliterDatas="fliterDatas"></app-list>
     </div>
   </div>
 </template>
@@ -48,6 +48,12 @@ export default {
       let { result } = await houseList({...this.condition})
       this.listResult = result
     },
+
+    async fliterDatas (obj) {
+      this.condition = Object.assign(this.condition, obj)
+      let { result } = await houseList(this.condition)
+      this.listResult = result
+    },
     checkUrl (obj) {
       this.objType = {...obj}
       let {districtId, price, typeId, query} = this.objType
@@ -60,6 +66,7 @@ export default {
       this.condition.type_id = typeId
       this.condition.query = query
     }
+
   },
   components: {
     appList,

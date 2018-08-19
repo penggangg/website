@@ -4,7 +4,7 @@
       <pc-list @change-condition="changeCondition" :listResult="listResult" :condition="conditionObj"></pc-list>
     </div>
     <div id="appList" class="visible-sm-block visible-xs-block">
-      <app-list></app-list>
+      <app-list @change-condition="changeCondition" :listResult="listResult" :condition="conditionObj"></app-list>
     </div>
   </div>
 </template>

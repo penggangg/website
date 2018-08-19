@@ -7,8 +7,8 @@
       </ul>
       <ul class="filterpop-items-contain" v-if="types == 3">
         <li class="filterpop-items flex-li"  v-for="(item,index) in arrlist" :key="index" @click="switchflitercheck(item)">
-          <span>{{item.text}}</span>
-          <span :class="{activeClasscheck: value.value.split(',').indexOf(item.value) !== -1}"></span>
+          <span>{{item.key}}</span>
+          <span :class="{activeClasscheck: value.value.split(',').indexOf(JSON.stringify(item.value)) !== -1}"></span>
           </li>
       </ul>
       <div class="sure_buttom">
@@ -69,27 +69,25 @@ export default {
       this.$emit('input', item)
     },
     switchflitercheck (item) {
-      this.checkidarr = this.value.id.split(',')
-      this.checktextarr = this.value.text.split(',')
-      let index = this.checkidarr.indexOf(item.id)
+      this.checkidarr = this.value.value.split(',')
+      this.checktextarr = this.value.key.split(',')
+      let index = this.checkidarr.indexOf(JSON.stringify(item.value))
       let gochecktextarr = ''
       let gocheckidarr = ''
       if (index === -1) {
-        this.checkidarr.push(item.id)
-        this.checktextarr.push(item.text)
+        this.checkidarr.push(item.value)
+        this.checktextarr.push(item.key)
       } else {
         this.checkidarr.splice(index, 1)
         this.checktextarr.splice(index, 1)
       }
-      debugger
-      gochecktextarr = this.checktextarr.join(',').replace(/^[,]*/, '')
       gocheckidarr = this.checkidarr.join(',').replace(/^[,]*/, '')
-      this.$emit('input', {text: gochecktextarr, id: gocheckidarr})
+      gochecktextarr = this.checktextarr.join(',').replace(/^[,]*/, '')
+      this.$emit('input', {key: gochecktextarr, value: gocheckidarr})
     },
     surefilter () {
-      debugger
       if (this.types === '1' && (this.bottomPrice || this.topPrice)) {
-        this.$emit('input', {text: `${this.bottomPrice}-${this.topPrice}万`, id: '-1'})
+        this.$emit('input', {key: `${this.bottomPrice}-${this.topPrice}万`, value: `${this.bottomPrice}0000-${this.topPrice}0000`})
         this.bottomPrice = ''
         this.topPrice = ''
       }

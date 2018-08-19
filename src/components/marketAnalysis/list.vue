@@ -4,7 +4,7 @@
       <pc-list :article_list="article_list"></pc-list>
     </div>
     <div id="appList" class="visible-sm-block visible-xs-block">
-      <app-list></app-list>
+      <app-list :article_list="article_list"></app-list>
     </div>
   </div>
 </template>

@@ -4,7 +4,7 @@
       <pc-detail :mapShow="mapShow" :officesDetails="officesDetails"></pc-detail>
     </div>
     <div id="appDetail" class="visible-sm-block visible-xs-block">
-      <app-detail></app-detail>
+      <app-detail :officesDetails="officesDetails"></app-detail>
     </div>
   </div>
 </template>

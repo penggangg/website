@@ -4,7 +4,7 @@
       <pc-detail :storeDetails="storeDetails"></pc-detail>
     </div>
     <div id="appDetail" class="visible-sm-block visible-xs-block">
-      <app-detail></app-detail>
+      <app-detail :storeDetails="storeDetails"></app-detail>
     </div>
   </div>
 </template>

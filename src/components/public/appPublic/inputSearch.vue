@@ -9,10 +9,10 @@
             <span :class="[dorpdown ? 'downshanjiao' : 'upshanjiao']"></span>
         </div>
         <div class="input-searchdiv2">
-            <input type="text" :placeholder="styleObjet.placeholder">
+            <input type="text" :placeholder="styleObjet.placeholder" v-model="query">
         </div>
         <div class="input-searchdiv3" :style="{background:styleObjet.bgse}">
-            <img :src="searchinputbg">
+            <img :src="searchinputbg" @click="fliterData">
         </div>
     </div>
     <div class="alertposition" v-show="!dorpdown" >
@@ -33,11 +33,13 @@ export default {
     searchinputbg: {
       type: String,
       default: require('../../../assets/appimages/icon-search.svg')
-    }
+    },
+    value: String
   },
   data () {
     return {
       dorpdown: true,
+      query: '',
       searchobj: {
         text: '新房',
         id: '0'
@@ -57,11 +59,18 @@ export default {
     swithchSearch (index) {
       this.dorpdown = true
       this.searchobj = this.arrlist[index]
+    },
+    fliterData () {
+      this.$emit('fliterData')
     }
   },
   watch: {
-  },
-  created () {
+    query (newValue) {
+      this.$emit('input', newValue)
+    },
+    value (newValue) {
+      this.query = newValue
+    }
   }
 }
 

@@ -4,7 +4,7 @@
       <pc-list :listResult="listResult"  @change-condition="changeCondition" :condition="conditionObj"></pc-list>
     </div>
     <div id="appList" class="visible-sm-block visible-xs-block">
-      <app-list></app-list>
+      <app-list :listResult="listResult" :condition="conditionObj" @change-condition="changeCondition"></app-list>
     </div>
   </div>
 </template>
@@ -28,7 +28,7 @@ export default {
         offset: 1,
         limit: 10,
         query: '',
-        facilities: [7, 8, 9, 0, 10]
+        facilities: []
       }
     }
   },
@@ -54,6 +54,7 @@ export default {
         this.getCondition()
       }
       this.condition = Object.assign(this.condition, obj)
+      console.log(this.condition)
       this.getList()
     },
     async getCondition () {

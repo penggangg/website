@@ -15,16 +15,12 @@
         </div>
         <div class="right-icon">
             <p>
-                <span class="onsale">在售</span>
-                <span class="special">特价房</span>
-                <span class="normal">样板间可售</span>
-                <span class="normal">公园地产</span>
-                <span class="normal">花园洋房</span>
+                <span class="onsale" :style="{color: item.color}" v-for="(item,index) in houseDetails.labels" :key="index">{{item.text}}</span>
             </p>
             <p>
                 <img src="../../assets/appimages/icon-pic.svg" >
                 <span>楼盘相册</span>
-                <span>(25张)</span>
+                <span>{{houseDetails.pic && houseDetails.pic.length}}</span>
             </p>
         </div>
      </div>
@@ -40,86 +36,86 @@
          <div class="basic-information-mess-items">
            <p>
              <span class="colorfont-size">楼盘名称</span>
-             <span>恒大立宫</span>
+             <span class="fontsizeoverflow" style="width:.9rem">{{houseDetails.title}}</span>
            </p>
            <p>
              <span class="colorfont-size">销售状态</span>
-             <span>在售</span>
+             <span class="fontsizeoverflow" style="width:.9rem">{{houseDetails.status}}</span>
            </p>
          </div>
 
         <div class="basic-information-mess-items">
            <p>
              <span class="colorfont-size">建筑类型</span>
-             <span>恒大立宫</span>
+             <span class="fontsizeoverflow" style="width:.9rem">{{houseDetails.type}}</span>
            </p>
            <p>
              <span class="colorfont-size">产权年限</span>
-             <span>在售</span>
+             <span class="fontsizeoverflow" style="width:.9rem">{{houseDetails.own_years}}</span>
            </p>
          </div>
 
          <div class="basic-information-mess-items">
            <p>
              <span class="colorfont-size">建筑面积</span>
-             <span>恒大立宫</span>
+             <span class="fontsizeoverflow" style="width:.9rem">{{houseDetails.min_area}}-{{houseDetails.max_area}}㎡</span>
            </p>
            <p>
              <span class="colorfont-size">占地面积</span>
-             <span>在售</span>
+             <span class="fontsizeoverflow" style="width:.9rem">{{houseDetails.floor_area}}</span>
            </p>
          </div>
 
          <div class="basic-information-mess-items">
            <p>
              <span class="colorfont-size">容积率</span>
-             <span>恒大立宫</span>
+             <span class="fontsizeoverflow" style="width:.9rem">{{houseDetails.volume_rate}}</span>
            </p>
            <p>
              <span class="colorfont-size">绿化率</span>
-             <span>在售</span>
+             <span class="fontsizeoverflow" style="width:.9rem">{{houseDetails.green_rate}}</span>
            </p>
          </div>
          <div class="basic-information-mess-items">
            <p>
              <span class="colorfont-size">物业费</span>
-             <span>恒大立宫</span>
+             <span class="fontsizeoverflow" style="width:.9rem">{{houseDetails.property_fee}}元/m²/月</span>
            </p>
            <p>
              <span class="colorfont-size">供暖方式</span>
-             <span>在售</span>
+             <span class="fontsizeoverflow" style="width:.9rem">{{houseDetails.heating}}</span>
            </p>
          </div>
          <div class="basic-information-mess-items">
            <p>
              <span class="colorfont-size">供水方式</span>
-             <span>恒大立宫</span>
+             <span>{{houseDetails.water}}</span>
            </p>
            <p>
              <span class="colorfont-size">供电方式</span>
-             <span>在售</span>
+             <span class="fontsizeoverflow" style="width:.9rem">{{houseDetails.power}}</span>
            </p>
          </div>
          <div class="basic-information-mess-items">
            <p>
              <span class="colorfont-size">开发商</span>
-             <span>恒大立宫</span>
+             <span class="fontsizeoverflow" style="width:.9rem">{{houseDetails.developer}}</span>
            </p>
            <p>
              <span class="colorfont-size">城区</span>
-             <span>在售</span>
+             <span class="fontsizeoverflow" style="width:.9rem">{{houseDetails.district}}</span>
            </p>
          </div>
          <div class="basic-information-mess-items">
            <p>
              <span class="colorfont-size">物业公司</span>
-             <span>恒大立宫</span>
+             <span class="fontsizeoverflow" style="width:.9rem">{{houseDetails.property}}</span>
            </p>
          </div>
          <div class="basic-information-mess-items">
            <p>
              <span class="colorfont-size">地址</span>
-             <span>恒大立宫</span>
+             <span class="fontsizeoverflow" style="width:.9rem">{{houseDetails.address}}</span>
            </p>
            <p>
              <!-- <span class="look-detail-location" @click="bigMapshow=true">查看详细地址</span> -->
@@ -143,11 +139,11 @@
 
      <div class="huoseImg-lunbo">
        <div>
-          <swiper :options="swiperOption" v-if="swiperdatalist.length>0">
-            <swiper-slide v-for="(item,index) in swiperdatalist" :key="index">
+          <swiper :options="swiperOption" v-if="houseDetails.pic&&houseDetails.pic.length>0">
+            <swiper-slide v-for="(item,index) in houseDetails.pic" :key="index">
                 <div class="swiper-contain-div">
                     <div class="img-conten">
-                        <img :src="item.imgurl" >
+                        <img :src="item" >
                     </div>
                 </div>
             </swiper-slide>
@@ -159,22 +155,42 @@
      <div class="doormodel">
        <p class="doormodel-nav">户型信息</p>
        <div class="doormodel-tab">
-         <p v-for="(item,index) in doormodelArry" :Key="index" @click="doormodelType=index">
-           {{item.text}}
-           <span class="select-bottom" v-show="doormodelType == index"></span>
+         <p  @click="doormodelType=0">
+           全部户型 ({{houseDetails.layout && houseDetails.layout.length}})
+           <span class="select-bottom" v-show="doormodelType == 0"></span>
+         </p>
+         <p v-if="houseTypes.oneType&&houseTypes.oneType.length>0" @click="doormodelType=1">
+           1居 ({{houseTypes.oneType && houseTypes.oneType.length}})
+           <span class="select-bottom" v-show="doormodelType == 1"></span>
+         </p>
+         <p v-if="houseTypes.twoType&&houseTypes.twoType.length>0" @click="doormodelType=2">
+           2居 ({{houseTypes.twoType && houseTypes.twoType.length}})
+           <span class="select-bottom" v-show="doormodelType == 2"></span>
+         </p>
+         <p v-if="houseTypes.threeType&&houseTypes.threeType.length>0" @click="doormodelType=3">
+            3居 ({{houseTypes.threeType && houseTypes.threeType.length}})
+           <span class="select-bottom" v-show="doormodelType == 3"></span>
+         </p>
+         <p v-if="houseTypes.fourType&&houseTypes.fourType.length>0" @click="doormodelType=4">
+            4居 ({{houseTypes.fourType && houseTypes.fourType.length}})
+           <span class="select-bottom" v-show="doormodelType == 4"></span>
+         </p>
+         <p v-if="houseTypes.fiveType&&houseTypes.fiveType.length>0" @click="doormodelType=5">
+            5居 ({{houseTypes.fiveType && houseTypes.fiveType.length}})
+           <span class="select-bottom" v-show="doormodelType == 5"></span>
          </p>
        </div>
        <div class="doormodel-contain">
-         <swiper :options="swiperOptionDoor" v-if="doormodellist.length>0">
-            <swiper-slide v-for="(item,index) in doormodellist" :key="index">
+         <swiper :options="swiperOptionDoor" v-if="doormodellists&&doormodellists.length>0">
+            <swiper-slide v-for="(item,index) in doormodellists" :key="index">
                 <div class="swiper-contain-div">
                     <div class="img-conten">
-                        <img :src="item.imgurl" >
+                        <img :src="item.pic" style="width: 100%;height:1.6rem">
                     </div>
                     <div>
-                      <p>{{item.value}}</p>
-                      <p>{{item.area}}</p>
-                      <p>{{item.price}}</p>
+                      <p>{{item.title}}</p>
+                      <p>{{item.layout_area}}㎡</p>
+                      <p>{{item.sale_price}}万</p>
                     </div>
                 </div>
             </swiper-slide>
@@ -182,10 +198,13 @@
        </div>
      </div>
     <div class="cut-off"></div>
-    <mapCircum></mapCircum>
+    <mapCircum
+    :lng="houseDetails.longitude"
+    :lat="houseDetails.latitude">
+    </mapCircum>
     <div class="cut-off"></div>
     <huosefooter></huosefooter>
-    <pictureWindow v-show="pictureWindow" :doormodellist="doormodellist" @closeImg="pictureWindow=false"></pictureWindow>
+    <pictureWindow v-show="pictureWindow" :doormodellist="houseDetails.pic" @closeImg="pictureWindow=false"></pictureWindow>
     <bigmap @closeBigmap="bigMapshow=false" v-if="bigMapshow"></bigmap>
     <alertcontact v-if="alertcontact" @closealertcontact="alertcontact=false"></alertcontact>
   </div>
@@ -202,6 +221,10 @@ import alertcontact from '@/components/public/appPublic/aletcontact'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 export default {
   name: 'apphuosedetail',
+  props: {
+    houseDetails: Object,
+    houseTypes: Object
+  },
   data () {
     return {
       pithOne: '1',
@@ -211,35 +234,26 @@ export default {
       bigMapshow: false,
       alertcontact: false,
       swiperOption: {
-        loop: true,
-        slidesPerView: 2.1,
+        slidesPerView: 2.5,
         spaceBetween: 10,
-        centeredSlides: true
+        centeredSlides: false
       },
       swiperOptionDoor: { // 户口类型
-        loop: true,
         slidesPerView: 3,
         spaceBetween: 10,
-        centeredSlides: true
+        centeredSlides: false
       },
-      swiperdatalist: [
-        {value: '上海绿地中心1', price: '1500万起', imgurl: '../../../static/images/u153.png'},
-        {value: '上海绿地中心2', price: '1500万起', imgurl: '../../../static/images/banner.png'},
-        {value: '上海绿地中心3', price: '1500万起', imgurl: '../../../static/images/u153.png'},
-        {value: '上海绿地中心4', price: '1500万起', imgurl: '../../../static/images/banner.png'}
-      ],
-      doormodelArry: [
-        {text: '全部户型(12)'},
-        {text: '4居(5)'},
-        {text: '5局以上(7)'}
-      ],
-      doormodelType: 0,
-      doormodellist: [
-        {value: '地下三层/地下一层', area: '300m*m', price: '1000万-15000万', imgurl: '../../../static/images/doormodel.png'},
-        {value: '地下三层/地下一层', area: '300m*m', price: '1500万起', imgurl: '../../../static/images/doormodel.png'},
-        {value: '地下三层/地下一层', area: '300m*m', price: '1500万起', imgurl: '../../../static/images/doormodel.png'},
-        {value: '地下三层/地下一层', area: '300m*m', price: '1500万起', imgurl: '../../../static/images/doormodel.png'}
-      ]
+      doormodelType: 0
+    }
+  },
+  computed: {
+    doormodellists (newValue) {
+      if (this.doormodelType === 0) return this.houseDetails.layout
+      if (this.doormodelType === 1) return this.houseTypes.oneType
+      if (this.doormodelType === 2) return this.houseTypes.twoType
+      if (this.doormodelType === 3) return this.houseTypes.threeType
+      if (this.doormodelType === 4) return this.houseTypes.fourType
+      if (this.doormodelType === 5) return this.houseTypes.fiveType
     }
   },
   mounted: function () {
@@ -351,6 +365,8 @@ export default {
           display: flex;
           p {
             flex: 1;
+            display: flex;
+            align-items: center
           }
         }
       }
@@ -389,11 +405,16 @@ export default {
       }
     }
     .colorfont-size {
+      font-size: .1rem;
       display: inline-block;
-      width: .56rem;
+      width: .57rem;
       text-align: left;
       color: #888;
       margin-right: .15rem;
+    }
+    .fontsizeoverflow {
+      font-size: .1rem;
+      display: inline-block;
     }
     .look-detail-location {
       border: 1px solid #5D9CF9;
@@ -450,6 +471,12 @@ export default {
           }
         }
       }
+  }
+  .onsale {
+      margin-right:2px;
+    }
+    .onsale:last-child {
+      margin-right:0 !important
     }
 }
 </style>

@@ -5,17 +5,17 @@
        <img src="../../../assets/appimages/back.svg" @click="closeImg">
    </div>
    <div class="pictureWindows-contain">
-      <swiper :options="swiperOption" v-if="doormodellist.length>0">
+      <swiper :options="swiperOption" v-if="doormodellist&&doormodellist.length>0">
         <swiper-slide v-for="(item,index) in doormodellist" :key="index">
             <div class="img-conten">
-                 <img :src="item.imgurl" >
+                 <img :src="item" >
             </div>
         </swiper-slide>
       </swiper>
    </div>
    <div class="pictureWindows-bottom">
      <p>
-       <span>{{swiperindex}}</span> / <span>{{doormodellist.length}}</span>
+       <span>{{swiperindex}}</span> / <span>{{doormodellist&&doormodellist.length}}</span>
      </p>
    </div>
   </div>

@@ -17,7 +17,7 @@
             <p>
                 <img src="../../assets/appimages/icon-pic.svg" >
                 <span>楼盘相册</span>
-                <span>(25张)</span>
+                <span>({{storeDetails.pic&&storeDetails.pic.length}}张)</span>
             </p>
         </div>
      </div>
@@ -31,34 +31,34 @@
        </div>
        <div class="basic-information-mess">
          <div class="basic-information-mess-items">
-           <p class="basic-information-mess-header">
-             东三环朝阳区百子湾恒大豪华写字楼可注册公司
+           <p class="basic-information-mess-header fontsizeoverflow">
+             {{storeDetails.title}}
            </p>
          </div>
 
         <div class="basic-information-mess-items" style="margin-bottom: .05rem;">
            <p>
              <span class="colorfont-size">建筑面积</span>
-             <span style="font-size: .14rem">100-200m*m</span>
+             <span style="font-size: .14rem">{{storeDetails.build_area}}㎡</span>
            </p>
          </div>
          <div class="basic-information-mess-items" style="margin-bottom: .05rem;">
            <p>
              <span class="colorfont-size">使用面积</span>
-             <span style="font-size: .14rem">100-200m*m</span>
+             <span style="font-size: .14rem">{{storeDetails.apply_area}}㎡</span>
            </p>
          </div>
 
          <div class="basic-information-mess-items" style="margin-bottom: .05rem;">
            <p>
              <span class="colorfont-size">区域</span>
-             <span style="font-size: .14rem">顺义</span>
+             <span style="font-size: .14rem">{{storeDetails.district}}</span>
            </p>
          </div>
          <div class="basic-information-mess-items" style="margin-bottom: .05rem;">
-            <p style="flex:3">
+            <p style="flex:3;display: flex;align-items: center;" >
              <span class="colorfont-size">地址</span>
-             <span style="font-size: .14rem" class="fontsizeoverflow">西花市大街 附近</span>
+             <span style="font-size: .12rem;width:.9rem;display:inline-block" class="fontsizeoverflow">{{storeDetails.address}}</span>
            </p>
            <p style="margin-left: .15rem;flex:2">
              <span class="look-detail-location" @click="bigMapshow=true">查看详细地址</span>
@@ -67,7 +67,7 @@
          <div class="basic-information-mess-items" style="margin-top: .05rem;">
            <p>
              <span class="colorfont-size">售价</span>
-             <span style="font-size: .14rem"><b style="font-size: .22rem;color:#F74D3F">15000</b><b style="color:#F74D3F">万元</b></span>
+             <span style="font-size: .14rem"><b style="font-size: .22rem;color:#F74D3F">{{storeDetails.price}}</b><b style="color:#F74D3F">万元</b></span>
            </p>
          </div>
        </div>
@@ -88,18 +88,24 @@
 
      <div class="huoseImg-lunbo">
        <div class="huoseImg-lunbo-conten">
-          <div class="huoseImg-lunbo-items" v-for="(item,index) in Supportingarr" :key="index">
-              <p><img :src="item.imageurl"  :style="{width: index==3? '.41rem': '.25rem'}"></p>
-              <p>{{item.text}}</p>
+          <div class="huoseImg-lunbo-items" v-for="(item,index) in storeDetails.facilities" :key="index">
+              <p><img :src="item.icon"  :style="{width: index==3? '.41rem': '.25rem'}"></p>
+              <p>{{item.name}}</p>
           </div>
         </div>
      </div>
      <div class="cut-off"></div>
 
-    <mapCircum></mapCircum>
+    <mapCircum
+    :lng="storeDetails.longitude"
+    :lat="storeDetails.latitude"
+    ></mapCircum>
     <div class="cut-off"></div>
     <huosefooter></huosefooter>
-    <bigmap @closeBigmap="bigMapshow=false" v-if="bigMapshow"></bigmap>
+    <bigmap
+    :lng="storeDetails.longitude"
+    :lat="storeDetails.latitude"
+    @closeBigmap="bigMapshow=false" v-if="bigMapshow"></bigmap>
   </div>
 </template>
 
@@ -111,24 +117,15 @@ import bigmap from '@/components/public/appPublic/bigmap'
 import huosefooter from '@/components/public/appPublic/footer'
 export default {
   name: 'appshopDetail',
+  props: {
+    storeDetails: Object
+  },
   data () {
     return {
       pithOne: '2',
       citylocationbg: 'rgba(0, 0, 0, .5)', // 给city切换传背景色
       shownavigationpops: false, // 控制右侧弹窗的显示隐藏
-      bigMapshow: false,
-      Supportingarr: [ // 配套设施
-        {text: '上水', imageurl: '../../../static/images/shangshui.svg'},
-        {text: '下水', imageurl: '../../../static/images/xiashui.svg'},
-        {text: '380伏', imageurl: '../../../static/images/380fu.svg'},
-        {text: '煤气罐', imageurl: '../../../static/images/meiqi.svg'},
-        {text: '烟管道', imageurl: '../../../static/images/yanguandao.svg'},
-        {text: '排污管道', imageurl: '../../../static/images/paiwuguan.svg'},
-        {text: '停车位', imageurl: '../../../static/images/dingchewei.svg'},
-        {text: '天然气', imageurl: '../../../static/images/tianranqi.svg'},
-        {text: '外摆区', imageurl: '../../../static/images/waipai.svg'},
-        {text: '可明火', imageurl: '../../../static/images/minghuo.svg'}
-      ]
+      bigMapshow: false
     }
   },
   mounted: function () {
@@ -278,7 +275,8 @@ export default {
     }
     .colorfont-size {
       display: inline-block;
-      width: .56rem;
+      width: .57rem;
+      font-size:.1rem;
       text-align: left;
       color: #888;
       margin-right: .15rem;

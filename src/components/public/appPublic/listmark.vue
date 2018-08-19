@@ -4,15 +4,17 @@
           推荐
       </p>
       <div style="padding:0 .15rem;">
-        <div class="list-items" v-for="(item,index) in arrhuoselist" :key="index">
+        <div class="list-items" v-for="(item,index) in article_list" :key="index">
             <div>
-                <img src="../../../assets/appimages/house1.png" alt="" srcset="">
+                <img :src="item.pic" alt="" srcset="">
             </div>
             <div>
-                <p class="fontsizeoverflow">我们用500万买下四环以</p>
-                <p>20世纪70年代的日本，用12%的经济增长率创造了日本经济增长的光辉历史，同时也开启了日本地价暴涨的疯</p>
-                <p><span>作者:</span> <span>李小龙</span></p>
-                <p>看房心得</p>
+                <p class="fontsizeoverflow">{{item.title}}</p>
+                <p>{{item.desc}}</p>
+                <p><span>作者:</span> <span>{{item.author}}</span></p>
+                <p style="display: flex" class="fontsizeoverflow">
+                    <span class="icoen_item" v-for="(ite,index) in item.labels" :key="index" :style="{background: ite.color}"> {{ite.text}}</span>
+                </p>
             </div>
         </div>
       </div>
@@ -24,6 +26,7 @@
 export default {
   name: 'marklist',
   props: {
+    article_list: Array
   },
   data () {
     return {
@@ -107,14 +110,18 @@ export default {
             }
              p:nth-of-type(4) {
                 padding: .02rem 0;
-                width: .6rem;
                 text-align: center;
-                border: 1px solid #5D9CF9;
-                border-radius: .04rem;
                 color: #5D9CF9;
                 font-size: .12rem;
             }
         }
+    }
+    .icoen_item{
+        padding: 2px;
+        margin-right: 2px;
+    }
+    .icoen_item:last-child {
+        margin-right: 0
     }
 }
 </style>

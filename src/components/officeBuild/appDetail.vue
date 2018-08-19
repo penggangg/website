@@ -17,7 +17,7 @@
             <p>
                 <img src="../../assets/appimages/icon-pic.svg" >
                 <span>楼盘相册</span>
-                <span>(25张)</span>
+                <span>({{officesDetails.pic&&officesDetails.pic.length}}张)</span>
             </p>
         </div>
      </div>
@@ -32,33 +32,33 @@
        <div class="basic-information-mess">
          <div class="basic-information-mess-items">
            <p class="basic-information-mess-header">
-             东三环朝阳区百子湾恒大豪华写字楼可注册公司
+             {{officesDetails.title}}
            </p>
          </div>
 
         <div class="basic-information-mess-items" style="margin-bottom: .05rem;">
            <p>
              <span class="colorfont-size">建筑面积</span>
-             <span style="font-size: .14rem">100-200m*m</span>
+             <span style="font-size: .12rem">{{officesDetails.build_area}}㎡</span>
            </p>
          </div>
          <div class="basic-information-mess-items" style="margin-bottom: .05rem;">
            <p>
              <span class="colorfont-size">使用面积</span>
-             <span style="font-size: .14rem">100-200m*m</span>
+             <span style="font-size: .12rem">{{officesDetails.apply_area}}㎡</span>
            </p>
          </div>
 
          <div class="basic-information-mess-items" style="margin-bottom: .05rem;">
            <p>
              <span class="colorfont-size">区域</span>
-             <span style="font-size: .14rem">顺义</span>
+             <span style="font-size: .12rem">{{officesDetails.district}}</span>
            </p>
          </div>
          <div class="basic-information-mess-items" style="margin-bottom: .05rem;">
-            <p style="flex:3">
+            <p style="flex:3;flex-wrap: nowrap;display: flex;align-items: center;">
              <span class="colorfont-size">地址</span>
-             <span style="font-size: .14rem" class="fontsizeoverflow">西花市大街 附近</span>
+             <span style="font-size: .12rem;display: inline-block;width: .9rem" class="fontsizeoverflow">{{officesDetails.address}}</span>
            </p>
            <p style="margin-left: .15rem;flex:2">
              <span class="look-detail-location" @click="bigMapshow=true">查看详细地址</span>
@@ -67,7 +67,7 @@
          <div class="basic-information-mess-items" style="margin-top: .05rem;">
            <p>
              <span class="colorfont-size">售价</span>
-             <span style="font-size: .14rem"><b style="font-size: .22rem;color:#F74D3F">15000</b><b style="color:#F74D3F">万元</b></span>
+             <span style="font-size: .12rem"><b style="font-size: .22rem;color:#F74D3F">{{officesDetails.price}}</b><b style="color:#F74D3F">万元</b></span>
            </p>
          </div>
        </div>
@@ -80,10 +80,16 @@
 
      <div class="cut-off"></div>
 
-    <mapCircum></mapCircum>
+    <mapCircum
+    :lng="officesDetails.longitude"
+    :lat="officesDetails.latitude"
+    ></mapCircum>
     <div class="cut-off"></div>
     <huosefooter></huosefooter>
-    <bigmap @closeBigmap="bigMapshow=false" v-if="bigMapshow"></bigmap>
+    <bigmap
+    :lng="officesDetails.longitude"
+    :lat="officesDetails.latitude"
+    @closeBigmap="bigMapshow=false" v-if="bigMapshow"></bigmap>
   </div>
 </template>
 
@@ -95,6 +101,9 @@ import bigmap from '@/components/public/appPublic/bigmap'
 import huosefooter from '@/components/public/appPublic/footer'
 export default {
   name: 'officeBuildDetail',
+  props: {
+    officesDetails: Object
+  },
   data () {
     return {
       pithOne: '3',
@@ -250,7 +259,8 @@ export default {
     }
     .colorfont-size {
       display: inline-block;
-      width: .56rem;
+      width: .57rem;
+      font-size: .1rem;
       text-align: left;
       color: #888;
       margin-right: .15rem;

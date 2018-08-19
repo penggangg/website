@@ -2,8 +2,8 @@
   <div class="apphuoseList">
     <div class="apphuoseList-header">
       <span>为你找到</span>
-      <span>1000个</span>
-      <span>北京新楼盘</span>
+      <span>{{listResult.length}}个</span>
+      <span>{{this.code === '2'? '北京': '上海'}}新楼盘</span>
     </div>
     <!-- 新房 -->
     <div class="apphuoseList-items" v-if="pagetype=='newhuose'">
@@ -35,52 +35,49 @@
     </div>
     <!-- 商铺 -->
     <div class="apphuoseList-items" v-if="pagetype=='shop'">
-      <div class='apphuoseList-items-container' v-for="(item, index) in arrhuoselist" :key="index" @click="gohuosedetail(item)" >
+      <div class='apphuoseList-items-container' v-for="(item, index) in listResult" :key="index" @click="gohuosedetail(item)" >
         <div class="apphuoseList-items-left">
-          <img src="../../../assets/appimages/house1.png" alt="" srcset="">
+          <img :src="item.pic" alt="" srcset="">
         </div>
         <div class="apphuoseList-items-right">
-          <p class="fontsizeoverflow">长安太和</p>
+          <p class="fontsizeoverflow">{{item.title}}</p>
           <p>
-            <span>东城</span> | <span>立春元倒三角</span>
+            <span>{{item.district}}</span> | <span>{{item.address}}</span>
           </p>
           <p class="fontsizeoverflow">
             <span>建筑面积</span>
-            <span style="color: #888 !important">100-200m</span>
+            <span style="color: #888 !important">{{item.build_area}}㎡</span>
             <span>使用面积</span>
-            <span>100-200m</span>
+            <span>{{item.apply_area}}㎡</span>
           </p>
           <p class="fontsizeoverflow">
-            <span class="normal">在售</span>
-            <span class="normal">特价</span>
-            <span class="normal">即将开盘</span>
-            <span class="normal">临湖</span>
+            <span class="normal" v-for="(its,index) in item.facilities" :key="index">{{its.name}}</span>
           </p>
           <p>
-           150000万元
+           {{item.price}}万元
           </p>
         </div>
       </div>
     </div>
     <!-- 写字楼 -->
     <div class="apphuoseList-items" v-if="pagetype=='office'">
-      <div class='apphuoseList-items-container' v-for="(item, index) in arrhuoselist" :key="index" @click="gohuosedetail(item)" >
+      <div class='apphuoseList-items-container' v-for="(item, index) in listResult" :key="index" @click="gohuosedetail(item)" >
         <div class="apphuoseList-items-left">
-          <img src="../../../assets/appimages/house1.png" alt="" srcset="">
+          <img :src="item.pic" alt="" srcset="">
         </div>
         <div class="apphuoseList-items-right">
-          <p class="fontsizeoverflow">长安太和</p>
-          <p class="fontsizeoverflow">
-            <span>东城</span> | <span>立春元倒三角</span>
+          <p class="fontsizeoverflow">{{item.title}}</p>
+          <p class="fontsizeoverflow" style="flex-wrap: nowrap;">
+            <span>{{item.district}}</span> | <span>{{item.address}}</span>
           </p>
-          <p class="fontsizeoverflow">
+          <p class="fontsizeoverflow" style="flex-wrap: nowrap;">
             <span>建筑面积</span>
-            <span style="color: #888 !important">100-200m</span>
+            <span style="color: #888 !important">{{item.build_area}}㎡</span>
             <span>使用面积</span>
-            <span>100-200m</span>
+            <span>{{item.apply_area}}㎡</span>
           </p>
           <p style="color: #FB6550;font-size: .12rem;">
-           150000万元
+          {{item.price}}万元
           </p>
         </div>
       </div>
@@ -205,10 +202,10 @@ export default {
       color: #FB6550;
     }
   }
-  .onsale {
+  .onsale,.normal {
     margin-right:2px;
   }
-  .onsale:last-child {
+  .onsale:last-child, .normal:last-child {
     margin-right:0 !important
   }
 }

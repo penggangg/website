@@ -16,27 +16,27 @@
 
     <div class="newHouselist-search">
        <div class="switch-type" >
-           <p :class="[activePclass ==1 ? 'activePclass' : '']" @click="activePclass = 1">出售</p>
-           <p :class="[activePclass ==2 ? 'activePclass' : '']" @click="activePclass = 2">出租</p>
+           <p :class="[activePclass ==2 ? 'activePclass' : '']" @click="switchType(2)">出售</p>
+           <p :class="[activePclass ==1 ? 'activePclass' : '']" @click="switchType(1)">出租</p>
         </div>
-      <inputSearch :styleObjet=styleObjet :searchinputbg="searchinputbg"></inputSearch>
+      <inputSearch :styleObjet=styleObjet :searchinputbg="searchinputbg" v-model="query" @fliterData="fliterRouter"></inputSearch>
     </div>
 
     <div class="newHouselist-list">
       <div class="newHousefliter">
         <div @click="location">
-           <span class="new_house_loaction">{{flitertext1.text == '不限' ? '位置': flitertext1.text}}</span>
+           <span class="new_house_loaction">{{flitertext1.key == '' ? '位置': flitertext1.key}}</span>
            <span :class="[locationdorpdown ? 'downshanjiao' : 'upshanjiao']"></span>
         </div>
         <div @click="price">
-           <span class="new_house_price">{{flitertext2.text == '不限' ? '单价': flitertext2.text}}</span>
+           <span class="new_house_price">{{flitertext2.key == '' ? '单价': flitertext2.key}}</span>
            <span :class="[pricedorpdown ? 'downshanjiao' : 'upshanjiao']"></span>
         </div>
       </div>
     </div>
 
     <div class="newHouse-detail-lit">
-      <apphuoseList :pagetype="'office'"></apphuoseList>
+      <apphuoseList :pagetype="'office'" :listResult="listResult"></apphuoseList>
       <div class="huosefooter">
         <housefooter></housefooter>
       </div>
@@ -56,9 +56,13 @@ import housefooter from '@/components/public/appPublic/footer'
 import filteringpop from '@/components/public/appPublic/filteringpop'
 export default {
   name: 'newHouseList',
+  props: {
+    listResult: Array,
+    condition: Object
+  },
   data () {
     return {
-      activePclass: 1, // 选中的出售还是出租
+      activePclass: 2, // 选中的出售还是出租
       pithOne: '3',
       shownavigationpops: false, // 控制右侧弹窗的显示隐藏
       cityxialabg: 'url(' + require('../../assets/appimages/llocation.svg') + ')', // 城市的到三角样式颜色
@@ -78,8 +82,9 @@ export default {
       arrlist: [], // 位置、价格、建筑类型弹窗里面的数据
       types: '', // 0,1,2分别代表位置、价格、建筑类型
       flitertext: {}, // 中转站选中的对象
-      flitertext1: {text: '不限', id: '0'}, // 位置选中的对象
-      flitertext2: {text: '不限', id: '0'} // 价格选中的对象
+      flitertext1: {key: '', value: '0'}, // 位置选中的对象
+      flitertext2: {key: '', value: '0'}, // 价格选中的对象
+      query: '' // 关机字
     }
   },
   created () {
@@ -101,7 +106,8 @@ export default {
         this.builddorpdown = true
         this.filteringpopShow = true
         this.flitertext = this.flitertext1
-        this.arrlist = this.code === '110000' ? this.$constDatas.Beijilocationfliter : this.$constDatas.shanghailocationfliter
+        // this.arrlist = this.code === '110000' ? this.$constDatas.Beijilocationfliter : this.$constDatas.shanghailocationfliter
+        this.arrlist = this.condition.district
       }
     },
     price () {
@@ -115,7 +121,15 @@ export default {
         this.builddorpdown = true
         this.filteringpopShow = true
         this.flitertext = this.flitertext2
-        this.arrlist = this.$constDatas.huosePrice
+        this.arrlist = this.condition.price
+      }
+    },
+    ajaxrequsition (types) {
+      this.$units.scrollTop('.newHouse-detail-lit')
+      if (types === '0') {
+        this.$emit('change-condition', {district_id: this.flitertext1.value})
+      } else if (types === '1') {
+        this.$emit('change-condition', {min: this.flitertext2.value.split('-')[0], max: this.flitertext2.value.split('-')[1]})
       }
     },
     surefilter (types) {
@@ -128,9 +142,18 @@ export default {
       this.locationdorpdown = true
       this.pricedorpdown = true
       this.builddorpdown = true
-      console.log(this.flitertext1)
-      console.log(this.flitertext2)
-      console.log(this.types)
+      this.ajaxrequsition(types)
+    },
+    fliterRouter () {
+      this.$emit('change-condition', {query: this.query})
+    },
+    switchType (index) {
+      this.activePclass = index
+      this.query = ''
+      this.flitertext = {} // 中转站选中的对象
+      this.flitertext1 = {key: '', value: ''} // 位置选中的对象
+      this.flitertext2 = {key: '', value: ''} // 价格选中的对象
+      this.$emit('change-condition', {rent_id: index})
     }
   },
   components: {
@@ -142,13 +165,6 @@ export default {
     housefooter
   },
   watch: {
-    flitertext1: function (newvalue, oldvalue) {
-      this.$units.scrollTop('.newHouse-detail-lit')
-    },
-    flitertext2: function (newvalue, oldvalue) {
-      debugger
-      this.$units.scrollTop('.newHouse-detail-lit')
-    }
   }
 }
 </script>

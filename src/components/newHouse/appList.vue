@@ -14,7 +14,7 @@
     </div>
 
     <div class="newHouselist-search">
-      <inputSearch :styleObjet=styleObjet :searchinputbg="searchinputbg"></inputSearch>
+      <inputSearch :styleObjet=styleObjet :searchinputbg="searchinputbg" v-model="query" @fliterData="fliterRouter"></inputSearch>
     </div>
 
     <div class="newHouselist-list">
@@ -76,9 +76,10 @@ export default {
       arrlist: [], // 位置、价格、建筑类型弹窗里面的数据
       types: '', // 0,1,2分别代表位置、价格、建筑类型
       flitertext: {}, // 中转站选中的对象
-      flitertext1: {key: '不限', value: '0'}, // 位置选中的对象
-      flitertext2: {key: '不限', value: '0'}, // 价格选中的对象
-      flitertext3: {key: '不限', value: '0'} // 建筑类型选中的对象
+      flitertext1: {key: '', value: ''}, // 位置选中的对象
+      flitertext2: {key: '', value: ''}, // 价格选中的对象
+      flitertext3: {key: '', value: ''}, // 建筑类型选中的对象
+      query: '' // input输入框得关键字
     }
   },
   props: {
@@ -152,24 +153,30 @@ export default {
       this.locationdorpdown = true
       this.pricedorpdown = true
       this.builddorpdown = true
-      console.log(this.flitertext1)
-      console.log(this.flitertext2)
-      console.log(this.flitertext3)
-      console.log(this.types)
+    },
+    fliterRouter () {
+      debugger
+      this.$units.scrollTop('.newHouse-detail-lit')
+      let objTypes = {
+        city_id: this.code,
+        district_id: this.flitertext1.value,
+        min: this.flitertext2.value.split('-')[0],
+        max: this.flitertext2.value.split('-')[1],
+        type_id: this.flitertext3.value,
+        query: this.query
+      }
+      this.$emit('fliterDatas', objTypes)
     }
   },
   watch: {
     flitertext1: function (newvalue, oldvalue) {
-      this.$units.scrollTop('.newHouse-detail-lit')
-      this.$emit('fliterValue', this.flitertext1.value, this.flitertext2.value, this.flitertext3.value)
+      this.fliterRouter()
     },
     flitertext2: function (newvalue, oldvalue) {
-      this.$units.scrollTop('.newHouse-detail-lit')
-      this.$emit('fliterValue', this.flitertext1.value, this.flitertext2.value, this.flitertext3.value)
+      this.fliterRouter()
     },
     flitertext3: function (newvalue, oldvalue) {
-      this.$units.scrollTop('.newHouse-detail-lit')
-      this.$emit('fliterValue', this.flitertext1.value, this.flitertext2.value, this.flitertext3.value)
+      this.fliterRouter()
     }
   },
   components: {
