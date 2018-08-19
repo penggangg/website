@@ -20,21 +20,13 @@
     </div>
 </template>
 <script>
-import { articlesList } from '@/assets/js/api'
 export default {
   data () {
     return {
-      article_list: []
     }
   },
-  async created () {
-    let { result } = await articlesList({
-      city_id: this.code,
-      cid: 1,
-      size: 3,
-      last_id: 0
-    })
-    this.article_list = result.article_list
+  props: {
+    article_list: Array
   }
 }
 </script>
