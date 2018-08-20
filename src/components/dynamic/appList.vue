@@ -24,7 +24,7 @@
              <img :src="swiperheaderarr[0].imgurl" alt="" style="width:100%;height:100%;">
         </div>
      </div>
-    <listmark></listmark>
+    <listmark :article_list="article_list"></listmark>
     <huosefooter></huosefooter>
 
   </div>
@@ -38,6 +38,9 @@ import listmark from '@/components/public/appPublic/listmark'
 import huosefooter from '@/components/public/appPublic/footer'
 export default {
   name: 'appdynamic',
+  props: {
+    article_list: Array
+  },
   data () {
     return {
       pithOne: '7',

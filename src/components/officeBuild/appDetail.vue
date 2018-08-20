@@ -61,7 +61,7 @@
              <span style="font-size: .12rem;display: inline-block;width: .9rem" class="fontsizeoverflow">{{officesDetails.address}}</span>
            </p>
            <p style="margin-left: .15rem;flex:2">
-             <span class="look-detail-location" @click="bigMapshow=true">查看详细地址</span>
+             <span class="look-detail-location" @click="alertcontact=true">查看详细地址</span>
            </p>
          </div>
          <div class="basic-information-mess-items" style="margin-top: .05rem;">
@@ -90,6 +90,7 @@
     :lng="officesDetails.longitude"
     :lat="officesDetails.latitude"
     @closeBigmap="bigMapshow=false" v-if="bigMapshow"></bigmap>
+    <alertcontact v-if="alertcontact" @closealertcontact="alertcontact=false"></alertcontact>
   </div>
 </template>
 
@@ -99,6 +100,7 @@ import navigationpops from '@/components/public/appPublic/navigationPops'
 import mapCircum from '@/components/public/appPublic/mapCircum'
 import bigmap from '@/components/public/appPublic/bigmap'
 import huosefooter from '@/components/public/appPublic/footer'
+import alertcontact from '@/components/public/appPublic/aletcontact'
 export default {
   name: 'officeBuildDetail',
   props: {
@@ -109,7 +111,8 @@ export default {
       pithOne: '3',
       citylocationbg: 'rgba(0, 0, 0, .5)', // 给city切换传背景色
       shownavigationpops: false, // 控制右侧弹窗的显示隐藏
-      bigMapshow: false
+      bigMapshow: false,
+      alertcontact: false
     }
   },
   mounted: function () {
@@ -123,7 +126,8 @@ export default {
     navigationpops,
     mapCircum,
     huosefooter,
-    bigmap
+    bigmap,
+    alertcontact
   },
   created () {
   }
