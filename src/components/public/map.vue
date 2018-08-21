@@ -44,7 +44,7 @@ export default {
   data () {
     return {
       center: {lng: '', lat: ''},
-      zoom: 10,
+      zoom: 16,
       active: false,
       nearby: {
         center: {lng: '', lat: ''},
@@ -67,7 +67,8 @@ export default {
         lng: this.lng,
         lat: this.lat
       }
-      this.nearby = Object.assign(this.nearby, this.center)
+      this.nearby.center.lng = this.center.lng
+      this.nearby.center.lat = this.center.lat
     },
     draw ({el, BMap, map}) {
       const pixel = map.pointToOverlayPixel(new BMap.Point(116.181954, 39.951313))

@@ -7,15 +7,32 @@
       <slot name="item" v-for="item in dataList"  :item="item">{{item}}
       </slot>
     </div>
+    <mo-paging :page-index="currentPage" :total="count" :page-size="pageSize" @change="pageChange"></mo-paging>
     <div class="list" v-if="!dataList.length">
       <div class="noResult">没有找到您要的内容，您可换个条件试试</div>
     </div>
   </div>
 </template>
 <script>
+import MoPaging from './page'
 export default {
+  data () {
+    return {
+      currentPage: 1,
+      count: 10,
+      pageSize: 3
+    }
+  },
   props: {
     dataList: Array
+  },
+  methods: {
+    pageChange () {
+
+    }
+  },
+  components: {
+    MoPaging
   }
 }
 </script>

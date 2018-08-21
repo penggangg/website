@@ -3,7 +3,7 @@
       <router-link :to="{ path:`/${detailPath}/${item.item.id}`, query: { code }}" target="_blank"> <img :src="item.item.pic" alt="" ></router-link>
       <div class="house-detail">
         <h4>
-          <router-link :to="{ path:`/${detailPath}/${item.item.id}`, query: { code }}" target="_blank">{{item.item.title}}</router-link>
+          <router-link :to="{ path:`/${detailPath}/${item.item.id}`, query: { code }}" target="_blank" :title="item.item.title">{{item.item.title}}</router-link>
         </h4>
         <div class="loacation"><span>{{item.item.district}}</span>|<span>{{item.item.address}}</span></div>
         <div>
@@ -30,7 +30,7 @@
         </slot>
         <slot name="labels" :price = "item.item.price" v-if="$route.name=='shopList'">
           <div class="labels">
-            <span v-for="(item,index) in item.item.facilities" :key="index" :style="{color:item.color}">{{item.name}}</span>
+            <span v-for="(item,index) in item.item.facilities" :key="index" :style="{color:item.color}">{{item}}</span>
           </div>
         </slot>
         <slot name="labels" :price = "item.item.price" v-if="$route.name=='officeBuildList'">

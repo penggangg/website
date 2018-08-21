@@ -54,8 +54,8 @@
           <div class="item" v-for="(item,index) in houseRecs" :key="index" @click="gotoDetail('newHouseDetail',item.id)">
             <img :src="item.pic" alt="" srcset="">
             <div>
-              <span>{{item.title}}</span>
-              <span>{{item.price}}万元起</span>
+              <span :title="item.title">{{item.title}}</span>
+              <span :title="`${item.price}万元起`">{{item.price}}万元起</span>
             </div>
           </div>
         </div>
@@ -72,8 +72,8 @@
           <div class="item" v-for="(item,index) in storeRecs" :key="index" @click="gotoDetail('shopDetail',item.id)">
             <img class="content-three" :src="item.pic" alt="" srcset="">
             <div>
-              <span>{{item.title}}</span>
-              <span>{{item.price}}元/㎡</span>
+              <span :title="item.title">{{item.title}}</span>
+              <span :title="`${item.price}元/㎡`">{{item.price}}元/㎡</span>
             </div>
           </div>
         </div>
@@ -90,8 +90,8 @@
           <div class="item" v-for="(item,index) in officesRecs" :key="index" @click="gotoDetail('officeBuildDetail',item.id)">
             <img class="content-three" :src="item.pic" alt="" srcset="">
             <div>
-              <span>{{item.title}}</span>
-              <span>{{item.price}}元/㎡</span>
+              <span :title="item.title">{{item.title}}</span>
+              <span :title="`${item.price}元/㎡`">{{item.price}}元/㎡</span>
             </div>
           </div>
         </div>
@@ -173,9 +173,15 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      &.content-three {
+        .item{
+          width: 350px;
+        }
+      }
       .item {
         box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.2);
         cursor: pointer;
+        width: 250px;
         img {
           width: 250px;
           height: 192px;

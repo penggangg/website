@@ -36,7 +36,7 @@ export default {
         '公交', '地铁', '教育设施', '医院', '银行', '休闲娱乐', '购物', '餐饮', '运动健身'
       ],
       pathDetail: {
-        newHouseDetail: 'newHouse',
+        officeBuildDetail: 'officeBuild',
         shopDetail: 'shop'
       },
       breadCrumb: {

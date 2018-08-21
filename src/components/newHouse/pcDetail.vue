@@ -111,11 +111,11 @@
       <h3>户型信息</h3>
       <div class="house-filter">
         <span class="active">全部户型（{{houseDetails.layout && houseDetails.layout.length}}）</span>
-        <span v-if="houseTypes.oneType.length">1居（{{houseTypes.houseTypes.oneType.length}}）</span>
-        <span v-if="houseTypes.twoType.length">1居（{{houseTypes.twoType.length}}）</span>
-        <span v-if="houseTypes.threeType.length">1居（{{houseTypes.threeType.length}}）</span>
-        <span v-if="houseTypes.fourType.length">1居（{{houseTypes.fourType.length}}）</span>
-        <span v-if="houseTypes.fiveType.length">5居及以上（{{houseTypes.fiveType.length}}）</span>
+        <span v-if="houseTypes.oneType&&houseTypes.oneType.length">1居（{{houseTypes.oneType.length}}）</span>
+        <span v-if="houseTypes.twoType&&houseTypes.twoType.length">2居（{{houseTypes.twoType.length}}）</span>
+        <span v-if="houseTypes.threeType&&houseTypes.threeType.length">3居（{{houseTypes.threeType.length}}）</span>
+        <span v-if="houseTypes.fourType&&houseTypes.fourType.length">4居（{{houseTypes.fourType.length}}）</span>
+        <span v-if="houseTypes.fiveType&&houseTypes.fiveType.length">5居及以上（{{houseTypes.fiveType.length}}）</span>
       </div>
       <div class="type-list">
         <swiper :options="swiperOptionThumbsType" class="gallery-thumbs-type" ref="swiperThumbs">
@@ -381,7 +381,10 @@ export default {
   },
   props: {
     houseDetails: Object,
-    houseTypes: Object,
+    houseTypes: {
+      type: Object,
+      default: () => {}
+    },
     mapShow: Boolean
   },
   methods: {

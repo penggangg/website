@@ -1,6 +1,6 @@
 <template>
   <div>
-      <div class="container-fluid">
+      <div class="container-fluid"  :class="{ blackNone: $route.path === '/' || $route.path === '/marketAnalysis'|| $route.path === '/dynamic'}">
         <div class="row hidden-xs hidden-sm header-pc" :class="{ headerHome: $route.path === '/' || $route.path === '/marketAnalysis'|| $route.path === '/dynamic'}">
           <div class="col-md-2 text-right logo">LOGO</div>
           <div class="col-md-1 citySwicth">
@@ -88,6 +88,12 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import '../../assets/css/mixin';
+.container-fluid {
+  background: #303035;
+  &.blackNone {
+    background: none;
+  }
+}
 .header-pc{
   display: flex;
   align-items: center;
