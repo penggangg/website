@@ -6,33 +6,40 @@
       <span>{{this.code === '2'? '北京': '上海'}}新楼盘</span>
     </div>
     <!-- 新房 -->
-    <div class="apphuoseList-items" v-if="pagetype=='newhuose'">
-      <div class='apphuoseList-items-container' v-for="(item, index) in listResult" :key="index" @click="gohuosedetail(item)" >
-        <div class="apphuoseList-items-left">
-          <img :src="item.pic" alt="" srcset="">
+      <div class="apphuoseList-items" v-if="pagetype=='newhuose'" style="height: calc(100% - .34rem)">
+      <vue-better-scroll
+        class="wrapper"
+        :data='listResult'
+        :options='scrollOptions'
+        @pulling-up='onPullingUp'
+        ref="Scroll" v-show="listResult.length>0">
+        <div class='apphuoseList-items-container' v-for="(item, index) in listResult" :key="index" @click="gohuosedetail(item)" >
+          <div class="apphuoseList-items-left">
+            <img :src="item.pic" alt="" srcset="">
+          </div>
+          <div class="apphuoseList-items-right">
+            <p class="fontsizeoverflow">{{item.title}}</p>
+            <p>
+              <span>{{item.district}}</span> | <span class="fontsizeoverflow" style="max-width:1.6rem">{{item.address}}</span>
+            </p>
+            <p class="fontsizeoverflow">
+              <span>建筑类型</span>
+              <span>{{item.type}}</span>
+              <span>建筑面积</span>
+              <span>{{item.min_area}}~{{item.max_area}}㎡</span>
+            </p>
+            <p class="fontsizeoverflow">
+              <span class="onsale" :style="{color: item.color}"
+              v-for="(its,index) in item.labels" :key="index"
+              v-if="index<3">{{its.text}}</span>
+            </p>
+            <p>
+              {{item.min_price}}-{{item.max_area}}元/㎡
+            </p>
+          </div>
         </div>
-        <div class="apphuoseList-items-right">
-          <p class="fontsizeoverflow">{{item.title}}</p>
-          <p>
-            <span>{{item.district}}</span> | <span class="fontsizeoverflow" style="max-width:1.6rem">{{item.address}}</span>
-          </p>
-          <p class="fontsizeoverflow">
-            <span>建筑类型</span>
-            <span>{{item.type}}</span>
-            <span>建筑面积</span>
-            <span>{{item.min_area}}~{{item.max_area}}㎡</span>
-          </p>
-          <p class="fontsizeoverflow">
-            <span class="onsale" :style="{color: item.color}"
-            v-for="(its,index) in item.labels" :key="index"
-            v-if="index<3">{{its.text}}</span>
-          </p>
-          <p>
-            {{item.min_price}}-{{item.max_area}}元/㎡
-          </p>
-        </div>
+         </vue-better-scroll>
       </div>
-    </div>
     <!-- 商铺 -->
     <div class="apphuoseList-items" v-if="pagetype=='shop'">
       <div class='apphuoseList-items-container' v-for="(item, index) in listResult" :key="index" @click="gohuosedetail(item)" >
@@ -86,7 +93,7 @@
 </template>
 
 <script>
-
+import VueBetterScroll from '../../scrollPage/TrtScroll'
 export default {
   name: 'apphuoseList',
   props: {
@@ -98,7 +105,24 @@ export default {
   },
   data () {
     return {
-      arrhuoselist: [{id: 1}, {id: 2}, {id: 1}, {id: 2}, {id: 1}, {id: 2}]
+      isPullDown: true // 是不是继续可以上拉加载
+    }
+  },
+  computed: {
+    scrollOptions () { // 配置文件
+      return {
+        pullUpLoad: this.pullUpLoadObj,
+        click: 'true'
+      }
+    },
+    pullUpLoadObj () {
+      return this.isPullDown ? {
+        threshold: 100,
+        txt: {
+          more: '上拉加载更多',
+          noMore: '没有更多数据了'
+        }
+      } : false
     }
   },
   mounted: function () {
@@ -115,9 +139,19 @@ export default {
       } else if (this.pagetype === 'office') {
         this.$router.push({path: '/officeBuildDetail/' + id, query: { code: this.code }})
       }
+    },
+    /**
+         * 上拉加载更多数据
+         * @function onPullingUp
+        */
+    onPullingUp () {
+      setTimeout(_ => {
+        this.listResult = [this.listResult, ...this.listResult]
+      }, 1500)
     }
   },
   components: {
+    VueBetterScroll
   },
   created () {
   }
@@ -128,6 +162,13 @@ export default {
 .apphuoseList {
   padding: 0 .15rem;
   background: #fff;
+  height: 100%;
+  .wrapper {
+    height: 100%;
+    & .trt-scroll-content {
+      height: 100%
+    }
+  }
   .apphuoseList-header {
     height: .34rem;
     line-height: .44rem;
