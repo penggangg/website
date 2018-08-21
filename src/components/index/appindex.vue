@@ -40,13 +40,13 @@
     </div>
 
     <div>
-      <recommendedList :swiperdatalist="houseRecs" movetitle="更多新房"></recommendedList>
+      <recommendedList :swiperdatalist="houseRecs" title="新房推荐" movetitle="更多新房"></recommendedList>
     </div>
     <div>
-      <recommendedList :swiperdatalist="storeRecs" movetitle="更多商铺"></recommendedList>
+      <recommendedList :swiperdatalist="storeRecs" title="商铺推荐" movetitle="更多商铺"></recommendedList>
     </div>
     <div>
-      <recommendedList :swiperdatalist="officesRecs" movetitle="更多写字楼"></recommendedList>
+      <recommendedList :swiperdatalist="officesRecs" title="写字楼推荐" movetitle="更多写字楼"></recommendedList>
     </div>
 
     <footercommon></footercommon>

@@ -41,6 +41,7 @@ footer {
             font-size: 12px;
             background: #121212;
             color: #888C8E;
+            cursor: pointer;
           }
         }
         &.hotline {

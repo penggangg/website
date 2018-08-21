@@ -1,7 +1,7 @@
 <template>
   <div class="recommended-list">
     <div class="recommended-list-nav">
-        <p class="recommended-list-title">新房推荐</p>
+        <p class="recommended-list-title">{{title}}</p>
         <div class="more-huose">
           <span style="color:#3886F8" @click="goRouter">{{movetitle}}</span>
           <img src="../../../assets/appimages/icon-next.svg" >
@@ -9,10 +9,10 @@
     </div>
     <div class="swiper-conten" v-if="swiperdatalist.length>0">
       <swiper :options="swiperOption">
-        <swiper-slide v-for="(item,index) in swiperdatalist" :key="index">
+        <swiper-slide v-for="(item,index) in swiperdatalist" :key="index" >
             <div class="swiper-contain-div">
                 <div class="img-conten">
-                    <img :src="item.pic" >
+                    <img :src="item.pic" @click="goRouterId(item)">
                 </div>
                 <div class="text-mess">
                     <span>{{item.title}}</span>
@@ -35,7 +35,8 @@ export default {
       type: Array,
       required: true
     },
-    movetitle: String
+    movetitle: String,
+    title: String
   },
   data () {
     return {
@@ -59,6 +60,15 @@ export default {
         this.$router.push({name: 'shopList', query: { code: this.code }})
       } else if (this.movetitle === '更多写字楼') {
         this.$router.push({name: 'officeBuildList', query: { code: this.code }})
+      }
+    },
+    goRouterId (item) {
+      if (this.movetitle === '更多新房') {
+        this.$router.push({name: 'newHouseList', query: { id: item.id, code: this.code }})
+      } else if (this.movetitle === '更多商铺') {
+        this.$router.push({name: 'shopList', query: { id: item.id, code: this.code }})
+      } else if (this.movetitle === '更多写字楼') {
+        this.$router.push({name: 'officeBuildList', query: { id: item.id, code: this.code }})
       }
     }
   },

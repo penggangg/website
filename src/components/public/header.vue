@@ -91,13 +91,16 @@ export default {
 .header-pc{
   display: flex;
   align-items: center;
-  width: calc( 100% + 15px);
+  // width: calc( 100% + 15px);
+  width: 1200px;
+  margin: 0 auto;
   @include line-hei(50px, 50px);
   background: #303035;
   &.headerHome {
     position: absolute;
     top: 0;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     background: none;
   }
   .logo {
