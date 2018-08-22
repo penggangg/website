@@ -4,7 +4,7 @@
       <pc-list :listResult=listResult :condition="conditionObj" @getHouseList="getHouseList"></pc-list>
     </div>
     <div id="appList" class="visible-sm-block visible-xs-block">
-      <app-list :condition="conditionObj" :listResult=listResult @fliterDatas="fliterDatas"></app-list>
+      <app-list :condition="conditionObj" :listResult=listResult @fliterDatas="fliterDatas" @onPullingUp="onPullingUp" :isPullDown="isPullDown"></app-list>
     </div>
   </div>
 </template>
@@ -29,7 +29,8 @@ export default {
         offset: 1,
         limit: 10,
         query: ''
-      }
+      },
+      isPullDown: true
     }
   },
   mounted: function () {
@@ -50,9 +51,13 @@ export default {
     },
 
     async fliterDatas (obj) {
+      this.condition.offset = 1
       this.condition = Object.assign(this.condition, obj)
       let { result } = await houseList(this.condition)
       this.listResult = result
+      if (this.listResult.length < 10) {
+        this.isPullDown = false
+      }
     },
     checkUrl (obj) {
       this.objType = {...obj}
@@ -65,8 +70,18 @@ export default {
       this.condition.district_id = districtId
       this.condition.type_id = typeId
       this.condition.query = query
+    },
+    onPullingUp () {
+      ++this.condition.offset
+      // this.getHouseList()
+      if (this.condition.offset > 3) {
+        this.isPullDown = false
+        return
+      }
+      setTimeout(_ => {
+        this.listResult = [...this.listResult, ...this.listResult]
+      }, 1500)
     }
-
   },
   components: {
     appList,

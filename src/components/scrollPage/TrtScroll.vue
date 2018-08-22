@@ -21,6 +21,9 @@
         </div>
       </div>
     </slot>
+    <div class="huosefooter" style="height: .95rem">
+      <housefooter></housefooter>
+    </div>
   </div>
   <slot name="pulldown" :pullDownRefresh="pullDownRefresh" :pullDownStyle="pullDownStyle" :beforePullDown="beforePullDown" :isPullingDown="isPullingDown" :bubbleY="bubbleY">
     <div class="trt-pulldown-wrapper" :style="pullDownStyle" v-if="pullDownRefresh">
@@ -43,7 +46,7 @@
 import BScroll from 'better-scroll'
 import Loading from './TrtLoading.vue'
 import Bubble from './Bubble.vue'
-
+import housefooter from '@/components/public/appPublic/footer'
 const DEFAULT_REFRESH_TXT = 'Refresh success' // 如果没传成功后的显示则显示这个
 const PULL_DOWN_ELEMENT_INITIAL_HEIGHT = -50 // 配置向下拉多少距离后刷新
 
@@ -249,7 +252,8 @@ export default {
   },
   components: {
     Loading,
-    Bubble
+    Bubble,
+    housefooter
   }
 }
 </script>
@@ -277,6 +281,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: .54rem;
     .before-trigger {
         padding: 22px 0;
         min-height: 1em;

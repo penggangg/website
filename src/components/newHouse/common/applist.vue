@@ -6,7 +6,7 @@
       <span>{{this.code === '2'? '北京': '上海'}}新楼盘</span>
     </div>
     <!-- 新房 -->
-      <div class="apphuoseList-items" v-if="pagetype=='newhuose'" style="height: calc(100% - .34rem)">
+      <div class="apphuoseList-items newhouselist" v-if="pagetype=='newhuose'" style="height: calc(100% - .34rem)">
       <vue-better-scroll
         class="wrapper"
         :data='listResult'
@@ -41,7 +41,13 @@
          </vue-better-scroll>
       </div>
     <!-- 商铺 -->
-    <div class="apphuoseList-items" v-if="pagetype=='shop'">
+    <div class="apphuoseList-items shoplist" v-if="pagetype=='shop'" style="height: calc(100% - .34rem)">
+       <vue-better-scroll
+        class="wrapper"
+        :data='listResult'
+        :options='scrollOptions'
+        @pulling-up='onPullingUp'
+        ref="Scroll" v-show="listResult.length>0">
       <div class='apphuoseList-items-container' v-for="(item, index) in listResult" :key="index" @click="gohuosedetail(item)" >
         <div class="apphuoseList-items-left">
           <img :src="item.pic" alt="" srcset="">
@@ -58,16 +64,23 @@
             <span>{{item.apply_area}}㎡</span>
           </p>
           <p class="fontsizeoverflow">
-            <span class="normal" v-for="(its,index) in item.facilities" :key="index">{{its.name}}</span>
+            <span class="normal" v-for="(its,index) in item.facilities" :key="index">{{its}}</span>
           </p>
           <p>
            {{item.price}}万元
           </p>
         </div>
       </div>
+      </vue-better-scroll>
     </div>
     <!-- 写字楼 -->
-    <div class="apphuoseList-items" v-if="pagetype=='office'">
+    <div class="apphuoseList-items officelist" v-if="pagetype=='office'">
+      <vue-better-scroll
+        class="wrapper"
+        :data='listResult'
+        :options='scrollOptions'
+        @pulling-up='onPullingUp'
+        ref="Scroll" v-show="listResult.length>0">
       <div class='apphuoseList-items-container' v-for="(item, index) in listResult" :key="index" @click="gohuosedetail(item)" >
         <div class="apphuoseList-items-left">
           <img :src="item.pic" alt="" srcset="">
@@ -88,12 +101,14 @@
           </p>
         </div>
       </div>
+      </vue-better-scroll>
     </div>
   </div>
 </template>
 
 <script>
 import VueBetterScroll from '../../scrollPage/TrtScroll'
+
 export default {
   name: 'apphuoseList',
   props: {
@@ -101,11 +116,12 @@ export default {
       type: String,
       default: 'newhuose'
     },
-    listResult: Array
+    listResult: Array,
+    isPullDown: Boolean // 是不是继续可以上拉加载
   },
   data () {
     return {
-      isPullDown: true // 是不是继续可以上拉加载
+
     }
   },
   computed: {
@@ -113,6 +129,10 @@ export default {
       return {
         pullUpLoad: this.pullUpLoadObj,
         click: 'true'
+        // bounce: {
+        //   top: false,
+        //   bottom: false
+        // }
       }
     },
     pullUpLoadObj () {
@@ -145,9 +165,7 @@ export default {
          * @function onPullingUp
         */
     onPullingUp () {
-      setTimeout(_ => {
-        this.listResult = [this.listResult, ...this.listResult]
-      }, 1500)
+      this.$emit('onPullingUp')
     }
   },
   components: {
@@ -160,7 +178,7 @@ export default {
 
 <style lang="scss" scoped>
 .apphuoseList {
-  padding: 0 .15rem;
+  // padding: 0 .15rem;
   background: #fff;
   height: 100%;
   .wrapper {
@@ -171,11 +189,24 @@ export default {
   }
   .apphuoseList-header {
     height: .34rem;
+    padding: 0 .15rem;
     line-height: .44rem;
     font-size: .12rem;
     span:nth-of-type(2) {
       color: #4984FB;
     }
+  }
+  & /deep/ .trt-scroll-list-wrapper {
+    padding: 0 .15rem;
+  }
+  .newhouselist /deep/ .trt-scroll-list-wrapper {
+    min-height: calc(100vh - 3.34rem)
+  }
+  .shoplist /deep/ .trt-scroll-list-wrapper {
+    min-height: calc(100vh - 3.74rem)
+  }
+  .officelist /deep/ .trt-scroll-list-wrapper {
+    min-height: calc(100vh - 3.74rem)
   }
   .apphuoseList-items-container {
     display: flex;

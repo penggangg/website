@@ -35,10 +35,10 @@
     </div>
 
     <div class="newHouse-detail-lit">
-      <apphuoseList :listResult="listResult"></apphuoseList>
-      <div class="huosefooter">
+      <apphuoseList :listResult="listResult" @onPullingUp="onPullingUp" :isPullDown="isPullDown"></apphuoseList>
+      <!-- <div class="huosefooter">
         <housefooter></housefooter>
-      </div>
+      </div> -->
     </div>
      <transition name="fade">
       <filteringpop :arrlist="arrlist" :types="types" v-model="flitertext" v-show="filteringpopShow" @surefilter="surefilter"></filteringpop>
@@ -86,7 +86,8 @@ export default {
     condition: {
       type: Object
     },
-    listResult: Array
+    listResult: Array,
+    isPullDown: Boolean
   },
   created () {
     // 获取网址参数来判断是北京还是上海
@@ -166,6 +167,9 @@ export default {
         query: this.query
       }
       this.$emit('fliterDatas', objTypes)
+    },
+    onPullingUp () {
+      this.$emit('onPullingUp')
     }
   },
   watch: {
