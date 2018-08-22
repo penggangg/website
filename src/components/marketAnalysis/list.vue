@@ -4,7 +4,7 @@
       <pc-list :article_list="article_list"></pc-list>
     </div>
     <div id="appList" class="visible-sm-block visible-xs-block">
-      <app-list :article_list="article_list"></app-list>
+      <app-list :article_list="article_list" ></app-list>
     </div>
   </div>
 </template>
@@ -21,13 +21,28 @@ export default {
     }
   },
   async created () {
-    let { result } = await articlesList({
-      city_id: this.code,
-      cid: 1,
-      size: 3,
-      last_id: 0
-    })
-    this.article_list = result.article_list
+    this.init()
+  },
+  methods: {
+    async init () {
+      let { result } = await articlesList({
+        city_id: this.code,
+        cid: 1,
+        size: 10,
+        last_id: 0
+      })
+      this.article_list = result.article_list
+    }
+    // onPullingUp () {
+    //   ++this.condition.offset
+    //   if (this.condition.offset > 3) {
+    //     this.isPullDown = false
+    //     return
+    //   }
+    //   setTimeout(_ => {
+    //     this.listResult = [...this.listResult, ...this.listResult]
+    //   }, 1500)
+    // }
   },
   components: {
     appList,

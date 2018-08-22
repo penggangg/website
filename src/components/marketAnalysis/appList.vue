@@ -39,7 +39,8 @@ import huosefooter from '@/components/public/appPublic/footer'
 export default {
   name: 'apphuosedetail',
   props: {
-    article_list: Array
+    article_list: Array,
+    isPullDown: Boolean
   },
   data () {
     return {

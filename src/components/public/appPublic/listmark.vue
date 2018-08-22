@@ -4,6 +4,12 @@
           推荐
       </p>
       <div style="padding:0 .15rem;">
+        <!-- <vue-better-scroll
+        class="wrapper"
+        :data='article_list'
+        :options='scrollOptions'
+        @pulling-up='onPullingUp'
+        ref="Scroll" v-show="article_list.length>0"> -->
         <div class="list-items" v-for="(item,index) in article_list" :key="index">
             <div>
                 <img :src="item.pic" alt="" srcset="">
@@ -17,19 +23,42 @@
                 </p>
             </div>
         </div>
+        <!-- </vue-better-scroll> -->
       </div>
   </div>
 </template>
 
 <script>
-
+import VueBetterScroll from '../../scrollPage/TrtScroll'
 export default {
   name: 'marklist',
   props: {
-    article_list: Array
+    article_list: Array,
+    isPullDown: Boolean
   },
   data () {
     return {
+    }
+  },
+  computed: {
+    scrollOptions () { // 配置文件
+      return {
+        pullUpLoad: this.pullUpLoadObj,
+        click: 'true'
+        // bounce: {
+        //   top: false,
+        //   bottom: false
+        // }
+      }
+    },
+    pullUpLoadObj () {
+      return this.isPullDown ? {
+        threshold: 100,
+        txt: {
+          more: '上拉加载更多',
+          noMore: '没有更多数据了'
+        }
+      } : false
     }
   },
   mounted: function () {
@@ -37,8 +66,16 @@ export default {
     })
   },
   methods: {
+    /**
+         * 上拉加载更多数据
+         * @function onPullingUp
+        */
+    onPullingUp () {
+      this.$emit('onPullingUp')
+    }
   },
   components: {
+    VueBetterScroll
   },
   created () {
   }
@@ -47,6 +84,12 @@ export default {
 
 <style lang="scss" scoped>
 .mark-list {
+    .wrapper {
+        height: 100%;
+        & .trt-scroll-content {
+        height: 100%
+        }
+    }
     .mark-list-nav {
         height: .47rem;
         border-bottom: 1px solid #B7B7B7;

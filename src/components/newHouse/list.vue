@@ -44,12 +44,16 @@ export default {
       console.log(result)
       this.conditionObj = result
     },
+    // 分页得时候调取
     async getHouseList () {
       this.condition.city_id = this.code
       let { result } = await houseList({...this.condition})
       this.listResult = result
+      if (this.listResult.length < 10) {
+        this.isPullDown = false
+      }
     },
-
+    // 查询得时候调取
     async fliterDatas (obj) {
       this.condition.offset = 1
       this.condition = Object.assign(this.condition, obj)
@@ -74,13 +78,14 @@ export default {
     onPullingUp () {
       ++this.condition.offset
       // this.getHouseList()
-      if (this.condition.offset > 3) {
-        this.isPullDown = false
-        return
-      }
-      setTimeout(_ => {
-        this.listResult = [...this.listResult, ...this.listResult]
-      }, 1500)
+      // if (this.condition.offset > 3) {
+      //   this.isPullDown = false
+      //   return
+      // }
+      // setTimeout(_ => {
+      //   this.listResult = [...this.listResult, ...this.listResult]
+      // }, 1500)
+      this.getHouseList()
     }
   },
   components: {
