@@ -51,7 +51,7 @@ export default {
     async getHouseList () {
       this.condition.city_id = this.code
       let { result } = await houseList({...this.condition})
-      this.listResult = result
+      this.listResult = result.data
       if (this.listResult.length < 10) {
         this.isPullDown = false
       }

@@ -65,7 +65,7 @@ export default {
     async getList () {
       this.condition.city_id = this.code
       let { result } = await storeList({...this.condition})
-      this.listResult = result
+      this.listResult = result.data
       debugger
       if (this.listResult.length < 10) {
         this.isPullDown = false
