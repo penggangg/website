@@ -12,16 +12,16 @@
                 :shownavigationpops="shownavigationpops" ></navigationpops>
             </div>
         </div>
-        <div v-if="swiperheaderarr.length>1" class="market-Swiper">
+        <div v-if="swiperPicList.length>1" class="market-Swiper">
             <swiper :options="swiperOption">
-                <swiper-slide v-for="(item, index) in swiperheaderarr" :key="index">
-                    <img :src="item.imgurl" alt="" srcset="">
+                <swiper-slide v-for="(item, index) in swiperPicList" :key="index">
+                    <img :src="item.pic" alt="" srcset="">
                 </swiper-slide>
                 <div class="swiper-pagination" slot="pagination" ></div>
             </swiper>
         </div>
-          <div v-if="swiperheaderarr.length==1" style="height:2.04rem">
-             <img :src="swiperheaderarr[0].imgurl" alt="" style="width:100%;height:100%;">
+          <div v-if="swiperPicList.length==1" style="height:2.04rem">
+             <img :src="swiperPicList[0].imgurl" alt="" style="width:100%;height:100%;">
         </div>
      </div>
     <listmark :article_list="article_list"></listmark>
@@ -40,6 +40,7 @@ export default {
   name: 'apphuosedetail',
   props: {
     article_list: Array,
+    swiperPicList: Array,
     isPullDown: Boolean
   },
   data () {
@@ -55,13 +56,7 @@ export default {
           el: '.swiper-pagination',
           clickable: true
         }
-      },
-      swiperheaderarr: [
-        {imgurl: '../../../static/images/u153.png'},
-        {imgurl: '../../../static/images/banner.png'},
-        {imgurl: '../../../static/images/u153.png'},
-        {imgurl: '../../../static/images/banner.png'}
-      ]
+      }
     }
   },
   mounted: function () {

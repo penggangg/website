@@ -89,7 +89,7 @@
          <div class="basic-information-mess-items">
            <p>
              <span class="colorfont-size">供水方式</span>
-             <span>{{houseDetails.water}}</span>
+             <span class="fontsizeoverflow">{{houseDetails.water}}</span>
            </p>
            <p>
              <span class="colorfont-size">供电方式</span>

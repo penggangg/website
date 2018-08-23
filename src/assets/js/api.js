@@ -31,7 +31,7 @@ export const officesList = params => fetch('/api/index.php?r=offices/index', { .
 // 写字楼详情接口
 export const officesDetails = params => fetch('/api/index.php?r=offices/detail', { ...params })
 // 文章推荐 cid 1 市场分析 2 企业动态
-export const articles = params => fetch('/api/index.php?r=articles/rec&city_id=2&cid=1&size=3', { ...params })
+export const articles = params => fetch('/api/index.php?r=articles/rec', { ...params })
 // 文章列表 cid 1 市场分析 2 企业动态
 export const articlesList = params => fetch('/api/index.php?r=articles/index', { ...params })
 // 文章详情

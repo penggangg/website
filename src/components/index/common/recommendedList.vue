@@ -114,6 +114,7 @@ export default {
         .img-conten {
             img {
                 width: 100%;
+                height: 2rem;
             }
         }
         .text-mess {

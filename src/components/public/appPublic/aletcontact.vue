@@ -16,12 +16,17 @@
 </template>
 
 <script>
-
+import { ask } from '@/assets/js/api'
 export default {
   name: 'alertcontact',
   data () {
     return {
-      telphone: ''
+      telphone: '',
+      typeMap: {
+        'officeBuildDetail': 3,
+        'shopDetail': 2,
+        'newHouseDetail': 1
+      }
     }
   },
   methods: {
@@ -29,9 +34,16 @@ export default {
       let istelphone = this.$units.isPoneAvailable(this.telphone)
       if (!istelphone) {
         alert('请您输入正确的手机号码')
-        return
+      } else {
+        ask({
+          city_id: this.code,
+          tel: this.telphone,
+          type: this.typeMap[this.$route.name]
+        }).then(res => {
+          this.$emit('closealertcontact')
+          alert(res.errorMsg)
+        })
       }
-      this.$emit('closealertcontact')
     },
     closealertcontact () {
       this.$emit('closealertcontact')

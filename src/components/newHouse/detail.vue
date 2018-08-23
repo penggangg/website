@@ -5,7 +5,7 @@
       <pc-detail :houseDetails="houseDetails" :houseTypes="houseTypes" :mapShow="mapShow"></pc-detail>
     </div>
     <div id="appListdetail" class="visible-sm-block visible-xs-block">
-      <!-- <appdetail :houseDetails="houseDetails" :houseTypes="houseTypes"></appdetail> -->
+      <appdetail :houseDetails="houseDetails" :houseTypes="houseTypes"></appdetail>
     </div>
   </div>
 </template>
