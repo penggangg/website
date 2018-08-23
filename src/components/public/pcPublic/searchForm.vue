@@ -41,9 +41,6 @@ export default {
     }
   },
   methods: {
-    gotoUrl () {
-      this.$emit('gotoUrl', {'query': this.query})
-    },
     changeCondition () {
       this.$emit('changeCondition', {query: this.query})
     }

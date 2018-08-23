@@ -1,47 +1,32 @@
 <template>
   <div class="wrapper">
-    <search-form @changeCondition="changeCondition"></search-form>
+    <search-form @gotoUrl="gotoUrl"></search-form>
     <div class="filter">
       <div class="all-condition">
         <dl>
           <dt>位置</dt>
           <dd>
-            <span :class="{active: district_id == ''}" @click="changeCondition({district_id: ''})">不限</span>
-            <span
-              :class="{active: district_id == item.value }"
-              v-for="(item, index) in condition.district"
-              @click="changeCondition({district_id: item.value})"
-              :key="index"
-            >{{item.key}}</span>
+            <span :class="{active: $route.query.districtId == ''}" @click="gotoUrl({'districtId': ''})">不限</span>
+            <span :class="{active: $route.query.districtId == item.value}" @click="gotoUrl({'districtId': item.value})" v-for="(item,index) in condition.district" :key="index">{{item.key}}</span>
           </dd>
         </dl>
         <dl>
           <dt>单价</dt>
           <dd>
-            <span :class="{active: price == ''}" @click="changeCondition({price: ''})">不限</span>
-            <span
-              :class="{active: price == item.value }"
-              v-for="(item, index) in condition.price"
-              @click="changeCondition({price: item.value})"
-              :key="index"
-              >{{item.key}}</span>
+            <span :class="{active: $route.query.price == ''}"  @click="gotoUrl({'price': ''})">不限</span>
+            <span :class="{active: $route.query.price == item.value}"  @click="gotoUrl({'price': item.value})" v-for="(item,index) in condition.price" :key="index">{{item.key}}</span>
             <span>
-              <input type="text"  v-model="price_min"> -
-              <input type="text"  v-model="price_max">
-              <input type="button" value="确定" @click="changeCondition({price: (price_min||0) +'-'+ price_max})">
+              <input type="text"> -
+              <input type="text">
+              <input type="button" value="确定">
             </span>
           </dd>
         </dl>
         <dl>
           <dt>建筑类型</dt>
           <dd>
-            <span :class="{active: type_id == ''}" @click="changeCondition({type_id: ''})">不限</span>
-            <span
-              :class="{active: type_id == item.value }"
-              v-for="(item, index) in condition.type"
-              @click="changeCondition({type_id: item.value})"
-              :key="index"
-            >{{item.key}}</span>
+            <span :class="{active: $route.query.typeId == ''}"  @click="gotoUrl({'typeId': ''})">不限</span>
+            <span :class="{active: $route.query.typeId == item.value}" @click="gotoUrl({'typeId': item.value})" v-for="(item,index) in condition.type" :key="index">{{item.key}}</span>
           </dd>
         </dl>
       </div>
@@ -115,11 +100,7 @@ export default {
   data () {
     return {
       listType: '',
-      district_id: '',
-      price: '',
-      price_min: '',
-      price_max: '',
-      type_id: ''
+      objType: ''
     }
   },
   props: {
@@ -132,32 +113,18 @@ export default {
     listItem
   },
   methods: {
-    changeCondition (value) {
-      let { keys, values } = Object
-      let key = keys(value)[0]
-      let val = values(value)[0]
-      this[key] = val
-      if (key === 'price') {
-        let min = val.split('-')[0]
-        let max = val.split('-')[1]
-        this.$emit('change-condition', {min: min, max: max})
+    gotoUrl (obj) {
+      let objTypes = {}
+      if (Object.keys(obj)[0] === 'query') {
+        objTypes = Object.assign({}, obj)
       } else {
-        this.$emit('change-condition', value)
+        objTypes = Object.assign(this.objType, obj)
       }
+      this.$router.push({path: 'newHouse', query: objTypes})
     }
   },
   created () {
-  },
-  watch: {
-    price (newValue) {
-      let index = this.condition.price.findIndex((item) => {
-        return item.value === newValue
-      })
-      if (index > -1) {
-        this.price_min = ''
-        this.price_max = ''
-      }
-    }
+    this.objType = {...this.$route.query}
   }
 }
 </script>

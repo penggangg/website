@@ -1,35 +1,66 @@
 <template>
-    <div>
+    <div style="position:relative">
       <div class="banner">
       </div>
       <div class="section"></div>
       <div class="delegate-cot">
         <div class="delegate">
           <div class="formDetails">
-            <div class="item">
-              <span>出售</span>
-              <span>出租</span>
-              <span>咨询热线：400-888-9950</span>
+            <div class="item type">
+              <div>
+                <span class="active">出售</span>
+                <span>出租</span>
+              </div>
+              <span class="tel">咨询热线：400-888-9950</span>
             </div>
-            <div class="item">
+            <div class="item userInfo">
               <span>尊称</span>
               <input type="text" placeholder="我们怎么称呼您">
             </div>
-            <div class="item">
+            <div class="item userInfo">
               <span>手机号</span>
               <input type="text" placeholder="请输入您的手机号，方便我们联系您">
             </div>
-            <div class="item">
+            <div class="item userInfo">
               <span>需求说明</span>
               <textarea name="" placeholder="进一步描述需求，合屋将为您提供更精准的服务"></textarea>
             </div>
           </div>
-          <div>提交委托</div>
+          <div class="submit">提交委托</div>
           <div class="line">
-            卖房全流程
+            <span class="line-left"></span>
+            <span>卖房全流程</span>
+            <span class="line-right"></span>
           </div>
           <div class="form-footer">
-
+            <div class="step">
+              <img src="../../assets/images/1.svg" alt="">
+              <div>
+                <span>发布房源</span>
+                <span>线上免费发布房源</span>
+              </div>
+            </div>
+            <div class="step">
+              <img src="../../assets/images/2.svg" alt="">
+              <div>
+                <span>发布房源</span>
+                <span>线上免费发布房源</span>
+              </div>
+            </div>
+            <div class="step">
+              <img src="../../assets/images/3.svg" alt="">
+              <div>
+                <span>发布房源</span>
+                <span>线上免费发布房源</span>
+              </div>
+            </div>
+            <div class="step">
+              <img src="../../assets/images/4.svg" alt="">
+              <div>
+                <span>发布房源</span>
+                <span>线上免费发布房源</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -53,23 +84,120 @@
 }
 .delegate-cot {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
+  width: 1200px;
+  height: 1033px;
+  left: 50%;
+  top: 50%;
+  z-index: 33;
+  transform: translate(-50%,-50%);
   .delegate {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 0 auto;
-    margin-top: 249px;
-    padding-top: 100px;
+    // margin-top: 249px;
+    padding-top: 70px;
     width: 1200px;
-    height: 933px;
+    height:1033px;
     background: #ffffff;
     .item {
+      padding:30px 0;
       width: 600px;
       border-bottom: 1px solid #979797;
+      &:first-child {
+        padding-bottom:50px;
+      }
+      &.type {
+        display:flex;
+        align-items: center;
+        justify-content: space-between;
+        span {
+          color: #333333;
+          font-size: 18px;
+          font-weight: bold;
+          margin-right: 30px;
+          &.active {
+            color: #5D9CF9;
+          }
+          &.tel {
+            margin-right: 0;
+            font-size: 22px;
+            color: #FB6550;
+          }
+        }
+      }
+      &.userInfo {
+        span {
+          display: inline-block;
+          width: 100px;
+          color: #333333;
+          font-size: 18px;
+          font-weight: bold;
+        }
+        &:last-child {
+          display: flex;
+          textarea {
+            width: 504px;
+            height: 180px;
+            display: inline-block;
+            padding-top: 6px;
+            padding-left: 10px;
+            background: #F2F5F7;
+          }
+        }
+      }
+    }
+    .line {
+      .line-left {
+        display: inline-block;
+        width: 500px;
+        height: 2px;
+        background: #B7B7B7;
+        &:after {
+          content:''
+        }
+      }
+      .line-right {
+        display: inline-block;
+        width: 500px;
+        height: 2px;
+        background: #B7B7B7;
+      }
+    }
+    .submit {
+      margin-top: 100px;
+      width:190px;
+      height:58px;
+      line-height: 58px;
+      font-size:18px;
+      color: #ffffff;
+      background:rgba(93,156,249,1);
+      border-radius:8px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .form-footer {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      .step {
+        display: flex;
+        >div {
+          margin-left: 30px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          span {
+            font-size: 12px;
+            color: #888888;
+            &:first-child {
+              margin-bottom: 10px;
+              color: #333333;
+              font-size: 18px;
+            }
+          }
+        }
+      }
     }
   }
 }

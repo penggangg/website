@@ -1,10 +1,10 @@
 <template>
   <div class="container-fluid">
     <div id="pcList" class="row hidden-xs hidden-sm header-pc">
-      <pc-list :listResult=listResult :condition="conditionObj" @change-condition="changeCondition" ></pc-list>
+      <pc-list :listResult=listResult :condition="conditionObj" @getHouseList="getHouseList"></pc-list>
     </div>
     <div id="appList" class="visible-sm-block visible-xs-block">
-      <app-list :condition="conditionObj" :listResult=listResult @fliterDatas="fliterDatas" @onPullingUp="onPullingUp" :isPullDown="isPullDown"></app-list>
+      <app-list :condition="conditionObj" :listResult=listResult @fliterDatas="fliterDatas"></app-list>
     </div>
   </div>
 </template>
@@ -19,6 +19,7 @@ export default {
     return {
       listResult: [],
       conditionObj: {},
+      objType: {},
       condition: {
         city_id: '',
         district_id: '',
@@ -28,8 +29,7 @@ export default {
         offset: 1,
         limit: 10,
         query: ''
-      },
-      isPullDown: true
+      }
     }
   },
   mounted: function () {
@@ -38,15 +38,6 @@ export default {
     })
   },
   methods: {
-    changeCondition (obj) {
-      this.condition = Object.assign(this.condition, obj)
-      this.getHouseList()
-    },
-    async fliterDatas (obj) {
-      this.condition = Object.assign(this.condition, obj)
-      let { result } = await houseList(this.condition)
-      this.listResult = result
-    },
     async getCondition () {
       let { result } = await houseConditions({city_id: this.code})
       console.log(result)
@@ -57,17 +48,25 @@ export default {
       let { result } = await houseList({...this.condition})
       this.listResult = result
     },
-    onPullingUp () {
-      ++this.condition.offset
-      // this.getHouseList()
-      if (this.condition.offset > 3) {
-        this.isPullDown = false
-        return
+
+    async fliterDatas (obj) {
+      this.condition = Object.assign(this.condition, obj)
+      let { result } = await houseList(this.condition)
+      this.listResult = result
+    },
+    checkUrl (obj) {
+      this.objType = {...obj}
+      let {districtId, price, typeId, query} = this.objType
+      if (price) {
+        this.condition.min = price.split('-')[0]
+        this.condition.max = price.split('-')[1]
+        console.log(this.condition)
       }
-      setTimeout(_ => {
-        this.listResult = [...this.listResult, ...this.listResult]
-      }, 1500)
+      this.condition.district_id = districtId
+      this.condition.type_id = typeId
+      this.condition.query = query
     }
+
   },
   components: {
     appList,
@@ -75,7 +74,15 @@ export default {
   },
   created () {
     this.getCondition()
+    this.checkUrl(this.$route.query)
     this.getHouseList()
+  },
+  beforeRouteUpdate (to, from, next) {
+    console.log(to)
+    let obj = to.query
+    this.checkUrl(obj)
+    this.getHouseList()
+    next()
   }
 }
 </script>
