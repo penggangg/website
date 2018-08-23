@@ -24,7 +24,7 @@ export default {
     let { result } = await articlesList({
       city_id: this.code,
       cid: 1,
-      size: 3,
+      size: 10,
       last_id: 0
     })
     this.article_list = result.article_list

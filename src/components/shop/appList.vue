@@ -40,10 +40,10 @@
     </div>
 
     <div class="newHouse-detail-lit">
-      <apphuoseList :pagetype="'shop'" :listResult="listResult"></apphuoseList>
-      <div class="huosefooter">
+      <apphuoseList :pagetype="'shop'" :listResult="listResult" @onPullingUp="onPullingUp" :isPullDown="isPullDown"></apphuoseList>
+      <!-- <div class="huosefooter">
         <housefooter></housefooter>
-      </div>
+      </div> -->
     </div>
     <transition name="fade">
       <filteringpop :arrlist="arrlist" :types="types" :filtertop="'1.91rem'" v-model="flitertext" v-show="filteringpopShow" @surefilter="surefilter"></filteringpop>
@@ -56,13 +56,14 @@ import citydropdown from '@/components/public/appPublic/citydropdown'
 import navigationpops from '@/components/public/appPublic/navigationPops'
 import inputSearch from '@/components/public/appPublic/inputSearch'
 import apphuoseList from '../newHouse/common/appList'
-import housefooter from '@/components/public/appPublic/footer'
+// import housefooter from '@/components/public/appPublic/footer'
 import filteringpop from '@/components/public/appPublic/filteringpop'
 export default {
   name: 'newHouseList',
   props: {
     listResult: Array,
-    condition: Object
+    condition: Object,
+    isPullDown: Boolean
   },
   data () {
     return {
@@ -177,6 +178,9 @@ export default {
       this.flitertext2 = {key: '', value: ''} // 价格选中的对象
       this.flitertext4 = {key: '', value: ''} // 配套设备选中的对象
       this.$emit('change-condition', {rent_id: index})
+    },
+    onPullingUp () {
+      this.$emit('onPullingUp')
     }
   },
   components: {
@@ -184,8 +188,7 @@ export default {
     navigationpops,
     inputSearch,
     apphuoseList,
-    filteringpop,
-    housefooter
+    filteringpop
   },
   watch: {
 

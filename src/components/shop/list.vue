@@ -4,7 +4,7 @@
       <pc-list :listResult="listResult"  @change-condition="changeCondition" :condition="conditionObj"></pc-list>
     </div>
     <div id="appList" class="visible-sm-block visible-xs-block">
-      <app-list :listResult="listResult" :condition="conditionObj" @change-condition="changeCondition"></app-list>
+      <app-list :listResult="listResult" :condition="conditionObj" @change-condition="changeCondition"  @onPullingUp="onPullingUp" :isPullDown="isPullDown"></app-list>
     </div>
   </div>
 </template>
@@ -29,7 +29,8 @@ export default {
         limit: 10,
         query: '',
         facilities: []
-      }
+      },
+      isPullDown: true
     }
   },
   mounted: function () {
@@ -65,7 +66,26 @@ export default {
       this.condition.city_id = this.code
       let { result } = await storeList({...this.condition})
       this.listResult = result
+      debugger
+      if (this.listResult.length < 10) {
+        this.isPullDown = false
+      } else {
+        this.isPullDown = true
+      }
+    },
+    onPullingUp () {
+      ++this.condition.offset
+      // this.getHouseList()
+      // if (this.condition.offset > 3) {
+      //   this.isPullDown = false
+      //   return
+      // }
+      // setTimeout(_ => {
+      //   this.listResult = [...this.listResult, ...this.listResult]
+      // }, 1500)
+      this.getList()
     }
+
   },
   components: {
     appList,

@@ -74,7 +74,7 @@
       </vue-better-scroll>
     </div>
     <!-- 写字楼 -->
-    <div class="apphuoseList-items officelist" v-if="pagetype=='office'">
+    <div class="apphuoseList-items officelist" v-if="pagetype=='office'" style="height: calc(100% - .34rem)">
       <vue-better-scroll
         class="wrapper"
         :data='listResult'
