@@ -16,26 +16,26 @@
 
     <div class="newHouselist-search">
        <div class="switch-type" >
-           <p :class="[activePclass ==1 ? 'activePclass' : '']" @click="activePclass = 1">出售</p>
-           <p :class="[activePclass ==2 ? 'activePclass' : '']" @click="activePclass = 2">出租</p>
+           <p :class="[activePclass ==2 ? 'activePclass' : '']" @click="activePclass = 2">出售</p>
+           <p :class="[activePclass ==1 ? 'activePclass' : '']" @click="activePclass = 1">出租</p>
         </div>
         <div class="from-conten">
             <p>
                 <label>尊称</label>
-                <input type="text" placeholder="我们怎么称呼您">
+                <input type="text" v-model="uname" placeholder="我们怎么称呼您">
             </p>
             <p>
                 <label>手机号</label>
-                <input type="text" placeholder="请输入您的手机号，方便我们联系您">
+                <input type="text" v-model.number="tel" placeholder="请输入您的手机号，方便我们联系您">
             </p>
             <div class="textareadiv">
                 <div style="font-weight: bold;">需求说明</div>
-                <textarea placeholder="进一步描述需求，合屋将为您提供更精准的服务"></textarea>
+                <textarea placeholder="进一步描述需求，合屋将为您提供更精准的服务" v-model="desc"></textarea>
             </div>
 
             <div class="call_telphone">
                 <p>咨询热线：400-888-9950</p>
-                <p>提交申请</p>
+                <p @click="submit">提交申请</p>
             </div>
 
             <div class="bugliucheng">
@@ -90,11 +90,12 @@ import citydropdown from '@/components/public/appPublic/citydropdown'
 import navigationpops from '@/components/public/appPublic/navigationPops'
 import inputSearch from '@/components/public/appPublic/inputSearch'
 import housefooter from '@/components/public/appPublic/footer'
+import { depute } from '@/assets/js/api'
 export default {
   name: 'newHouseList',
   data () {
     return {
-      activePclass: 1, // 选中的出售还是出租
+      activePclass: 2, // 选中的出售还是出租
       pithOne: '6',
       shownavigationpops: false, // 控制右侧弹窗的显示隐藏
       cityxialabg: 'url(' + require('../../assets/appimages/llocation.svg') + ')', // 城市的到三角样式颜色
@@ -105,7 +106,10 @@ export default {
         bgse: '#fff',
         dorpdownDome: false
       },
-      searchinputbg: require('../../assets/appimages/icon-lsearch.svg') // 搜索框的放大镜的颜色
+      searchinputbg: require('../../assets/appimages/icon-lsearch.svg'), // 搜索框的放大镜的颜色
+      tel: '',
+      uname: '',
+      desc: ''
     }
   },
   created () {
@@ -116,6 +120,22 @@ export default {
     })
   },
   methods: {
+    submit () {
+      let condition = {
+        city_id: this.code,
+        rent_type: this.activePclass,
+        tel: this.tel,
+        uname: this.uname,
+        desc: this.desc
+      }
+      let reg = /^1[34578][0-9]{9}$/
+      if (!reg.test(this.tel)) {
+        alert('请输入正确得电话号码')
+      }
+      depute(condition).then(_ => {
+        alert('成功提交')
+      })
+    }
   },
   components: {
     citydropdown,
