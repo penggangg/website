@@ -62,7 +62,7 @@ export default {
     async getList () {
       this.condition.city_id = this.code
       let { result } = await officesList({...this.condition})
-      this.listResult = result
+      this.listResult = result.data
     },
     onPullingUp () {
       ++this.condition.offset

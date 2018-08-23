@@ -3,7 +3,7 @@ import { fetch } from './http'
 // 客源咨询
 export const ask = params => fetch('/api/index.php?r=customers/ask', { ...params })
 // 客源委托
-export const depute = params => fetch('/api/index.php?r=customers/depute&city_id=3&rent_type=1&tel=13488856234&uname=测试&d测试&desc=测试', { ...params })
+export const depute = params => fetch('/api/index.php?r=customers/depute', { ...params })
 // 城市接口
 export const city = params => fetch('/api/index.php?r=config/index', { ...params })
 // 新房筛选条件

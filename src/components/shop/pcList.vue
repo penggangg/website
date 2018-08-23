@@ -47,8 +47,8 @@
         <dl>
           <dt>配套设施</dt>
           <dd>
-            <div v-for="(item, index) in condition.facilities" :key="index" style="display:inline-flex;margin-right:10px;align-items:center;">
-              <input type="checkbox"  :value="item.value" v-model="facilitiesarr" style="margin:0;">
+            <div v-for="(item, index) in condition.facilities" :key="index" style="display:inline-flex;margin-right:24px;align-items:center;">
+              <input type="checkbox"  :value="item.value" v-model="facilitiesarr" style="margin:8px;">
               {{item.key}}
             </div>
           </dd>
