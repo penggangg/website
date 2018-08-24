@@ -4,7 +4,7 @@
       <div class="alertcontact-conten">
           <div>
               <p>
-                  <input type="text" placeholder="请输入您的手机号,合屋会尽快与您联系" v-model="telphone">
+                  <input class="reomoveOuntline" type="text" placeholder="请输入您的手机号,合屋会尽快与您联系" v-model="telphone" >
               </p>
               <p @click="saveTelphone">我要咨询</p>
           </div>
@@ -114,6 +114,10 @@ export default {
                 height: .25rem;
             }
         }
+    }
+    .reomoveOuntline {
+        outline: none;
+        -webkit-appearance:none;
     }
 }
 </style>

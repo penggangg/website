@@ -1,5 +1,5 @@
 <template>
-  <div class="apphuosedetail" :style="{overflow:shownavigationpops ? 'hidden' : 'auto'}">
+  <div class="apphuosedetail" :style="{overflow:shownavigationpops ? 'hidden' : ''}">
      <div class="apphuosedetail-header">
         <div class="apphuosedetail-header-nav">
             <div class="newHouselist-header-left">
@@ -20,7 +20,7 @@
                 <div class="swiper-pagination" slot="pagination" ></div>
             </swiper>
         </div>
-          <div v-if="swiperPicList.length==1" style="height:2.04rem">
+        <div v-if="swiperPicList.length==1" style="height:2.04rem">
              <img :src="swiperPicList[0].imgurl" alt="" style="width:100%;height:100%;">
         </div>
      </div>
@@ -100,9 +100,6 @@ export default {
     height: 100%;
     &.hidden {
         overflow: hidden;
-    }
-    &.auto {
-        overflow: auto;
     }
     .apphuosedetail-header {
         position: relative;

@@ -1,5 +1,5 @@
 <template>
-  <div class="apphuosedetail" :style="{overflow:shownavigationpops ? 'hidden' : 'auto'}">
+  <div class="apphuosedetail" :style="{overflow:shownavigationpops ? 'hidden' : ''}">
      <div class="apphuosedetail-header">
         <div class="apphuosedetail-header-nav">
             <div class="newHouselist-header-left">

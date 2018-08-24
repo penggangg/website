@@ -42,8 +42,8 @@ export default {
     return {
       swiperOption: {
         observeParents: true,
-        slidesPerView: 1.5,
-        spaceBetween: 10,
+        slidesPerView: 1.12,
+        spaceBetween: 20,
         centeredSlides: false
       }
     }
@@ -64,11 +64,11 @@ export default {
     },
     goRouterId (item) {
       if (this.movetitle === '更多新房') {
-        this.$router.push({name: 'newHouseList', query: { id: item.id, code: this.code }})
+        this.$router.push({name: 'newHouseDetail', query: { code: this.code }, params: {id: item.id}})
       } else if (this.movetitle === '更多商铺') {
-        this.$router.push({name: 'shopList', query: { id: item.id, code: this.code }})
+        this.$router.push({name: 'shopDetail', query: { code: this.code }, params: {id: item.id}})
       } else if (this.movetitle === '更多写字楼') {
-        this.$router.push({name: 'officeBuildList', query: { id: item.id, code: this.code }})
+        this.$router.push({name: 'officeBuildDetail', query: { code: this.code }, params: {id: item.id}})
       }
     }
   },
@@ -84,6 +84,7 @@ export default {
 <style lang="scss" scoped>
 .recommended-list {
     margin-bottom: .1rem;
+    height: 3.07rem;
     background: #fff;
     font-size: .12rem;
     .recommended-list-nav {
@@ -99,7 +100,8 @@ export default {
         }
         .more-huose {
             span {
-                color: #888;
+                color: #888 !important;
+                font-size: .12rem;
                 margin-right: .05rem;
             }
             img {
@@ -109,7 +111,7 @@ export default {
         }
     }
     .swiper-conten {
-
+        padding-left: .15rem;
         padding-top: .15rem;
         .img-conten {
             img {
@@ -123,11 +125,11 @@ export default {
             height: .45rem;
             line-height: .45rem;
             span:nth-of-type(1) {
-                font-size: .15rem;
+                font-size: .16rem;
                 color: #333;
             }
             span:nth-of-type(2) {
-                font-size: .15rem;
+                font-size: .16rem;
                 color: #FA5741;
             }
         }

@@ -3,7 +3,8 @@
     <div class="apphuoseList-header">
       <span>为你找到</span>
       <span>{{listResult.length}}个</span>
-      <span>{{this.code === '2'? '北京': '上海'}}新楼盘</span>
+      <span v-if="pagetype=='newhuose'">{{this.code === '2'? '北京': '上海'}}</span>
+      <span>{{mession}}</span>
     </div>
     <!-- 新房 -->
       <div class="apphuoseList-items newhouselist" v-if="pagetype=='newhuose'" style="height: calc(100% - .34rem)">
@@ -143,6 +144,11 @@ export default {
           noMore: '没有更多数据了'
         }
       } : false
+    },
+    mession () {
+      if (this.pagetype === 'newhuose') return '新楼盘'
+      if (this.pagetype === 'shop') return '商铺'
+      if (this.pagetype === 'office') return '写子楼'
     }
   },
   mounted: function () {

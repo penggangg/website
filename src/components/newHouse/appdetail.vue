@@ -1,5 +1,5 @@
 <template>
-  <div class="apphuosedetail" :style="{overflow:shownavigationpops ? 'hidden' : 'auto'}">
+  <div class="apphuosedetail" :style="{overflow:shownavigationpops ? 'hidden' : ''}">
      <div class="apphuosedetail-header">
         <div class="apphuosedetail-header-nav">
             <div class="newHouselist-header-left">
@@ -131,7 +131,7 @@
        <div>
          <p>楼盘相册</p>
          <p>
-           <span @click="pictureWindow=true">查看全部</span>
+           <span @click="pictureWindow=true" style="font-size: .12rem">查看全部</span>
            <img src="../../assets/appimages/icon-next.svg" >
          </p>
        </div>
@@ -155,27 +155,27 @@
      <div class="doormodel">
        <p class="doormodel-nav">户型信息</p>
        <div class="doormodel-tab">
-         <p  @click="doormodelType=0">
+         <p  @click="doormodelType=0" :style="{color: doormodelType===0? '#5D9CF9': ''}">
            全部户型 ({{houseDetails.layout && houseDetails.layout.length}})
            <span class="select-bottom" v-show="doormodelType == 0"></span>
          </p>
-         <p v-if="houseTypes.oneType&&houseTypes.oneType.length>0" @click="doormodelType=1">
+         <p v-if="houseTypes.oneType&&houseTypes.oneType.length>0" @click="doormodelType=1" :style="{color: doormodelType===1? '#5D9CF9': ''}">
            1居 ({{houseTypes.oneType && houseTypes.oneType.length}})
            <span class="select-bottom" v-show="doormodelType == 1"></span>
          </p>
-         <p v-if="houseTypes.twoType&&houseTypes.twoType.length>0" @click="doormodelType=2">
+         <p v-if="houseTypes.twoType&&houseTypes.twoType.length>0" @click="doormodelType=2" :style="{color: doormodelType===2? '#5D9CF9': ''}">
            2居 ({{houseTypes.twoType && houseTypes.twoType.length}})
            <span class="select-bottom" v-show="doormodelType == 2"></span>
          </p>
-         <p v-if="houseTypes.threeType&&houseTypes.threeType.length>0" @click="doormodelType=3">
+         <p v-if="houseTypes.threeType&&houseTypes.threeType.length>0" @click="doormodelType=3" :style="{color: doormodelType===3? '#5D9CF9': ''}">
             3居 ({{houseTypes.threeType && houseTypes.threeType.length}})
            <span class="select-bottom" v-show="doormodelType == 3"></span>
          </p>
-         <p v-if="houseTypes.fourType&&houseTypes.fourType.length>0" @click="doormodelType=4">
+         <p v-if="houseTypes.fourType&&houseTypes.fourType.length>0" @click="doormodelType=4" :style="{color: doormodelType===4? '#5D9CF9': ''}">
             4居 ({{houseTypes.fourType && houseTypes.fourType.length}})
            <span class="select-bottom" v-show="doormodelType == 4"></span>
          </p>
-         <p v-if="houseTypes.fiveType&&houseTypes.fiveType.length>0" @click="doormodelType=5">
+         <p v-if="houseTypes.fiveType&&houseTypes.fiveType.length>0" @click="doormodelType=5" :style="{color: doormodelType===5? '#5D9CF9': ''}">
             5居 ({{houseTypes.fiveType && houseTypes.fiveType.length}})
            <span class="select-bottom" v-show="doormodelType == 5"></span>
          </p>
@@ -185,12 +185,12 @@
             <swiper-slide v-for="(item,index) in doormodellists" :key="index">
                 <div class="swiper-contain-div">
                     <div class="img-conten">
-                        <img :src="item.pic" style="width: 100%;height:1.6rem">
+                        <img :src="item.pic" style="width: 100%;height:100%">
                     </div>
                     <div>
                       <p>{{item.title}}</p>
                       <p>{{item.layout_area}}㎡</p>
-                      <p>{{item.sale_price}}万</p>
+                      <p class="fontsizeoverflow"><span style="color: #333;margin-right:2px">户型均价:</span>{{item.sale_price}}万</p>
                     </div>
                 </div>
             </swiper-slide>
@@ -363,6 +363,7 @@ export default {
         padding-bottom: .15rem;
         .basic-information-mess-items {
           display: flex;
+          margin-bottom: 5px;
           p {
             flex: 1;
             display: flex;
@@ -397,7 +398,10 @@ export default {
     }
     .huoseImg-lunbo {
       padding: .15rem 0;
+      padding-left: .15rem;
       .img-conten {
+        width:1.6rem;
+        height:1.11rem;
         img {
           width: 100%;
           height: 100%;
@@ -432,6 +436,10 @@ export default {
         height: .4rem;
         line-height: .4rem;
         font-weight: bold;
+      }
+      .img-conten {
+        width: 1.12rem;
+        height: 1.34rem;
       }
       .doormodel-tab {
         padding-left: .15rem;
@@ -474,6 +482,8 @@ export default {
   }
   .onsale {
       margin-right:2px;
+      font-size: .12rem;
+      padding: 0 2px;
     }
     .onsale:last-child {
       margin-right:0 !important
