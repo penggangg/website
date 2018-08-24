@@ -107,7 +107,6 @@ export default {
   height: 100%;
 }
 #pcList {
-  height: 100%;
   &.row {
     margin-right: -0;
     margin-left: 0;

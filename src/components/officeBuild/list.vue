@@ -96,7 +96,6 @@ export default {
 
 <style lang="scss">
 #pcList {
-  height: 100%;
   &.row {
     margin-right: -0;
     margin-left: 0;
