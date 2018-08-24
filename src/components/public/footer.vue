@@ -16,8 +16,54 @@
         Copyright2012 l 上海屋合网络科技有限公司备案号 l 沪ICP21088888
       </div>
     </div>
+    <div class="maodian" v-show="backTopShow">
+      <div class="ask" @click="askShow = true">
+        <img src="../../assets/images/icon-consult.svg" alt="" srcset="">
+      </div>
+      <div class="top" @click="backTop()">
+        <img src="../../assets/images/icon-top.svg" alt="" srcset="">
+      </div>
+    </div>
+    <ask-mask v-model="askShow"></ask-mask>
   </footer>
 </template>
+<script>
+import askMask from '@/components/public/pcPublic/askMask'
+export default {
+  data () {
+    return {
+      backTopShow: false,
+      askShow: false
+    }
+  },
+  mounted () {
+    window.addEventListener('scroll', this.handleScroll)
+  },
+  components: {
+    askMask
+  },
+  methods: {
+    backTop () {
+      let back = setInterval(() => {
+        if (document.body.scrollTop || document.documentElement.scrollTop) {
+          document.body.scrollTop -= 100
+          document.documentElement.scrollTop -= 100
+        } else {
+          clearInterval(back)
+        }
+      })
+    },
+    handleScroll () {
+      if (document.documentElement.scrollTop + document.body.scrollTop > document.body.scrollHeight - 700) {
+        this.backTopShow = true
+      } else {
+        this.backTopShow = false
+      }
+    }
+  }
+}
+</script>
+
 <style lang="scss" scoped>
 footer {
   position: absolute;
@@ -55,6 +101,19 @@ footer {
       text-align: center;
       color: #888C8E;
       font-size: 12px;
+    }
+  }
+  .maodian {
+    position: fixed;
+    right: calc((100% - 1180px)/ 2);
+    bottom: 100px;
+    cursor: pointer;
+    .ask {
+      margin-bottom: 20px;
+      width: 100px;
+      height: 100px;
+      background: #5D9CF9;
+      border-radius: 100%;
     }
   }
 }

@@ -8,7 +8,7 @@
 
     <li :class="['paging-item', 'paging-item--more']" v-if="showPrevMore">...</li>
 
-    <li :class="['paging-item', {'paging-item--current' : index === pager}]" v-for="(pager,index) in pagers" :key="index" @click="go(pager)">{{ pager }}</li>
+    <li :class="['paging-item', {'paging-item--current' : index === pager}]" v-for="(pager,key) in pagers" :key="key" @click="go(pager)">{{ pager }}</li>
 
     <li :class="['paging-item', 'paging-item--more']" v-if="showNextMore">...</li>
 
@@ -27,7 +27,7 @@
     font-size: 0;
     list-style: none;
     user-select: none;
-    text-align: center;
+    text-align: right;
     >.paging-item {
       display: inline;
       font-size: 12px;
@@ -128,7 +128,7 @@ export default {
       if (this.index !== page) {
         this.index = page
         // 父组件通过change方法来接受当前的页码
-        this.$emit('change', this.index)
+        this.$emit('changePageSize', this.index)
       }
     }
   },
@@ -163,7 +163,7 @@ export default {
       }
       if (offset.start < 1) offset.start = 1
       // eslint-disable-next-line
-      this.showPrevMore = offset.start > 1
+      this.showPrevMore = (offset.start > 1)
       // eslint-disable-next-line
       this.showNextMore = (offset.end < pageCount)
 

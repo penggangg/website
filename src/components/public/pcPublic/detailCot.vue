@@ -17,7 +17,7 @@
           <swiper-slide v-for="(slide, index) in details.pic" :key="index">
             <img :src="slide" alt="" srcset="">
           </swiper-slide>
-          <swiper-slide >
+          <swiper-slide>
           </swiper-slide>
           <swiper-slide>
           </swiper-slide>

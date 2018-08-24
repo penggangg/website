@@ -46,7 +46,7 @@
         </dl>
       </div>
     </div>
-    <list-result :dataList = listResult>
+    <list-result :dataList = listResult :count="count" :limit="limit" @changePageSize="changePageSize">
       <template  slot="item" slot-scope="item">
         <list-item :item = item>
           <template slot="house-price" slot-scope="price">
@@ -124,7 +124,9 @@ export default {
   },
   props: {
     listResult: Array,
-    condition: Object
+    condition: Object,
+    count: Number,
+    limit: Number
   },
   components: {
     searchForm,
@@ -144,6 +146,9 @@ export default {
       } else {
         this.$emit('change-condition', value)
       }
+    },
+    changePageSize (page) {
+      this.$emit('changePageSize', page)
     }
   },
   created () {

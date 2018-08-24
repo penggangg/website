@@ -151,6 +151,7 @@
       :lat="houseDetails.latitude">
     </map-list>
     <ask-mask v-model="askShow"></ask-mask>
+    <picDetails :picList="houseDetails.pic"></picDetails>
     <footers></footers>
   </div>
 </template>
@@ -341,6 +342,8 @@
 <script>
 import mapList from '@/components/public/map'
 import askMask from '@/components/public/pcPublic/askMask'
+import picDetails from '@/components/newHouse/picDetails'
+
 export default {
   data () {
     return {
@@ -394,7 +397,8 @@ export default {
   },
   components: {
     mapList,
-    askMask
+    askMask,
+    picDetails
   }
 }
 </script>
