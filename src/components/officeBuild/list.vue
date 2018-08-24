@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div id="pcList" class="row hidden-xs hidden-sm header-pc">
-      <pc-list @change-condition="changeCondition" :listResult="listResult" :condition="conditionObj"></pc-list>
+      <pc-list @change-condition="changeCondition"  :count="count"  :limit="condition.limit" @changePageSize="changePageSize"  :listResult="listResult" :condition="conditionObj"></pc-list>
     </div>
     <div id="appList" class="visible-sm-block visible-xs-block">
       <app-list @change-condition="changeCondition" :listResult="listResult" :condition="conditionObj" @onPullingUp="onPullingUp" :isPullDown="isPullDown"></app-list>
@@ -29,6 +29,7 @@ export default {
         limit: 10,
         query: ''
       },
+      count: 0,
       isPullDown: true
     }
   },
@@ -47,13 +48,16 @@ export default {
           min: '',
           max: '',
           offset: 1,
-          limit: 10,
+          limit: 2,
           query: ''
         }
         this.getCondition()
       }
       this.condition = Object.assign(this.condition, obj)
       this.getList()
+    },
+    changePageSize (page) {
+      this.condition.offset = page
     },
     async getCondition () {
       let { result } = await officeConditions({city_id: this.code, rent_type: this.condition.rent_id})
@@ -63,6 +67,7 @@ export default {
       this.condition.city_id = this.code
       let { result } = await officesList({...this.condition})
       this.listResult = result.data
+      this.count = result.count
     },
     onPullingUp () {
       ++this.condition.offset
@@ -91,7 +96,6 @@ export default {
 
 <style lang="scss">
 #pcList {
-  height: 100%;
   &.row {
     margin-right: -0;
     margin-left: 0;

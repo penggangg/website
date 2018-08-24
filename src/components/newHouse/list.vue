@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div id="pcList" class="row hidden-xs hidden-sm header-pc">
-      <pc-list :listResult=listResult :condition="conditionObj" @change-condition="changeCondition" ></pc-list>
+      <pc-list :listResult=listResult :count="count" :limit="condition.limit" @changePageSize="changePageSize" :condition="conditionObj" @change-condition="changeCondition" ></pc-list>
     </div>
     <div id="appList" class="visible-sm-block visible-xs-block">
       <app-list :condition="conditionObj" :listResult=listResult @fliterDatas="fliterDatas" @onPullingUp="onPullingUp" :isPullDown="isPullDown"></app-list>
@@ -26,9 +26,10 @@ export default {
         min: '',
         max: '',
         offset: 1,
-        limit: 10,
+        limit: 1,
         query: ''
       },
+      count: 0,
       isPullDown: true
     }
   },
@@ -47,11 +48,16 @@ export default {
       console.log(result)
       this.conditionObj = result
     },
+    changePageSize (page) {
+      this.condition.offset = page
+      this.getHouseList()
+    },
     // 分页得时候调取
     async getHouseList () {
       this.condition.city_id = this.code
       let { result } = await houseList({...this.condition})
       this.listResult = result.data
+      this.count = result.count
       if (this.listResult.length < 10) {
         this.isPullDown = false
       }

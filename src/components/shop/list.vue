@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div id="pcList" class="row hidden-xs hidden-sm header-pc">
-      <pc-list :listResult="listResult"  @change-condition="changeCondition" :condition="conditionObj"></pc-list>
+      <pc-list :listResult="listResult" :count="count"  :limit="condition.limit" @changePageSize="changePageSize"  @change-condition="changeCondition" :condition="conditionObj"></pc-list>
     </div>
     <div id="appList" class="visible-sm-block visible-xs-block">
       <app-list :listResult="listResult" :condition="conditionObj" @change-condition="changeCondition"  @onPullingUp="onPullingUp" :isPullDown="isPullDown"></app-list>
@@ -26,10 +26,11 @@ export default {
         min: '',
         max: '',
         offset: 1,
-        limit: 10,
+        limit: 2,
         query: '',
         facilities: []
       },
+      count: 0,
       isPullDown: true
     }
   },
@@ -58,6 +59,9 @@ export default {
       console.log(this.condition)
       this.getList()
     },
+    changePageSize (page) {
+      this.condition.offset = page
+    },
     async getCondition () {
       let { result } = await storeConditions({city_id: this.code})
       this.conditionObj = result
@@ -66,7 +70,7 @@ export default {
       this.condition.city_id = this.code
       let { result } = await storeList({...this.condition})
       this.listResult = result.data
-      debugger
+      this.count = result.count
       if (this.listResult.length < 10) {
         this.isPullDown = false
       } else {
@@ -103,7 +107,6 @@ export default {
   height: 100%;
 }
 #pcList {
-  height: 100%;
   &.row {
     margin-right: -0;
     margin-left: 0;

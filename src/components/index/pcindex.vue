@@ -97,6 +97,7 @@
         </div>
       </div>
     </div>
+    <footers></footers>
   </div>
 </template>
 <style lang="scss" scoped>

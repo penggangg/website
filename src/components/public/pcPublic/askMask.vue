@@ -16,7 +16,10 @@ export default {
       typeMap: {
         'officeBuildDetail': 3,
         'shopDetail': 2,
-        'newHouseDetail': 1
+        'newHouseDetail': 1,
+        'newHouseList': 1,
+        'shopList': 2,
+        'officeBuildList': 3
       }
     }
   },

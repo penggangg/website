@@ -1,13 +1,13 @@
 <template>
   <div class="content">
     <div class="total-num">
-      为你找到 <span>{{dataList.length}}个</span> 北京{{$route.meta.title}}
+      为你找到 <span>{{count}}个</span> 北京{{$route.meta.title}}
     </div>
     <div class="list" v-if="dataList.length">
       <slot name="item" v-for="item in dataList"  :item="item">{{item}}
       </slot>
     </div>
-    <mo-paging :page-index="currentPage" :total="count" :page-size="pageSize" @change="pageChange"></mo-paging>
+    <mo-paging :page-index="currentPage" @changePageSize="changePageSize" :total="count" :page-size="limit" @change="pageChange"></mo-paging>
     <div class="list" v-if="!dataList.length">
       <div class="noResult">没有找到您要的内容，您可换个条件试试</div>
     </div>
@@ -18,17 +18,20 @@ import MoPaging from './page'
 export default {
   data () {
     return {
-      currentPage: 1,
-      count: 10,
-      pageSize: 3
+      currentPage: 1
     }
   },
   props: {
-    dataList: Array
+    dataList: Array,
+    count: Number,
+    limit: Number
   },
   methods: {
     pageChange () {
 
+    },
+    changePageSize (page) {
+      this.$emit('changePageSize', page)
     }
   },
   components: {
