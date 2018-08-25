@@ -14,7 +14,7 @@
             </div>
         </div>
         <div class="right-icon">
-            <p>
+            <p style="font-size: .09rem">
                 <span class="onsale" :style="{color: item.color}" v-for="(item,index) in houseDetails.labels" :key="index">{{item.text}}</span>
             </p>
             <p>
@@ -130,7 +130,7 @@
      <div class="houses-img">
        <div>
          <p>楼盘相册</p>
-         <p>
+         <p v-if="houseDetails.pic&&houseDetails.pic.length>0">
            <span @click="pictureWindow=true" style="font-size: .12rem">查看全部</span>
            <img src="../../assets/appimages/icon-next.svg" >
          </p>

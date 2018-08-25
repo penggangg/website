@@ -33,10 +33,10 @@ export default {
   },
   methods: {
     switchcity (item, index) {
-      debugger
       this.showSwitchcity = false
       this.code = item.code
-      this.$router.push({name: 'Index', query: { code: this.code }})
+      console.log(this.code)
+      this.$router.push({path: '/', query: { code: this.code }})
     }
   },
   watch: {

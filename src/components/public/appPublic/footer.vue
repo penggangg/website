@@ -42,6 +42,7 @@ export default {
 @import '../../../assets/css/mixin';
 .footer-common {
     background: #222222;
+    height: .95rem;
     &>div:nth-of-type(1) {
         display: flex;
         flex-direction: column;

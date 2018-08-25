@@ -4,7 +4,7 @@
       <pc-list @change-condition="changeCondition"  :count="count"  :limit="condition.limit" @changePageSize="changePageSize"  :listResult="listResult" :condition="conditionObj"></pc-list>
     </div>
     <div id="appList" class="visible-sm-block visible-xs-block">
-      <app-list @change-condition="changeCondition" :listResult="listResult" :condition="conditionObj" @onPullingUp="onPullingUp" :isPullDown="isPullDown"></app-list>
+      <app-list @change-condition="changeCondition" :count="count" :children_query="children_query" :listResult="applistResult" :condition="conditionObj" @onPullingUp="onPullingUp" :isPullDown="isPullDown"></app-list>
     </div>
   </div>
 </template>
@@ -18,6 +18,7 @@ export default {
   data () {
     return {
       listResult: [],
+      applistResult: [],
       conditionObj: {},
       condition: {
         city_id: '',
@@ -30,7 +31,8 @@ export default {
         query: ''
       },
       count: 0,
-      isPullDown: true
+      isPullDown: true,
+      children_query: ''
     }
   },
   mounted: function () {
@@ -48,13 +50,13 @@ export default {
           min: '',
           max: '',
           offset: 1,
-          limit: 2,
+          limit: 10,
           query: ''
         }
         this.getCondition()
       }
       this.condition = Object.assign(this.condition, obj)
-      this.getList()
+      this.getList(1)
     },
     changePageSize (page) {
       this.condition.offset = page
@@ -63,21 +65,25 @@ export default {
       let { result } = await officeConditions({city_id: this.code, rent_type: this.condition.rent_id})
       this.conditionObj = result
     },
-    async getList () {
+    async getList (a) {
       this.condition.city_id = this.code
       let { result } = await officesList({...this.condition})
       this.listResult = result.data
       this.count = result.count
+      if (a === 1) {
+        this.applistResult = [...[], ...this.listResult]
+      } else {
+        this.applistResult = [...this.applistResult, ...this.listResult]
+      }
+      if (this.listResult.length < 10) {
+        this.isPullDown = false
+      } else {
+        this.isPullDown = true
+      }
     },
     onPullingUp () {
       ++this.condition.offset
-      if (this.condition.offset > 3) {
-        this.isPullDown = false
-        return
-      }
-      setTimeout(_ => {
-        this.listResult = [...this.listResult, ...this.listResult]
-      }, 1500)
+      this.getList()
     }
   },
   components: {
@@ -88,13 +94,21 @@ export default {
 
   },
   created () {
+    // 先判断是不是从首页通过查询跳转过来的
+    if (this.$route.params.query) {
+      this.condition.query = this.$route.params.query
+      this.children_query = this.$route.params.query
+    }
     this.getCondition()
     this.getList()
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+.container-fluid {
+  height: 100%;
+}
 #pcList {
   &.row {
     margin-right: -0;

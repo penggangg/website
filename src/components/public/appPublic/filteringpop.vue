@@ -67,6 +67,8 @@ export default {
   methods: {
     switchfiter (item) {
       this.$emit('input', item)
+      this.bottomPrice = ''
+      this.topPrice = ''
     },
     switchflitercheck (item) {
       this.checkidarr = this.value.value.split(',')
@@ -88,8 +90,8 @@ export default {
     surefilter () {
       if (this.types === '1' && (this.bottomPrice || this.topPrice)) {
         this.$emit('input', {key: `${this.bottomPrice}-${this.topPrice}万`, value: `${this.bottomPrice}0000-${this.topPrice}0000`})
-        this.bottomPrice = ''
-        this.topPrice = ''
+        // this.bottomPrice = ''
+        // this.topPrice = ''
       }
       this.checkidarr = []
       this.checktextarr = []

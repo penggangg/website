@@ -70,4 +70,7 @@ export default {
 </script>
 
 <style>
+.container-fluid {
+  height: 100%
+}
 </style>

@@ -4,7 +4,7 @@
       <pc-list :listResult=listResult :count="count" :limit="condition.limit" @changePageSize="changePageSize" :condition="conditionObj" @change-condition="changeCondition" ></pc-list>
     </div>
     <div id="appList" class="visible-sm-block visible-xs-block">
-      <app-list :condition="conditionObj" :listResult=listResult @fliterDatas="fliterDatas" @onPullingUp="onPullingUp" :isPullDown="isPullDown"></app-list>
+      <app-list :condition="conditionObj" :children_query="children_query" :count="count" :listResult="applistResult"  @fliterDatas="fliterDatas" @onPullingUp="onPullingUp" :isPullDown="isPullDown"></app-list>
     </div>
   </div>
 </template>
@@ -18,6 +18,7 @@ export default {
   data () {
     return {
       listResult: [],
+      applistResult: [],
       conditionObj: {},
       condition: {
         city_id: '',
@@ -26,11 +27,12 @@ export default {
         min: '',
         max: '',
         offset: 1,
-        limit: 1,
+        limit: 10,
         query: ''
       },
       count: 0,
-      isPullDown: true
+      isPullDown: true,
+      children_query: '' // 用来传到子组件里面显示的关键字
     }
   },
   mounted: function () {
@@ -58,8 +60,11 @@ export default {
       let { result } = await houseList({...this.condition})
       this.listResult = result.data
       this.count = result.count
+      this.applistResult = [...this.applistResult, ...this.listResult]
       if (this.listResult.length < 10) {
         this.isPullDown = false
+      } else {
+        this.isPullDown = true
       }
     },
     // 查询得时候调取
@@ -67,21 +72,17 @@ export default {
       this.condition.offset = 1
       this.condition = Object.assign(this.condition, obj)
       let { result } = await houseList(this.condition)
-      this.listResult = result
+      this.listResult = result.data
+      this.count = result.count
+      this.applistResult = [...[], ...this.listResult]
       if (this.listResult.length < 10) {
         this.isPullDown = false
+      } else {
+        this.isPullDown = true
       }
     },
     onPullingUp () {
       ++this.condition.offset
-      // this.getHouseList()
-      // if (this.condition.offset > 3) {
-      //   this.isPullDown = false
-      //   return
-      // }
-      // setTimeout(_ => {
-      //   this.listResult = [...this.listResult, ...this.listResult]
-      // }, 1500)
       this.getHouseList()
     }
   },
@@ -90,6 +91,11 @@ export default {
     pcList
   },
   created () {
+    // 先判断是不是从首页通过查询跳转过来的
+    if (this.$route.params.query) {
+      this.condition.query = this.$route.params.query
+      this.children_query = this.$route.params.query
+    }
     this.getCondition()
     this.getHouseList()
   }
@@ -98,6 +104,9 @@ export default {
 
 <style lang="scss">
 #appList {
+  height: 100%;
+}
+.container-fluid {
   height: 100%;
 }
 #pcList {

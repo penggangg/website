@@ -12,7 +12,7 @@
         :shownavigationpops="shownavigationpops">
         </navigationpops>
       </div>
-      <inputSearch :styleObjet=styleObjet></inputSearch>
+      <inputSearch :styleObjet=styleObjet  @fliterData="fliterRouter" :typeFrom="'index'"></inputSearch>
     </div>
 
     <div class="us-house">
@@ -92,6 +92,9 @@ export default {
     })
   },
   methods: {
+    fliterRouter (query, type) {
+      this.$emit('change-condition', {query: query, type: type})
+    }
   },
   components: {
     navigationpops,

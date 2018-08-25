@@ -67,7 +67,7 @@
          <div class="basic-information-mess-items" style="margin-top: .05rem;">
            <p>
              <span class="colorfont-size">售价</span>
-             <span style="font-size: .12rem"><b style="font-size: .22rem;color:#F74D3F">{{officesDetails.price}}</b><b style="color:#F74D3F">万元</b></span>
+             <span style="font-size: .12rem"><b style="font-size: .22rem;color:#F74D3F">{{officesDetails.price}}</b><b style="color:#F74D3F">{{houseType === 1 ? '万/月': '万'}}</b></span>
            </p>
          </div>
        </div>
@@ -104,7 +104,8 @@ import alertcontact from '@/components/public/appPublic/aletcontact'
 export default {
   name: 'officeBuildDetail',
   props: {
-    officesDetails: Object
+    officesDetails: Object,
+    houseType: Number
   },
   data () {
     return {

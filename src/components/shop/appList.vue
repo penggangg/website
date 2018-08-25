@@ -40,7 +40,7 @@
     </div>
 
     <div class="newHouse-detail-lit">
-      <apphuoseList :pagetype="'shop'" :listResult="listResult" @onPullingUp="onPullingUp" :isPullDown="isPullDown"></apphuoseList>
+      <apphuoseList :pagetype="'shop'" :listResult="listResult" :count="count" :activePclass="activePclass" @onPullingUp="onPullingUp" :isPullDown="isPullDown"></apphuoseList>
       <!-- <div class="huosefooter">
         <housefooter></housefooter>
       </div> -->
@@ -63,7 +63,9 @@ export default {
   props: {
     listResult: Array,
     condition: Object,
-    isPullDown: Boolean
+    isPullDown: Boolean,
+    children_query: String,
+    count: Number
   },
   data () {
     return {
@@ -98,6 +100,7 @@ export default {
   },
   mounted: function () {
     this.$nextTick(function () {
+      this.query = this.children_query
     })
   },
   methods: {

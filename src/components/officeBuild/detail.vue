@@ -4,7 +4,7 @@
       <pc-detail :mapShow="mapShow" :officesDetails="officesDetails"></pc-detail>
     </div>
     <div id="appDetail" class="visible-sm-block visible-xs-block">
-      <app-detail :officesDetails="officesDetails"></app-detail>
+      <app-detail :officesDetails="officesDetails" :houseType="houseType"></app-detail>
     </div>
   </div>
 </template>
@@ -19,7 +19,8 @@ export default {
     return {
       mapShow: false,
       officesDetails: {},
-      id: ''
+      id: '',
+      houseType: 2
     }
   },
   mounted: function () {
@@ -43,6 +44,7 @@ export default {
   },
   created () {
     this.id = this.$route.params.id
+    this.houseType = this.$route.query.houseType
     this.getDetails()
   }
 }

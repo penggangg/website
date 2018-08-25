@@ -14,7 +14,7 @@
     </div>
 
     <div class="newHouselist-search">
-      <inputSearch :styleObjet=styleObjet :searchinputbg="searchinputbg" v-model="query" @fliterData="fliterRouter"></inputSearch>
+      <inputSearch :styleObjet=styleObjet :searchinputbg="searchinputbg"  v-model="query" @fliterData="fliterRouter"></inputSearch>
     </div>
 
     <div class="newHouselist-list">
@@ -35,7 +35,7 @@
     </div>
 
     <div class="newHouse-detail-lit">
-      <apphuoseList :listResult="listResult" @onPullingUp="onPullingUp" :isPullDown="isPullDown"></apphuoseList>
+      <apphuoseList :listResult="listResult" :count="count" @onPullingUp="onPullingUp" :isPullDown="isPullDown"></apphuoseList>
       <!-- <div class="huosefooter">
         <housefooter></housefooter>
       </div> -->
@@ -87,14 +87,15 @@ export default {
       type: Object
     },
     listResult: Array,
-    isPullDown: Boolean
+    isPullDown: Boolean,
+    children_query: String,
+    count: Number
   },
   created () {
-    // 获取网址参数来判断是北京还是上海
-    // this.arrlist = this.conditionObj
   },
   mounted: function () {
     this.$nextTick(function () {
+      this.query = this.children_query
     })
   },
   methods: {
@@ -156,7 +157,6 @@ export default {
       this.builddorpdown = true
     },
     fliterRouter () {
-      debugger
       this.$units.scrollTop('.newHouse-detail-lit')
       let objTypes = {
         city_id: this.code,

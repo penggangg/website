@@ -98,9 +98,6 @@ export default {
 <style lang="scss" scoped>
 .apphuosedetail {
     height: 100%;
-    &.hidden {
-        overflow: hidden;
-    }
     .apphuosedetail-header {
         position: relative;
         width: 100%;

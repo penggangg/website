@@ -34,6 +34,7 @@ export default {
       type: String,
       default: require('../../../assets/appimages/icon-search.svg')
     },
+    typeFrom: String,
     value: String
   },
   data () {
@@ -51,6 +52,8 @@ export default {
       ]
     }
   },
+  created () {
+  },
   mounted: function () {
     this.$nextTick(() => {
     })
@@ -61,7 +64,11 @@ export default {
       this.searchobj = this.arrlist[index]
     },
     fliterData () {
-      this.$emit('fliterData')
+      if (this.typeFrom === 'index') { // 首页
+        this.$emit('fliterData', this.query, this.searchobj.id)
+      } else {
+        this.$emit('fliterData')
+      }
     }
   },
   watch: {

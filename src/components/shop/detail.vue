@@ -4,7 +4,7 @@
       <pc-detail :storeDetails="storeDetails" :mapShow="mapShow"></pc-detail>
     </div>
     <div id="appDetail" class="visible-sm-block visible-xs-block">
-      <app-detail :storeDetails="storeDetails"></app-detail>
+      <app-detail :storeDetails="storeDetails" :houseType="houseType"></app-detail>
     </div>
   </div>
 </template>
@@ -19,7 +19,8 @@ export default {
     return {
       storeDetails: {},
       mapShow: false,
-      id: ''
+      id: '',
+      houseType: 2 // 用来区分是出售还是出租
     }
   },
   mounted: function () {
@@ -35,6 +36,7 @@ export default {
   },
   async created () {
     this.id = this.$route.params.id
+    this.houseType = this.$route.query.houseType
     let { result } = await storeDetails({
       city_id: this.code,
       id: this.id

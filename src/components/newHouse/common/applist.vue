@@ -2,7 +2,7 @@
   <div class="apphuoseList">
     <div class="apphuoseList-header">
       <span>为你找到</span>
-      <span>{{listResult.length}}个</span>
+      <span>{{count}}个</span>
       <span v-if="pagetype=='newhuose'">{{this.code === '2'? '北京': '上海'}}</span>
       <span>{{mession}}</span>
     </div>
@@ -13,14 +13,14 @@
         :data='listResult'
         :options='scrollOptions'
         @pulling-up='onPullingUp'
-        ref="Scroll" v-show="listResult.length>0">
+        ref="Scroll">
         <div class='apphuoseList-items-container' v-for="(item, index) in listResult" :key="index" @click="gohuosedetail(item)" >
           <div class="apphuoseList-items-left">
             <img :src="item.pic" alt="" srcset="">
           </div>
           <div class="apphuoseList-items-right">
             <p class="fontsizeoverflow">{{item.title}}</p>
-            <p>
+            <p style="align-items: center;flex-wrap: nowrap;font-size:.09rem;color: #888">
               <span>{{item.district}}</span> | <span class="fontsizeoverflow" style="max-width:1.6rem">{{item.address}}</span>
             </p>
             <p class="fontsizeoverflow">
@@ -35,9 +35,12 @@
               v-if="index<3">{{its.text}}</span>
             </p>
             <p>
-              {{item.min_price}}-{{item.max_area}}元/㎡
+              {{item.min_price}}-{{item.max_area}}万/㎡
             </p>
           </div>
+        </div>
+        <div style="height:.6rem;line-height:.6rem;text-align: center;font-size:.18rem;" v-if="listResult.length===0">
+          暂时没有找到对应的楼盘
         </div>
          </vue-better-scroll>
       </div>
@@ -48,14 +51,14 @@
         :data='listResult'
         :options='scrollOptions'
         @pulling-up='onPullingUp'
-        ref="Scroll" v-show="listResult.length>0">
+        ref="Scroll">
       <div class='apphuoseList-items-container' v-for="(item, index) in listResult" :key="index" @click="gohuosedetail(item)" >
         <div class="apphuoseList-items-left">
           <img :src="item.pic" alt="" srcset="">
         </div>
         <div class="apphuoseList-items-right">
           <p class="fontsizeoverflow">{{item.title}}</p>
-          <p>
+          <p style="align-items: center;flex-wrap: nowrap;font-size:.09rem;color: #888">
             <span>{{item.district}}</span> | <span>{{item.address}}</span>
           </p>
           <p class="fontsizeoverflow">
@@ -68,9 +71,12 @@
             <span class="normal" v-for="(its,index) in item.facilities" :key="index">{{its}}</span>
           </p>
           <p>
-           {{item.price}}万元
+           {{item.price}} {{activePclass === 1? '万/月': '万'}}
           </p>
         </div>
+      </div>
+       <div style="height:.6rem;line-height:.6rem;text-align: center;font-size:.18rem;" v-if="listResult.length===0">
+          暂时没有找到对应的商铺
       </div>
       </vue-better-scroll>
     </div>
@@ -81,14 +87,14 @@
         :data='listResult'
         :options='scrollOptions'
         @pulling-up='onPullingUp'
-        ref="Scroll" v-show="listResult.length>0">
+        ref="Scroll">
       <div class='apphuoseList-items-container' v-for="(item, index) in listResult" :key="index" @click="gohuosedetail(item)" >
         <div class="apphuoseList-items-left">
           <img :src="item.pic" alt="" srcset="">
         </div>
         <div class="apphuoseList-items-right">
           <p class="fontsizeoverflow">{{item.title}}</p>
-          <p class="fontsizeoverflow" style="flex-wrap: nowrap;">
+          <p class="fontsizeoverflow" style="flex-wrap: nowrap;align-items: center;font-size:.09rem;color: #888">
             <span>{{item.district}}</span> | <span>{{item.address}}</span>
           </p>
           <p class="fontsizeoverflow" style="flex-wrap: nowrap;">
@@ -98,9 +104,12 @@
             <span>{{item.apply_area}}㎡</span>
           </p>
           <p style="color: #FB6550;font-size: .12rem;">
-          {{item.price}}万元
+          {{item.price}} {{activePclass === 1? '万/月': '万'}}
           </p>
         </div>
+      </div>
+      <div style="height:.6rem;line-height:.6rem;text-align: center;font-size:.18rem;" v-if="listResult.length===0">
+          暂时没有找到对应的写字楼
       </div>
       </vue-better-scroll>
     </div>
@@ -118,7 +127,9 @@ export default {
       default: 'newhuose'
     },
     listResult: Array,
-    isPullDown: Boolean // 是不是继续可以上拉加载
+    isPullDown: Boolean, // 是不是继续可以上拉加载
+    count: Number,
+    activePclass: Number // 判断是出售还是出租 1是出租
   },
   data () {
     return {
@@ -153,6 +164,7 @@ export default {
   },
   mounted: function () {
     this.$nextTick(function () {
+      console.log(this.count)
     })
   },
   methods: {
@@ -161,9 +173,9 @@ export default {
       if (this.pagetype === 'newhuose') {
         this.$router.push({path: '/newHouseDetail/' + id, query: { code: this.code }})
       } else if (this.pagetype === 'shop') {
-        this.$router.push({path: '/shopDetail/' + id, query: { code: this.code }})
+        this.$router.push({path: '/shopDetail/' + id, query: { code: this.code, houseType: this.activePclass }})
       } else if (this.pagetype === 'office') {
-        this.$router.push({path: '/officeBuildDetail/' + id, query: { code: this.code }})
+        this.$router.push({path: '/officeBuildDetail/' + id, query: { code: this.code, houseType: this.activePclass }})
       }
     },
     /**
@@ -282,6 +294,7 @@ export default {
   }
   .onsale,.normal {
     margin-right:2px;
+    font-size: .09rem;
   }
   .onsale:last-child, .normal:last-child {
     margin-right:0 !important

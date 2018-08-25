@@ -12,6 +12,7 @@
         :houseRecs= houseRecs
         :storeRecs= storeRecs
         :officesRecs= officesRecs
+        @change-condition="changeCondition"
       ></Appindex>
     </div>
   </div>
@@ -36,19 +37,31 @@ export default {
     })
   },
   methods: {
+    changeCondition (query) {
+      debugger
+      if (query.type === '0') { // 新房
+        this.$router.push({name: 'newHouseList', query: { code: this.code }, params: {query: query.query}})
+      } else if (query.type === '1') { // 商铺
+        this.$router.push({name: 'shopList', query: { code: this.code }, params: {query: query.query}})
+      } else if (query.type === '2') { // 写字楼
+        this.$router.push({name: 'officeBuildList', query: { code: this.code }, params: {query: query.query}})
+      }
+    }
   },
   components: {
     Appindex,
     Pcindex
   },
+  beforeRouteUpdate (to, from, next) {
+    Promise.all([houseRec({ city_id: this.code }), storeRec({ city_id: this.code }), officesRec({ city_id: this.code })]).then(res => {
+      console.log(res)
+      this.houseRecs = res[0].result
+      this.storeRecs = res[1].result
+      this.officesRecs = res[2].result
+    })
+    next()
+  },
   async created () {
-    // let houseRecs = houseRec({ city_id: this.code })
-    // let storeRecs = storeRec({ city_id: this.code })
-    // let officesRecs = officesRec({ city_id: this.code })
-    // console.log(houseRecs)
-    // this.houseRecs = houseRecs.result
-    // this.storeRecs = storeRecs.result
-    // this.officesRecs = officesRecs.result
     Promise.all([houseRec({ city_id: this.code }), storeRec({ city_id: this.code }), officesRec({ city_id: this.code })]).then(res => {
       console.log(res)
       this.houseRecs = res[0].result

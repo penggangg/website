@@ -23,6 +23,9 @@
                 </p>
             </div>
         </div>
+        <div style="height:.6rem;line-height:.6rem;text-align: center;font-size:.18rem;" v-if="article_list.length === 0">
+          暂时没有文章
+        </div>
         <!-- </vue-better-scroll> -->
       </div>
   </div>
@@ -84,6 +87,7 @@ export default {
 
 <style lang="scss" scoped>
 .mark-list {
+    min-height: calc(100% - 2.99rem);
     .wrapper {
         height: 100%;
         & .trt-scroll-content {
