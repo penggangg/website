@@ -18,29 +18,30 @@
         <div class="advantage">
           - 我们的优势 -
         </div>
-        <div class="ltem-cot">
+        <div class="item-cot">
           <div class="item">
             <img src="../../assets/images/chengxin.png" alt="" srcset="">
-            <span>诚信</span>
+            <span class="title">诚信</span>
             <span>精品商铺写字楼全覆盖</span>
           </div>
           <div class="item">
-            <img src="../../assets/images/chengxin.png" alt="" srcset="">
-            <span>专业</span>
+            <img src="../../assets/images/zhuanye.png" alt="" srcset="">
+            <span class="title">专业</span>
             <span>精品商铺写字楼全覆盖</span>
           </div>
           <div class="item">
-            <img src="../../assets/images/chengxin.png" alt="" srcset="">
-            <span>安全</span>
+            <img src="../../assets/images/anquan.png" alt="" srcset="">
+            <span class="title">安全</span>
             <span>精品商铺写字楼全覆盖</span>
           </div>
           <div class="item">
-            <img src="../../assets/images/chengxin.png" alt="" srcset="">
-            <span>丰富</span>
+            <img src="../../assets/images/fengfu.png" alt="" srcset="">
+            <span class="title">丰富</span>
             <span>精品商铺写字楼全覆盖</span>
           </div>
         </div>
       </div>
+      <footers></footers>
     </div>
 </template>
 <style lang="scss" scoped>
@@ -81,13 +82,39 @@
 }
 .advantage-cot {
   margin: 0 auto;
+  padding: 100px 0 150px 0;
   width: 1200px;
   .advantage {
-    margin-bottom: 30px;
+    margin-bottom: 100px;
     font-size: 48px;
     color: #333;
     font-weight: bold;
     text-align: center;
+  }
+  .item-cot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .item {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      span {
+        color: #888;
+        font-size: 14px;
+        &.title {
+          font-size: 20px;
+          color: #333;
+          margin-top: 50px;
+          margin-bottom: 8px;
+        }
+      }
+      img {
+        width: 200px;
+        height: 200px;
+      }
+    }
   }
 }
 </style>

@@ -5,6 +5,7 @@
         :houseRecs= houseRecs
         :storeRecs= storeRecs
         :officesRecs= officesRecs
+        @change-condition="changeCondition"
       ></Pcindex>
     </div>
     <div id="appIndex" class="visible-sm-block visible-xs-block">
@@ -38,7 +39,6 @@ export default {
   },
   methods: {
     changeCondition (query) {
-      debugger
       if (query.type === '0') { // 新房
         this.$router.push({name: 'newHouseList', query: { code: this.code }, params: {query: query.query}})
       } else if (query.type === '1') { // 商铺

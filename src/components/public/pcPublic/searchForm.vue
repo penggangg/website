@@ -44,6 +44,9 @@ export default {
     changeCondition () {
       this.$emit('changeCondition', {query: this.query})
     }
+  },
+  created () {
+    this.query = this.$route.params.query
   }
 }
 </script>

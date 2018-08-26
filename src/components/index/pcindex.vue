@@ -359,24 +359,27 @@ export default {
       }
     },
     search () {
-      let routeData = ''
+      // let routeData = ''
       if (!this.keyWords) {
         return false
       }
       switch (this.isActive) {
         case 1:
-          routeData = this.$router.resolve({ path: '/newHouse', query: { query: this.keyWords } })
+          this.$emit('change-condition', {query: this.keyWords, type: '0'})
+          // routeData = this.$router.resolve({ path: '/newHouse', query: { query: this.keyWords } })
           break
         case 2:
-          routeData = this.$router.resolve({ path: '/shop', query: { query: this.keyWords } })
+          this.$emit('change-condition', {query: this.keyWords, type: '1'})
+          // routeData = this.$router.resolve({ path: '/shop', query: { query: this.keyWords } })
           break
         case 3:
-          routeData = this.$router.resolve({ path: '/officeBuild', query: { query: this.keyWords } })
+          this.$emit('change-condition', {query: this.keyWords, type: '2'})
+          // routeData = this.$router.resolve({ path: '/officeBuild', query: { query: this.keyWords } })
           break
         default:
           break
       }
-      window.open(routeData.href, '_blank')
+      // window.open(routeData.href, '_blank')
     },
     gotoDetail (url, id) {
       // this.$router.push({ path: `/${url}/${id}` })
