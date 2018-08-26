@@ -50,8 +50,11 @@
       <template  slot="item" slot-scope="item">
         <list-item :item = item>
           <template slot="labels" slot-scope="price">
-            <div class="price labels">
+            <div class="price labels" v-if="rent_id==2">
               {{price.price}}万元
+            </div>
+            <div class="price labels" v-if="rent_id==1">
+              {{price.price}}万/月
             </div>
           </template>
         </list-item>

@@ -63,8 +63,11 @@
             <span class="building-area"><span>使用面积</span> <i>{{item.item.apply_area}}㎡</i></span>
           </template>
           <template slot="house-price" slot-scope="priceShop">
-            <div class="house-price">
+            <div class="house-price" v-if="rent_id==2">
               {{priceShop.priceShop}}万元
+            </div>
+            <div class="house-price" v-if="rent_id==1">
+              {{priceShop.priceShop}}万/月
             </div>
           </template>
         </list-item>
