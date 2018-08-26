@@ -67,6 +67,9 @@ export default {
     },
     async getList (a) {
       this.condition.city_id = this.code
+      if (a === 1) {
+        this.condition.offset = 1
+      }
       let { result } = await officesList({...this.condition})
       this.listResult = result.data
       this.count = result.count

@@ -69,6 +69,9 @@ export default {
       this.conditionObj = result
     },
     async getList (a) {
+      if (a === 1) {
+        this.condition.offset = 1
+      }
       this.condition.city_id = this.code
       let { result } = await storeList({...this.condition})
       this.listResult = result.data

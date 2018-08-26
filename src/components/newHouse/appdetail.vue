@@ -485,8 +485,8 @@ export default {
   }
   .onsale {
       margin-right:2px;
-      font-size: .12rem;
-      padding: 0 2px;
+      font-size: .1rem;
+      padding: 2px 4px;
     }
     .onsale:last-child {
       margin-right:0 !important
