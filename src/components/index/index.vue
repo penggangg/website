@@ -38,7 +38,6 @@ export default {
   },
   methods: {
     changeCondition (query) {
-      debugger
       if (query.type === '0') { // 新房
         this.$router.push({name: 'newHouseList', query: { code: this.code }, params: {query: query.query}})
       } else if (query.type === '1') { // 商铺

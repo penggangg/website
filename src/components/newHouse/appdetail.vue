@@ -155,7 +155,7 @@
      <div class="doormodel">
        <p class="doormodel-nav">户型信息</p>
        <div class="doormodel-tab">
-         <div>
+         <div style="width: 130%;">
          <p  @click="doormodelType=0" :style="{color: doormodelType===0? '#5D9CF9': ''}">
            全部户型 ({{houseDetails.layout && houseDetails.layout.length}})
            <span class="select-bottom" v-show="doormodelType == 0"></span>
@@ -190,9 +190,9 @@
                         <img :src="item.pic" style="width: 100%;height:100%">
                     </div>
                     <div>
-                      <p>{{item.title}}</p>
+                      <p style="margin-top: .04rem;">{{item.title}}</p>
                       <p>{{item.layout_area}}㎡</p>
-                      <p class="fontsizeoverflow"><span style="color: #333;margin-right:2px">户型均价:</span>{{item.sale_price}}万</p>
+                      <p class="fontsizeoverflow" style="width: 100%;"><span style="color: #333;margin-right:2px">户型均价:</span>{{item.sale_price}}万</p>
                     </div>
                 </div>
             </swiper-slide>
