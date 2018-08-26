@@ -1,8 +1,13 @@
 <template>
   <div>
+    <div class="bread-crumbs">
+      <router-link :to="{ path: '/', query: { code }}">合屋首页</router-link>>
+      <router-link :to="{ path: '/newHouse', query: { code }}">新房列表</router-link>>
+      <a href="">{{houseDetails.title}}</a>
+    </div>
     <div class="banner">
       <div class="tags-cot">
-        <div class="total-pic">
+        <div class="total-pic" @click="picDetailsShow=true">
           <img src="../../assets/images/icon-pic.svg" alt="" >
           <span>楼盘相册（{{houseDetails.pic && houseDetails.pic.length}}张）</span>
         </div>
@@ -95,8 +100,8 @@
           <img src="../../assets/images/icon-left-white.svg" alt="" srcset="">
         </div>
         <swiper :options="swiperOptionThumbs" class="gallery-thumbs" ref="swiperThumbs">
-          <swiper-slide v-for="(slide, index) in houseDetails.pic" :key="index">
-            <img :src="slide" alt="" srcset="">
+          <swiper-slide v-for="(slide, index) in houseDetails.pic" :key="index" >
+            <img :src="slide" alt="" srcset="" @click="picDetailsShow=true">
           </swiper-slide>
           <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
           <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
@@ -110,16 +115,16 @@
     <div class="item-content house-type">
       <h3>户型信息</h3>
       <div class="house-filter">
-        <span class="active">全部户型（{{houseDetails.layout && houseDetails.layout.length}}）</span>
-        <span v-if="houseTypes.oneType&&houseTypes.oneType.length">1居（{{houseTypes.oneType.length}}）</span>
-        <span v-if="houseTypes.twoType&&houseTypes.twoType.length">2居（{{houseTypes.twoType.length}}）</span>
-        <span v-if="houseTypes.threeType&&houseTypes.threeType.length">3居（{{houseTypes.threeType.length}}）</span>
-        <span v-if="houseTypes.fourType&&houseTypes.fourType.length">4居（{{houseTypes.fourType.length}}）</span>
-        <span v-if="houseTypes.fiveType&&houseTypes.fiveType.length">5居及以上（{{houseTypes.fiveType.length}}）</span>
+        <span @click="houseTypeChange()" :class="{active: !houseType}">全部户型（{{houseDetails.layout && houseDetails.layout.length}}）</span>
+        <span @click="houseTypeChange(1)" :class="{active: houseType===1}" v-if="houseTypes.oneType&&houseTypes.oneType.length">1居（{{houseTypes.oneType.length}}）</span>
+        <span @click="houseTypeChange(2)" :class="{active: houseType===2}" v-if="houseTypes.twoType&&houseTypes.twoType.length">2居（{{houseTypes.twoType.length}}）</span>
+        <span @click="houseTypeChange(3)" :class="{active: houseType===3}" v-if="houseTypes.threeType&&houseTypes.threeType.length">3居（{{houseTypes.threeType.length}}）</span>
+        <span @click="houseTypeChange(4)" :class="{active: houseType===4}" v-if="houseTypes.fourType&&houseTypes.fourType.length">4居（{{houseTypes.fourType.length}}）</span>
+        <span @click="houseTypeChange(5)" :class="{active: houseType===5}" v-if="houseTypes.fiveType&&houseTypes.fiveType.length">5居及以上（{{houseTypes.fiveType.length}}）</span>
       </div>
       <div class="type-list">
         <swiper :options="swiperOptionThumbsType" class="gallery-thumbs-type" ref="swiperThumbs">
-          <swiper-slide v-for="(slide, index) in houseDetails.layout" :key="index">
+          <swiper-slide v-for="(slide, index) in houseTypeList" :key="index">
             <img :src="slide.pic" alt="" srcset="">
             <ul class="type-detail">
               <li class="area">
@@ -151,11 +156,24 @@
       :lat="houseDetails.latitude">
     </map-list>
     <ask-mask v-model="askShow"></ask-mask>
-    <picDetails :picList="houseDetails.pic"></picDetails>
+    <picDetails :picList="houseDetails.pic" v-model="picDetailsShow"></picDetails>
     <footers></footers>
   </div>
 </template>
 <style lang="scss" scoped>
+.bread-crumbs {
+    margin: 0 auto;
+    padding: 30px 0;
+    width: 1200px;
+    a {
+      margin-right: 10px;
+      font-size: 12px;
+      color: #888C8E;
+      &:not(:first-child) {
+        margin-left: 10px;
+      }
+    }
+  }
 .banner {
   position: relative;
   height: 524px;
@@ -301,6 +319,9 @@
         width: 224px;
         height: 267px;
       }
+      .swiper-button-prev, .swiper-button-next {
+        top:35%;
+      }
       .type-detail {
         padding: 14px 10px;
         height: 84px;
@@ -379,7 +400,9 @@ export default {
           prevEl: '.swiper-button-prev'
         }
       },
-      askShow: false
+      askShow: false,
+      picDetailsShow: false,
+      houseType: ''
     }
   },
   props: {
@@ -391,9 +414,21 @@ export default {
     mapShow: Boolean
   },
   methods: {
-
+    houseTypeChange (type) {
+      this.houseType = type
+    }
   },
   created () {
+  },
+  computed: {
+    houseTypeList (newValue) {
+      if (!this.houseType) return this.houseDetails.layout
+      if (this.houseType === 1) return this.houseTypes.oneType
+      if (this.houseType === 2) return this.houseTypes.twoType
+      if (this.houseType === 3) return this.houseTypes.threeType
+      if (this.houseType === 4) return this.houseTypes.fourType
+      if (this.houseType === 5) return this.houseTypes.fiveType
+    }
   },
   components: {
     mapList,
