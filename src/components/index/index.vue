@@ -5,6 +5,7 @@
         :houseRecs= houseRecs
         :storeRecs= storeRecs
         :officesRecs= officesRecs
+        @change-condition="changeCondition"
       ></Pcindex>
     </div>
     <div id="appIndex" class="visible-sm-block visible-xs-block">
