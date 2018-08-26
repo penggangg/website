@@ -106,6 +106,12 @@ const router = new Router({
       meta: {activeClass: 'dynamic', titleName: '企业动态'}
     },
     {
+      path: '/dynamicDetail/:id',
+      name: 'dynamicDetail',
+      component: marketAnalysisDetail,
+      meta: {activeClass: 'dynamic', titleName: '企业动态详情'}
+    },
+    {
       path: '/company',
       name: 'company',
       component: company,

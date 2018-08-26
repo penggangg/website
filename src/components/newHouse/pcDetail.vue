@@ -173,7 +173,7 @@
         margin-left: 10px;
       }
     }
-  }
+}
 .banner {
   position: relative;
   height: 524px;

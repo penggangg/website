@@ -1,7 +1,7 @@
 <template>
   <div>
-      <div class="container-fluid"  :class="{ blackNone: $route.path === '/' || $route.path === '/marketAnalysis'|| $route.path === '/dynamic'}">
-        <div class="row hidden-xs hidden-sm header-pc" :class="{ headerHome: $route.path === '/' || $route.path === '/marketAnalysis'|| $route.path === '/dynamic'}">
+      <div class="container-fluid"  :class="{ blackNone: $route.path === '/' || $route.path === '/marketAnalysis'|| $route.path === '/dynamic'|| $route.path === '/business'}">
+        <div class="row hidden-xs hidden-sm header-pc" :class="{ headerHome: $route.path === '/' || $route.path === '/marketAnalysis'|| $route.path === '/dynamic'|| $route.path === '/business'}">
           <div class="col-md-2 text-right logo">LOGO</div>
           <div class="col-md-1 citySwicth">
             <img src="../../assets/images/icon-location.svg" alt="" srcset="">

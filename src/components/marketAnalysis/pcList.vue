@@ -5,9 +5,11 @@
       <div class="marketAnalysis-list">
         <h3>推荐</h3>
         <div class="item" v-for="(item,index) in article_list" :key="index">
-          <img :src="item.pic" alt="">
+          <router-link :to="{ path:`/marketAnalysisDetail/${item.id}`, query: { code }}" target="_blank"> <img :src="item.pic" alt=""></router-link>
           <div class="right-cot">
-            <span class="title">{{item.title}}</span>
+            <span class="title">
+              <router-link :to="{ path:`/marketAnalysisDetail/${item.id}`, query: { code }}" target="_blank">{{item.title}}</router-link>
+            </span>
             <span class="details">{{item.desc}}</span>
             <span class="author">{{item.author}}</span>
             <div class="tags">
