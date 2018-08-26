@@ -33,8 +33,12 @@
 export default {
   name: 'mapCircum',
   props: {
-    lng: Number,
-    lat: Number
+    lng: {
+      required: true
+    },
+    lat: {
+      required: true
+    }
   },
   data () {
     return {

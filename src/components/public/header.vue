@@ -2,7 +2,7 @@
   <div>
       <div class="container-fluid"  :class="{ blackNone: $route.path === '/' || $route.path === '/marketAnalysis'|| $route.path === '/dynamic'|| $route.path === '/business'}">
         <div class="row hidden-xs hidden-sm header-pc" :class="{ headerHome: $route.path === '/' || $route.path === '/marketAnalysis'|| $route.path === '/dynamic'|| $route.path === '/business'}">
-          <div class="col-md-2 text-right logo">LOGO</div>
+          <div class="col-md-2 text-right logo"><img src="../../assets/images/logo.png" alt="" srcset=""></div>
           <div class="col-md-1 citySwicth">
             <img src="../../assets/images/icon-location.svg" alt="" srcset="">
             <router-link  :to="{ path: '/', query: { code: 3 }}" :class="{ active: $route.query.code == 3 }" tag="span">上海</router-link>
@@ -108,11 +108,6 @@ export default {
     left: 50%;
     transform: translateX(-50%);
     background: none;
-  }
-  .logo {
-    font-size:48px;
-    font-weight:bold;
-    color:#fff;
   }
   // 城市切换
   .citySwicth{
