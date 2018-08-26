@@ -42,6 +42,7 @@ export default {
   },
   methods: {
     changeCondition (obj) {
+      this.condition.offset = 1
       this.condition = Object.assign(this.condition, obj)
       this.getHouseList()
     },

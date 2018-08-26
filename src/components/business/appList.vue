@@ -104,7 +104,7 @@ export default {
     height:100%;
     .businessList_header {
         height: 2.04rem;
-        background: url("/static/img/huosedetailbanner.26e089f.png");
+        background: url(../../assets/appimages/appbanner.png) no-repeat center;
         background-size: 100%;
         .apphuosedetail-header-nav{
             display: flex;
