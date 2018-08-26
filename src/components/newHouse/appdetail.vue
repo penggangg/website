@@ -155,6 +155,7 @@
      <div class="doormodel">
        <p class="doormodel-nav">户型信息</p>
        <div class="doormodel-tab">
+         <div>
          <p  @click="doormodelType=0" :style="{color: doormodelType===0? '#5D9CF9': ''}">
            全部户型 ({{houseDetails.layout && houseDetails.layout.length}})
            <span class="select-bottom" v-show="doormodelType == 0"></span>
@@ -179,6 +180,7 @@
             5居 ({{houseTypes.fiveType && houseTypes.fiveType.length}})
            <span class="select-bottom" v-show="doormodelType == 5"></span>
          </p>
+         </div>
        </div>
        <div class="doormodel-contain">
          <swiper :options="swiperOptionDoor" v-if="doormodellists&&doormodellists.length>0">
@@ -400,7 +402,7 @@ export default {
       padding: .15rem 0;
       padding-left: .15rem;
       .img-conten {
-        width:1.6rem;
+        width:100%;
         height:1.11rem;
         img {
           width: 100%;
@@ -442,6 +444,7 @@ export default {
         height: 1.34rem;
       }
       .doormodel-tab {
+        overflow-x: auto;
         padding-left: .15rem;
         height: .3rem;
         border-bottom: 1px solid #B7B7B7;

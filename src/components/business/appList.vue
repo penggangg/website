@@ -1,5 +1,5 @@
 <template>
-    <div class="businessList">
+    <div class="businessList" :style="{overflow:shownavigationpops ? 'hidden' : ''}">
         <div class="businessList_header">
             <div class="apphuosedetail-header-nav">
                 <div class="newHouselist-header-left">
@@ -24,6 +24,42 @@
                 20世纪70年代的日本，用12%的经济增长率创造了日本经济增长的光辉历史，同时也开启了日本地价暴涨的疯狂时代，据统计，在地价涨幅最大的1988年，全国平均上涨了21.7%，其中三大都市圈上涨了43.8%，东京圈的涨幅更高达65.3%价涨幅最大的1988年价涨
             </p>
         </div>
+
+        <div class="app_banner">
+            <img src="../../assets/appimages/pic-banner2.png" alt="" srcset="">
+            <span class="color_font">做被尊重的地产服务商</span>
+        </div>
+
+         <div class="product_img">
+             <p class="messconten_title" style="margin-bottom: .25rem">
+                <span>-</span>
+                <span>我们的产品</span>
+                <span>-</span>
+            </p>
+         </div>
+
+         <div class="produnct_img_conten">
+             <div>
+                 <img src="../../assets/appimages/integrity.png" alt="" srcset="">
+                 <p>诚信</p>
+                 <p>精品商铺写字楼全覆盖</p>
+             </div>
+             <div>
+                 <img src="../../assets/appimages/major.png" alt="" srcset="">
+                 <p>专业</p>
+                 <p>精品商铺写字楼全覆盖</p>
+             </div>
+             <div>
+                 <img src="../../assets/appimages/safety.png" alt="" srcset="">
+                 <p>安全</p>
+                 <p>精品商铺写字楼全覆盖</p>
+             </div>
+             <div>
+                 <img src="../../assets/appimages/rich.png" alt="" srcset="">
+                 <p>丰富</p>
+                 <p>精品商铺写字楼全覆盖</p>
+             </div>
+         </div>
 
         <huosefooter></huosefooter>
     </div>
@@ -97,7 +133,55 @@ export default {
         }
     }
     .messconten_conten {
+        margin-bottom: .25rem;
+        text-align: center;
         padding: 0 .15rem;
+        font-size: .12rem;
+        color: #888;
+    }
+    .app_banner {
+        height: .79rem;
+        position: relative;
+        .color_font {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            font-size: .14rem;
+            color: #fff;
+        }
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .produnct_img_conten {
+        padding: 0 .15rem;
+        display: flex;
+        justify-content: space-between;
+        &>div {
+            width: 25%;
+            margin-right: .2rem;
+            margin-bottom: .5rem;
+            img {
+                width: 100%;
+                border-radius: 50%;
+                margin-bottom: .15rem;
+            }
+            p:nth-of-type(1) {
+                font-size: .12rem;
+                text-align: center;
+                margin-bottom: .06rem;
+            }
+            p:nth-of-type(2) {
+                text-align: center;
+                color: #888;
+                font-size: .1rem;
+            }
+        }
+        &>div:last-child {
+            margin-right: 0;
+        }
     }
 }
 </style>

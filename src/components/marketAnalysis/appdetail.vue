@@ -1,5 +1,5 @@
 <template>
-    <div class="appmarketdetail">
+    <div class="appmarketdetail" :style="{overflow:shownavigationpops ? 'hidden' : ''}">
         <div class="appmarketdetail_header" :style="{backgroundImage: 'url(' + marketdetail.pic + ')', backgroundSize:'100%'}">
             <div class="apphuosedetail-header-nav">
                 <div class="newHouselist-header-left">

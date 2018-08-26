@@ -78,7 +78,11 @@ export default {
       this.$emit('onPullingUp')
     },
     godetail (item) {
-      this.$router.push({name: 'marketAnalysisDetail', params: { id: item.id }, query: {code: this.code, pithOne: this.pithOne}})
+      if (this.pithOne === '5') {
+        this.$router.push({name: 'marketAnalysisDetail', params: { id: item.id }, query: {code: this.code, pithOne: this.pithOne}})
+      } else if (this.pithOne === '7') {
+        this.$router.push({name: 'dynamicDetail', params: { id: item.id }, query: {code: this.code, pithOne: this.pithOne}})
+      }
     }
   },
   components: {
