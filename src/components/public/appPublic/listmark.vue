@@ -10,7 +10,7 @@
         :options='scrollOptions'
         @pulling-up='onPullingUp'
         ref="Scroll" v-show="article_list.length>0"> -->
-        <div class="list-items" v-for="(item,index) in article_list" :key="index">
+        <div class="list-items" v-for="(item,index) in article_list" :key="index" @click="godetail(item)">
             <div>
                 <img :src="item.pic" alt="" srcset="">
             </div>
@@ -37,6 +37,7 @@ export default {
   name: 'marklist',
   props: {
     article_list: Array,
+    pithOne: String, // 区分是市场分析还是公司介绍
     isPullDown: Boolean
   },
   data () {
@@ -75,6 +76,9 @@ export default {
         */
     onPullingUp () {
       this.$emit('onPullingUp')
+    },
+    godetail (item) {
+      this.$router.push({name: 'marketAnalysisDetail', params: { id: item.id }, query: {code: this.code, pithOne: this.pithOne}})
     }
   },
   components: {

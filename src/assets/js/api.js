@@ -35,4 +35,4 @@ export const articles = params => fetch('/api/index.php?r=articles/rec', { ...pa
 // 文章列表 cid 1 市场分析 2 企业动态
 export const articlesList = params => fetch('/api/index.php?r=articles/index', { ...params })
 // 文章详情
-export const articlesDetails = params => fetch('/api/index.php?r=articles/detail&id=3', { ...params })
+export const articlesDetails = params => fetch('/api/index.php?r=articles/detail', { ...params })

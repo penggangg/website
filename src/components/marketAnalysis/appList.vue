@@ -24,7 +24,7 @@
              <img :src="swiperPicList[0].imgurl" alt="" style="width:100%;height:100%;">
         </div>
      </div>
-    <listmark :article_list="article_list"></listmark>
+    <listmark :article_list="article_list" :pithOne= "pithOne"></listmark>
     <huosefooter></huosefooter>
 
   </div>
