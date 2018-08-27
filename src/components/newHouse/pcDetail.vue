@@ -5,7 +5,7 @@
       <router-link :to="{ path: '/newHouse', query: { code }}">新房列表</router-link>>
       <a href="">{{houseDetails.title}}</a>
     </div>
-    <div class="banner">
+    <div class="banner" :style="{backgroundImage:`url(${houseDetails.pic[0]})`}">
       <div class="tags-cot">
         <div class="total-pic" @click="picDetailsShow=true">
           <img src="../../assets/images/icon-pic.svg" alt="" >
@@ -177,7 +177,8 @@
 .banner {
   position: relative;
   height: 524px;
-  background: url('../../assets/images/pic-house.png') no-repeat;
+  // background: url('../../assets/images/pic-house.png') no-repeat;
+  background-repeat:no-repeat;
   background-size:cover;
   background-position: center center;
   .tags-cot {
