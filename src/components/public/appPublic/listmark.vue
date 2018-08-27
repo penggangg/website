@@ -3,13 +3,16 @@
       <p class="mark-list-nav">
           推荐
       </p>
-      <div style="padding:0 .15rem;">
-        <!-- <vue-better-scroll
+      <div style="height:calc(100% - .47rem)">
+         <div class="tuijian" style="padding: 0 .15rem;">
+            <span>为你推荐</span><span style="color: #4984FB;">14个</span><span>文章</span>
+        </div>
+        <vue-better-scroll
         class="wrapper"
         :data='article_list'
         :options='scrollOptions'
         @pulling-up='onPullingUp'
-        ref="Scroll" v-show="article_list.length>0"> -->
+        ref="Scroll" >
         <div class="list-items" v-for="(item,index) in article_list" :key="index" @click="godetail(item)">
             <div>
                 <img :src="item.pic" alt="" srcset="">
@@ -26,7 +29,7 @@
         <div style="height:.6rem;line-height:.6rem;text-align: center;font-size:.18rem;" v-if="article_list.length === 0">
           暂时没有文章
         </div>
-        <!-- </vue-better-scroll> -->
+        </vue-better-scroll>
       </div>
   </div>
 </template>
@@ -95,9 +98,10 @@ export default {
 
 <style lang="scss" scoped>
 .mark-list {
+    height: calc(100% - 2.04rem);
     min-height: calc(100% - 2.99rem);
     .wrapper {
-        height: 100%;
+        height: calc(100% - .34rem);
         & .trt-scroll-content {
         height: 100%
         }
@@ -176,6 +180,15 @@ export default {
     }
     .icoen_item:last-child {
         margin-right: 0
+    }
+    .tuijian {
+        height: .34rem;
+        line-height: .44rem;
+        font-size: .12rem;
+    }
+    & /deep/ .trt-scroll-list-wrapper {
+        padding: 0 .15rem;
+        min-height: calc(100vh - 4.34rem);
     }
 }
 </style>

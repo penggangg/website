@@ -4,7 +4,7 @@
       <pc-list :article_list="article_list" :swiperPicList="swiperPicList"></pc-list>
     </div>
     <div id="appList" class="visible-sm-block visible-xs-block">
-      <app-list :article_list="article_list" :swiperPicList="swiperPicList"></app-list>
+      <app-list :article_list="apparticle_list" :swiperPicList="swiperPicList" @onPullingUp="onPullingUp" :isPullDown="isPullDown"></app-list>
     </div>
   </div>
 </template>
@@ -18,7 +18,9 @@ export default {
   data () {
     return {
       article_list: [],
+      apparticle_list: [],
       swiperPicList: [],
+      isPullDown: true,
       last_id: '' // 轮播接口返回得最小id
     }
   },
@@ -46,8 +48,14 @@ export default {
       last_id: this.last_id
     })
     this.article_list = result.article_list
+    this.apparticle_list = result.article_list
   },
   methods: {
+    onPullingUp () {
+      setTimeout(_ => {
+        this.apparticle_list = [...this.apparticle_list, ...this.apparticle_list]
+      }, 1500)
+    }
   },
   components: {
     appList,
@@ -57,4 +65,7 @@ export default {
 </script>
 
 <style>
+.container-fluid {
+  height: 100%;
+}
 </style>

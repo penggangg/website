@@ -24,8 +24,8 @@
              <img :src="swiperPicList[0].imgurl" alt="" style="width:100%;height:100%;">
         </div>
      </div>
-    <listmark :article_list="article_list" :pithOne= "pithOne"></listmark>
-    <huosefooter></huosefooter>
+    <listmark :article_list="article_list" :pithOne= "pithOne" @onPullingUp="onPullingUp" :isPullDown="isPullDown"></listmark>
+    <!-- <huosefooter></huosefooter> -->
 
   </div>
 </template>
@@ -35,7 +35,7 @@ import citydropdown from '@/components/public/appPublic/citydropdown'
 import navigationpops from '@/components/public/appPublic/navigationPops'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import listmark from '@/components/public/appPublic/listmark'
-import huosefooter from '@/components/public/appPublic/footer'
+// import huosefooter from '@/components/public/appPublic/footer'
 export default {
   name: 'apphuosedetail',
   props: {
@@ -64,6 +64,9 @@ export default {
     })
   },
   methods: {
+    onPullingUp () {
+      this.$emit('onPullingUp')
+    }
   },
   computed: {
     rootHg () {
@@ -75,8 +78,8 @@ export default {
     navigationpops,
     swiper,
     swiperSlide,
-    listmark,
-    huosefooter
+    listmark
+    // huosefooter
   },
   created () {
   }
