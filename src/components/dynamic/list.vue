@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div id="pcList" class="row hidden-xs hidden-sm header-pc">
-      <pc-list :article_list="article_list"></pc-list>
+      <pc-list :article_list="article_list" :swiperPicList="swiperPicList"></pc-list>
     </div>
     <div id="appList" class="visible-sm-block visible-xs-block">
       <app-list :article_list="article_list" :swiperPicList="swiperPicList"></app-list>
@@ -26,7 +26,7 @@ export default {
   async created () {
     let swiperList = await articles({
       city_id: this.code,
-      cid: 1,
+      cid: 2,
       size: 3
     })
     this.swiperPicList = swiperList.result
@@ -41,7 +41,7 @@ export default {
     })
     let { result } = await articlesList({
       city_id: this.code,
-      cid: 1,
+      cid: 2,
       size: 10,
       last_id: this.last_id
     })

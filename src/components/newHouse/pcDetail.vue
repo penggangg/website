@@ -7,9 +7,9 @@
     </div>
     <div class="banner" :style="{backgroundImage:`url(${houseDetails.pic[0]})`}">
       <div class="tags-cot">
-        <div class="total-pic" @click="picDetailsShow=true">
+        <div class="total-pic" @click="picDetailsShow=true" v-if="houseDetails.pic.length>1">
           <img src="../../assets/images/icon-pic.svg" alt="" >
-          <span>楼盘相册（{{houseDetails.pic && houseDetails.pic.length}}张）</span>
+          <span>楼盘相册（{{houseDetails.pic && houseDetails.pic.length-1}}张）</span>
         </div>
         <div class="tag">
           <span v-for="(item,index) in houseDetails.labels" :key="index" :style="{color:item.color}">{{item.text}}</span>
@@ -93,14 +93,14 @@
         </div>
       </div>
     </div>
-    <div class="item-content  house-pic">
+    <div class="item-content  house-pic" v-if="houseDetails.pic.length>1">
       <h3>楼盘相册</h3>
       <div class="gallery-thumbs-cot">
         <div class="prev btn">
           <img src="../../assets/images/icon-left-white.svg" alt="" srcset="">
         </div>
         <swiper :options="swiperOptionThumbs" class="gallery-thumbs" ref="swiperThumbs">
-          <swiper-slide v-for="(slide, index) in houseDetails.pic" :key="index" >
+          <swiper-slide v-for="(slide, index) in houseDetails.pic" :key="index" v-if="index>0" >
             <img :src="slide" alt="" srcset="" @click="picDetailsShow=true">
           </swiper-slide>
           <div class="swiper-button-next swiper-button-white" slot="button-next"></div>

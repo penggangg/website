@@ -1,6 +1,14 @@
 <template>
     <div>
       <div class="banner">
+        <div class="pic-cot">
+          <div class="item" v-for="(item,index) in swiperPicList" :key="index">
+            <router-link  :to="{ path:`/marketAnalysisDetail/${item.id}`, query: { code }}" target="_blank">
+              <img :src="item.pic"  alt="" srcset="">
+              <span>{{item.title}}</span>
+            </router-link>
+          </div>
+        </div>
       </div>
       <div class="marketAnalysis-list">
         <h3>推荐</h3>
@@ -28,7 +36,8 @@ export default {
     }
   },
   props: {
-    article_list: Array
+    article_list: Array,
+    swiperPicList: Array
   }
 }
 </script>
@@ -40,6 +49,36 @@ export default {
   background: url('../../assets/images/pic-banner2.png') no-repeat;
   background-position: center center;
   background-size:cover;
+  overflow: hidden;
+  .pic-cot {
+    margin: 0 auto;
+    margin-top: 512px;
+    width: 1200px;
+    display: flex;
+    .item {
+      margin-right: 20px;
+      width: 258px;
+      height: 128px;
+      position: relative;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+      span {
+        display: inline-block;
+        width: 238px;
+        position: absolute;
+        bottom: 0;
+        color: #fff;
+        padding: 4px 10px;
+        background: rgb(0,0,0);
+        opacity: 0.5;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+  }
 }
 .marketAnalysis-list {
   width: 1200px;

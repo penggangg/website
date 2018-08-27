@@ -54,7 +54,12 @@ export default {
       })
     },
     handleScroll () {
-      if (document.documentElement.scrollTop + document.body.scrollTop > document.body.scrollHeight - 700) {
+      // if (document.documentElement.scrollTop + document.body.scrollTop > document.body.scrollHeight - 700) {
+      //   this.backTopShow = true
+      // } else {
+      //   this.backTopShow = false
+      // }
+      if (document.documentElement.scrollTop > 500) {
         this.backTopShow = true
       } else {
         this.backTopShow = false
@@ -107,6 +112,7 @@ footer {
     position: fixed;
     right: calc((100% - 1180px)/ 2);
     bottom: 100px;
+    z-index: 1000000;
     cursor: pointer;
     .ask {
       margin-bottom: 20px;

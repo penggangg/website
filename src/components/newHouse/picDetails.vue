@@ -7,7 +7,7 @@
     </div>
     <div class="bigImg_cot">
         <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop">
-          <swiper-slide v-for="(slide, index) in picList" :key="index">
+          <swiper-slide v-for="(slide, index) in picList" :key="index" v-if="index>0">
             <img :src="slide" alt="" srcset="">
           </swiper-slide>
           <div class="swiper-pagination" slot="pagination" style="display:none"></div>
@@ -120,7 +120,7 @@ export default {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, .6);
-  z-index: 100003;
+  z-index: 1000000003;
   .bigImgs {
     position: relative;
     display: flex;

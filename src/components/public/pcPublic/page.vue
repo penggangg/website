@@ -35,8 +35,8 @@
       padding: 5px 16px;
       line-height: 1.42857143;
       text-decoration: none;
-      border: 1px solid #ccc;
-      background-color: #fff;
+      // border: 1px solid #ccc;
+      background-color: #F5F5F5;
       margin-left: -1px;
       margin-right: 5px;
       cursor: pointer;
@@ -50,7 +50,7 @@
       }
       &.paging-item--disabled,
       &.paging-item--more {
-        background-color: #fff;
+        background-color: #F5F5F5;
         color: #505050;
       } //禁用
       &.paging-item--disabled {
@@ -62,11 +62,11 @@
         cursor: default;
       } //选中
       &.paging-item--current {
-        background-color: #303;
+        background-color: #394043;
         color: #fff;
         position: relative;
         z-index: 1;
-        border-color: #303;
+        // border-color: #303;
       }
     }
   }

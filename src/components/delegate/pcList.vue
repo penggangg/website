@@ -83,11 +83,16 @@ export default {
   },
   methods: {
     submit () {
-      depute({
-        ...this.condition
-      }).then(_ => {
-        alert('成功提交')
-      })
+      let reg = /^1[34578][0-9]{9}$/
+      if (reg.test(this.tel)) {
+        depute({
+          ...this.condition
+        }).then(_ => {
+          alert('成功提交')
+        })
+      } else {
+        alert('请输入正确的手机号')
+      }
     }
   }
 }
