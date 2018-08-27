@@ -5,6 +5,7 @@
         :houseRecs= houseRecs
         :storeRecs= storeRecs
         :officesRecs= officesRecs
+        :bannerImg= "bannerImg"
         @change-condition="changeCondition"
       ></Pcindex>
     </div>
@@ -13,6 +14,7 @@
         :houseRecs= houseRecs
         :storeRecs= storeRecs
         :officesRecs= officesRecs
+        :bannerImg= "bannerImg"
         @change-condition="changeCondition"
       ></Appindex>
     </div>
@@ -22,14 +24,15 @@
 <script>
 import Appindex from './appIndex'
 import Pcindex from './pcIndex'
-import { houseRec, storeRec, officesRec } from '@/assets/js/api'
+import {houseRec, storeRec, officesRec, indexbanner} from '@/assets/js/api'
 export default {
   name: 'Index',
   data () {
     return {
       houseRecs: [],
       storeRecs: [],
-      officesRecs: []
+      officesRecs: [],
+      bannerImg: ''
     }
   },
   mounted: function () {
@@ -62,6 +65,8 @@ export default {
     next()
   },
   async created () {
+    let { result } = await indexbanner({...this.condition})
+    this.bannerImg = result[0].pic
     Promise.all([houseRec({ city_id: this.code }), storeRec({ city_id: this.code }), officesRec({ city_id: this.code })]).then(res => {
       console.log(res)
       this.houseRecs = res[0].result

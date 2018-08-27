@@ -24,7 +24,7 @@
              <img :src="swiperPicList[0].imgurl" alt="" style="width:100%;height:100%;">
         </div>
      </div>
-    <listmark :article_list="article_list" :pithOne= "pithOne"></listmark>
+    <listmark :article_list="article_list" :pithOne= "pithOne" @onPullingUp="onPullingUp" :isPullDown="isPullDown"></listmark>
     <huosefooter></huosefooter>
 
   </div>
@@ -40,7 +40,8 @@ export default {
   name: 'appdynamic',
   props: {
     article_list: Array,
-    swiperPicList: Array
+    swiperPicList: Array,
+    isPullDown: Boolean
   },
   data () {
     return {
@@ -63,6 +64,9 @@ export default {
     })
   },
   methods: {
+    onPullingUp () {
+      this.$emit('onPullingUp')
+    }
   },
   components: {
     citydropdown,

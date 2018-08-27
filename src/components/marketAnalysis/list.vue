@@ -4,7 +4,7 @@
       <pc-list :article_list="article_list"></pc-list>
     </div>
     <div id="appList" class="visible-sm-block visible-xs-block">
-      <app-list :article_list="article_list" :swiperPicList="swiperPicList"></app-list>
+      <app-list :article_list="apparticle_list" :swiperPicList="swiperPicList" @onPullingUp="onPullingUp" :isPullDown="isPullDown"></app-list>
     </div>
   </div>
 </template>
@@ -18,7 +18,10 @@ export default {
   data () {
     return {
       article_list: [],
+      apparticle_list: [], // 移动端数据
       swiperPicList: [],
+      isPullDown: true,
+      offset: 1, // 分页
       last_id: '' // 轮播接口返回得最小id
     }
   },
@@ -45,22 +48,38 @@ export default {
       let { result } = await articlesList({
         city_id: this.code,
         cid: 1,
-        size: 10,
+        offset: 1,
+        limit: 10,
         last_id: this.last_id
       })
-      this.swiperPicList = swiperList.result
       this.article_list = result.article_list
+      this.apparticle_list = result.article_list
+      if (this.apparticle_list.length < 10) {
+        this.isPullDown = false
+      } else {
+        this.isPullDown = true
+      }
+    },
+    async getData () { // 分页时候调取的接口
+      let { result } = await articlesList({
+        city_id: this.code,
+        cid: 1,
+        offset: this.offset,
+        limit: 10,
+        last_id: this.last_id
+      })
+      this.article_list = result.article_list
+      this.apparticle_list = result.article_list
+      if (this.apparticle_list.length < 10) {
+        this.isPullDown = false
+      } else {
+        this.isPullDown = true
+      }
+    },
+    onPullingUp () {
+      ++this.offset
+      this.getData()
     }
-    // onPullingUp () {
-    //   ++this.condition.offset
-    //   if (this.condition.offset > 3) {
-    //     this.isPullDown = false
-    //     return
-    //   }
-    //   setTimeout(_ => {
-    //     this.listResult = [...this.listResult, ...this.listResult]
-    //   }, 1500)
-    // }
   },
   components: {
     appList,

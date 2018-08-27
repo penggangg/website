@@ -1,6 +1,6 @@
 <template>
   <div class="appindex" :style="{overflow:shownavigationpops ? 'hidden' : 'auto',height:shownavigationpops ? '100vh' : '100%'}">
-    <div class="header-img">
+    <div class="header-img" :style="{backgroundImage: 'url('+ bannerImg +')'}">
       <div class="header-nav">
         <div>
           <citydropdown :citylocationbg="citylocationbg"></citydropdown>
@@ -65,7 +65,8 @@ export default {
   props: {
     houseRecs: Array,
     storeRecs: Array,
-    officesRecs: Array
+    officesRecs: Array,
+    bannerImg: String
   },
   data () {
     return {
@@ -119,8 +120,8 @@ export default {
     width: 100%;
     height:2.04rem;
     padding: .15rem;
-    background: url(../../assets/appimages/banner.png) no-repeat;
-    background-size: contain;
+    background-repeat: no-repeat;
+    background-size: 100%;
     .header-nav {
       display: flex;
       justify-content: space-between;
