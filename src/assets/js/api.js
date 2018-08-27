@@ -1,7 +1,7 @@
 import { fetch } from './http'
 
 // 首页banner图获取
-export const indexbanner = params => fetch('/api/index.php?r=ads/index&city_id=2&pid=1', { ...params })
+export const indexbanner = params => fetch('/api/index.php?r=ads/index', { ...params })
 // 客源咨询
 export const ask = params => fetch('/api/index.php?r=customers/ask', { ...params })
 // 客源委托

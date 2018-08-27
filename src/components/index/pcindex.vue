@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <div class="banner">
+    <div class="banner" :style="{backgroundImage:`url(${bannerImg})`}">
       <div class="searchCont">
         <div class="search_form" style="position: relative;">
           <div class="genre clearfix">
@@ -221,7 +221,8 @@
 .banner {
   min-width: 1220px;
   height: 700px;
-  background: url('../../../static/images/pic-banner1.png') no-repeat;
+  // background: url('../../../static/images/pic-banner1.png') no-repeat;
+  background-repeat: no-repeat;
   background-position: center center;
   background-size:cover;
   display: flex;
@@ -339,7 +340,10 @@ export default {
   props: {
     houseRecs: Array,
     storeRecs: Array,
-    officesRecs: Array
+    officesRecs: Array,
+    bannerImg: {
+      required: true
+    }
   },
   methods: {
     switch_channel (num) {

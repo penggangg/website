@@ -49,6 +49,15 @@ export default {
       } else if (query.type === '2') { // 写字楼
         this.$router.push({name: 'officeBuildList', query: { code: this.code }, params: {query: query.query}})
       }
+    },
+    async getBanner () {
+      let { result } = await indexbanner({
+        city_id: this.code,
+        pid: 1
+      })
+      if (result.length) {
+        this.bannerImg = result[0].pic
+      }
     }
   },
   components: {
@@ -56,6 +65,7 @@ export default {
     Pcindex
   },
   beforeRouteUpdate (to, from, next) {
+    this.getBanner()
     Promise.all([houseRec({ city_id: this.code }), storeRec({ city_id: this.code }), officesRec({ city_id: this.code })]).then(res => {
       console.log(res)
       this.houseRecs = res[0].result
@@ -65,8 +75,7 @@ export default {
     next()
   },
   async created () {
-    let { result } = await indexbanner({...this.condition})
-    this.bannerImg = result[0].pic
+    this.getBanner()
     Promise.all([houseRec({ city_id: this.code }), storeRec({ city_id: this.code }), officesRec({ city_id: this.code })]).then(res => {
       console.log(res)
       this.houseRecs = res[0].result

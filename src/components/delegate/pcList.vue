@@ -88,10 +88,10 @@ export default {
         depute({
           ...this.condition
         }).then(_ => {
-          alert('成功提交')
+          this.$showMsg('成功提交')
         })
       } else {
-        alert('请输入正确的手机号')
+        this.$showMsg('请输入正确的手机号')
       }
     }
   }

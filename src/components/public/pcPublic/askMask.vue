@@ -36,10 +36,10 @@ export default {
           type: this.typeMap[this.$route.name]
         }).then(res => {
           this.$emit('input', false)
-          alert(res.errorMsg)
+          this.$showMsg(res.errorMsg)
         })
       } else {
-        alert('请输入正确的手机号')
+        this.$showMsg('请输入正确的手机号')
       }
     }
   },
