@@ -50,6 +50,7 @@ export default {
         cid: 1,
         offset: 1,
         limit: 10,
+        size: 10,
         last_id: this.last_id
       })
       this.article_list = result.article_list
@@ -60,12 +61,16 @@ export default {
         this.isPullDown = true
       }
     },
-    async getData () { // 分页时候调取的接口
+    async getData (page) { // 分页时候调取的接口 pc端可以直接传个page
+      if (page) {
+        this.offset = page
+      }
       let { result } = await articlesList({
         city_id: this.code,
         cid: 1,
         offset: this.offset,
         limit: 10,
+        size: 10,
         last_id: this.last_id
       })
       this.article_list = result.article_list

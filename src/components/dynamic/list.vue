@@ -21,6 +21,7 @@ export default {
       apparticle_list: [],
       swiperPicList: [],
       isPullDown: true,
+      offset: 1, // 分页
       last_id: '' // 轮播接口返回得最小id
     }
   },
@@ -44,6 +45,8 @@ export default {
     let { result } = await articlesList({
       city_id: this.code,
       cid: 2,
+      offset: 1,
+      limit: 10,
       size: 10,
       last_id: this.last_id
     })
@@ -51,10 +54,29 @@ export default {
     this.apparticle_list = result.article_list
   },
   methods: {
+    async getData (page) { // 分页时候调取的接口 pc端传个page
+      if (page) {
+        this.offset = page
+      }
+      let { result } = await articlesList({
+        city_id: this.code,
+        cid: 1,
+        offset: this.offset,
+        limit: 10,
+        size: 10,
+        last_id: this.last_id
+      })
+      this.article_list = result.article_list
+      this.apparticle_list = result.article_list
+      if (this.apparticle_list.length < 10) {
+        this.isPullDown = false
+      } else {
+        this.isPullDown = true
+      }
+    },
     onPullingUp () {
-      setTimeout(_ => {
-        this.apparticle_list = [...this.apparticle_list, ...this.apparticle_list]
-      }, 1500)
+      ++this.offset
+      this.getData()
     }
   },
   components: {
