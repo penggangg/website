@@ -1,6 +1,6 @@
 
 <template>
-  <div class="pictureWindows">
+  <div class="pictureWindows" @click="closeImg">
    <div class="pictureWindows-header">
        <img src="../../../assets/appimages/back.svg" @click="closeImg">
    </div>

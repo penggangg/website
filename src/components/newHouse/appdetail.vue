@@ -155,7 +155,7 @@
      <div class="doormodel">
        <p class="doormodel-nav">户型信息</p>
        <div class="doormodel-tab">
-         <div style="width: 130%;">
+         <div style="width: 150%;">
          <p  @click="doormodelType=0" :style="{color: doormodelType===0? '#5D9CF9': ''}">
            全部户型 ({{houseDetails.layout && houseDetails.layout.length}})
            <span class="select-bottom" v-show="doormodelType == 0"></span>
@@ -177,7 +177,7 @@
            <span class="select-bottom" v-show="doormodelType == 4"></span>
          </p>
          <p v-if="houseTypes.fiveType&&houseTypes.fiveType.length>0" @click="doormodelType=5" :style="{color: doormodelType===5? '#5D9CF9': ''}">
-            5居 ({{houseTypes.fiveType && houseTypes.fiveType.length}})
+            5居及以上 ({{houseTypes.fiveType && houseTypes.fiveType.length}})
            <span class="select-bottom" v-show="doormodelType == 5"></span>
          </p>
          </div>
@@ -236,13 +236,13 @@ export default {
       bigMapshow: false,
       alertcontact: false,
       swiperOption: {
-        slidesPerView: 2.5,
-        spaceBetween: 10,
+        slidesPerView: 1.8,
+        spaceBetween: 9,
         centeredSlides: false
       },
       swiperOptionDoor: { // 户口类型
         slidesPerView: 3,
-        spaceBetween: 10,
+        spaceBetween: 9,
         centeredSlides: false
       },
       doormodelType: 0
@@ -402,7 +402,7 @@ export default {
       padding: .15rem 0;
       padding-left: .15rem;
       .img-conten {
-        width:100%;
+        width:1.97rem;
         height:1.11rem;
         img {
           width: 100%;

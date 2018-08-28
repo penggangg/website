@@ -22,13 +22,8 @@ export default {
       swiperPicList: [],
       isPullDown: true,
       offset: 1, // 分页
-<<<<<<< HEAD
       count: 0, // 总数据
       last_id: '' // 轮播接口返回得最小id
-=======
-      last_id: '', // 轮播接口返回得最小id,
-      count: 0
->>>>>>> 1bb26a13b76f97f81ce15ee213851cee20a219c8
     }
   },
   async created () {
