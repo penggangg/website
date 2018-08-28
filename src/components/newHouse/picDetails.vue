@@ -137,12 +137,12 @@ export default {
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: 856px;
+      width: 995px;
       .gallery-top {
-        width: 856px;
+        width: 100%;
         img {
-          width: 856px;
-          height: 596px;
+          width: 100%;
+          height: 560px;
         }
       }
       .gallery-thumbs {

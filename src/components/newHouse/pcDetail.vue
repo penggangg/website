@@ -5,16 +5,25 @@
       <router-link :to="{ path: '/newHouse', query: { code }}">新房列表</router-link>>
       <a href="">{{houseDetails.title}}</a>
     </div>
-    <div class="banner" :style="{backgroundImage:`url(${houseDetails.pic[0]})`}">
-      <div class="tags-cot">
-        <div class="total-pic" @click="picDetailsShow=true" v-if="houseDetails.pic.length>1">
-          <img src="../../assets/images/icon-pic.svg" alt="" >
-          <span>楼盘相册（{{houseDetails.pic && houseDetails.pic.length-1}}张）</span>
-        </div>
-        <div class="tag">
-          <span v-for="(item,index) in houseDetails.labels" :key="index" :style="{color:item.color}">{{item.text}}</span>
-        </div>
+    <div class="banner">
+      <div class="filter-bg">
+          <img :src="houseDetails.pic[0]" style="width:100%;height:100%;">
       </div>
+      <div class="opacity-bg"></div>
+      <template v-if="houseDetails.pic">
+        <div class="banner-small" :style="{backgroundImage:`url(${houseDetails.pic[0]})`}">
+          <div class="tags-cot">
+            <div class="total-pic" @click="picDetailsShow=true" v-if="houseDetails.pic.length>1">
+              <img src="../../assets/images/icon-pic.svg" alt="" >
+              <span>楼盘相册（{{houseDetails.pic && houseDetails.pic.length-1}}张）</span>
+            </div>
+            <div class="tag">
+              <span v-for="(item,index) in houseDetails.labels" :key="index" :style="{color:item.color}">{{item.text}}</span>
+            </div>
+          </div>
+        </div>
+      </template>
+
     </div>
     <div class="house-detail item-content">
       <h3>基本信息</h3>
@@ -93,7 +102,7 @@
         </div>
       </div>
     </div>
-    <div class="item-content  house-pic" v-if="houseDetails.pic.length>1">
+    <div class="item-content  house-pic" v-if="houseDetails.pic&&houseDetails.pic.length>1">
       <h3>楼盘相册</h3>
       <div class="gallery-thumbs-cot">
         <div class="prev btn">
@@ -175,42 +184,76 @@
     }
 }
 .banner {
+  width: 100%;
+  height: 675px;
   position: relative;
-  height: 524px;
-  // background: url('../../assets/images/pic-house.png') no-repeat;
-  background-repeat:no-repeat;
-  background-size:cover;
-  background-position: center center;
-  .tags-cot {
-    position: absolute;
-    bottom: 40px;
-    left: calc((100% - 1200px)/2);
-    width: 1200px;
+  // background-repeat:no-repeat;
+  // background-size:cover;
+  // background-position: center center;
+  .banner-small {
+    position: relative;
     margin: 0 auto;
-    .total-pic {
-      display: flex;
-      float: left;
-      padding: 6px 10px;
-      background: rgba(0, 0, 0, .6);
-      cursor: pointer;
-      img {
-        margin-right: 10px;
+    width: 1200px;
+    height: 675px;
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position: center center;
+    .tags-cot {
+      position: absolute;
+      bottom: 30px;
+      left:0;
+      width: 100%;
+      padding-left: 22px;
+      .total-pic {
+        display: flex;
+        float: left;
+        padding: 6px 10px;
+        background: rgba(0, 0, 0, .6);
+        cursor: pointer;
+        img {
+          margin-right: 10px;
+        }
+        span {
+          color: #fff;
+        }
       }
-      span {
-        color: #fff;
+      .tag {
+        float: right;
+        font-size: 0;
+        span {
+          margin-right: 10px;
+          padding: 7px 10px;
+          font-size: 12px;
+          background: #E6F0FE;
+          border-radius: 4px;
+        }
       }
     }
-    .tag {
-      float: right;
-      font-size: 0;
-      span {
-        margin-right: 10px;
-        padding: 7px 10px;
-        font-size: 12px;
-        background: #E6F0FE;
-        border-radius: 4px;
-      }
-    }
+  }
+  .opacity-bg {
+    position: absolute;
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+    background-color: #000;
+    opacity: .4;
+  }
+  .filter-bg {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+    -moz-filter: blur(8px);
+    -webkit-filter: blur(8px);
+    background-position: center 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius="3");
+    filter: blur(8px);
   }
 }
 .item-content {
@@ -288,7 +331,7 @@
       width: 1200px;
       // background: red;
       img {
-        width: 270px;
+        width: 369px;
         height: 208px;
       }
       .swiper-button-white {
@@ -378,9 +421,9 @@ export default {
         '公交', '地铁', '教育设施', '医院', '银行', '休闲娱乐', '购物', '餐饮', '运动健身'
       ],
       swiperOptionThumbs: {
-        spaceBetween: 30,
-        slidesPerView: 4,
-        slidesPerGroup: 4,
+        spaceBetween: 20,
+        slidesPerView: 3,
+        slidesPerGroup: 3,
         loop: false,
         loopFillGroupWithBlank: true,
         slideToClickedSlide: true,

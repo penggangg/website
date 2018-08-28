@@ -78,7 +78,7 @@ export default {
   border-bottom: 1px solid #b7b7b7;
   img {
     float: left;
-    width: 232px;
+    width: 309px;
     height: 174px;
   }
   .house-detail {
@@ -89,7 +89,7 @@ export default {
     h4 {
       a {
         display: inline-block;
-        max-width: 680px;
+        max-width: 572px;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;

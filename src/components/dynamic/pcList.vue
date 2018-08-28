@@ -73,7 +73,7 @@ export default {
     display: flex;
     .item {
       margin-right: 20px;
-      width: 258px;
+      width: 228px;
       height: 128px;
       position: relative;
       img {
@@ -82,7 +82,7 @@ export default {
       }
       span {
         display: inline-block;
-        width: 238px;
+        width: 228px;
         position: absolute;
         bottom: 0;
         color: #fff;
@@ -108,13 +108,13 @@ export default {
     border-bottom: 1px solid #B7B7B7;
     img {
       margin-right: 50px;
-      width: 324px;
+      width: 334px;
       height: 188px;
     }
     .right-cot {
       display: inline-flex;
       flex-direction: column;
-      width: 820px;
+      width: 810px;
       height: 188px;
       vertical-align: bottom;
       .title {
