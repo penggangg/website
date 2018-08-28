@@ -11,11 +11,11 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/index.php': {
+      '/api': {
         target: 'http://api.hewuchina.com',
         changeOrigin: true,
         pathRewrite: {
-          '^/index.php': '/index.php'
+          '^/api': '/'
         }
       }
     },
