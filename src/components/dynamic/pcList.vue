@@ -26,15 +26,34 @@
           </div>
         </div>
       </div>
+      <div class="page-cot">
+        <mo-paging :page-index="currentPage" @changePageSize="changePageSize" :total="count" :page-size="limit"></mo-paging>
+      </div>
       <footers></footers>
     </div>
 </template>
 <script>
+import MoPaging from '../public/pcPublic/page'
 export default {
+  data () {
+    return {
+      limit: 10,
+      currentPage: 1
+    }
+  },
   props: {
     article_list: Array,
-    swiperPicList: Array
-
+    swiperPicList: Array,
+    count: Number
+  },
+  methods: {
+    changePageSize (page) {
+      this.currentPage = page
+      this.$emit('changePageSize', page)
+    }
+  },
+  components: {
+    MoPaging
   }
 }
 </script>
@@ -126,5 +145,10 @@ export default {
     }
   }
 
+}
+.page-cot {
+  margin: 0 auto;
+  width: 1200px;
+  text-align: right;
 }
 </style>

@@ -48,7 +48,6 @@ export default {
       cid: 2,
       offset: 1,
       limit: 10,
-      size: 10,
       last_id: this.last_id
     })
     this.article_list = result.article_list
@@ -71,7 +70,6 @@ export default {
         cid: 1,
         offset: this.offset,
         limit: 10,
-        size: 10,
         last_id: this.last_id
       })
       this.article_list = result.article_list

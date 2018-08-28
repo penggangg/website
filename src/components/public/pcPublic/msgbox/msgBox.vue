@@ -36,7 +36,7 @@
       background-color: #409eff;
       border: 1px solid #409eff;
       cursor: pointer;
-      padding: 10px;
+      padding: 5px 14px;
     }
 }
 .msgbox-fade-enter-active {

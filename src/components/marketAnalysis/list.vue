@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div id="pcList" class="row hidden-xs hidden-sm header-pc">
-      <pc-list :article_list="article_list" :swiperPicList="swiperPicList"></pc-list>
+      <pc-list :article_list="article_list" @changePageSize="getData" :swiperPicList="swiperPicList" :count="count"></pc-list>
     </div>
     <div id="appList" class="visible-sm-block visible-xs-block">
       <app-list :article_list="apparticle_list" :count="count" :swiperPicList="swiperPicList" @onPullingUp="onPullingUp" :isPullDown="isPullDown"></app-list>
@@ -22,8 +22,13 @@ export default {
       swiperPicList: [],
       isPullDown: true,
       offset: 1, // 分页
+<<<<<<< HEAD
       count: 0, // 总数据
       last_id: '' // 轮播接口返回得最小id
+=======
+      last_id: '', // 轮播接口返回得最小id,
+      count: 0
+>>>>>>> 1bb26a13b76f97f81ce15ee213851cee20a219c8
     }
   },
   async created () {
@@ -51,7 +56,6 @@ export default {
         cid: 1,
         offset: 1,
         limit: 10,
-        size: 10,
         last_id: this.last_id
       })
       this.article_list = result.article_list
@@ -72,7 +76,6 @@ export default {
         cid: 1,
         offset: this.offset,
         limit: 10,
-        size: 10,
         last_id: this.last_id
       })
       this.article_list = result.article_list
