@@ -16,7 +16,7 @@
           <router-link :to="{ path:`/marketAnalysisDetail/${item.id}`, query: { code }}" target="_blank"> <img :src="item.pic" alt=""></router-link>
           <div class="right-cot">
             <span class="title">
-              <router-link :to="{ path:`/marketAnalysisDetail/${item.id}`, query: { code }}" target="_blank">{{item.title}}</router-link>
+              <router-link :to="{ path:`/marketAnalysisDetail/${item.id}`, query: { code }}" :title="item.title" target="_blank">{{item.title}}</router-link>
             </span>
             <span class="details">{{item.desc}}</span>
             <span class="author">{{item.author}}</span>
@@ -26,18 +26,34 @@
           </div>
         </div>
       </div>
+      <div class="page-cot">
+        <mo-paging :page-index="currentPage" @changePageSize="changePageSize" :total="count" :page-size="limit"></mo-paging>
+      </div>
       <footers></footers>
     </div>
 </template>
 <script>
+import MoPaging from '../public/pcPublic/page'
 export default {
   data () {
     return {
+      limit: 10,
+      currentPage: 1
     }
   },
   props: {
     article_list: Array,
-    swiperPicList: Array
+    swiperPicList: Array,
+    count: Number
+  },
+  components: {
+    MoPaging
+  },
+  methods: {
+    changePageSize (page) {
+      this.currentPage = page
+      this.$emit('changePageSize', page)
+    }
   }
 }
 </script>
@@ -129,5 +145,10 @@ export default {
     }
   }
 
+}
+.page-cot {
+  margin: 0 auto;
+  width: 1200px;
+  text-align: right;
 }
 </style>
