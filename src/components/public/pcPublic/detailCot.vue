@@ -73,13 +73,13 @@
 </template>
 <style lang="scss" scoped>
 .house-content {
-    height: 482px;
+    height: 492px;
     .house-img {
-      width: 708px;
+      width: 711px;
       float: left;
       .gallery-top {
         img {
-          width: 708px;
+          width: 711px;
           height: 400px;
         }
       }
@@ -100,7 +100,7 @@
           height: 82px;
           width: 640px;
           img {
-            width: 120px;
+            width: 146px;
             height: 82px;
           }
           .swiper-button-white {
@@ -209,7 +209,7 @@ export default {
       swiperOptionThumbs: {
         spaceBetween: 10,
         centeredSlides: false,
-        slidesPerView: 5,
+        slidesPerView: 4.3,
         touchRatio: 0.2,
         slideToClickedSlide: true,
         navigation: {
