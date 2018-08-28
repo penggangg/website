@@ -24,7 +24,7 @@
              <img :src="swiperPicList[0].imgurl" alt="" style="width:100%;height:100%;">
         </div>
      </div>
-    <listmark :article_list="article_list" :pithOne= "pithOne" @onPullingUp="onPullingUp" :isPullDown="isPullDown"></listmark>
+    <listmark :article_list="article_list" :count="count" :pithOne= "pithOne" @onPullingUp="onPullingUp" :isPullDown="isPullDown"></listmark>
     <huosefooter></huosefooter>
 
   </div>
@@ -41,7 +41,8 @@ export default {
   props: {
     article_list: Array,
     swiperPicList: Array,
-    isPullDown: Boolean
+    isPullDown: Boolean,
+    count: [Number, String]
   },
   data () {
     return {

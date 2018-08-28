@@ -20,8 +20,9 @@
           </div>
           <div class="apphuoseList-items-right">
             <p class="fontsizeoverflow">{{item.title}}</p>
-            <p style="align-items: center;flex-wrap: nowrap;font-size:.09rem;color: #888">
-              <span>{{item.district}}</span> | <span class="fontsizeoverflow" style="max-width:1.6rem">{{item.address}}</span>
+            <p class="alignItemP">
+              <span style="font-size:.09rem">{{item.district}}</span> | <span class="fontsizeoverflow" style="max-width:.8rem;font-size:.09rem">{{item.address}}</span>
+              <span  class="fontsizeoverflow align_span">总价{{item.price}}万／套起</span>
             </p>
             <p class="fontsizeoverflow">
               <span>建筑类型</span>
@@ -29,14 +30,14 @@
               <span>建筑面积</span>
               <span>{{item.min_area}}~{{item.max_area}}㎡</span>
             </p>
-            <p class="fontsizeoverflow">
+            <!-- <p class="fontsizeoverflow">
               <span class="onsale" :style="{color: item.color}"
               v-for="(its,index) in item.labels" :key="index"
               v-if="index<3">{{its.text}}</span>
-            </p>
-            <p>
+            </p> -->
+            <!-- <p>
               {{item.min_price}}-{{item.max_area}}万/㎡
-            </p>
+            </p> -->
           </div>
         </div>
         <div style="height:.6rem;line-height:.6rem;text-align: center;font-size:.18rem;" v-if="listResult.length===0">
@@ -58,8 +59,9 @@
         </div>
         <div class="apphuoseList-items-right">
           <p class="fontsizeoverflow">{{item.title}}</p>
-          <p style="align-items: center;flex-wrap: nowrap;font-size:.09rem;color: #888">
-            <span>{{item.district}}</span> | <span>{{item.address}}</span>
+          <p class="alignItemP">
+            <span style="font-size:.09rem">{{item.district}}</span> | <span  class="fontsizeoverflow" style="max-width:1rem;font-size:.09rem">{{item.address}}</span>
+            <span  class="fontsizeoverflow align_span">{{item.price}}{{activePclass === 1? '万元/月': '万元'}}</span>
           </p>
           <p class="fontsizeoverflow">
             <span>建筑面积</span>
@@ -67,12 +69,12 @@
             <span>使用面积</span>
             <span>{{item.apply_area}}㎡</span>
           </p>
-          <p class="fontsizeoverflow">
+          <!-- <p class="fontsizeoverflow">
             <span class="normal" v-for="(its,index) in item.facilities" :key="index">{{its}}</span>
           </p>
           <p>
            {{item.price}} {{activePclass === 1? '万/月': '万'}}
-          </p>
+          </p> -->
         </div>
       </div>
        <div style="height:.6rem;line-height:.6rem;text-align: center;font-size:.18rem;" v-if="listResult.length===0">
@@ -94,8 +96,9 @@
         </div>
         <div class="apphuoseList-items-right">
           <p class="fontsizeoverflow">{{item.title}}</p>
-          <p class="fontsizeoverflow" style="flex-wrap: nowrap;align-items: center;font-size:.09rem;color: #888">
-            <span>{{item.district}}</span> | <span>{{item.address}}</span>
+          <p class="fontsizeoverflow alignItemP" >
+            <span style="font-size:.09rem">{{item.district}}</span> | <span class="fontsizeoverflow" style="max-width:1rem;font-size:.09rem">{{item.address}}</span>
+            <span  class="fontsizeoverflow align_span">{{item.price}}{{activePclass === 1? '万元/月': '万元'}}</span>
           </p>
           <p class="fontsizeoverflow" style="flex-wrap: nowrap;">
             <span>建筑面积</span>
@@ -103,9 +106,9 @@
             <span>使用面积</span>
             <span>{{item.apply_area}}㎡</span>
           </p>
-          <p style="color: #FB6550;font-size: .12rem;">
+          <!-- <p style="color: #FB6550;font-size: .12rem;">
           {{item.price}} {{activePclass === 1? '万/月': '万'}}
-          </p>
+          </p> -->
         </div>
       </div>
       <div style="height:.6rem;line-height:.6rem;text-align: center;font-size:.18rem;" v-if="listResult.length===0">
@@ -237,7 +240,7 @@ export default {
   }
   .apphuoseList-items-left {
     width: .96rem;
-    height: .96rem;
+    height: .54rem;
     img {
       width: 100%;
       height: 100%;
@@ -248,7 +251,7 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: .96rem;
+    height: .54rem;
     margin-left: .15rem;
     width: calc(100% - 1.11rem);
     font-size: .12rem;
@@ -297,7 +300,21 @@ export default {
     font-size: .09rem;
   }
   .onsale:last-child, .normal:last-child {
-    margin-right:0 !important
+    margin-right:0 !important;
+  }
+  .alignItemP {
+    align-items: center;
+    flex-wrap: nowrap;
+    font-size:.09rem;
+    color: #888;
+    position: relative;
+  }
+  .align_span {
+    color: #FB6550 !important;
+    font-size:.09rem;
+    position: absolute;
+    right:0;
+    z-index:8;
   }
 }
 </style>

@@ -75,7 +75,7 @@ export default {
       filteringpopShow: false, // 控制选择位置、价格、建筑类型的弹窗显示隐藏
       arrlist: [], // 位置、价格、建筑类型弹窗里面的数据
       types: '', // 0,1,2分别代表位置、价格、建筑类型
-      flitertext: {}, // 中转站选中的对象
+      flitertext: {key: '', value: ''}, // 中转站选中的对象
       flitertext1: {key: '', value: ''}, // 位置选中的对象
       flitertext2: {key: '', value: ''}, // 价格选中的对象
       flitertext3: {key: '', value: ''}, // 建筑类型选中的对象

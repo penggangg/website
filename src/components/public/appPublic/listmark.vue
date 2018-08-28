@@ -5,7 +5,7 @@
       </p>
       <div style="height:calc(100% - .47rem)">
          <div class="tuijian" style="padding: 0 .15rem;">
-            <span>为你推荐</span><span style="color: #4984FB;">14个</span><span>文章</span>
+            <span>为你推荐</span><span style="color: #4984FB;">{{count}}</span><span>篇文章</span>
         </div>
         <vue-better-scroll
         class="wrapper"
@@ -19,7 +19,7 @@
             </div>
             <div>
                 <p class="fontsizeoverflow">{{item.title}}</p>
-                <p>{{item.desc}}</p>
+                <p class="fontsizeoverflow">{{item.desc}}</p>
                 <p><span>作者:</span> <span>{{item.author}}</span></p>
                 <p style="display: flex" class="fontsizeoverflow">
                     <span class="icoen_item" v-for="(ite,index) in item.labels" :key="index" :style="{background: ite.color}"> {{ite.text}}</span>
@@ -40,6 +40,7 @@ export default {
   name: 'marklist',
   props: {
     article_list: Array,
+    count: [Number, String],
     pithOne: String, // 区分是市场分析还是公司介绍
     isPullDown: Boolean
   },
@@ -124,7 +125,7 @@ export default {
         display: flex;
         div:nth-of-type(1) {
             width: .96rem;
-            height: .96rem;
+            height: .54rem;
             min-width: .96rem;
             margin-right: .15rem;
             img{
@@ -147,11 +148,6 @@ export default {
                 font-size: .12rem;
                 width: 125%;
                 color: #888;
-                overflow:hidden;
-                text-overflow: ellipsis;
-                display:-webkit-box;
-                -webkit-line-clamp:2;
-                -webkit-box-orient:vertical;
                 transform: translateX(-10%) scale(.8);
             }
             p:nth-of-type(3){

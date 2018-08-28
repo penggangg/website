@@ -4,7 +4,7 @@
       <pc-list :article_list="article_list" :swiperPicList="swiperPicList"></pc-list>
     </div>
     <div id="appList" class="visible-sm-block visible-xs-block">
-      <app-list :article_list="apparticle_list" :swiperPicList="swiperPicList" @onPullingUp="onPullingUp" :isPullDown="isPullDown"></app-list>
+      <app-list :article_list="apparticle_list" :count="count" :swiperPicList="swiperPicList" @onPullingUp="onPullingUp" :isPullDown="isPullDown"></app-list>
     </div>
   </div>
 </template>
@@ -22,6 +22,7 @@ export default {
       swiperPicList: [],
       isPullDown: true,
       offset: 1, // 分页
+      count: 0,
       last_id: '' // 轮播接口返回得最小id
     }
   },
@@ -52,6 +53,13 @@ export default {
     })
     this.article_list = result.article_list
     this.apparticle_list = result.article_list
+    this.count = result.count
+    console.log(this.count)
+    if (this.apparticle_list.length < 10) {
+      this.isPullDown = false
+    } else {
+      this.isPullDown = true
+    }
   },
   methods: {
     async getData (page) { // 分页时候调取的接口 pc端传个page
@@ -68,6 +76,7 @@ export default {
       })
       this.article_list = result.article_list
       this.apparticle_list = result.article_list
+      this.count = result.count
       if (this.apparticle_list.length < 10) {
         this.isPullDown = false
       } else {
