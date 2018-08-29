@@ -38,11 +38,11 @@
       <div class="title">{{details.title}}</div>
       <div class="prcie" v-if="details.rent_id ===2">
         <span>售价</span>
-        <span>{{details.price}}</span>万元
+        <span>{{details.price/10000}}</span>万
       </div>
       <div class="prcie"  v-if="details.rent_id ===1">
         <span>租金</span>
-        <span>{{details.price}}万</span>元/月
+        <span>{{details.price/10000}}</span>万/月
       </div>
       <ul class="details">
         <li>

@@ -68,7 +68,8 @@
     </div>
 </template>
 <script>
-import { depute } from '@/assets/js/api'
+import { depute, indexbanner } from '@/assets/js/api'
+
 export default {
   data () {
     return {
@@ -78,7 +79,8 @@ export default {
         tel: '',
         uname: '',
         desc: ''
-      }
+      },
+      bannerImg: ''
     }
   },
   methods: {
@@ -94,6 +96,13 @@ export default {
         this.$showMsg('请输入正确的手机号')
       }
     }
+  },
+  async created () {
+    let { result } = await indexbanner({
+      city_id: this.code,
+      pid: 12
+    })
+    this.bannerImg = result.length && result[0].pic
   }
 }
 </script>
@@ -102,7 +111,8 @@ export default {
 .banner {
   min-width: 1220px;
   height: 700px;
-  background: url('../../assets/images/pic-banner2.png') no-repeat;
+  // background: url('../../assets/images/pic-banner2.png') no-repeat;
+  background-repeat: no-repeat;
   background-position: center center;
   background-size:cover;
 }
