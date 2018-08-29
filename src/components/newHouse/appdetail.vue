@@ -1,6 +1,6 @@
 <template>
   <div class="apphuosedetail" :style="{overflow:shownavigationpops ? 'hidden' : ''}">
-     <div class="apphuosedetail-header" :style="{backgroundImage: 'url('+ houseDetails.pic[0] +')'}">
+     <div class="apphuosedetail-header" :style="{backgroundImage:houseDetails.pic? 'url('+ houseDetails.pic[0] +')' : ''}">
         <div class="apphuosedetail-header-nav">
             <div class="newHouselist-header-left">
                 <img src="../../assets/appimages/back.svg" @click="$root.goback">
@@ -17,7 +17,7 @@
             <p style="font-size: .09rem">
                 <span class="onsale" :style="{color: item.color}" v-for="(item,index) in houseDetails.labels" :key="index">{{item.text}}</span>
             </p>
-            <p>
+            <p @click="pictureWindow=true">
                 <img src="../../assets/appimages/icon-pic.svg" >
                 <span>楼盘相册</span>
                 <span>{{houseDetails.pic && houseDetails.pic.length-1}}</span>
@@ -287,8 +287,8 @@ export default {
         position: relative;
         width: 100%;
         height: 2.04rem;
-        // background: url(../../assets/appimages/huosedetailbanner.png) no-repeat center;
-        background-size: 100%;
+        background-size: 100% 100%;
+        background-color: #ddd;
     }
     .apphuosedetail-header-nav{
         display: flex;

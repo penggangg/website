@@ -69,7 +69,7 @@ export default {
     height: .06rem;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 100%;
+    background-size: 100% 100%;
   }
   .citydropconten {
     overflow: hidden;

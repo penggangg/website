@@ -36,6 +36,7 @@ export default {
       })
       this.officesDetails = result
       this.mapShow = true
+      this.houseType = result.rent_id
     }
   },
   components: {
@@ -44,7 +45,6 @@ export default {
   },
   created () {
     this.id = this.$route.params.id
-    this.houseType = this.$route.query.houseType
     this.getDetails()
   }
 }

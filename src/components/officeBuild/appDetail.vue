@@ -1,6 +1,6 @@
 <template>
   <div class="apphuosedetail" :style="{overflow:shownavigationpops ? 'hidden' : ''}">
-     <div class="apphuosedetail-header">
+     <div class="apphuosedetail-header" :style="{backgroundImage: 'url('+ officesDetails.pic[0] +')'}">
         <div class="apphuosedetail-header-nav">
             <div class="newHouselist-header-left">
                 <img src="../../assets/appimages/back.svg" @click="$root.goback">
@@ -14,7 +14,7 @@
             </div>
         </div>
         <div class="right-icon">
-            <p>
+            <p @click="pictureWindow=true">
                 <img src="../../assets/appimages/icon-pic.svg" >
                 <span>楼盘相册</span>
                 <span>({{officesDetails.pic&&officesDetails.pic.length}}张)</span>
@@ -91,6 +91,7 @@
     :lat="officesDetails.latitude"
     @closeBigmap="bigMapshow=false" v-if="bigMapshow"></bigmap>
     <alertcontact v-if="alertcontact" @closealertcontact="alertcontact=false"></alertcontact>
+    <pictureWindow v-show="pictureWindow" :doormodellist="officesDetails.pic" @closeImg="pictureWindow=false"></pictureWindow>
   </div>
 </template>
 
@@ -101,6 +102,7 @@ import mapCircum from '@/components/public/appPublic/mapCircum'
 import bigmap from '@/components/public/appPublic/bigmap'
 import huosefooter from '@/components/public/appPublic/footer'
 import alertcontact from '@/components/public/appPublic/aletcontact'
+import pictureWindow from '@/components/public/appPublic/pictureWindows'
 export default {
   name: 'officeBuildDetail',
   props: {
@@ -113,7 +115,8 @@ export default {
       citylocationbg: 'rgba(0, 0, 0, .5)', // 给city切换传背景色
       shownavigationpops: false, // 控制右侧弹窗的显示隐藏
       bigMapshow: false,
-      alertcontact: false
+      alertcontact: false,
+      pictureWindow: false
     }
   },
   mounted: function () {
@@ -128,7 +131,8 @@ export default {
     mapCircum,
     huosefooter,
     bigmap,
-    alertcontact
+    alertcontact,
+    pictureWindow
   },
   created () {
   }
@@ -142,8 +146,8 @@ export default {
         position: relative;
         width: 100%;
         height: 2.04rem;
-        background: url(../../assets/appimages/huosedetailbanner.png) no-repeat center;
-        background-size: 100%;
+        background-size: 100% 100%;
+        background-color: #ddd;
     }
     .apphuosedetail-header-nav{
         display: flex;

@@ -74,7 +74,7 @@ export default {
       indexObje: {},
       shownavigationpops: false,
       styleObjet: { // inputsearch组件的一些配置
-        positionbottom: '.31rem',
+        positionbottom: '.15rem',
         placeholder: '请输入城区/商圈/胡同',
         bgse: '#3886F8',
         dorpdownDome: true
@@ -118,10 +118,10 @@ export default {
   .header-img {
     position: relative;
     width: 100%;
-    height:2.04rem;
+    height:1.37rem;
     padding: .15rem;
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: 100% 100%;
     .header-nav {
       display: flex;
       justify-content: space-between;

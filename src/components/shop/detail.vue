@@ -36,12 +36,12 @@ export default {
   },
   async created () {
     this.id = this.$route.params.id
-    this.houseType = this.$route.query.houseType
     let { result } = await storeDetails({
       city_id: this.code,
       id: this.id
     })
     this.storeDetails = result
+    this.houseType = result.rent_id
     this.mapShow = true
   }
 }
