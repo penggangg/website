@@ -7,7 +7,7 @@
     </div>
     <div class="banner">
       <div class="filter-bg">
-          <img :src="houseDetails.pic[0]" style="width:100%;height:100%;">
+          <img :src="houseDetails.pic&&houseDetails.pic[0]" style="width:100%;height:100%;">
       </div>
       <div class="opacity-bg"></div>
       <template v-if="houseDetails.pic">
@@ -146,7 +146,7 @@
               </li>
               <li class="price">
                 <span>户型均价：</span>
-                <span>{{slide.sale_price}}万</span>
+                <span>{{slide.sale_price/10000}}万</span>
               </li>
             </ul>
           </swiper-slide>

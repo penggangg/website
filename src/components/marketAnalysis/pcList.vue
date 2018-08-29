@@ -1,6 +1,6 @@
 <template>
     <div>
-      <div class="banner">
+      <div class="banner" :style="{backgroundImage:`url(${bannerImg})`}">
         <div class="pic-cot">
           <div class="item" v-for="(item,index) in swiperPicList" :key="index">
             <router-link  :to="{ path:`/marketAnalysisDetail/${item.id}`, query: { code }}" target="_blank">
@@ -34,11 +34,14 @@
 </template>
 <script>
 import MoPaging from '../public/pcPublic/page'
+import { indexbanner } from '@/assets/js/api'
+
 export default {
   data () {
     return {
       limit: 10,
-      currentPage: 1
+      currentPage: 1,
+      bannerImg: ''
     }
   },
   props: {
@@ -54,6 +57,13 @@ export default {
       this.currentPage = page
       this.$emit('changePageSize', page)
     }
+  },
+  async created () {
+    let { result } = await indexbanner({
+      city_id: this.code,
+      pid: 8
+    })
+    this.bannerImg = result.length && result[0].pic
   }
 }
 </script>
@@ -62,7 +72,8 @@ export default {
 .banner {
   min-width: 1220px;
   height: 700px;
-  background: url('../../assets/images/pic-banner2.png') no-repeat;
+  // background: url('../../assets/images/pic-banner2.png') no-repeat;
+  background-repeat: no-repeat;
   background-position: center center;
   background-size:cover;
   overflow: hidden;

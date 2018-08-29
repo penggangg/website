@@ -64,10 +64,10 @@
           </template>
           <template slot="house-price" slot-scope="priceShop">
             <div class="house-price" v-if="rent_id==2">
-              {{priceShop.priceShop}}万元
+              {{priceShop.priceShop/10000}}万元
             </div>
             <div class="house-price" v-if="rent_id==1">
-              {{priceShop.priceShop}}万/月
+              {{priceShop.priceShop/10000}}万/月
             </div>
           </template>
         </list-item>
