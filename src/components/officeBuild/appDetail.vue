@@ -1,6 +1,6 @@
 <template>
   <div class="apphuosedetail" :style="{overflow:shownavigationpops ? 'hidden' : ''}">
-     <div class="apphuosedetail-header" :style="{backgroundImage: 'url('+ officesDetails.pic[0] +')'}">
+     <div class="apphuosedetail-header" :style="{backgroundImage:officesDetails.pic?'url('+ officesDetails.pic[0] +')':''}">
         <div class="apphuosedetail-header-nav">
             <div class="newHouselist-header-left">
                 <img src="../../assets/appimages/back.svg" @click="$root.goback">

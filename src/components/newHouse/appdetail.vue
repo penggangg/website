@@ -1,6 +1,6 @@
 <template>
   <div class="apphuosedetail" :style="{overflow:shownavigationpops ? 'hidden' : ''}">
-     <div class="apphuosedetail-header" :style="{backgroundImage:houseDetails.pic? 'url('+ houseDetails.pic[0] +')' : ''}">
+     <div class="apphuosedetail-header" :style="{backgroundImage:houseDetails.pic?'url('+ houseDetails.pic[0] +')' : ''}">
         <div class="apphuosedetail-header-nav">
             <div class="newHouselist-header-left">
                 <img src="../../assets/appimages/back.svg" @click="$root.goback">
@@ -206,7 +206,7 @@
     </mapCircum>
     <div class="cut-off"></div>
     <huosefooter></huosefooter>
-    <pictureWindow v-show="pictureWindow" :doormodellist="houseDetails.pic.slice(1)" @closeImg="pictureWindow=false"></pictureWindow>
+    <pictureWindow v-show="pictureWindow" :doormodellist="houseDetails.pic?houseDetails.pic.slice(1):[]" @closeImg="pictureWindow=false"></pictureWindow>
     <bigmap @closeBigmap="bigMapshow=false" v-if="bigMapshow"></bigmap>
     <alertcontact v-if="alertcontact" @closealertcontact="alertcontact=false"></alertcontact>
   </div>
