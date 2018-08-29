@@ -22,7 +22,7 @@
             <p class="fontsizeoverflow">{{item.title}}</p>
             <p class="alignItemP">
               <span style="font-size:.09rem">{{item.district}}</span> | <span class="fontsizeoverflow" style="max-width:.8rem;font-size:.09rem">{{item.address}}</span>
-              <span  class="fontsizeoverflow align_span">总价{{item.price}}万／套起</span>
+              <span  class="fontsizeoverflow align_span">总价{{item.price/10000}}万／套起</span>
             </p>
             <p class="fontsizeoverflow">
               <span>建筑类型</span>
@@ -61,7 +61,7 @@
           <p class="fontsizeoverflow">{{item.title}}</p>
           <p class="alignItemP">
             <span style="font-size:.09rem">{{item.district}}</span> | <span  class="fontsizeoverflow" style="max-width:1rem;font-size:.09rem">{{item.address}}</span>
-            <span  class="fontsizeoverflow align_span">{{item.price}}{{activePclass === 1? '万元/月': '万元'}}</span>
+            <span  class="fontsizeoverflow align_span">{{item.price/10000}}{{activePclass === 1? '万元/月': '万元'}}</span>
           </p>
           <p class="fontsizeoverflow">
             <span>建筑面积</span>
@@ -98,7 +98,7 @@
           <p class="fontsizeoverflow">{{item.title}}</p>
           <p class="fontsizeoverflow alignItemP" >
             <span style="font-size:.09rem">{{item.district}}</span> | <span class="fontsizeoverflow" style="max-width:1rem;font-size:.09rem">{{item.address}}</span>
-            <span  class="fontsizeoverflow align_span">{{item.price}}{{activePclass === 1? '万元/月': '万元'}}</span>
+            <span  class="fontsizeoverflow align_span">{{item.price/10000}}{{activePclass === 1? '万元/月': '万元'}}</span>
           </p>
           <p class="fontsizeoverflow" style="flex-wrap: nowrap;">
             <span>建筑面积</span>

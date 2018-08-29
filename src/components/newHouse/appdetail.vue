@@ -1,6 +1,6 @@
 <template>
   <div class="apphuosedetail" :style="{overflow:shownavigationpops ? 'hidden' : ''}">
-     <div class="apphuosedetail-header">
+     <div class="apphuosedetail-header" :style="{backgroundImage: 'url('+ houseDetails.pic[0] +')'}">
         <div class="apphuosedetail-header-nav">
             <div class="newHouselist-header-left">
                 <img src="../../assets/appimages/back.svg" @click="$root.goback">
@@ -20,7 +20,7 @@
             <p>
                 <img src="../../assets/appimages/icon-pic.svg" >
                 <span>楼盘相册</span>
-                <span>{{houseDetails.pic && houseDetails.pic.length}}</span>
+                <span>{{houseDetails.pic && houseDetails.pic.length-1}}</span>
             </p>
         </div>
      </div>
@@ -130,7 +130,7 @@
      <div class="houses-img">
        <div>
          <p>楼盘相册</p>
-         <p v-if="houseDetails.pic&&houseDetails.pic.length>0">
+         <p v-if="houseDetails.pic&&houseDetails.pic.length>1">
            <span @click="pictureWindow=true" style="font-size: .12rem">查看全部</span>
            <img src="../../assets/appimages/icon-next.svg" >
          </p>
@@ -139,8 +139,8 @@
 
      <div class="huoseImg-lunbo">
        <div>
-          <swiper :options="swiperOption" v-if="houseDetails.pic&&houseDetails.pic.length>0">
-            <swiper-slide v-for="(item,index) in houseDetails.pic" :key="index">
+          <swiper :options="swiperOption" v-if="houseDetails.pic&&houseDetails.pic.length>1">
+            <swiper-slide v-for="(item,index) in houseDetails.pic" :key="index" v-if="index>0">
                 <div class="swiper-contain-div">
                     <div class="img-conten">
                         <img :src="item" >
@@ -192,7 +192,7 @@
                     <div>
                       <p style="margin-top: .04rem;">{{item.title}}</p>
                       <p>{{item.layout_area}}㎡</p>
-                      <p class="fontsizeoverflow" style="width: 100%;"><span style="color: #333;margin-right:2px">户型均价:</span>{{item.sale_price}}万</p>
+                      <p class="fontsizeoverflow" style="width: 100%;"><span style="color: #333;margin-right:2px">户型均价:</span>{{item.sale_price/10000}}万</p>
                     </div>
                 </div>
             </swiper-slide>
@@ -206,7 +206,7 @@
     </mapCircum>
     <div class="cut-off"></div>
     <huosefooter></huosefooter>
-    <pictureWindow v-show="pictureWindow" :doormodellist="houseDetails.pic" @closeImg="pictureWindow=false"></pictureWindow>
+    <pictureWindow v-show="pictureWindow" :doormodellist="houseDetails.pic.slice(1)" @closeImg="pictureWindow=false"></pictureWindow>
     <bigmap @closeBigmap="bigMapshow=false" v-if="bigMapshow"></bigmap>
     <alertcontact v-if="alertcontact" @closealertcontact="alertcontact=false"></alertcontact>
   </div>
@@ -287,7 +287,7 @@ export default {
         position: relative;
         width: 100%;
         height: 2.04rem;
-        background: url(../../assets/appimages/huosedetailbanner.png) no-repeat center;
+        // background: url(../../assets/appimages/huosedetailbanner.png) no-repeat center;
         background-size: 100%;
     }
     .apphuosedetail-header-nav{

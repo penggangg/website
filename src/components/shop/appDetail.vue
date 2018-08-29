@@ -1,6 +1,6 @@
 <template>
   <div class="apphuosedetail" :style="{overflow:shownavigationpops ? 'hidden' : ''}">
-     <div class="apphuosedetail-header">
+     <div class="apphuosedetail-header" :style="{backgroundImage: 'url('+ storeDetails.pic[0] +')'}">
         <div class="apphuosedetail-header-nav">
             <div class="newHouselist-header-left">
                 <img src="../../assets/appimages/back.svg" @click="$root.goback">
@@ -67,7 +67,7 @@
          <div class="basic-information-mess-items" style="margin-top: .05rem;">
            <p>
              <span class="colorfont-size">售价</span>
-             <span style="font-size: .14rem"><b style="font-size: .22rem;color:#F74D3F">{{storeDetails.price}}</b><b style="color:#F74D3F">{{ houseType == 1 ? '万/月': '万'}}</b></span>
+             <span style="font-size: .14rem"><b style="font-size: .22rem;color:#F74D3F">{{storeDetails.price/10000}}</b><b style="color:#F74D3F">{{ houseType == 1 ? '万/月': '万'}}</b></span>
            </p>
          </div>
        </div>
@@ -158,7 +158,6 @@ export default {
         position: relative;
         width: 100%;
         height: 2.04rem;
-        background: url(../../assets/appimages/huosedetailbanner.png) no-repeat center;
         background-size: 100%;
     }
     .apphuosedetail-header-nav{

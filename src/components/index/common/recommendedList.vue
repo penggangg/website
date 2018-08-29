@@ -16,7 +16,7 @@
                 </div>
                 <div class="text-mess">
                     <span>{{item.title}}</span>
-                    <span>{{item.price}}</span>
+                    <span>{{item.price/10000}}万元</span>
                 </div>
             </div>
         </swiper-slide>
