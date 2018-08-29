@@ -143,7 +143,7 @@ export default {
         width: 100%;
         height: 2.04rem;
         background: url(../../assets/appimages/huosedetailbanner.png) no-repeat center;
-        background-size: 100%;
+        background-size: 100% 100%;
     }
     .apphuosedetail-header-nav{
         display: flex;

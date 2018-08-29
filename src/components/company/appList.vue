@@ -125,7 +125,7 @@ export default {
     .businessList_header {
         height: 2.04rem;
         background: url(../../assets/appimages/appbanner.png) no-repeat center;
-        background-size: 100%;
+        background-size: 100% 100%;
         .apphuosedetail-header-nav{
             display: flex;
             justify-content: space-between;

@@ -121,7 +121,7 @@ export default {
     height:2.04rem;
     padding: .15rem;
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: 100% 100%;
     .header-nav {
       display: flex;
       justify-content: space-between;
