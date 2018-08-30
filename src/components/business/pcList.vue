@@ -1,43 +1,67 @@
 <template>
-    <div>
+    <div style="background:#F5F5F6">
       <div class="banner">
 
       </div>
-      <div class="ower-cot">
+      <!-- <div class="ower-cot">
           <div class="ower">
-            - 我们的产品 -
+            - 商务合作 -
           </div>
           <div class="desc">
-            20世纪70年代的日本，用12%的经济增长率创造了日本经济增长的光辉历史，同时也开启了日本地价暴涨的疯狂时代，据统计，在地价涨幅最大的1988年，全国平均上涨了21.7%，其中三大都市圈上涨了43.8%，东京圈的涨幅更高达65.3%价涨幅最大的1988年价涨
+            合屋是专注于房地产全链条服务运营及管理平台，业务涵盖地产前期策划、产品计划、营销方案策划与执行、地产数据分析、资产管理运营等，企业秉承诚信专业、创新服务为主旨，致力于做一家被尊重且优秀的地产服务商！
           </div>
-      </div>
-      <div class="center-baner">
-        做被尊重的地产服务商
-      </div>
-      <div class="advantage-cot">
-        <div class="advantage">
-          - 我们的优势 -
-        </div>
-        <div class="item-cot">
-          <div class="item">
-            <img src="../../assets/images/chengxin.png" alt="" srcset="">
-            <span class="title">诚信</span>
-            <span>精品商铺写字楼全覆盖</span>
+      </div> -->
+      <!-- <div class="center-baner">
+        合屋出品，必属精品
+      </div> -->
+      <div class="section">
+        <div class="section-cot">
+          <div class="advantage-cot">
+            <div class="advantage">- 商务合作 -</div>
           </div>
-          <div class="item">
-            <img src="../../assets/images/zhuanye.png" alt="" srcset="">
-            <span class="title">专业</span>
-            <span>精品商铺写字楼全覆盖</span>
-          </div>
-          <div class="item">
-            <img src="../../assets/images/anquan.png" alt="" srcset="">
-            <span class="title">安全</span>
-            <span>精品商铺写字楼全覆盖</span>
-          </div>
-          <div class="item">
-            <img src="../../assets/images/fengfu.png" alt="" srcset="">
-            <span class="title">丰富</span>
-            <span>精品商铺写字楼全覆盖</span>
+          <div class="item-cot">
+            <div class="item">
+              <div class="item-desc">
+                <span>• 产品定位方案 </span>
+                <span>• 产品深化方案</span>
+                <span>• 营销策划方案</span>
+                <span>• 资管运营方案</span>
+              </div>
+              <div class="item-img">
+                <img src="../../assets/images/business3.png" alt="" srcset="">
+                <div class="item-text">
+                  策划方案
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="item-img">
+                <img src="../../assets/images/business4.png" alt="" srcset="">
+                <div class="item-text">
+                  营销资管
+                </div>
+              </div>
+              <div class="item-desc">
+                <span>• 商业地产</span>
+                <span>• 高端住宅</span>
+                <span>• 招商代理</span>
+                <span>• 运营管理</span>
+              </div>
+            </div>
+            <div class="item">
+              <div class="item-desc">
+                <span>• 住宅业态合作</span>
+                <span>• 商业业态合作</span>
+                <span>• 招商业态合作</span>
+                <span>• 运营业态合作</span>
+              </div>
+              <div class="item-img">
+                <img src="../../assets/images/business5.png" alt="" srcset="">
+                <div class="item-text">
+                  渠道合作
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -80,39 +104,61 @@
     text-align: center;
   }
 }
-.advantage-cot {
+.section {
+  position: relative;
   margin: 0 auto;
-  padding: 100px 0 150px 0;
+  padding: 0 30px;
   width: 1200px;
-  .advantage {
-    margin-bottom: 100px;
-    font-size: 48px;
-    color: #333;
-    font-weight: bold;
-    text-align: center;
+  height: 1300px;
+  .section-cot {
+    position: absolute;
+    left: 0;
+    top: -50px;
+    width: 1200px;
+    background: #fff;
+  }
+  .advantage-cot {
+    .advantage {
+      margin-top: 50px;
+      margin-bottom: 100px;
+      font-size: 48px;
+      color: #333;
+      font-weight: bold;
+      text-align: center;
+    }
   }
   .item-cot {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     .item {
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-      span {
-        color: #888;
-        font-size: 14px;
-        &.title {
-          font-size: 20px;
+      margin-bottom: 30px;
+      .item-desc {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        flex: 1;
+        span {
+          display: inline-block;
+          // min-width: 264px;
+          font-size: 24px;
           color: #333;
-          margin-top: 50px;
-          margin-bottom: 8px;
+          &:first-child {
+            // font-size: 36px;
+            // color: #333;
+          }
         }
       }
-      img {
-        width: 200px;
-        height: 200px;
+      .item-img {
+        position: relative;
+        .item-text {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%,-50%);
+          font-size: 48px;
+          width: 2em;
+          color: #fff;
+        }
       }
     }
   }
