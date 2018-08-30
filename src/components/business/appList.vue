@@ -118,7 +118,6 @@ export default {
 
 <style lang="scss" scoped>
 .businessList {
-    height:100%;
     background: #F5F5F6;
     .businessList_header {
         height: 2.04rem;
@@ -208,7 +207,7 @@ export default {
         position: relative;
         top: -.49rem;
         z-index: 8;
-        min-height: calc(100% - 2.99rem);
+        min-height: calc(100vh - 2.99rem);
     }
     .buss_conten {
         display: flex;
