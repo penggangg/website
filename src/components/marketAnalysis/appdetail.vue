@@ -100,7 +100,6 @@ export default {
             color: #fff;
             text-align: center;
             margin-top: .2rem;
-            margin-bottom: .1rem;
             font-weight: bold;
         }
         .marketP2 {

@@ -16,12 +16,20 @@
             <swiper :options="swiperOption">
                 <swiper-slide v-for="(item, index) in swiperPicList" :key="index">
                     <img :src="item.pic" alt="" srcset="">
+                    <div class="position_div">
+                        <p class="fontsizeoverflow">{{item.title}}</p>
+                        <p class="fontsizeoverflow">{{item.desc}}</p>
+                    </div>
                 </swiper-slide>
                 <div class="swiper-pagination" slot="pagination" ></div>
             </swiper>
         </div>
-        <div v-if="swiperPicList.length==1" style="height:2.04rem">
+        <div v-if="swiperPicList.length==1" style="height:2.04rem" class="market-Swiper">
              <img :src="swiperPicList[0].imgurl" alt="" style="width:100%;height:100%;">
+             <div class="position_div">
+                <p class="fontsizeoverflow">{{item.title}}</p>
+                <p class="fontsizeoverflow">{{item.desc}}</p>
+            </div>
         </div>
      </div>
     <listmark :article_list="article_list" :count="count" :pithOne= "pithOne" @onPullingUp="onPullingUp" :isPullDown="isPullDown"></listmark>
@@ -138,6 +146,35 @@ export default {
     .cut-off {
       height: .1rem;
       background: #F5F5F6;
+    }
+    .market-Swiper {
+        position: relative;
+    }
+    .position_div {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        height:.48rem;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        p:nth-of-type(1) {
+            font-size: .18rem;
+            font-weight: bold;
+            color: #fff;
+            width: 90%;
+            text-align: center;
+            margin:0 auto;
+        }
+        p:nth-of-type(2) {
+            font-size:.14rem;
+            color: #fff;
+            width: 90%;
+            text-align: center;
+            margin:0 auto;
+        }
     }
 }
 </style>

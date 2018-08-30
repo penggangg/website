@@ -14,54 +14,71 @@
                 </div>
             </div>
         </div>
-        <div class="messconten">
-            <p class="messconten_title">
+         <div class="messconten"
+         style="position: absolute;top:1.03rem;width: calc(100% - .3rem);
+         left: 50%;transform: translateX(-50%);background: #fff;">
+            <p class="messconten_title" style="height:.16rem;">
                 <span>-</span>
-                <span>我们的产品</span>
+                <span style="font-size: .14rem;font-weight: bold;">商务合作</span>
                 <span>-</span>
-            </p>
-            <p class="messconten_conten">
-                20世纪70年代的日本，用12%的经济增长率创造了日本经济增长的光辉历史，同时也开启了日本地价暴涨的疯狂时代，据统计，在地价涨幅最大的1988年，全国平均上涨了21.7%，其中三大都市圈上涨了43.8%，东京圈的涨幅更高达65.3%价涨幅最大的1988年价涨
             </p>
         </div>
-
-        <div class="app_banner">
-            <img src="../../assets/appimages/pic-banner2.png" alt="" srcset="">
-            <span class="color_font">做被尊重的地产服务商</span>
+        <div class="shangwuhezuo">
+        <div class="messconten_conten">
+            <div class="buss_conten">
+                <div>
+                    <ul>
+                        <Li>• 产品定位方案</Li>
+                        <Li>• 产品深化方案</Li>
+                        <Li>• 营销策划方案</Li>
+                        <Li>• 资管运营方案</Li>
+                    </ul>
+                </div>
+                <div style="position: relative">
+                    <img src="../../assets/appimages/buss1.png" >
+                    <div class="conten_items">
+                        <p>策划</p>
+                        <p>方案</p>
+                    </div>
+                </div>
+            </div>
+            <div class="buss_conten">
+                <div style="position: relative">
+                    <img src="../../assets/appimages/buss2.png" >
+                    <div class="conten_items">
+                        <p>营销</p>
+                        <p>资管</p>
+                    </div>
+                </div>
+                <div>
+                    <ul>
+                        <Li>• 商业地产</Li>
+                        <Li>• 高端住宅</Li>
+                        <Li>• 招商代理</Li>
+                        <Li>• 运营管理</Li>
+                    </ul>
+                </div>
+            </div>
+            <div class="buss_conten" style="padding-bottom: .4rem">
+                <div>
+                    <ul>
+                        <Li>• 住宅业态合作</Li>
+                        <Li>• 商业业态合作</Li>
+                        <Li>• 招商业态合作</Li>
+                        <Li>• 运营业态合作</Li>
+                    </ul>
+                </div>
+                <div style="position: relative">
+                    <img src="../../assets/appimages/buss3.png" >
+                    <div class="conten_items">
+                        <p>渠道</p>
+                        <p>合作</p>
+                    </div>
+                </div>
+            </div>
         </div>
-
-         <div class="product_img">
-             <p class="messconten_title" style="margin-bottom: .25rem">
-                <span>-</span>
-                <span>我们的产品</span>
-                <span>-</span>
-            </p>
-         </div>
-
-         <div class="produnct_img_conten">
-             <div>
-                 <img src="../../assets/appimages/integrity.png" alt="" srcset="">
-                 <p>诚信</p>
-                 <p>精品商铺写字楼全覆盖</p>
-             </div>
-             <div>
-                 <img src="../../assets/appimages/major.png" alt="" srcset="">
-                 <p>专业</p>
-                 <p>精品商铺写字楼全覆盖</p>
-             </div>
-             <div>
-                 <img src="../../assets/appimages/safety.png" alt="" srcset="">
-                 <p>安全</p>
-                 <p>精品商铺写字楼全覆盖</p>
-             </div>
-             <div>
-                 <img src="../../assets/appimages/rich.png" alt="" srcset="">
-                 <p>丰富</p>
-                 <p>精品商铺写字楼全覆盖</p>
-             </div>
-         </div>
-
-        <huosefooter></huosefooter>
+        </div>
+        <huosefooter ></huosefooter>
     </div>
 </template>
 
@@ -102,9 +119,10 @@ export default {
 <style lang="scss" scoped>
 .businessList {
     height:100%;
+    background: #F5F5F6;
     .businessList_header {
         height: 2.04rem;
-        background: url(../../assets/appimages/appbanner.png) no-repeat center;
+        background: url(../../assets/appimages/appbanner1.png) no-repeat center;
         background-size: 100% 100%;
         .apphuosedetail-header-nav{
             display: flex;
@@ -133,9 +151,9 @@ export default {
         }
     }
     .messconten_conten {
-        margin-bottom: .25rem;
+        padding-top: .4rem;
+        background: #fff;
         text-align: center;
-        padding: 0 .15rem;
         font-size: .12rem;
         color: #888;
     }
@@ -161,6 +179,7 @@ export default {
         justify-content: space-between;
         &>div {
             width: 25%;
+            height: 100%;
             margin-right: .2rem;
             margin-bottom: .5rem;
             img {
@@ -181,6 +200,57 @@ export default {
         }
         &>div:last-child {
             margin-right: 0;
+        }
+    }
+    .shangwuhezuo {
+        width: 100%;
+        padding: 0 .15rem;
+        position: relative;
+        top: -.49rem;
+        z-index: 8;
+        min-height: calc(100% - 2.99rem);
+    }
+    .buss_conten {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 1.03rem;
+        padding-bottom: .25rem;
+        background: #fff;
+        div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50%;
+            height:.88rem;
+            img{
+                width: 90%;
+                height:100%;
+            }
+            ul {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                li{
+                    font-size: .12rem;
+                    color: #333;
+                }
+            }
+        }
+    }
+    .conten_items {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        height: .4rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        p{
+            font-size: .15rem;
+            color: #fff;
+            font-weight: bold;
         }
     }
 }
