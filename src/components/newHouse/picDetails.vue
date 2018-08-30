@@ -14,7 +14,7 @@
           <div class="swiper-button-prev" slot="button-prev" style="display:none"></div>
           <div class="swiper-button-next" slot="button-next" style="display:none"></div>
         </swiper>
-        <span class="total">{{currentPage}}/{{picList.length}}</span>
+        <span class="total">{{currentPage}}/{{picList.length-1}}</span>
         <swiper :options="swiperOptionThumbs" class="gallery-thumbs" ref="swiperThumbs">
           <swiper-slide v-for="(slide, index) in picList" :key="index">
             <img :src="slide" alt="" srcset="">
