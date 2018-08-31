@@ -16,7 +16,7 @@
         </swiper>
         <span class="total">{{currentPage}}/{{picList.length-1}}</span>
         <swiper :options="swiperOptionThumbs" class="gallery-thumbs" ref="swiperThumbs">
-          <swiper-slide v-for="(slide, index) in picList" :key="index">
+          <swiper-slide v-for="(slide, index) in picList" :key="index" v-if="index>0">
             <img :src="slide" alt="" srcset="">
           </swiper-slide>
           <swiper-slide v-for="item in 6" :key="item" v-if="picList.length<7">

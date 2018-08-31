@@ -86,7 +86,7 @@ export default {
   methods: {
     submit () {
       let reg = /^1[34578][0-9]{9}$/
-      if (reg.test(this.tel)) {
+      if (reg.test(this.condition.tel)) {
         depute({
           ...this.condition
         }).then(_ => {
