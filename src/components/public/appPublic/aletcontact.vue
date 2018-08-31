@@ -33,7 +33,7 @@ export default {
     saveTelphone () {
       let istelphone = this.$units.isPoneAvailable(this.telphone)
       if (!istelphone) {
-        alert('请您输入正确的手机号码')
+        this.$appshowMsg('请您输入正确的手机号码')
       } else {
         ask({
           city_id: this.code,
@@ -41,7 +41,7 @@ export default {
           type: this.typeMap[this.$route.name]
         }).then(res => {
           this.$emit('closealertcontact')
-          alert(res.errorMsg)
+          this.$appshowMsg(res.errorMsg)
         })
       }
     },

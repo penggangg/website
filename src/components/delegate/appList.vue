@@ -130,10 +130,11 @@ export default {
       }
       let reg = /^1[34578][0-9]{9}$/
       if (!reg.test(this.tel)) {
-        alert('请输入正确得电话号码')
+        this.$appshowMsg('请输入正确得电话号码')
+        return
       }
       depute(condition).then(_ => {
-        alert('成功提交')
+        this.$appshowMsg('成功提交')
       })
     }
   },
@@ -277,7 +278,11 @@ export default {
       div {
           width: 50%;
           display: flex;
+          justify-content: center;
           margin-top: .1rem;
+          p{
+              width:.99rem;
+          }
       }
       div p:nth-of-type(1){
           width: .4rem;

@@ -18,6 +18,7 @@ import {units} from '@/assets/js/units'
 import DOmstyle from '@/assets/js/directive'
 import BaiduMap from 'vue-baidu-map'
 import showMsg from '@/components/public/pcPublic/msgbox/msgBox.js'
+import appshowMsg from '@/components/public/appPublic/msgbox/msgBox.js'
 Vue.use(BaiduMap, {
   // ak 是在百度地图开发者平台申请的密钥 详见 http://lbsyun.baidu.com/apiconsole/key */
   ak: 'pWG06DZF1MUghAoWoGeU45yirzxNGqpf'
@@ -30,7 +31,7 @@ Vue.component('headers', headers)
 Vue.component('footers', footers)
 Vue.prototype.$constDatas = constData
 Vue.prototype.$showMsg = showMsg
-
+Vue.prototype.$appshowMsg = appshowMsg
 Vue.prototype.$units = units
 Vue.prototype.$ = $
 Vue.prototype.code = '2'

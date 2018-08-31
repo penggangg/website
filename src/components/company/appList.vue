@@ -17,17 +17,17 @@
         <div class="messconten">
             <p class="messconten_title">
                 <span>-</span>
-                <span>我们的产品</span>
+                <span>合屋</span>
                 <span>-</span>
             </p>
             <p class="messconten_conten">
-                20世纪70年代的日本，用12%的经济增长率创造了日本经济增长的光辉历史，同时也开启了日本地价暴涨的疯狂时代，据统计，在地价涨幅最大的1988年，全国平均上涨了21.7%，其中三大都市圈上涨了43.8%，东京圈的涨幅更高达65.3%价涨幅最大的1988年价涨
+                合屋是专注于房地产全链条服务运营及管理平台，业务涵盖地产前期策划、产品计划、营销方案策划与执行、地产数据分析、资产管理运营等，企业秉承诚信专业、创新服务为主旨，致力于做一家被尊重且优秀的地产服务商！
             </p>
         </div>
 
         <div class="app_banner">
             <img src="../../assets/appimages/pic-banner2.png" alt="" srcset="">
-            <span class="color_font">做被尊重的地产服务商</span>
+            <span class="color_font">合屋出品，必属精品</span>
         </div>
 
          <div class="position_div">
@@ -40,10 +40,9 @@
             </div>
                 <div class="produnct_img_conten">
                     <div class="produnct_img_conten_item">
-                        <div>
-                            <p>诚信</p>
-                            <p>精品商铺写字楼</p>
-                            <p>全覆盖</p>
+                        <div style="display: flex;justify-content: center;flex-direction: column;align-items: center;">
+                            <p style="width:1.26rem;">全方位提供地产各个环</p>
+                            <p style="width:1.26rem;">节运营需求及解决方案</p>
                         </div>
                         <div>
                             <img src="../../assets/appimages/chengxin1.png" alt="" srcset="">
@@ -53,17 +52,15 @@
                         <div>
                             <img src="../../assets/appimages/zhuanye1.png" alt="" srcset="">
                         </div>
-                        <div>
-                            <p>诚信</p>
-                            <p>精品商铺写字楼</p>
-                            <p>全覆盖</p>
+                        <div style="display: flex;justify-content: center;flex-direction: column;align-items: center;">
+                            <p style="width:1.32rem">多业务线自有团队</p>
+                            <p style="width:1.32rem">横纵双向对方案有效执行</p>
                         </div>
                     </div>
                     <div class="produnct_img_conten_item">
-                        <div>
-                            <p>诚信</p>
-                            <p>精品商铺写字楼</p>
-                            <p>全覆盖</p>
+                        <div style="display: flex;justify-content: center;flex-direction: column;align-items: center;">
+                            <p style="width:.84rem">全程营销策划</p>
+                            <p style="width:.84rem">执行及顾问服务</p>
                         </div>
                         <div>
                             <img src="../../assets/appimages/anquan1.png" alt="" srcset="">
@@ -73,10 +70,9 @@
                         <div>
                             <img src="../../assets/appimages/fenghu1.png" alt="" srcset="">
                         </div>
-                        <div>
-                            <p>诚信</p>
-                            <p>精品商铺写字楼</p>
-                            <p>全覆盖</p>
+                        <div style="display: flex;justify-content: center;flex-direction: column;align-items: center;">
+                            <p style="width:.84rem">商业招商管理及</p>
+                            <p style="width:.84rem">资产运营管理</p>
                         </div>
                     </div>
                 </div>
@@ -215,7 +211,8 @@ export default {
             div:nth-of-type(1) {
                 p {
                     text-align: left;
-                    text-indent: .4rem;
+                    color: #333;
+                    font-weight: bold;
                     margin-top: .06rem;
                 }
                 p:nth-of-type(1) {
@@ -224,7 +221,6 @@ export default {
                 }
                 p:nth-of-type(2),p:nth-of-type(3) {
                     font-size: .1rem;
-                    color: #888;
                     margin: 0;
                 }
             }
@@ -233,7 +229,8 @@ export default {
             div:nth-of-type(2) {
                 p {
                     text-align: left;
-                    text-indent: .35rem;
+                    color: #333;
+                    font-weight: bold;
                     margin-top: .06rem;
                 }
                 p:nth-of-type(1) {
@@ -242,7 +239,6 @@ export default {
                 }
                 p:nth-of-type(2),p:nth-of-type(3) {
                     font-size: .1rem;
-                    color: #888;
                     margin: 0;
                 }
             }
