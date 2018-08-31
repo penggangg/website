@@ -1,6 +1,6 @@
 <template>
     <div style="position:relative">
-      <div class="banner">
+      <div class="banner" :style="{backgroundImage:`url(${bannerImg})`}">
       </div>
       <div class="section"></div>
       <div class="delegate-cot">
