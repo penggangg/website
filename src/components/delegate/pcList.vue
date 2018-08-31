@@ -43,22 +43,22 @@
             <div class="step">
               <img src="../../assets/images/2.svg" alt="">
               <div>
-                <span>发布房源</span>
-                <span>线上免费发布房源</span>
+                <span>核对房源</span>
+                <span>30分钟内客服联系</span>
               </div>
             </div>
             <div class="step">
               <img src="../../assets/images/3.svg" alt="">
               <div>
-                <span>发布房源</span>
-                <span>线上免费发布房源</span>
+                <span>在线销售</span>
+                <span>专业线上委托销售</span>
               </div>
             </div>
             <div class="step">
               <img src="../../assets/images/4.svg" alt="">
               <div>
-                <span>发布房源</span>
-                <span>线上免费发布房源</span>
+                <span>签约出售</span>
+                <span>签约全程服务</span>
               </div>
             </div>
           </div>

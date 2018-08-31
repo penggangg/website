@@ -10,7 +10,7 @@
         <p @click="keyword='交通', activeindex=5;" :class="[activeindex == 5 ? 'activeClass':'']">交通</p>
       </div>
       <div class="map-contain" ref="bmview">
-         <baidu-map class="bm-view" :center="center" :zoom="zoom" @ready='handler' :scroll-wheel-zoom="true" >
+         <baidu-map class="bm-view" :center="center" :zoom="zoom" @ready='handler' :scroll-wheel-zoom="true" :dragging="false"  >
           <!-- <bm-overlay
             pane="labelPane"
             :class="{sample: true, active}"
@@ -43,7 +43,7 @@ export default {
   data () {
     return {
       center: {lng: '', lat: ''},
-      zoom: 10,
+      zoom: 16,
       active: false,
       nearby: {
         center: {lng: '', lat: ''},
@@ -60,20 +60,26 @@ export default {
   methods: {
     handler ({BMap, map}) {
       // console.log(this.$refs)
+      this.center = {
+        lng: this.lng,
+        lat: this.lat
+      }
+      this.nearby.center.lng = this.center.lng
+      this.nearby.center.lat = this.center.lat
     },
     searchcomplete (res) {
       console.log(res)
     }
   },
   watch: {
-    lng () {
-      this.center.lng = this.lng
-      this.center.lat = this.lat
-      this.nearby.center.lng = this.lng
-      this.nearby.center.lat = this.lat
-      console.log(this.center)
-      console.log(this.nearby)
-    }
+    // lng () {
+    //   this.center.lng = this.lng
+    //   this.center.lat = this.lat
+    //   this.nearby.center.lng = this.lng
+    //   this.nearby.center.lat = this.lat
+    //   console.log(this.center)
+    //   console.log(this.nearby)
+    // }
   },
   created () {
   }

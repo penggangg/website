@@ -66,7 +66,7 @@ export default {
   },
   beforeRouteUpdate (to, from, next) {
     this.getBanner()
-    Promise.all([houseRec({ city_id: this.code }), storeRec({ city_id: this.code }), officesRec({ city_id: this.code })]).then(res => {
+    Promise.all([houseRec({ city_id: this.code, limit: 4 }), storeRec({ city_id: this.code }), officesRec({ city_id: this.code })]).then(res => {
       console.log(res)
       this.houseRecs = res[0].result
       this.storeRecs = res[1].result
@@ -76,7 +76,7 @@ export default {
   },
   async created () {
     this.getBanner()
-    Promise.all([houseRec({ city_id: this.code }), storeRec({ city_id: this.code }), officesRec({ city_id: this.code })]).then(res => {
+    Promise.all([houseRec({ city_id: this.code, limit: 4 }), storeRec({ city_id: this.code }), officesRec({ city_id: this.code })]).then(res => {
       console.log(res)
       this.houseRecs = res[0].result
       this.storeRecs = res[1].result

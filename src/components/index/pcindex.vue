@@ -47,7 +47,7 @@
       <div class="house-cot">
         <div class="title">
           <span>- 新房推荐 -</span>
-          <router-link to="/newHouse" target="_blank">更多新房</router-link>
+          <router-link :to="{ path: '/newHouse', query: { code: code }}" target="_blank">更多新房</router-link>
           <!-- <router-link to="/">更多新房</router-link> -->
         </div>
         <div class="content">
@@ -65,7 +65,7 @@
       <div class="house-cot">
         <div class="title">
           <span>- 商铺推荐 -</span>
-          <router-link to="/shop" target="_blank">更多商铺</router-link>
+          <router-link :to="{ path: '/shop', query: { code: code }}" target="_blank">更多商铺</router-link>
           <!-- <router-link to="/">更多新房</router-link> -->
         </div>
         <div class="content content-three">
@@ -84,7 +84,7 @@
         <div class="title">
           <span>- 写字楼推荐 -</span>
           <a href="">更多写字楼</a>
-          <router-link to="/officeBuild" target="_blank">更多写字楼</router-link>
+          <router-link :to="{ path: '/officeBuild', query: { code: code }}" target="_blank">更多写字楼</router-link>
         </div>
         <div class="content content-three">
           <div class="item" v-for="(item,index) in officesRecs" :key="index" @click="gotoDetail('officeBuildDetail',item.id)">
@@ -185,10 +185,10 @@
         width: 250px;
         img {
           width: 250px;
-          height: 192px;
+          height: 142px;
           &.content-three {
             width: 350px;
-            height: 200px;
+            height: 197px;
           }
         }
         div {
@@ -369,15 +369,15 @@ export default {
       }
       switch (this.isActive) {
         case 1:
-          this.$emit('change-condition', {query: this.keyWords, type: '0'})
+          this.$emit('change-condition', {query: this.keyWords, type: '0', code: this.code})
           // routeData = this.$router.resolve({ path: '/newHouse', query: { query: this.keyWords } })
           break
         case 2:
-          this.$emit('change-condition', {query: this.keyWords, type: '1'})
+          this.$emit('change-condition', {query: this.keyWords, type: '1', code: this.code})
           // routeData = this.$router.resolve({ path: '/shop', query: { query: this.keyWords } })
           break
         case 3:
-          this.$emit('change-condition', {query: this.keyWords, type: '2'})
+          this.$emit('change-condition', {query: this.keyWords, type: '2', code: this.code})
           // routeData = this.$router.resolve({ path: '/officeBuild', query: { query: this.keyWords } })
           break
         default:
@@ -387,7 +387,7 @@ export default {
     },
     gotoDetail (url, id) {
       // this.$router.push({ path: `/${url}/${id}` })
-      let routeData = this.$router.resolve({ path: `/${url}/${id}` })
+      let routeData = this.$router.resolve({ path: `/${url}/${id}`, query: {code: this.code} })
       window.open(routeData.href, '_blank')
     }
   }

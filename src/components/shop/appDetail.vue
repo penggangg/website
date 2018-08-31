@@ -97,6 +97,7 @@
      <div class="cut-off"></div>
 
     <mapCircum
+    v-if="mapShow"
     :lng="storeDetails.longitude"
     :lat="storeDetails.latitude"
     ></mapCircum>
@@ -123,7 +124,8 @@ export default {
   name: 'appshopDetail',
   props: {
     storeDetails: Object,
-    houseType: [String, Number]
+    houseType: [String, Number],
+    mapShow: Boolean
   },
   data () {
     return {

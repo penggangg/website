@@ -201,6 +201,7 @@
      </div>
     <div class="cut-off"></div>
     <mapCircum
+    v-if="mapShow"
     :lng="houseDetails.longitude"
     :lat="houseDetails.latitude">
     </mapCircum>
@@ -225,7 +226,8 @@ export default {
   name: 'apphuosedetail',
   props: {
     houseDetails: Object,
-    houseTypes: Object
+    houseTypes: Object,
+    mapShow: Boolean
   },
   data () {
     return {
