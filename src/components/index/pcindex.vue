@@ -55,7 +55,7 @@
             <img :src="item.pic" alt="" srcset="">
             <div>
               <span :title="item.title">{{item.title}}</span>
-              <span :title="`${item.price/10000}万/套起`">{{item.price/10000}}万/套起</span>
+              <span :title="`${item.price/10000}元/㎡`">{{item.price/10000}}元/㎡</span>
             </div>
           </div>
         </div>
@@ -73,7 +73,7 @@
             <img class="content-three" :src="item.pic" alt="" srcset="">
             <div>
               <span :title="item.title">{{item.title}}</span>
-              <span :title="`${item.price/10000}万元`">{{item.price/10000}}万元</span>
+              <span :title="`${item.price/10000}万`">{{item.price/10000}}万</span>
             </div>
           </div>
         </div>
@@ -91,7 +91,7 @@
             <img class="content-three" :src="item.pic" alt="" srcset="">
             <div>
               <span :title="item.title">{{item.title}}</span>
-              <span :title="`${item.price/10000}万元`">{{item.price/10000}}万元</span>
+              <span :title="`${item.price/10000}万`">{{item.price/10000}}万</span>
             </div>
           </div>
         </div>

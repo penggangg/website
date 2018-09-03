@@ -16,7 +16,7 @@
           </dd>
         </dl>
         <dl>
-          <dt>单价</dt>
+          <dt>售价</dt>
           <dd>
             <span :class="{active: price == ''}" @click="changeCondition({price: ''})">不限</span>
             <span
@@ -51,8 +51,8 @@
         <list-item :item = item>
           <template slot="house-price" slot-scope="price">
             <div class="house-price" style="position:relative">
-              {{price.price.minPrice}}元/㎡(均价)
-              <div class="total" style="font-size:16px;color:#333;position:absolute;right:0;">总价{{price.price.price/10000}}万/套起</div>
+              {{price.price.price}}元/㎡(均价)
+              <div class="total" style="font-size:16px;color:#333;position:absolute;right:0;">总价{{price.price.minPrice/10000}}万/套起</div>
             </div>
           </template>
         </list-item>

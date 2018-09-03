@@ -24,7 +24,7 @@
            <span :class="[locationdorpdown ? 'downshanjiao' : 'upshanjiao']"></span>
         </div>
         <div @click="price">
-           <span class="new_house_price">{{flitertext2.key == '' ? '单价': flitertext2.key}}</span>
+           <span class="new_house_price">{{flitertext2.key == '' ? '售价': flitertext2.key}}</span>
            <span :class="[pricedorpdown ? 'downshanjiao' : 'upshanjiao']"></span>
         </div>
         <div @click="builds">

@@ -25,7 +25,8 @@
           </dd>
         </dl>
         <dl>
-          <dt>单价</dt>
+          <dt v-if="rent_id==2">售价</dt>
+          <dt v-if="rent_id==1">租金</dt>
           <dd>
            <span
               :class="{active: price == ''}"
@@ -64,7 +65,7 @@
           </template>
           <template slot="house-price" slot-scope="priceShop">
             <div class="house-price" v-if="rent_id==2">
-              {{priceShop.priceShop/10000}}万元
+              {{priceShop.priceShop/10000}}万
             </div>
             <div class="house-price" v-if="rent_id==1">
               {{priceShop.priceShop/10000}}万/月
