@@ -65,7 +65,7 @@ export default {
       this.condition.offset = page
     },
     async getCondition () {
-      let { result } = await storeConditions({city_id: this.code, rent_type: this.rent_id})
+      let { result } = await storeConditions({city_id: this.code, rent_type: this.condition.rent_id})
       this.conditionObj = result
     },
     async getList (a) {
