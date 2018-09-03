@@ -33,7 +33,7 @@
         </div>
      </div>
     <listmark :article_list="article_list" :count="count" :pithOne= "pithOne" @onPullingUp="onPullingUp" :isPullDown="isPullDown"></listmark>
-    <huosefooter></huosefooter>
+    <!-- <huosefooter></huosefooter> -->
 
   </div>
 </template>
@@ -43,7 +43,7 @@ import citydropdown from '@/components/public/appPublic/citydropdown'
 import navigationpops from '@/components/public/appPublic/navigationPops'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import listmark from '@/components/public/appPublic/listmark'
-import huosefooter from '@/components/public/appPublic/footer'
+// import huosefooter from '@/components/public/appPublic/footer'
 export default {
   name: 'appdynamic',
   props: {
@@ -82,8 +82,8 @@ export default {
     navigationpops,
     swiper,
     swiperSlide,
-    listmark,
-    huosefooter
+    listmark
+    // huosefooter
   },
   created () {
   }

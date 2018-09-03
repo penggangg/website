@@ -171,7 +171,10 @@ export default {
         }
     }
     .icoen_item{
-        padding: 2px;
+        padding: 2px 4px;
+        border: 1px solid #5D9CF9;
+        border-radius: 2px;
+        color: #5D9CF9;
         margin-right: 2px;
     }
     .icoen_item:last-child {
