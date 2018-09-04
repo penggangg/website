@@ -78,7 +78,7 @@ export default {
       } else {
         this.applistResult = [...this.applistResult, ...this.listResult]
       }
-      if (this.listResult.length < 10) {
+      if (this.applistResult.length === this.count) {
         this.isPullDown = false
       } else {
         this.isPullDown = true

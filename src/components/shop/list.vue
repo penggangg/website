@@ -81,7 +81,7 @@ export default {
       } else { // 这个为正常分页
         this.applistResult = [...this.applistResult, ...this.listResult]
       }
-      if (this.listResult.length < 10) {
+      if (this.applistResult.length === this.count) {
         this.isPullDown = false
       } else {
         this.isPullDown = true

@@ -54,7 +54,7 @@ export default {
     this.apparticle_list = result.article_list
     this.count = result.count
     console.log(this.count)
-    if (this.apparticle_list.length < 10) {
+    if (this.apparticle_list.length === this.count) {
       this.isPullDown = false
     } else {
       this.isPullDown = true
@@ -73,9 +73,9 @@ export default {
         last_id: this.last_id
       })
       this.article_list = result.article_list
-      this.apparticle_list = result.article_list
+      this.apparticle_list = [...this.apparticle_list, ...result.article_list]
       this.count = result.count
-      if (this.apparticle_list.length < 10) {
+      if (this.apparticle_list.length === this.count) {
         this.isPullDown = false
       } else {
         this.isPullDown = true

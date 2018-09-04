@@ -154,6 +154,10 @@ export default {
     },
     switchType (index) {
       this.activePclass = index
+      this.filteringpopShow = false
+      this.locationdorpdown = true
+      this.pricedorpdown = true
+      this.builddorpdown = true
       this.query = ''
       this.flitertext = {} // 中转站选中的对象
       this.flitertext1 = {key: '', value: ''} // 位置选中的对象

@@ -62,7 +62,7 @@ export default {
       this.listResult = result.data
       this.count = result.count
       this.applistResult = [...this.applistResult, ...this.listResult]
-      if (this.listResult.length < 10) {
+      if (this.applistResult.length === this.count) {
         this.isPullDown = false
       } else {
         this.isPullDown = true
@@ -76,7 +76,7 @@ export default {
       this.listResult = result.data
       this.count = result.count
       this.applistResult = [...[], ...this.listResult]
-      if (this.listResult.length < 10) {
+      if (this.applistResult.length === this.count) {
         this.isPullDown = false
       } else {
         this.isPullDown = true

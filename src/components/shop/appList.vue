@@ -149,7 +149,7 @@ export default {
       }
     },
     ajaxrequsition (types) {
-      this.$units.scrollTop('.newHouse-detail-lit')
+      // this.$units.scrollTop()
       if (types === '0') {
         this.$emit('change-condition', {district_id: this.flitertext1.value})
       } else if (types === '1') {
@@ -176,6 +176,10 @@ export default {
     },
     switchType (index) {
       this.activePclass = index
+      this.filteringpopShow = false
+      this.locationdorpdown = true
+      this.pricedorpdown = true
+      this.builddorpdown = true
       this.query = ''
       this.flitertext = {} // 中转站选中的对象
       this.flitertext1 = {key: '', value: ''} // 位置选中的对象
