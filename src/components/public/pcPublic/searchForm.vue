@@ -1,8 +1,8 @@
 <template>
   <div class="search">
     <div class="serch-cot">
-      <input type="text" v-model.trim="query" placeholder="请输入城区/商圈/胡同">
-      <img src="../../../assets/images/smallSearch.svg" @click="changeCondition" alt="" srcset="">
+      <input type="text" @keyup.enter="changeCondition" v-model.trim="query" placeholder="请输入城区/商圈/胡同">
+      <img src="../../../assets/images/smallSearch.svg" @click="changeCondition" alt="" srcset="" >
     </div>
   </div>
 </template>
