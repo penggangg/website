@@ -96,6 +96,7 @@ export default {
         width: 228px;
         position: absolute;
         bottom: 0;
+        left: 0;
         color: #fff;
         padding: 4px 10px;
         background: rgb(0,0,0);

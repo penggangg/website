@@ -19,7 +19,7 @@
           <swiper-slide v-for="(slide, index) in picList" :key="index" v-if="index>0">
             <img :src="slide" alt="" srcset="">
           </swiper-slide>
-          <swiper-slide v-for="item in 6" :key="item" v-if="picList.length<7">
+          <swiper-slide v-for="item in 6" :key="item" >
           </swiper-slide>
         </swiper>
         <!-- 四个按钮的自定义 -->
@@ -74,15 +74,15 @@ export default {
   },
   mounted () {
     this.$nextTick(() => {
-      if (this.picList.lenght < 7) {
-        this.swiperOptionThumbs.loopedSlides = 3
-        this.swiperOptionTop.loopedSlides = 3
-        this.swiperOptionThumbs.loop = false
-        this.swiperOptionTop.loop = false
-      } else {
-        this.swiperOptionThumbs.loop = true
-        this.swiperOptionTop.loop = true
-      }
+      // if (this.picList.lenght < 7) {
+      //   this.swiperOptionThumbs.loopedSlides = 3
+      //   this.swiperOptionTop.loopedSlides = 3
+      //   this.swiperOptionThumbs.loop = false
+      //   this.swiperOptionTop.loop = false
+      // } else {
+      //   this.swiperOptionThumbs.loop = true
+      //   this.swiperOptionTop.loop = true
+      // }
       const swiperTop = this.$refs.swiperTop.swiper
       const swiperThumbs = this.$refs.swiperThumbs.swiper
       swiperTop.controller.control = swiperThumbs
