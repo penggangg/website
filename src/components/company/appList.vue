@@ -34,7 +34,7 @@
             <div class="product_img">
                 <p class="messconten_title" style="margin-bottom: .25rem;padding-top:.25rem;">
                     <span>-</span>
-                    <span>我们的产品</span>
+                    <span>我们的优势</span>
                     <span>-</span>
                 </p>
             </div>
