@@ -32,14 +32,14 @@
           <span>精品商铺写字楼全覆盖</span>
         </div>
         <div class="item">
-          <img src="../../assets/images/icon-house.svg" alt="">
-          <span>房源全面</span>
-          <span>精品商铺写字楼全覆盖</span>
+          <img src="../../assets/images/icon-real.png" alt="">
+          <span>真实可信</span>
+          <span>实地核验真实房源</span>
         </div>
         <div class="item">
-          <img src="../../assets/images/icon-house.svg" alt="">
-          <span>房源全面</span>
-          <span>精品商铺写字楼全覆盖</span>
+          <img src="../../assets/images/icon-service.png" alt="">
+          <span>专业服务</span>
+          <span>一站式选址专业省心</span>
         </div>
       </div>
     </div>
