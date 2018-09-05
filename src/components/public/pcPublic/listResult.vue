@@ -1,6 +1,9 @@
 <template>
   <div class="content">
-    <div class="total-num">
+    <div class="total-num" v-if="code==3">
+      为你找到 <span>{{count}}个</span> 上海{{$route.meta.title}}
+    </div>
+    <div class="total-num" v-if="code==2">
       为你找到 <span>{{count}}个</span> 北京{{$route.meta.title}}
     </div>
     <div class="list" v-if="dataList.length">
