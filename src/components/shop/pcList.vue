@@ -129,7 +129,6 @@
             border: 1px solid #B7B7B7;
             &[type = button] {
               color: #3886F8;
-              color: #3886F8;
               background: none;
             }
           }

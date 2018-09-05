@@ -111,7 +111,8 @@ export default {
         span {
           margin-top: 10px;
           font-size: 14px;
-          color: #5D9CF9;
+          color: #222;
+          white-space: nowrap;
         }
       }
     }
