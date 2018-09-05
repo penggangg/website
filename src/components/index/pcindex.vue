@@ -55,7 +55,7 @@
             <img :src="item.pic" alt="" srcset="">
             <div>
               <span :title="item.title">{{item.title}}</span>
-              <span :title="`${item.price}元/㎡`">{{item.price}}元/㎡</span>
+              <span :title="`${item.price/10000}万/㎡`">{{item.price/10000}}万/㎡</span>
             </div>
           </div>
         </div>

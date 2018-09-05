@@ -61,7 +61,7 @@
           <span>地址</span>
           <span class="address">{{details.address}}</span>
           <span class="search" @click="askShow = true">查看详细地址</span>
-          <span class="map"> <img src="../../../assets/images/icon-location-blue .svg" > 查看地图</span>
+          <!-- <span class="map"> <img src="../../../assets/images/icon-location-blue .svg" > 查看地图</span> -->
         </li>
       </ul>
       <div class="hot-line">
@@ -164,7 +164,7 @@
               overflow: hidden;
               white-space: nowrap;
               text-overflow: ellipsis;
-              width: 104px;
+              width: 220px;
               vertical-align: bottom
             }
             &.search {
