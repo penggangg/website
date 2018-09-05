@@ -17,6 +17,7 @@ import {constData} from '@/assets/js/constData'
 import {units} from '@/assets/js/units'
 import DOmstyle from '@/assets/js/directive'
 import BaiduMap from 'vue-baidu-map'
+import 'babel-polyfill'
 import showMsg from '@/components/public/pcPublic/msgbox/msgBox.js'
 import appshowMsg from '@/components/public/appPublic/msgbox/msgBox.js'
 Vue.use(BaiduMap, {
