@@ -95,7 +95,8 @@
   .desc {
     font-size: 18px;
     color: #888;
-    text-align: center;
+    text-indent: 2em;
+    // text-align: center;
   }
 }
 .section {

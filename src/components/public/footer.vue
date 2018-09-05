@@ -59,7 +59,7 @@ export default {
       // } else {
       //   this.backTopShow = false
       // }
-      if (document.documentElement.scrollTop > 500) {
+      if (document.documentElement.scrollTop > 500 || document.body.scrollTop > 500) {
         this.backTopShow = true
       } else {
         this.backTopShow = false
