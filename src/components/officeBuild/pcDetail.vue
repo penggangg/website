@@ -4,7 +4,7 @@
     <div class="bread-crumbs">
       <router-link :to="{ path: '/', query: { code }}">合屋首页</router-link>>
       <router-link :to="{ path: `/${path}`, query: { code }}">{{breadCrumbs}}</router-link>>
-      <a href="">{{officesDetails.title}}写字楼</a>
+      <a href="javascript:void(0);">{{officesDetails.title}}写字楼</a>
     </div>
     <house-content :details="officesDetails"></house-content>
     <map-list

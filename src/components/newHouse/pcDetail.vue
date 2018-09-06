@@ -3,7 +3,7 @@
     <div class="bread-crumbs">
       <router-link :to="{ path: '/', query: { code }}">合屋首页</router-link>>
       <router-link :to="{ path: '/newHouse', query: { code }}">新房列表</router-link>>
-      <a href="">{{houseDetails.title}}</a>
+      <a href="javascript:void(0);">{{houseDetails.title}}</a>
     </div>
     <div class="banner">
       <div class="filter-bg">
