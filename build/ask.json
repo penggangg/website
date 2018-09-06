@@ -1,0 +1,11 @@
+{
+  "mode": [
+    "alignment"
+  ],
+  "compress": true,
+  "buildSourceMap": false,
+  "cdn": false,
+  "mock": false,
+  "alignment": true,
+  "address": "http://api.hewuchina.com"
+}

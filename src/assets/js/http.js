@@ -1,6 +1,6 @@
 import axios from 'axios'
 // import Loading from '@/components/OverlayLoading/Loading'
-
+// axios.defaults.baseURL = process.env.BASE_API
 export function fetch (url, params = {}, method = 'GET', {
   withMask = true,
   ...config
