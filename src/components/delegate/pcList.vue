@@ -173,6 +173,9 @@ export default {
           font-size: 18px;
           font-weight: bold;
         }
+        input {
+          width: 490px;
+        }
         &:last-child {
           display: flex;
           textarea {

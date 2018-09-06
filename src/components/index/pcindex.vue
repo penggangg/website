@@ -12,7 +12,7 @@
             </ul>
           </div>
           <div class="searchTerm">
-            <input class="search_text" type="text" @keyup.enter="search"  placeholder="请输入城区/商圈/胡同" v-model="keyWords"/>
+            <input class="search_text" type="text" @keyup.enter="search"  placeholder="请输入城区/商圈/项目" v-model="keyWords"/>
             <span class="search_btn" @click="search">
               <img src="../../assets/images/icon-search.svg" alt="">
             </span>

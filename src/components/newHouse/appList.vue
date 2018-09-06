@@ -63,7 +63,7 @@ export default {
       navigationbg: require('../../assets/appimages/icon-lmenu.svg'), // 右侧的弹窗按钮样式
       styleObjet: { // 搜索组件的一些配置
         positionbottom: '.1rem',
-        placeholder: '请输入城区/商圈/胡同',
+        placeholder: '请输入城区/商圈/项目',
         bgse: '#fff',
         dorpdownDome: false
       },

@@ -75,7 +75,7 @@ export default {
       shownavigationpops: false,
       styleObjet: { // inputsearch组件的一些配置
         positionbottom: '.15rem',
-        placeholder: '请输入城区/商圈/胡同',
+        placeholder: '请输入城区/商圈/项目',
         bgse: '#3886F8',
         dorpdownDome: true
       },

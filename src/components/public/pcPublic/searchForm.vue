@@ -1,7 +1,7 @@
 <template>
   <div class="search">
     <div class="serch-cot">
-      <input type="text" @keyup.enter="changeCondition" v-model.trim="query" placeholder="请输入城区/商圈/胡同">
+      <input type="text" @keyup.enter="changeCondition" v-model.trim="query" placeholder="请输入城区/商圈/项目">
       <img src="../../../assets/images/smallSearch.svg" @click="changeCondition" alt="" srcset="" >
     </div>
   </div>

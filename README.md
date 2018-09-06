@@ -51,7 +51,7 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
     * :styleObjet 为inputSearch框的一些样式配置
     * styleObjet: { // 搜索组件的一些配置
         positionbottom: '.1rem', // 为距离父组件的bottom定位
-        placeholder: '请输入城区/商圈/胡同', // input框的默认文字
+        placeholder: '请输入城区/商圈/项目', // input框的默认文字
         bgse: '#fff', // 搜索按钮放大镜的背景颜色
         dorpdownDome: false //最左边是不是带下拉切换 true带下拉 false不带 注意现在下拉的值是写死的
       }
