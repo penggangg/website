@@ -7,7 +7,7 @@
           <span class="footertab">商铺</span>
           <span class="footertab">写字楼</span>
           <span class="footertab">公司介绍</span>
-          <span class="footertab">联系我们</span>
+          <!-- <span class="footertab">联系我们</span> -->
           <span class="footertab" style="margin-right: 0">友情链接</span>
       </p>
       <p>服务热线：400-888-8888</p>

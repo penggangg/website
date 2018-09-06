@@ -123,7 +123,14 @@ const router = new Router({
       component: delegate,
       meta: {activeClass: 'delegate', titleName: '房产委托'}
     }
-  ]
+  ],
+  scrollBehavior (to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { x: 0, y: 0 }
+    }
+  }
 })
 router.beforeEach((to, from, next) => {
   let { code } = to.query
