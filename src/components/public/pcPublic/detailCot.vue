@@ -55,7 +55,7 @@
         </li>
         <li>
           <span>区域</span>
-          <span>{{details.district}}㎡</span>
+          <span>{{details.district}}</span>
         </li>
         <li>
           <span>地址</span>

@@ -8,7 +8,7 @@
           <router-link to="/officeBuild" tag="span">写字楼</router-link>
           <router-link to="/company" tag="span">公司介绍</router-link>
           <!-- <span>联系我们</span> -->
-          <span>友情链接</span>
+          <!-- <span>友情链接</span> -->
         </div>
         <div class="hotline">服务热线: 400-888-8888</div>
       </div>
