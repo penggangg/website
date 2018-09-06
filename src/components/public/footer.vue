@@ -18,7 +18,7 @@
     </div>
     <div class="maodian" v-show="backTopShow">
       <div class="ask" @click="askShow = true">
-        <img src="../../assets/images/icon-consult.svg" alt="" srcset="">
+        <img src="../../assets/images/icon-consult.png" alt="" srcset="">
       </div>
       <div class="top" @click="backTop()">
         <img src="../../assets/images/icon-top.svg" alt="" srcset="">
