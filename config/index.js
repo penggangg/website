@@ -3,7 +3,7 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 
 const path = require('path')
-
+const is_changeOrigin = process.env.HW_DEV === 'dev' ? true : false
 module.exports = {
   dev: {
 
@@ -13,7 +13,7 @@ module.exports = {
     proxyTable: {
       '/api': {
         target: 'http://api.hewuchina.com',
-        changeOrigin: false,
+        changeOrigin: is_changeOrigin,
         pathRewrite: {
           '^/api': '/'
         }

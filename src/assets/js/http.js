@@ -10,7 +10,12 @@ export function fetch (url, params = {}, method = 'GET', {
   }
 
   let isGet = method.toUpperCase() === 'GET'
-
+  /* eslint-disable */
+  if ( HW_DEV === 'dev') {
+    url = '/api' + url
+  } else {
+    url = 'http://api.hewuchina.com' + url
+  }
   // withMask && Loading.show()
   return new Promise((resolve, reject) => {
     axios({
