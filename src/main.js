@@ -22,7 +22,7 @@ import showMsg from '@/components/public/pcPublic/msgbox/msgBox.js'
 import appshowMsg from '@/components/public/appPublic/msgbox/msgBox.js'
 Vue.use(BaiduMap, {
   // ak 是在百度地图开发者平台申请的密钥 详见 http://lbsyun.baidu.com/apiconsole/key */
-  ak: 'pWG06DZF1MUghAoWoGeU45yirzxNGqpf'
+  ak: '34Mz9s70dkoTC8gO8CMXgDaWZETHHNPF'
 })
 Vue.use(DOmstyle)
 Vue.use(VueAwesomeSwiper)
