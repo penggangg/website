@@ -100,10 +100,10 @@ export default {
   },
   methods: {
     prev () {
-      this.$('.swiper-button-prev').click()
+      this.$('.bigImg_cot .swiper-button-prev').click()
     },
     next () {
-      this.$('.swiper-button-next').click()
+      this.$('.bigImg_cot .swiper-button-next').click()
     },
     close () {
       this.$emit('input', false)

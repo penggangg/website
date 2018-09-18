@@ -102,10 +102,10 @@
         </div>
       </div>
     </div>
-    <div class="item-content  house-pic" v-if="houseDetails.pic&&houseDetails.pic.length>1">
+    <div class="item-content house-pic" v-if="houseDetails.pic&&houseDetails.pic.length>1">
       <h3>楼盘相册</h3>
       <div class="gallery-thumbs-cot">
-        <div class="prev btn">
+        <div class="prev btn" @click="prev">
           <img src="../../assets/images/icon-left-white.svg" alt="" srcset="">
         </div>
         <swiper :options="swiperOptionThumbs" class="gallery-thumbs" ref="swiperThumbs">
@@ -116,7 +116,7 @@
           <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
           <!-- <div class="swiper-pagination" slot="pagination"></div> -->
         </swiper>
-        <div class="next btn">
+        <div class="next btn" @click="next">
           <img src="../../assets/images/icon-right-white.svg" alt="" srcset="">
         </div>
       </div>
@@ -460,6 +460,12 @@ export default {
   methods: {
     houseTypeChange (type) {
       this.houseType = type
+    },
+    prev () {
+      this.$('.house-pic .swiper-button-prev').click()
+    },
+    next () {
+      this.$('.house-pic .swiper-button-next').click()
     }
   },
   created () {
