@@ -13,7 +13,7 @@
       <template v-if="houseDetails.pic">
         <div class="banner-small" :style="{backgroundImage:`url(${houseDetails.pic[0]})`}">
           <div class="tags-cot">
-            <div class="total-pic" @click="picDetailsShow=true" v-if="houseDetails.pic.length>1">
+            <div class="total-pic" @click="picDetailsShow=true;currentPage=1" v-if="houseDetails.pic.length>1">
               <img src="../../assets/images/icon-pic.svg" alt="" >
               <span>楼盘相册（{{houseDetails.pic && houseDetails.pic.length-1}}张）</span>
             </div>
@@ -110,7 +110,7 @@
         </div>
         <swiper :options="swiperOptionThumbs" class="gallery-thumbs" ref="swiperThumbs">
           <swiper-slide v-for="(slide, index) in houseDetails.pic" :key="index" v-if="index>0" >
-            <img :src="slide" alt="" srcset="" @click="picDetailsShow=true">
+            <img :src="slide" alt="" srcset="" @click="picDetailsShow=true;swiperOptionThumbs.initialSlide=index-1;swiperOptionTop1.initialSlide=index-1;currentPage=index">
           </swiper-slide>
           <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
           <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
@@ -165,7 +165,7 @@
       :lat="houseDetails.latitude">
     </map-list>
     <ask-mask v-model="askShow"></ask-mask>
-    <picDetails :picList="houseDetails.pic" v-model="picDetailsShow"></picDetails>
+    <picDetails :picList="houseDetails.pic" :swiperOptionThumbs="swiperOptionThumbs1" :swiperOptionTop="swiperOptionTop1"  v-if="picDetailsShow" :currentPage="currentPage" @picDetailsShowAction="picDetailsShowAction"></picDetails>
     <footers></footers>
   </div>
 </template>
@@ -444,9 +444,35 @@ export default {
           prevEl: '.swiper-button-prev'
         }
       },
+      swiperOptionThumbs1: {
+        spaceBetween: 10,
+        slidesPerView: 7,
+        touchRatio: 0.2,
+        loop: false,
+        loopedSlides: 7, // looped slides should be the same
+        initialSlide: 0, // 设定初始化时slide的索引。
+        slideToClickedSlide: true
+      },
+      swiperOptionTop1: {
+        spaceBetween: 10,
+        loop: false,
+        loopedSlides: 7, // looped slides should be the same
+        initialSlide: 0, // 设定初始化时slide的索引。
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev'
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          type: 'fraction'
+        },
+        on: {
+        }
+      },
       askShow: false,
       picDetailsShow: false,
-      houseType: ''
+      houseType: '',
+      currentPage: 1
     }
   },
   props: {
@@ -466,9 +492,10 @@ export default {
     },
     next () {
       this.$('.house-pic .swiper-button-next').click()
+    },
+    picDetailsShowAction () {
+      this.picDetailsShow = false
     }
-  },
-  created () {
   },
   computed: {
     houseTypeList (newValue) {

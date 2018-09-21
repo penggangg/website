@@ -1,12 +1,12 @@
 <template>
 <transition name="msgbox-fade">
-<div class="bigImg" v-show="value">
+<div class="bigImg">
   <div class="bigImgs">
     <div class="prev" @click="prev">
       <img src="../../assets/images/icon-left-big.svg" alt="" srcset="">
     </div>
     <div class="bigImg_cot">
-        <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop">
+        <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop" @slideChange="slideChange">
           <swiper-slide v-for="(slide, index) in picList" :key="index" v-if="index>0">
             <img :src="slide" alt="" srcset="">
           </swiper-slide>
@@ -39,37 +39,6 @@
 export default {
   data () {
     return {
-      swiperOptionThumbs: {
-        spaceBetween: 10,
-        slidesPerView: 7,
-        touchRatio: 0.2,
-        loop: false,
-        loopedSlides: 7, // looped slides should be the same
-        initialSlide: 0, // 设定初始化时slide的索引。
-        slideToClickedSlide: true
-      },
-      swiperOptionTop: {
-        spaceBetween: 10,
-        loop: false,
-        loopedSlides: 7, // looped slides should be the same
-        initialSlide: 0, // 设定初始化时slide的索引。
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
-        },
-        pagination: {
-          el: '.swiper-pagination',
-          type: 'fraction'
-        },
-        on: {
-          slideChange: _ => {
-            console.log(this.$('.swiper-pagination-current').html())
-            let current = this.$('.swiper-pagination-current').html()
-            this.currentPage = current
-          }
-        }
-      },
-      currentPage: 1
     }
   },
   mounted () {
@@ -96,6 +65,16 @@ export default {
     },
     value: {
       default: Boolean
+    },
+    swiperOptionThumbs: {
+      type: Object
+    },
+    swiperOptionTop: {
+      type: Object
+    },
+    currentPage: {
+      required: true,
+      default: 1
     }
   },
   methods: {
@@ -106,7 +85,11 @@ export default {
       this.$('.bigImg_cot .swiper-button-next').click()
     },
     close () {
-      this.$emit('input', false)
+      this.$emit('picDetailsShowAction')
+    },
+    slideChange () {
+      let current = this.$('.swiper-pagination-current').html()
+      this.currentPage = current
     }
   }
 }
@@ -127,7 +110,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     margin: 0 auto;
-    margin-top: 130px;
+    // margin-top: 130px;
     width: 1200px;
     height: 694px;
     .prev,.next {
