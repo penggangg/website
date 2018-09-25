@@ -69,7 +69,7 @@
           </li>
           <li>
             <span>产权年限</span>
-            <span>{{houseDetails.own_years}}</span>
+            <span>{{houseDetails.own_years}}年</span>
           </li>
           <li>
             <span>占地面积</span>

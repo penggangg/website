@@ -51,7 +51,7 @@
            </p>
            <p>
              <span class="colorfont-size">产权年限</span>
-             <span class="fontsizeoverflow" style="width:.9rem">{{houseDetails.own_years}}</span>
+             <span class="fontsizeoverflow" style="width:.9rem">{{houseDetails.own_years}}年</span>
            </p>
          </div>
 
@@ -62,7 +62,7 @@
            </p>
            <p>
              <span class="colorfont-size">占地面积</span>
-             <span class="fontsizeoverflow" style="width:.9rem">{{houseDetails.floor_area}}</span>
+             <span class="fontsizeoverflow" style="width:.9rem">{{houseDetails.floor_area}}㎡</span>
            </p>
          </div>
 
