@@ -78,9 +78,9 @@ export default {
     let { result } = await city()
     let { query } = this.$route
     if (JSON.stringify(query) === '{}') {
-      this.code = JSON.stringify(result.default.city_id)
+      // this.code = JSON.stringify(result.default.city_id)
       // this.$router.push({name: '/', query: { code: this.code }})
-      window.location.href = '/#/?code=' + this.code
+      window.location.href = '/#/?code=' + result.default.city_id
     }
     this.getBanner()
     Promise.all([houseRec({ city_id: this.code, limit: 4 }), storeRec({ city_id: this.code }), officesRec({ city_id: this.code })]).then(res => {
