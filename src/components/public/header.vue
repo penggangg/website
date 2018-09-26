@@ -5,9 +5,9 @@
           <div class="col-md-2 text-right logo"><img src="../../assets/images/logo.png" alt="" srcset=""></div>
           <div class="col-md-1 citySwicth">
             <img src="../../assets/images/icon-location.svg" alt="" srcset="">
-            <router-link  :to="{ path: '/', query: { code: 3 }}" :class="{ active: $route.query.code == 3 }" tag="span">上海</router-link>
+            <router-link  :to="{ path: '/', query: { code: 3 }}" :class="{ active: $route.query.code == 3 || !$route.query.code }" tag="span">上海</router-link>
             <span>|</span>
-            <router-link  :to="{ path: '/', query: { code: 2 }}"  :class="{ active: $route.query.code == 2 || !$route.query.code }"   tag="span">北京</router-link>
+            <router-link  :to="{ path: '/', query: { code: 2 }}"  :class="{ active: $route.query.code == 2 }"   tag="span">北京</router-link>
           </div>
           <ul class="row col-md-7 nav" >
             <router-link v-for="(item, index) in arrPath" :key="index" :class="{ active: $route.meta.activeClass === item.activeClass}" :to="{ path: `/${item.path}`, query: { code }}" tag="li" >{{item.name}}</router-link>
@@ -20,8 +20,6 @@
   </div>
 </template>
 <script>
-import {city} from '@/assets/js/api'
-
 export default {
   data () {
     return {
@@ -75,14 +73,6 @@ export default {
       isHome: true,
       city: []
     }
-  },
-  mounted () {
-    city().then(res => {
-      this.city = res.result.citys
-    })
-  },
-  created () {
-    console.log(this.$router)
   }
 }
 </script>

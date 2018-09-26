@@ -24,7 +24,7 @@
 <script>
 import Appindex from './appIndex'
 import Pcindex from './pcIndex'
-import {houseRec, storeRec, officesRec, indexbanner} from '@/assets/js/api'
+import {city, houseRec, storeRec, officesRec, indexbanner} from '@/assets/js/api'
 export default {
   name: 'Index',
   data () {
@@ -75,6 +75,12 @@ export default {
     next()
   },
   async created () {
+    let { result } = await city()
+    let { query } = this.$route
+    if (JSON.stringify(query) === '{}') {
+      this.code = JSON.stringify(result.default.city_id)
+      this.$router.push({name: '/', query: { code: this.code }})
+    }
     this.getBanner()
     Promise.all([houseRec({ city_id: this.code, limit: 4 }), storeRec({ city_id: this.code }), officesRec({ city_id: this.code })]).then(res => {
       console.log(res)

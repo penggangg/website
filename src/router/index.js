@@ -134,7 +134,7 @@ const router = new Router({
 })
 router.beforeEach((to, from, next) => {
   let { code } = to.query
-  Vue.prototype.code = code || '2'
+  Vue.prototype.code = code || '3'
   document.title = to.meta.titleName
   console.log(Vue.prototype.code)
   next()

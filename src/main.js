@@ -35,7 +35,7 @@ Vue.prototype.$showMsg = showMsg
 Vue.prototype.$appshowMsg = appshowMsg
 Vue.prototype.$units = units
 Vue.prototype.$ = $
-Vue.prototype.code = '2'
+Vue.prototype.code = '3'
 // axios.defaults.baseURL = 'http://172.18.3.124:8081'
 // 添加一个请求拦截器
 axios.interceptors.request.use(function (config) {
