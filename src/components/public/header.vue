@@ -12,7 +12,7 @@
           <ul class="row col-md-7 nav" >
             <router-link v-for="(item, index) in arrPath" :key="index" :class="{ active: $route.meta.activeClass === item.activeClass}" :to="{ path: `/${item.path}`, query: { code }}" tag="li" >{{item.name}}</router-link>
           </ul>
-          <div class="col-md-2 text-right tel">服务热线： 400-888-8888</div>
+          <div class="col-md-2 text-right tel">服务热线：021-61131717</div>
         </div>
         <div class="visible-sm-block visible-xs-block">
         </div>
