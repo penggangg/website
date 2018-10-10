@@ -34,7 +34,7 @@
             </div>
 
             <div class="call_telphone">
-                <p>咨询热线：400-888-9950</p>
+                <p>咨询热线：021-61131717</p>
                 <p @click="submit">提交申请</p>
             </div>
 

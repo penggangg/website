@@ -40,8 +40,8 @@
             >{{item.key}}</span>
             <span>
               <input type="text" v-model="price_min"> -
-              <input type="text" v-model="price_max">
-              <input type="button" value="确定" @click="changeCondition({price: (price_min||0) +'-'+ price_max})">
+              <input type="text" v-model="price_max"> 万
+              <input type="button" value="确定" @click="changeCondition({price: (price_min*10000||0) +'-'+ price_max*10000})">
             </span>
           </dd>
         </dl>
@@ -110,7 +110,7 @@
             font-weight: bold;
           }
           input {
-            width: 36px;
+            width: 54px;
             height: 18px;
             font-size: 12px;
             border: 1px solid #B7B7B7;

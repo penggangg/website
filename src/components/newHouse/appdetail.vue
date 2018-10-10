@@ -29,7 +29,7 @@
          <p>基本信息</p>
          <p>
            <span>咨询热线:</span>
-           <span>400-888-9950</span>
+           <span>021-61131717</span>
          </p>
        </div>
        <div class="basic-information-mess">

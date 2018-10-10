@@ -23,8 +23,8 @@
           </swiper-slide>
           <swiper-slide>
           </swiper-slide>
-          <swiper-slide>
-          </swiper-slide>
+          <!-- <swiper-slide>
+          </swiper-slide> -->
           <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
           <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
           <!-- <div class="swiper-pagination" slot="pagination"></div> -->
@@ -65,7 +65,7 @@
         </li>
       </ul>
       <div class="hot-line">
-        咨询热线：400-888-9950
+        咨询热线：021-61131717
       </div>
     </div>
     <ask-mask v-model="askShow"></ask-mask>
@@ -169,7 +169,7 @@
             }
             &.search {
               padding: 2px 10px;
-              margin: 0 37px 0 30px;
+              margin: 0 0 0 30px;
               color: #5D9CF9;
               border: 1px solid #5D9CF9;
               border-radius: 4px;

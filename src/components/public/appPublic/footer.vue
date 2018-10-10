@@ -13,7 +13,8 @@
       <p>服务热线：021-61131717</p>
    </div>
    <div>
-       Copyright2012 l 上海屋合网络科技有限公司备案号 l 沪ICP21088888
+      Copyright © 2018 hewuchina.com 上海合屋电子商务有限公司  沪ICP备18024015号-1<br/>
+      由北京今永科技有限公司技术支持
    </div>
   </div>
 </template>
@@ -62,8 +63,8 @@ export default {
         }
     }
     &>div:nth-of-type(2) {
-        height: .34rem;
-        line-height: .34rem;
+        // height: .34rem;
+        // line-height: .34rem;
         color:#888C8E;
         text-align: center;
         @include font-size-min(.14rem, 100%);

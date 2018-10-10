@@ -13,7 +13,8 @@
         <div class="hotline">服务热线: 021-61131717</div>
       </div>
       <div class="copyright">
-        Copyright2012 l 上海屋合网络科技有限公司备案号 l 沪ICP21088888
+        Copyright © 2018 hewuchina.com 上海合屋电子商务有限公司  沪ICP备18024015号-1<br/>
+        由北京今永科技有限公司技术支持
       </div>
     </div>
     <div class="maodian" v-show="backTopShow">

@@ -11,7 +11,7 @@
                 <span @click="condition.rent_type=2" :class="{active: condition.rent_type===2}">出售</span>
                 <span @click="condition.rent_type=1" :class="{active: condition.rent_type===1}">出租</span>
               </div>
-              <span class="tel">咨询热线：400-888-9950</span>
+              <span class="tel">咨询热线：021-61131717</span>
             </div>
             <div class="item userInfo">
               <span>尊称</span>
