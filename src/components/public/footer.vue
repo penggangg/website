@@ -17,6 +17,9 @@
       </div>
     </div>
     <div class="maodian" v-show="backTopShow">
+      <div class="qrCode">
+        <img src="../../assets/images/icon-qrcode.png" alt="" srcset="">
+      </div>
       <div class="ask" @click="askShow = true">
         <img src="../../assets/images/icon-consult.png" alt="" srcset="">
       </div>
@@ -110,11 +113,12 @@ footer {
   }
   .maodian {
     position: fixed;
-    right: calc((100% - 1180px)/ 2);
+    right: calc(((100% - 1180px)/ 2) - 115px);
     bottom: 100px;
     z-index: 1000000;
     cursor: pointer;
     .ask {
+      margin-top: 20px;
       margin-bottom: 20px;
       width: 100px;
       height: 100px;
