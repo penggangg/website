@@ -25,7 +25,7 @@
         <img src="../../assets/images/icon-consult.png" alt="" srcset="">
       </div>
       <div class="top" @click="backTop()">
-        <img src="../../assets/images/icon-top.svg" alt="" srcset="">
+        <img src="../../assets/images/icon-top.png" alt="" srcset="">
       </div>
     </div>
     <ask-mask v-model="askShow"></ask-mask>

@@ -52,7 +52,7 @@
           <template slot="house-price" slot-scope="price">
             <div class="house-price" style="position:relative">
               {{price.price.price/10000}}万/㎡(均价)
-              <div class="total" style="font-size:16px;color:#333;position:absolute;right:0;">总价{{price.price.minPrice/10000}}万/套起</div>
+              <div class="total" style="font-size:16px;color:#333;position:absolute;right:0;white-space: nowrap;">总价{{price.price.minPrice/10000}}万/套起</div>
             </div>
           </template>
         </list-item>
