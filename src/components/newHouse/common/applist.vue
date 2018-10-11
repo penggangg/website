@@ -28,7 +28,8 @@
               <span>建筑类型</span>
               <span>{{item.type}}</span>
               <span>建筑面积</span>
-              <span>{{item.min_area}}~{{item.max_area}}㎡</span>
+              <span v-if="item.min_area">{{item.min_area}}~{{item.max_area}}㎡</span>
+              <span v-if="!item.min_area">{{item.max_area}}㎡</span>
             </p>
             <!-- <p class="fontsizeoverflow">
               <span class="onsale" :style="{color: item.color}"

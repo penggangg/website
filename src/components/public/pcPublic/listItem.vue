@@ -16,7 +16,8 @@
               </i>
             </span>
             <span class="building-type"><span>建筑类型</span> <i>{{item.item.type}}</i></span>
-            <span class="building-area"><span>建筑面积</span> <i>{{item.item.min_area}}~{{item.item.max_area}}㎡</i></span>
+            <span class="building-area" v-if="item.item.min_area"><span>建筑面积</span> <i>{{item.item.min_area}}~{{item.item.max_area}}㎡</i></span>
+            <span class="building-area" v-if="!item.item.min_area"><span>建筑面积</span> <i>{{item.item.max_area}}㎡</i></span>
           </slot>
           <slot name="house-type" v-if="$route.name!=='newHouseList'">
             <span class="building-type"><span>建筑面积</span> <i>{{item.item.build_area}}㎡</i></span>

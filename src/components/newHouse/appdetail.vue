@@ -58,7 +58,8 @@
          <div class="basic-information-mess-items">
            <p>
              <span class="colorfont-size">建筑面积</span>
-             <span class="fontsizeoverflow" style="width:.9rem">{{houseDetails.min_area}}-{{houseDetails.max_area}}㎡</span>
+             <span class="fontsizeoverflow" style="width:.9rem" v-if="!houseDetails.min_area">{{houseDetails.min_area}}-{{houseDetails.max_area}}㎡</span>
+             <span class="fontsizeoverflow" style="width:.9rem" v-if="!houseDetails.min_area">{{houseDetails.max_area}}㎡</span>
            </p>
            <p>
              <span class="colorfont-size">占地面积</span>

@@ -39,7 +39,8 @@
           </li>
           <li>
             <span>建筑面积</span>
-            <span>{{houseDetails.min_area}}-{{houseDetails.max_area}}㎡</span>
+            <span v-if="houseDetails.min_area">{{houseDetails.min_area}}-{{houseDetails.max_area}}㎡</span>
+            <span v-if="!houseDetails.min_area">{{houseDetails.max_area}}㎡</span>
           </li>
           <li>
             <span>容积率</span>
