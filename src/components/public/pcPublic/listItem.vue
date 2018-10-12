@@ -94,6 +94,7 @@ export default {
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
+        font-weight: bold;
       }
     }
     .loacation {

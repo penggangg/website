@@ -133,6 +133,9 @@ export default {
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
+        a {
+          font-weight: bold;
+        }
       }
       .details {
         margin: 20px 0;
