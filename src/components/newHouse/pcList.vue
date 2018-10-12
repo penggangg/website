@@ -26,8 +26,8 @@
               :key="index"
               >{{item.key}}</span>
             <span>
-              <input type="text"  v-model="price_min"> -
-              <input type="text"  v-model="price_max"> 万
+              <input type="number"  v-model="price_min"> -
+              <input type="number"  v-model="price_max"> 万
               <input type="button" value="确定" @click="changeCondition({price: (price_min*10000||0) +'-'+ price_max*10000})">
             </span>
           </dd>
