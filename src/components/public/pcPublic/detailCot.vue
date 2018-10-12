@@ -85,6 +85,7 @@
       }
       .gallery-thumbs-cot {
         display: flex;
+        margin-top: 10px;
         .prev,.next {
           height: 82px;
           width: 24px;
@@ -186,7 +187,7 @@
         }
       }
       .hot-line {
-        margin-top: 90px;
+        margin-top: 100px;
         font-size: 22px;
         font-weight: bold;
         color: #FB6550;
