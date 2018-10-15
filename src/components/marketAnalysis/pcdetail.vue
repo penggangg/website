@@ -3,7 +3,7 @@
       <div class="bread-crumbs">
         <router-link :to="{ path: '/marketAnalysis', query: { code }}" v-if="$route.name==='marketAnalysisDetail'">市场分析</router-link>
         <router-link :to="{ path: '/dynamicDetail', query: { code }}" v-if="$route.name==='dynamicDetail'">企业动态</router-link>
-        ><a href="javascript:void(0);">征文</a>
+        <!-- ><a href="javascript:void(0);">征文</a> -->
       </div>
       <div class="artice">
         <div class="title">

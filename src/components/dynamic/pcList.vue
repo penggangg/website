@@ -3,7 +3,7 @@
       <div class="banner" :style="{backgroundImage:`url(${bannerImg})`}">
         <div class="pic-cot">
           <div class="item" v-for="(item,index) in swiperPicList" :key="index">
-            <router-link  :to="{ path:`/marketAnalysisDetail/${item.id}`, query: { code }}" target="_blank">
+            <router-link  :to="{ path:`/dynamicDetail/${item.id}`, query: { code }}" target="_blank">
               <img :src="item.pic"  alt="" srcset="">
               <span>{{item.title}}</span>
             </router-link>

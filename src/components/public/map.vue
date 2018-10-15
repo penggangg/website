@@ -141,6 +141,8 @@ export default {
   margin-top: 50px;
   h3 {
     margin-bottom: 30px;
+    font-size: 16px;
+    font-weight: bold;
   }
   .map-filter {
     margin-bottom: 35px;

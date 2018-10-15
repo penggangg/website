@@ -15,21 +15,22 @@
             </div>
             <p class="marketP1">{{marketdetail.title}}</p>
             <p class="marketP2">{{marketdetail.desc}}</p>
-            <p class="marketP3">
-                <span>作者:</span>
-                <span>{{marketdetail.author}}</span>
-            </p>
-            <div class="marketdiv1">
-                <p>
-                    <span>发布时间:</span>
-                    <span>{{marketdetail.add_time}}</span>
-                </p>
-                <p>
-                    <span v-for="(item,index) in marketdetail.labels" :key ="index"
-                    :style="{background: item.color}"
-                    v-if = "index<3"
-                    >{{item.text}}</span>
-                </p>
+            <div class="market-bottom" style="width:100%;height:55px;position:absolute;bottom:0;background:rgba(0,0,0,.5)">
+              <p class="marketP3">
+                  <span>作者:</span>
+                  <span>{{marketdetail.author}}</span>
+              </p>
+              <div class="marketdiv1">
+                  <p>
+                      <span>发布时间:</span>
+                      <span>{{marketdetail.add_time}}</span>
+                  </p>
+                  <p>
+                      <span v-for="(item,index) in marketdetail.labels" :key ="index"
+                      v-if = "index<3"
+                      >{{item.text}}</span>
+                  </p>
+              </div>
             </div>
         </div>
         <div class="messconten">
@@ -78,6 +79,7 @@ export default {
 .appmarketdetail {
     height:100%;
     .appmarketdetail_header {
+        position: relative;
         height: 2.04rem;
         .apphuosedetail-header-nav{
             display: flex;
@@ -130,6 +132,7 @@ export default {
             }
             p:nth-of-type(2) {
                 span {
+                    background: #fff;
                     color: #5D9CF9;
                     font-size: .1rem;
                     padding: .02rem .03rem;
