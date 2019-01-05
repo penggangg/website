@@ -77,7 +77,7 @@ export default {
       el.style.top = pixel.y - el.offsetHeight / 2 + 'px'
     },
     searchcomplete (res) {
-      this.arrList = res.Br
+      this.arrList = res.Br || res.Ar
     },
     search (keyword) {
       this.keywords = keyword
