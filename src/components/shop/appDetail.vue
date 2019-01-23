@@ -67,7 +67,10 @@
          <div class="basic-information-mess-items" style="margin-top: .05rem;">
            <p>
              <span class="colorfont-size">售价</span>
-             <span style="font-size: .14rem"><b style="font-size: .22rem;color:#F74D3F">{{storeDetails.price/10000}}</b><b style="color:#F74D3F">{{ houseType == 1 ? '万/月': '万'}}</b></span>
+             <span style="font-size: .14rem"><b style="font-size: .22rem;color:#F74D3F">{{storeDetails.price/10000}}</b>
+             <b style="color:#F74D3F">
+              {{houseType === 1? `${item.price}元/月`: `${item.price/10000}万`}}
+            </span>
            </p>
          </div>
        </div>

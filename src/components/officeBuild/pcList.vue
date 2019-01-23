@@ -55,7 +55,7 @@
               {{price.price/10000}}万
             </div>
             <div class="price labels" v-if="rent_id==1">
-              {{price.price/10000}}万/月
+              {{price.price}}元/月
             </div>
           </template>
         </list-item>

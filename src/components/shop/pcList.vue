@@ -68,7 +68,7 @@
               {{priceShop.priceShop/10000}}万
             </div>
             <div class="house-price" v-if="rent_id==1">
-              {{priceShop.priceShop/10000}}万/月
+              {{priceShop.priceShop}}元/月
             </div>
           </template>
         </list-item>
