@@ -70,6 +70,7 @@
              <span style="font-size: .14rem"><b style="font-size: .22rem;color:#F74D3F">{{storeDetails.price/10000}}</b>
              <b style="color:#F74D3F">
               {{houseType === 1? `${item.price}元/月`: `${item.price/10000}万`}}
+              </b>
             </span>
            </p>
          </div>
