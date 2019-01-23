@@ -33,8 +33,7 @@
               </div>
             </div>
         </div>
-        <div class="messconten">
-           {{marketdetail.content}}
+        <div class="messconten" v-html="marketdetail.content">
         </div>
         <huosefooter></huosefooter>
     </div>

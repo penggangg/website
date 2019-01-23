@@ -21,8 +21,7 @@
         <div class="pic">
           <img :src="marketdetail.pic" alt="" srcset="">
         </div>
-        <div class="dec">
-          {{marketdetail.content}}
+        <div class="dec" v-html="marketdetail.content">
         </div>
       </div>
       <footers></footers>
