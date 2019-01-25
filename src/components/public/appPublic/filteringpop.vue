@@ -8,8 +8,8 @@
       <ul class="filterpop-items-contain" v-if="types == 3">
         <li class="filterpop-items flex-li"  v-for="(item,index) in arrlist" :key="index" @click="switchflitercheck(item)">
           <span>{{item.key}}</span>
-          <span :class="{activeClasscheck: value.value.split(',').indexOf(JSON.stringify(item.value)) !== -1}"></span>
-          </li>
+          <span :class="{activeClasscheck: value.value&&value.value.split(',').indexOf(JSON.stringify(item.value)) !== -1}"></span>
+        </li>
       </ul>
       <div class="sure_buttom">
         <button @click="surefilter" v-if="types != '1'">确定</button>

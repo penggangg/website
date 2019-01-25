@@ -67,7 +67,7 @@
          <div class="basic-information-mess-items" style="margin-top: .05rem;">
            <p>
              <span class="colorfont-size">售价</span>
-             <span style="font-size: .12rem"><b style="font-size: .22rem;color:#F74D3F">{{officesDetails.price/10000}}</b><b style="color:#F74D3F">{{houseType === 1? `${officesDetails.price}元/月`: `${officesDetails.price/10000}万`}}</b></span>
+             <span style="font-size: .12rem"><b style="font-size: .22rem;color:#F74D3F">{{houseType === 1? `${officesDetails.price}`: `${officesDetails.price/10000}`}}</b><b style="color:#F74D3F">{{houseType === 1? `元/月`: `万`}}</b></span>
            </p>
          </div>
        </div>
