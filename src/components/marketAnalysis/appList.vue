@@ -76,7 +76,7 @@ export default {
     onPullingUp () {
       this.$emit('onPullingUp')
     },
-    gotoDetail(id) {
+    gotoDetail (id) {
       this.$router.push({name: 'marketAnalysisDetail', params: { id: id }, query: {code: this.code, pithOne: this.pithOne}})
     }
   },
