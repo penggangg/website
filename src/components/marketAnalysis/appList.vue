@@ -15,7 +15,7 @@
         <div v-if="swiperPicList.length>1" class="market-Swiper">
             <swiper :options="swiperOption">
                 <swiper-slide v-for="(item, index) in swiperPicList" :key="index">
-                    <img :src="item.pic" alt="" srcset="">
+                    <img :src="item.pic" alt="" srcset="" @click="gotoDetail(item.id)">
                     <div class="position_div">
                         <p class="fontsizeoverflow">{{item.title}}</p>
                         <p class="fontsizeoverflow">{{item.desc}}</p>
@@ -25,10 +25,10 @@
             </swiper>
         </div>
         <div v-if="swiperPicList.length==1" style="height:2.04rem" class="market-Swiper">
-             <img :src="swiperPicList[0].imgurl" alt="" style="width:100%;height:100%;">
+             <img :src="swiperPicList[0].pic" alt="" style="width:100%;height:100%;" @click="gotoDetail(swiperPicList[0].id)">
              <div class="position_div">
-                <p class="fontsizeoverflow">{{item.title}}</p>
-                <p class="fontsizeoverflow">{{item.desc}}</p>
+                <p class="fontsizeoverflow">{{swiperPicList[0].title}}</p>
+                <p class="fontsizeoverflow">{{swiperPicList[0].desc}}</p>
             </div>
         </div>
      </div>
@@ -45,7 +45,7 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import listmark from '@/components/public/appPublic/listmark'
 // import huosefooter from '@/components/public/appPublic/footer'
 export default {
-  name: 'apphuosedetail',
+  name: 'marketAnalysisList',
   props: {
     article_list: Array,
     swiperPicList: Array,
@@ -75,6 +75,9 @@ export default {
   methods: {
     onPullingUp () {
       this.$emit('onPullingUp')
+    },
+    gotoDetail(id) {
+      this.$router.push({name: 'marketAnalysisDetail', params: { id: id }, query: {code: this.code, pithOne: this.pithOne}})
     }
   },
   computed: {
