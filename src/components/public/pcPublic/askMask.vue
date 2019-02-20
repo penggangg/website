@@ -33,7 +33,7 @@ export default {
         ask({
           city_id: this.code,
           tel: this.tel,
-          type: this.typeMap[this.$route.name]
+          type: this.typeMap[this.$route.name] || 4
         }).then(res => {
           this.$emit('input', false)
           this.$showMsg(res.errorMsg)
