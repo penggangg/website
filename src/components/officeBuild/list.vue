@@ -60,6 +60,7 @@ export default {
     },
     changePageSize (page) {
       this.condition.offset = page
+      this.getList()
     },
     async getCondition () {
       let { result } = await officeConditions({city_id: this.code, rent_type: this.condition.rent_id})
