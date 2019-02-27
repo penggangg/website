@@ -38,9 +38,14 @@
               :key="index"
               @click="changeCondition({price: item.value})"
             >{{item.key}}</span>
-            <span>
+            <span v-if="rent_id==2">
               <input type="number" v-model="price_min"> -
               <input type="number" v-model="price_max"> 万
+              <input type="button" value="确定" @click="changeCondition({price: (price_min*10000||0) +'-'+ price_max*10000})">
+            </span>
+            <span v-if="rent_id==1">
+              <input type="number" v-model="price_min" @keydown="numOnly"> -
+              <input type="number" v-model="price_max" @keydown="numOnly"> 元/天/㎡
               <input type="button" value="确定" @click="changeCondition({price: (price_min*10000||0) +'-'+ price_max*10000})">
             </span>
           </dd>
@@ -68,7 +73,7 @@
               {{priceShop.priceShop/10000}}万
             </div>
             <div class="house-price" v-if="rent_id==1">
-              {{priceShop.priceShop}}元/月
+              {{priceShop.priceShop}}元/天/㎡
             </div>
           </template>
         </list-item>
@@ -143,6 +148,13 @@
 import searchForm from '../public/pcPublic/searchForm'
 import listResult from '../public/pcPublic/listResult'
 import listItem from '../public/pcPublic/listItem'
+let allowKey = [8, 37, 39, 46]
+for (let i = 48; i < 58; i++) {
+  allowKey.push(i)
+}
+for (let i = 95; i < 106; i++) {
+  allowKey.push(i)
+}
 export default {
   data () {
     return {
@@ -161,6 +173,14 @@ export default {
     limit: Number
   },
   methods: {
+    numOnly (e) {
+      let {keyCode} = e
+      let keys = allowKey.concat()
+      // keys.push(110, 190) // 小数点 和tab键
+      if (keys.indexOf(keyCode) < 0) {
+        e.preventDefault()
+      }
+    },
     changeCondition (value) {
       let { keys, values } = Object
       let key = keys(value)[0]

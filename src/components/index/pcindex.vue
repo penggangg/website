@@ -73,7 +73,7 @@
             <img class="content-three" :src="item.pic" alt="" srcset="">
             <div>
               <span :title="item.title">{{item.title}}</span>
-              <span :title="item.rent_id===1 ? `${item.price}元/月` : `${item.price/10000}万`">{{item.rent_id===1 ? `${item.price}元/月` : `${item.price/10000}万`}}</span>
+              <span :title="item.rent_id===1 ? `${item.price}元/天/㎡` : `${item.price/10000}万`">{{item.rent_id===1 ? `${item.price}元/天/㎡` : `${item.price/10000}万`}}</span>
             </div>
           </div>
         </div>
@@ -91,7 +91,7 @@
             <img class="content-three" :src="item.pic" alt="" srcset="">
             <div>
               <span :title="item.title">{{item.title}}</span>
-              <span :title="item.rent_id===1 ? `${item.price}元月` : `${item.price/10000}万`">{{item.rent_id===1 ? `${item.price}元/月` : `${item.price/10000}万`}}</span>
+              <span :title="item.rent_id===1 ? `${item.price}元月` : `${item.price/10000}万`">{{item.rent_id===1 ? `${item.price}元/天/㎡` : `${item.price/10000}万`}}</span>
             </div>
           </div>
         </div>
