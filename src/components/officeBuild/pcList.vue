@@ -108,7 +108,7 @@
       dd {
         display: inline-block;
         span {
-          margin-right: 30px;
+          margin-right: 22px;
           color: #333;
           cursor: pointer;
           &.active {

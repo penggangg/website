@@ -13,9 +13,14 @@
       </ul>
       <div class="sure_buttom">
         <button @click="surefilter" v-if="types != '1'">确定</button>
-        <p class="price-section" v-if ="types == '1'">
+        <p class="price-section" v-if ="types == '1' && activePclass==2">
           <span><input type="number" v-model="bottomPrice"></span> -
           <span><input type="number" v-model="topPrice"></span> 万
+          <span @click="surefilter">确定</span>
+        </p>
+        <p class="price-section" v-if ="types == '1' && activePclass==1">
+          <span><input type="number" v-model="bottomPrice"></span> -
+          <span><input type="number" v-model="topPrice"></span>元/月/㎡
           <span @click="surefilter">确定</span>
         </p>
       </div>
@@ -44,6 +49,10 @@ export default {
     filtertop: {
       type: String,
       default: '1.51rem'
+    },
+    activePclass: {
+      type: Number, // 区分出租 出售 1出租 2出售
+      default: 2
     }
   },
   data () {
@@ -89,7 +98,11 @@ export default {
     },
     surefilter () {
       if (this.types === '1' && (this.bottomPrice || this.topPrice)) {
-        this.$emit('input', {key: `${this.bottomPrice}-${this.topPrice}万`, value: `${this.bottomPrice}0000-${this.topPrice}0000`})
+        if (this.activePclass === 2) {
+          this.$emit('input', {key: `${this.bottomPrice}-${this.topPrice}万`, value: `${this.bottomPrice}0000-${this.topPrice}0000`})
+        } else {
+          this.$emit('input', {key: `${this.bottomPrice}-${this.topPrice}元/月/㎡`, value: `${this.bottomPrice}-${this.topPrice}`})
+        }
         // this.bottomPrice = ''
         // this.topPrice = ''
       }
@@ -173,7 +186,7 @@ export default {
     }
     span:nth-of-type(3) {
       border-radius: .04rem;
-      width: 1.12rem;
+      width: 1rem;
       height: .36rem;
       background: #5D9CF9;
       color: #fff;

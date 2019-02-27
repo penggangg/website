@@ -46,7 +46,7 @@
             <span v-if="rent_id==1">
               <input type="number" v-model="price_min" @keydown="numOnly"> -
               <input type="number" v-model="price_max" @keydown="numOnly"> 元/天/㎡
-              <input type="button" value="确定" @click="changeCondition({price: (price_min*10000||0) +'-'+ price_max*10000})">
+              <input type="button" value="确定" @click="changeCondition({price: (price_min||0) +'-'+ price_max})">
             </span>
           </dd>
         </dl>
@@ -121,7 +121,7 @@
       dd {
         display: inline-block;
         span {
-          margin-right: 30px;
+          margin-right: 22px;
           color: #333;
           cursor: pointer;
           &.active {

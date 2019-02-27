@@ -47,7 +47,7 @@
       </div> -->
     </div>
     <transition name="fade">
-      <filteringpop :arrlist="arrlist" :types="types" :filtertop="'1.91rem'" v-model="flitertext" v-show="filteringpopShow" @surefilter="surefilter"></filteringpop>
+      <filteringpop :arrlist="arrlist" :activePclass="activePclass" :types="types" :filtertop="'1.91rem'" v-model="flitertext" v-show="filteringpopShow" @surefilter="surefilter"></filteringpop>
     </transition>
   </div>
 </template>
