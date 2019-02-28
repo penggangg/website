@@ -17,7 +17,7 @@
                 <div class="text-mess">
                     <span style="width:2.08rem" class="fontsizeoverflow">{{item.title}}</span>
                     <span  v-if="title == '新房推荐'">{{item.price/10000}}万/㎡</span>
-                    <span  v-if="title != '新房推荐'">{{item.rent_id===1 ? `${item.price}元/天/㎡` : `${item.price/10000}万`}}</span>
+                    <span  v-if="title != '新房推荐'">{{item.rent_id===1 ? `${item.price}元/㎡·天` : `${item.price/10000}万`}}</span>
                 </div>
             </div>
         </swiper-slide>

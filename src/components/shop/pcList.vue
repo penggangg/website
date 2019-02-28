@@ -45,7 +45,7 @@
             </span>
             <span v-if="rent_id==1">
               <input type="number" v-model="price_min" @keydown="numOnly"> -
-              <input type="number" v-model="price_max" @keydown="numOnly"> 元/天/㎡
+              <input type="number" v-model="price_max" @keydown="numOnly"> 元/㎡·天
               <input type="button" value="确定" @click="changeCondition({price: (price_min||0) +'-'+ price_max})">
             </span>
           </dd>
@@ -73,7 +73,7 @@
               {{priceShop.priceShop/10000}}万
             </div>
             <div class="house-price" v-if="rent_id==1">
-              {{priceShop.priceShop}}元/天/㎡
+              {{priceShop.priceShop}}元/㎡·天
             </div>
           </template>
         </list-item>

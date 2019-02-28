@@ -20,7 +20,7 @@
         </p>
         <p class="price-section" v-if ="types == '1' && activePclass==1">
           <span><input type="number" v-model="bottomPrice"></span> -
-          <span><input type="number" v-model="topPrice"></span>元/月/㎡
+          <span><input type="number" v-model="topPrice"></span>元/㎡·天
           <span @click="surefilter">确定</span>
         </p>
       </div>
@@ -101,7 +101,7 @@ export default {
         if (this.activePclass === 2) {
           this.$emit('input', {key: `${this.bottomPrice}-${this.topPrice}万`, value: `${this.bottomPrice}0000-${this.topPrice}0000`})
         } else {
-          this.$emit('input', {key: `${this.bottomPrice}-${this.topPrice}元/月/㎡`, value: `${this.bottomPrice}-${this.topPrice}`})
+          this.$emit('input', {key: `${this.bottomPrice}-${this.topPrice}元/㎡·天`, value: `${this.bottomPrice}-${this.topPrice}`})
         }
         // this.bottomPrice = ''
         // this.topPrice = ''

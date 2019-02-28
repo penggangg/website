@@ -42,7 +42,7 @@
       </div>
       <div class="prcie"  v-if="details.rent_id ===1">
         <span>租金</span>
-        <span>{{details.price}}</span>元/天/㎡
+        <span>{{details.price}}</span>元/㎡·天
       </div>
       <ul class="details">
         <li>
